@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{46C56A6C-8C45-4F2B-B7FF-93DD5C61FAAB}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>NoxShared</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NoxShared</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <DebugType>Full</DebugType>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>False</NoStdLib>
+    <Optimize>True</Optimize>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppConsole.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AudioBag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BinaryIO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Crc32.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CryptApi.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DnsApi.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExceptionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLanguageSwitch.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Map.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MemoryHack.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ModifierDb.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MonsterDb.cs" />
+    <Compile Include="NoxDb.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NoxType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjXfer\MonsterGeneratorXfer.cs" />
+    <Compile Include="ObjXfer\ObjXferStream.cs" />
+    <Compile Include="Player.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlayerDb.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlayerFile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProcessMemory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Script.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StringDb.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ThingDb.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="VideoBag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xfer\DoorXfer.cs" />
+    <Compile Include="Xfer\ElevatorXfer.cs" />
+    <Compile Include="Xfer\ExitXfer.cs" />
+    <Compile Include="Xfer\FieldGuideXfer.cs" />
+    <Compile Include="Xfer\GlyphXfer.cs" />
+    <Compile Include="Xfer\GoldXfer.cs" />
+    <Compile Include="Xfer\HoleXfer.cs" />
+    <Compile Include="Xfer\InvisibleLightXfer.cs" />
+    <Compile Include="Xfer\MonsterXfer.cs" />
+    <Compile Include="Xfer\MoverXfer.cs" />
+    <Compile Include="Xfer\NoxEnums.cs" />
+    <Compile Include="Xfer\NPCXfer.cs" />
+    <Compile Include="Xfer\ObeliskXfer.cs" />
+    <Compile Include="Xfer\ReadableXfer.cs" />
+    <Compile Include="Xfer\RewardMarkerXfer.cs" />
+    <Compile Include="Xfer\SentryGlobeXfer.cs" />
+    <Compile Include="Xfer\SpellRewardXfer.cs" />
+    <Compile Include="Xfer\TransporterXfer.cs" />
+    <Compile Include="Xfer\TriggerXfer.cs" />
+    <Compile Include="Xfer\Xfers.cs" />
+    <Compile Include="XML.cs" />
+    <EmbeddedResource Include="ExceptionDialog.ko.resx">
+      <DependentUpon>ExceptionDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExceptionDialog.nl.resx">
+      <DependentUpon>ExceptionDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExceptionDialog.resx">
+      <DependentUpon>ExceptionDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\sspack\sspack.csproj">
+      <Project>{64cd5f7e-d51b-4f36-9b68-c1959e9671b8}</Project>
+      <Name>sspack</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+    <StartAction>Project</StartAction>
+  </PropertyGroup>
+</Project>
