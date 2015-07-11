@@ -2,7 +2,7 @@ local TriggerDraw = {}
 
 TriggerDraw.name = "TriggerDraw"
 
-TriggerDraw.AnimatePerSecond = 1 / 15
+TriggerDraw.AnimatePerSecond = 1 / 16
 
 local rdraw = renderer.drawObject
 

@@ -9,7 +9,7 @@ namespace NoxShared
 	{
 		public static string NoxPath;
 		protected static string dbFile;//set this before calling GetStream()
-		protected static FileStream GetStream() {return File.OpenRead(NoxPath + dbFile);}
+		protected static FileStream GetStream() { return File.OpenRead(NoxPath + dbFile); }
 		private static RegistryKey installPathKey;
 		private const string REGISTRY_PATH = "SOFTWARE\\Westwood\\Nox";
 		private static string directorySeparator = Path.DirectorySeparatorChar.ToString();

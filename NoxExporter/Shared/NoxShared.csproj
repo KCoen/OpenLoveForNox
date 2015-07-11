@@ -149,6 +149,18 @@
     <Compile Include="NoxDb.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="noxscript2\CodeTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="noxscript2\Compiler.cs" />
+    <Compile Include="noxscript2\Decompiler.cs" />
+    <Compile Include="noxscript2\NoxFuncs.cs" />
+    <Compile Include="noxscript2\Operation.cs" />
+    <Compile Include="noxscript2\ScriptObjContainer.cs" />
+    <Compile Include="noxscript2\ScriptUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="noxscript2\ScriptUserControl.Designer.cs" />
     <Compile Include="NoxType.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -213,6 +225,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <AppDesigner Include="Properties\" />
+    <EmbeddedResource Include="noxscript2\ScriptUserControl.resx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.manifest" />

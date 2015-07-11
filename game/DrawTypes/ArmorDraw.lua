@@ -2,7 +2,7 @@ local ArmorDraw = {}
 
 ArmorDraw.name = "ArmorDraw"
 
-ArmorDraw.AnimatePerSecond = 1 / 15
+ArmorDraw.AnimatePerSecond = 1 / 16
 
 local rdraw = renderer.drawObject
 

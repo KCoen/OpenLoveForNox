@@ -1904,7 +1904,7 @@ namespace NoxShared
 				
 				if (rdr.BaseStream.Position <= endOfData)
 				{
-					bool read = false;
+					//bool read = false;
 
 					modbuf = rdr.ReadBytes((int)(endOfData - rdr.BaseStream.Position));
 

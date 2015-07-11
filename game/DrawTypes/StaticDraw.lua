@@ -5,7 +5,7 @@ StaticDraw.name = "StaticDraw"
 
 local rdraw = renderer.drawObject
 
-StaticDraw.AnimatePerSecond = 1 / 15
+StaticDraw.AnimatePerSecond = 1 / 16
 
 function StaticDraw:initObject(obj)
 	local index = obj.tt.SpriteAnimFrames[1];

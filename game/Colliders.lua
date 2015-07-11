@@ -38,7 +38,7 @@ function Colliders:RegisterObject(obj) -- DrawFunction
 		if(obj.collider) then
 			obj.collider:initObject(obj, unpack(cfa))
 		else
-			--print("Unsuported collider " .. obj.tt.Collide, collidefunction)
+			print("Unsuported collider " .. obj.tt.Collide, collidefunction)
 		end
 	end
 

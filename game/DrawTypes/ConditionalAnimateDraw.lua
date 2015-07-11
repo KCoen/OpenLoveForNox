@@ -2,7 +2,7 @@ local ConditionalAnimateDraw = {}
 
 ConditionalAnimateDraw.name = "ConditionalAnimateDraw"
 
-ConditionalAnimateDraw.AnimatePerSecond = 1 / 15
+ConditionalAnimateDraw.AnimatePerSecond = 1 / 16
 
 local rdraw = renderer.drawObject
 local UpdateObjectSpriteId = UpdateObjectSpriteId

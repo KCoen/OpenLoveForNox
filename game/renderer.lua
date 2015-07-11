@@ -26,17 +26,23 @@ function GetClosestWallPoint(wall, cx ,cy)
 end
 
 function renderer.addToBatch(obj, batchname)
-	local lbatch = renderer.batches[batchname]
-	lbatch.batch:add(obj.quad, round(obj.x + obj.drawOffsetX), round(obj.y + obj.drawOffsetY))
+	local height = 0
+	if(obj.isonelevator) then
+		height = (obj.isonelevator.elevatorheight - 1) * 4
+	end
 
+	local lbatch = renderer.batches[batchname]
+	lbatch.batch:add(obj.quad, round(obj.x + obj.drawOffsetX), round(obj.y + obj.drawOffsetY - height))
+
+	
+
+	local x, y
 	if(obj.type == "WALL") then
 		local cx,cy = player.x,player.y
 		x,y = camera:worldToLocal(GetClosestWallPoint(obj, cx, cy))
 	else
 		x,y = camera:worldToLocal(obj.x,obj.y)	
 	end
-
-	
 
 	-- todo, find a way to avoid calling setPixel 7 items per object/wall etc
 	lbatch.textureData:setPixel(

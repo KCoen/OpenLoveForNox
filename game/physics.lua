@@ -7,6 +7,56 @@ function physics:load()
 	love.physics.setMeter(23)
 	physworld = love.physics.newWorld(0, 0, true)
 	physworldbody = love.physics.newBody(physworld,1,1)
+	
+	physworld:setCallbacks( 
+	function(fix1, fix2) 
+		local objA = fix1:getUserData()
+		local objB = fix2:getUserData()
+		
+		if (objA and objB) then
+			if(objA.collider and objA.collider.onCollide) then
+				objA.collider:onCollide(objA, objB, fix1, fix2)
+			end
+			if(objB.collider and objB.collider.onCollide) then
+				objB.collider:onCollide(objB, objA, fix2, fix1)
+			end
+		end
+	end, 
+	function(fix1, fix2)
+		local objA = fix1:getUserData()
+		local objB = fix2:getUserData()
+		
+		if (objA and objB) then
+			if(objA.collider and objA.collider.onEndCollide) then
+				objA.collider:onEndCollide(objA, objB, fix1, fix2)
+			end
+			if(objB.collider and objB.collider.onEndCollide) then
+				objB.collider:onEndCollide(objB, objA, fix2, fix1)
+			end
+		end
+	end	
+	)
+
+	physworld:setContactFilter(function(fix1,fix2)
+		local objA = fix1:getUserData()
+		local objB = fix2:getUserData()
+
+		local r1 = true
+		local r2 = true
+		
+		if (objA and objB) then
+			if(objA.collider and objA.collider.shouldCollide) then
+				r1 = objA.collider:shouldCollide(objA, objB, fix1, fix2)
+			end
+			if(objB.collider and objB.collider.shouldCollide) then
+				r2 = objB.collider:shouldCollide(objB, objA, fix2, fix1)
+			end
+		end
+
+		return r1 and r2
+	end
+	)
+	
 end
 
 function physics:InitObjectPhysics(obj)
@@ -18,10 +68,7 @@ function physics:InitObjectPhysics(obj)
 		else
 			print("Unsupported collision type: " .. obj.tt.Collide)
 		end
-		
-		
 	end
-
 
 	if not obj.class["IMMOBILE"] then
 		if(obj.phys) then

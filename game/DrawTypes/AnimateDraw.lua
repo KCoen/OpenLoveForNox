@@ -5,7 +5,7 @@ local UpdateObjectSpriteId = UpdateObjectSpriteId
 
 AnimateDraw.name = "AnimateDraw"
 
-AnimateDraw.AnimatePerSecond = 1 / 15
+AnimateDraw.AnimatePerSecond = 1 / 16
 
 function AnimateDraw:initObject(obj)
 	obj.animationState = math.random(1, #obj.tt.SpriteAnimFrames)

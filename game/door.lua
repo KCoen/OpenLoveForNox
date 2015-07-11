@@ -17,7 +17,7 @@ end
 
 function Door:draw()
 	local b = self.phys[1].body
-	local dir = self.mobject.ObjXfer.Direction + round(((b:getAngle() - math.pi / 16) / (math.pi * 2)) * #self.tt.SpriteAnimFrames)
+	local dir = self.mobject.ObjXfer.Direction + round(((b:getAngle() - math.pi / 8) / (math.pi * 2)) * #self.tt.SpriteAnimFrames) + #self.tt.SpriteAnimFrames + 1
 	dir = math.abs(dir)
 	dir = (dir + 1) % #self.tt.SpriteAnimFrames + 1
 	self:UpdateObjectSpriteId(self.tt.SpriteAnimFrames[dir])

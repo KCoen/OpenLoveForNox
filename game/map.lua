@@ -137,6 +137,17 @@ function map:GetClosestWallPointToMouse(wall, cx ,cy)
 	return wall.points[index].X, wall.points[index].Y
 end
 
+function map:GetByExtendId(id)	
+	for k, obj in pairs(self._Objects) do
+		if (obj.mobject.Extent == id) then
+			return obj
+		end
+	end
+	
+	return nil
+end
+
+
 function map:load()
 	love.timer.starTimer("Map Load")
 	
@@ -144,12 +155,17 @@ function map:load()
 	map.TileEdges = SpatialHash.new(gameconf.maxmapsize, gameconf.maxmapsize, gameconf.mapchunksize)
 	map.Objects = SpatialHash.new(gameconf.maxmapsize, gameconf.maxmapsize, gameconf.mapchunksize)
 	map.Walls = SpatialHash.new(gameconf.maxmapsize, gameconf.maxmapsize, gameconf.mapchunksize)
+	map._Objects = {}
 
+	local counti = 0 
 	for k, obj in pairs(Map.Objects) do		
 		local object = ObjectFromMapObject(obj)
+		counti = counti + 1
 		map.Objects:add(object)
+		map._Objects[#map._Objects + 1] = object
 	end
 	
+	print(counti)
 	for k, obj in pairs(Map.Walls) do
 		local wall = WallFromMapWall(obj.Value)
 		map.Walls:add(wall)
@@ -276,6 +292,8 @@ function physDebug:draw()
 	end
 end
 
+
+
 function map:drawShadows(objects, walls)	
 	local oldCanvas = G.getCanvas()
 	G.setCanvas(lightEngine.shadowBuffer)
@@ -320,7 +338,7 @@ function map:drawShadows(objects, walls)
 
 	for i=1, #objects do
 		local obj = objects[i]
-		if (obj.phys and obj.type == "DOOR") then
+		if (obj.phys and obj.type == "DOOR" and obj.flags["SHADOW"]) then
 			for k,v in ipairs(obj.phys) do
 				local body = v.body 
 				--local posx, posy = body:getPosition()
@@ -598,4 +616,10 @@ end
 function map:update(dt)
 	love.timer.startProfile("Physics update")
 	love.timer.stopProfile("Physics update")	
+
+	for k, obj in pairs(self._Objects) do
+		if(obj.updater) then
+			obj.updater:updateObject(obj, dt)
+		end
+	end
 end

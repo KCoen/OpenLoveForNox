@@ -205,7 +205,6 @@ function love.timer.stopProfile(name)
 end
 
 function love.timer.drawProfiles()
-	
 	for name, t in pairs(love.timer.profilers[love.timer.frameCount]) do
 		if love.timer.profilers[love.timer.frameCount - 10] then
 			local total = 0

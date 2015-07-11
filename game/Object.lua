@@ -1,4 +1,6 @@
 function ObjectFromMapObject(mobject)
+
+
 	local object = {}
 	if mobject.Name == "PlayerStart" then
 		if(not player) then
@@ -68,6 +70,7 @@ function ObjectFromMapObject(mobject)
 	
 	Colliders:RegisterObject(object)
 	DrawTypes:RegisterObject(object)
+	Updates:RegisterObject(object)
 	
 	
 	

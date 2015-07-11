@@ -2,7 +2,7 @@ local StaticRandomDraw = {}
 
 StaticRandomDraw.name = "StaticRandomDraw"
 
-StaticRandomDraw.AnimatePerSecond = 1 / 15
+StaticRandomDraw.AnimatePerSecond = 1 / 16
 
 local rdraw = renderer.drawObject
 

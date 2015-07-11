@@ -306,7 +306,21 @@ function Player.new(x, y)
 	return self
 end
 
+function Player:setPosition(x,y)
+	self.futureX = x
+	self.futureY = y
+end
+
 function Player:update(dt)
+	if(self.futureX and self.futureY) then
+		self.phys[1].body:setPosition(self.futureX,self.futureY)
+		camera:set(self.futureX, self.futureY)
+		self.futureX = nil
+		self.futureY = nil
+
+	end
+
+
 	self.x, self.y = self.phys[1].body:getPosition()
 
 
@@ -417,6 +431,8 @@ end
 function Player:draw()
 	--local vx, vy = self.phys[1].body:getLinearVelocity()
 	--local vlength = math.sqrt(vx^2 + vy^2)
+
+	
 
 	self.shader:send("type46",true)
 	self.shader:send("pos",{camera:worldToLocal(self.x,self.y)})

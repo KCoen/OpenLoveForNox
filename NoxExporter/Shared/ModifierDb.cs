@@ -151,8 +151,8 @@ namespace NoxShared
 		{
 			Mods = new Dictionary<string, Mod>();
 
-			dbFile = "modifier.dec.bin";
-			using (StreamReader rdr = new StreamReader(GetStream()))//new StreamReader(CryptApi.DecryptStream(, CryptApi.NoxCryptFormat.MODIFIER)))
+			dbFile = "modifier.bin";
+            using (StreamReader rdr = new StreamReader(CryptApi.DecryptStream(GetStream(), CryptApi.NoxCryptFormat.MODIFIER)))//using (StreamReader rdr = new StreamReader(GetStream()))//new StreamReader(CryptApi.DecryptStream(, CryptApi.NoxCryptFormat.MODIFIER)))
 			{
 				string type = "";
 				while (rdr.BaseStream.Position < rdr.BaseStream.Length)

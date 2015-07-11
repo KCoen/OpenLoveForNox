@@ -4,7 +4,7 @@ AnimateStateDraw.name = "AnimateStateDraw"
 local rdraw = renderer.drawObject
 local UpdateObjectSpriteId = UpdateObjectSpriteId
 
-AnimateStateDraw.AnimatePerSecond = 1 / 15
+AnimateStateDraw.AnimatePerSecond = 1 / 16
 
 function AnimateStateDraw:initObject(obj)	
 	obj.spriteState = 1

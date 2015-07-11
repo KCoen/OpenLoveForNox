@@ -8,6 +8,7 @@ using System.Drawing;
 using NoxShared;
 using System.IO;
 using sspack;
+using MapEditor.noxscript2;
 
 namespace NoxExporter
 {
@@ -683,8 +684,50 @@ namespace NoxExporter
 					}
 				}
 			}
-
 		}
+
+        static void ExportMapScripts()
+        {
+            Directory.CreateDirectory("noxmaps");
+            Directory.CreateDirectory("luamaps");
+
+            DirectoryInfo di = new DirectoryInfo("noxmaps");
+            foreach (var dir in di.GetDirectories())
+            {
+                foreach (var file in dir.GetFiles())
+                {
+                    if (file.Extension == ".map")
+                    {
+						Console.WriteLine(file.Name);
+                        string code = "";
+                        Map map = new Map(file.FullName, thingdb);
+                        var soc = new ScriptObjContainer(map.Scripts);
+
+                        for(int i = 0; i < soc.Functions.Count;i++)
+                        {
+                            
+                            code = code + "\r\n";
+                            code = code + "function " + soc.Functions[i].Name + "(";
+                            for(int j = 0; j < soc.Functions[i].NumArgs;j++)
+                            {
+                                if(j > 0)
+                                    code = code + ",";
+								code = code + "arg_" + j.ToString();
+                            }
+                            
+                            code = code + ")\r\n";
+							foreach (string line in new LineReader(() => new StringReader(soc.Decompile(i))))
+							{
+								code = code + "\t" + line + "\r\n";
+							}
+                            code = code + "end";
+                        }
+
+                        System.IO.File.WriteAllText("luamaps/" + file.Name + ".lua", code);
+                    }
+                }
+            }
+        }
 
 		static void Main(string[] args)
 		{
@@ -699,6 +742,7 @@ namespace NoxExporter
 				Console.WriteLine("L - Export Sequences");
 				Console.WriteLine("U - Export Objects");
 				Console.WriteLine("I - Export Audio");
+                Console.WriteLine("S - Export Map Scripts");
 				Console.WriteLine("O - ModDB");
 				Console.WriteLine("Q - Quit");
 
@@ -746,6 +790,19 @@ namespace NoxExporter
 							System.IO.File.WriteAllText("BlueDeath.json", json);J*/
 						}
 						break;
+                    case 'S':
+                        {
+                            ExportMapScripts();
+                            /*
+                            Map map = new Map(@"C:\Program Files (x86)\Nox\maps\BluDeath\BluDeath.map", thingdb);
+                            var jsonserialize = new JavaScriptSerializer();
+                            jsonserialize.MaxJsonLength *= 5;
+                            var json = jsonserialize.Serialize(map);
+                            System.IO.File.WriteAllText("BlueDeath.min.json", json);
+                            json = JSON_PrettyPrinter.Process(json);
+                            System.IO.File.WriteAllText("BlueDeath.json", json);J*/
+                        }
+                        break;
 					case 'O':
 						{
 							var jsonserialize = new JavaScriptSerializer();

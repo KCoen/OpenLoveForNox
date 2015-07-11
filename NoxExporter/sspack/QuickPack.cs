@@ -18,7 +18,7 @@ namespace sspack
 	{
 		private readonly Lexicon<string, Size> imageSizes = new Lexicon<string, Size>();
 		private readonly Dictionary<string, Rectangle> imagePlacement = new Dictionary<string, Rectangle>();
-		private List<KeyValuePair<string, Bitmap>> files;
+		//private List<KeyValuePair<string, Bitmap>> files;
 
 		public QuickPack ()
 		{
