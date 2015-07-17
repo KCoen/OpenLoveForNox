@@ -390,7 +390,7 @@ function MapEntry()
 	CinematicFadeout()
 	LetterBoxOff()
 	ObjFreeze(GetHostPlayer(),false)
-	if not JournalSetQuest("MaidensRescued") == 1 then 
+	if not (JournalSetQuest("MaidensRescued") == 1) then 
 		goto l105
 	end
 	Gvar_53 = ObjFromName("War05B:W5Maiden1")
@@ -411,7 +411,7 @@ function PlaySubMusic()
 	if true then return end
 end
 function MonsterGoHome()
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) == true then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer()) == true) then 
 		goto l18
 	end
 	MonsterGotoHome(Caller)

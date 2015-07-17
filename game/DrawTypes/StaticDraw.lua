@@ -8,7 +8,7 @@ local rdraw = renderer.drawObject
 StaticDraw.AnimatePerSecond = 1 / 16
 
 function StaticDraw:initObject(obj)
-	local index = obj.tt.SpriteAnimFrames[1];
+	local index = obj.spriteAnimFrames[1];
 	UpdateObjectSpriteId(obj, index)
 	self.shader = shaders.sampleShadow
 end

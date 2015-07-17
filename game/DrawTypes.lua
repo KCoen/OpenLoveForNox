@@ -38,11 +38,11 @@ function DrawTypes:RegisterObject(object) -- DrawFunction
 		return
 	end
 	
-	object.renderer = DrawTypes.interfaces[object.tt.DrawType]
+	object.renderer = DrawTypes.interfaces[object.drawType]
 	if(object.renderer) then
 		object.renderer:initObject(object)
 	else
-		print("Unsuported drawtype " .. object.tt.DrawType, object.tt.Name)
+		print("Unsuported drawtype " .. object.drawType, object.objName)
 	end
 end
 

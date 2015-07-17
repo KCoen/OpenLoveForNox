@@ -39,7 +39,7 @@ function SkeletonAmbush()
 	if true then return end
 end
 function SkeletonAmbushTimer()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l12
 	end
 	WaitFrames(45,3)
@@ -134,13 +134,13 @@ function InitializeBlockTrap()
 end
 function BlockTrapBoom(arg_0)
 	var_1 = arg_0
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l33
 	end
-	if var_1 == 2 then 
+	if (var_1 == 2) then 
 		goto l61
 	end
-	if var_1 == 3 then 
+	if (var_1 == 3) then 
 		goto l89
 	end
 	goto l117
@@ -161,13 +161,13 @@ function BlockTrapBoom(arg_0)
 end
 function ResetBlockTrap(arg_0)
 	var_1 = arg_0
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l33
 	end
-	if var_1 == 2 then 
+	if (var_1 == 2) then 
 		goto l47
 	end
-	if var_1 == 3 then 
+	if (var_1 == 3) then 
 		goto l61
 	end
 	goto l75
@@ -349,7 +349,7 @@ function InitializeGuardian()
 	if true then return end
 end
 function GuardianEnter()
-	if not Gvar_59 == 0 and ObjIsCaller(GetHostPlayer()) then 
+	if not (Gvar_59 == 0 and ObjIsCaller(GetHostPlayer())) then 
 		goto l65
 	end
 	PushMusicStack()
@@ -375,7 +375,7 @@ function BreakGuardianWalls()
 	if true then return end
 end
 function GuardianArrivesInArena()
-	if not ObjIsCaller(Gvar_53) then 
+	if not (ObjIsCaller(Gvar_53)) then 
 		goto l30
 	end
 	DisableObject(Trigger)
@@ -386,7 +386,7 @@ function GuardianArrivesInArena()
 	if true then return end
 end
 function GuardianDie()
-	if not Gvar_60 == 0 then 
+	if not (Gvar_60 == 0) then 
 		goto l65
 	end
 	Gvar_60 = true
@@ -403,7 +403,7 @@ function GuardianDie()
 	if true then return end
 end
 function ClearGuardianDoor()
-	if not ObjIsCaller(GetHostPlayer()) == 0 then 
+	if not (ObjIsCaller(GetHostPlayer()) == 0) then 
 		goto l22
 	end
 	TeleportObj(Caller,GetWaypointX(Gvar_56),GetWaypointY(Gvar_56))
@@ -433,7 +433,7 @@ function InitializeKeeper()
 	if true then return end
 end
 function EnemyGoHome()
-	if not ObjIsHostileTo(GetHostPlayer(),Caller) and ScriptCaller() ~= Gvar_64 then 
+	if not (ObjIsHostileTo(GetHostPlayer(),Caller) and ScriptCaller() ~= Gvar_64) then 
 		goto l21
 	end
 	MonsterGotoHome(Caller)
@@ -444,7 +444,7 @@ function GoInvisible()
 	var_6 = 0
 	var_7 = 0
 	Gvar_75 = Gvar_75 + 1
-	if not Gvar_63 == Gvar_62 then 
+	if not (Gvar_63 == Gvar_62) then 
 		goto l37
 	end
 	Gvar_63 = Gvar_61
@@ -457,7 +457,7 @@ function GoInvisible()
 	var_4 = GetObjY(Gvar_64)
 	var_0 = 0
 	::l68::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l118
 	end
 	var_5[var_0] = GetDistance(var_3,var_4,GetWaypointX(Gvar_70[var_0]),GetWaypointY(Gvar_70[var_0]))
@@ -466,10 +466,10 @@ function GoInvisible()
 	::l118::
 	var_0 = 0
 	::l124::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l171
 	end
-	if not var_5[var_0] > var_6 then 
+	if not (var_5[var_0] > var_6) then 
 		goto l163
 	end
 	var_6 = var_5[var_0]
@@ -478,12 +478,12 @@ function GoInvisible()
 	var_0 = var_0 + 1
 	goto l124
 	::l171::
-	if not GetObjHealth(Gvar_64) > 0 then 
+	if not (GetObjHealth(Gvar_64) > 0) then 
 		goto l287
 	end
 	var_1 = GetWaypointX(Gvar_70[var_7])
 	var_2 = GetWaypointY(Gvar_70[var_7])
-	if not Gvar_75 >= 4 then 
+	if not (Gvar_75 >= 4) then 
 		goto l230
 	end
 	Gvar_75 = 0
@@ -504,7 +504,7 @@ end
 function KeeperEnter()
 	var_0 = GetWaypointX(Gvar_71)
 	var_1 = GetWaypointY(Gvar_71)
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_74 == false then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_74 == false) then 
 		goto l106
 	end
 	EnableObject(Gvar_69)
@@ -522,7 +522,7 @@ function KeeperEnter()
 	if true then return end
 end
 function KeeperDie()
-	if not Gvar_73 == 0 then 
+	if not (Gvar_73 == 0) then 
 		goto l65
 	end
 	PopMusicStack()
@@ -539,7 +539,7 @@ function KeeperDie()
 	if true then return end
 end
 function ClearKeeperDoor()
-	if not ObjIsCaller(GetHostPlayer()) == 0 then 
+	if not (ObjIsCaller(GetHostPlayer()) == 0) then 
 		goto l22
 	end
 	TeleportObj(Caller,GetWaypointX(Gvar_72),GetWaypointY(Gvar_72))
@@ -608,42 +608,42 @@ function Secret02Found()
 end
 function CheckRows(arg_0)
 	var_1 = arg_0
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l97
 	end
-	if var_1 == 2 then 
+	if (var_1 == 2) then 
 		goto l119
 	end
-	if var_1 == 3 then 
+	if (var_1 == 3) then 
 		goto l141
 	end
-	if var_1 == 4 then 
+	if (var_1 == 4) then 
 		goto l163
 	end
-	if var_1 == 5 then 
+	if (var_1 == 5) then 
 		goto l185
 	end
-	if var_1 == 6 then 
+	if (var_1 == 6) then 
 		goto l207
 	end
-	if var_1 == 7 then 
+	if (var_1 == 7) then 
 		goto l229
 	end
-	if var_1 == 8 then 
+	if (var_1 == 8) then 
 		goto l251
 	end
-	if var_1 == 9 then 
+	if (var_1 == 9) then 
 		goto l273
 	end
-	if var_1 == 10 then 
+	if (var_1 == 10) then 
 		goto l295
 	end
-	if var_1 == 11 then 
+	if (var_1 == 11) then 
 		goto l317
 	end
 	goto l339
 	::l97::
-	if not Gvar_78 > 0 then 
+	if not (Gvar_78 > 0) then 
 		goto l112
 	end
 	EnableObject(Gvar_91)
@@ -653,7 +653,7 @@ function CheckRows(arg_0)
 	::l117::
 	goto l339
 	::l119::
-	if not Gvar_79 > 0 then 
+	if not (Gvar_79 > 0) then 
 		goto l134
 	end
 	EnableObject(Gvar_92)
@@ -663,7 +663,7 @@ function CheckRows(arg_0)
 	::l139::
 	goto l339
 	::l141::
-	if not Gvar_80 > 0 then 
+	if not (Gvar_80 > 0) then 
 		goto l156
 	end
 	EnableObject(Gvar_93)
@@ -673,7 +673,7 @@ function CheckRows(arg_0)
 	::l161::
 	goto l339
 	::l163::
-	if not Gvar_81 > 0 then 
+	if not (Gvar_81 > 0) then 
 		goto l178
 	end
 	EnableObject(Gvar_94)
@@ -683,7 +683,7 @@ function CheckRows(arg_0)
 	::l183::
 	goto l339
 	::l185::
-	if not Gvar_82 > 0 then 
+	if not (Gvar_82 > 0) then 
 		goto l200
 	end
 	EnableObject(Gvar_95)
@@ -693,7 +693,7 @@ function CheckRows(arg_0)
 	::l205::
 	goto l339
 	::l207::
-	if not Gvar_83 > 0 then 
+	if not (Gvar_83 > 0) then 
 		goto l222
 	end
 	EnableObject(Gvar_96)
@@ -703,7 +703,7 @@ function CheckRows(arg_0)
 	::l227::
 	goto l339
 	::l229::
-	if not Gvar_84 > 0 then 
+	if not (Gvar_84 > 0) then 
 		goto l244
 	end
 	EnableObject(Gvar_97)
@@ -713,7 +713,7 @@ function CheckRows(arg_0)
 	::l249::
 	goto l339
 	::l251::
-	if not Gvar_85 > 0 then 
+	if not (Gvar_85 > 0) then 
 		goto l266
 	end
 	EnableObject(Gvar_98)
@@ -723,7 +723,7 @@ function CheckRows(arg_0)
 	::l271::
 	goto l339
 	::l273::
-	if not Gvar_86 > 0 then 
+	if not (Gvar_86 > 0) then 
 		goto l288
 	end
 	EnableObject(Gvar_99)
@@ -733,7 +733,7 @@ function CheckRows(arg_0)
 	::l293::
 	goto l339
 	::l295::
-	if not Gvar_87 > 0 then 
+	if not (Gvar_87 > 0) then 
 		goto l310
 	end
 	EnableObject(Gvar_100)
@@ -743,7 +743,7 @@ function CheckRows(arg_0)
 	::l315::
 	goto l339
 	::l317::
-	if not Gvar_88 > 0 then 
+	if not (Gvar_88 > 0) then 
 		goto l332
 	end
 	EnableObject(Gvar_101)

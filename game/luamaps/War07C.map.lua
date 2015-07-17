@@ -18,7 +18,7 @@ function SecondFloorPatrolMage3()
 	if true then return end
 end
 function ActivateGears()
-	if not ObjIsEnabled(Gvar_5) then 
+	if not (ObjIsEnabled(Gvar_5)) then 
 		goto l54
 	end
 	TeleportWaypoint(Gvar_6,GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()))
@@ -41,7 +41,7 @@ function ActivateGears()
 	if true then return end
 end
 function TrainingRoomXP()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l41
 	end
 	DisableObject(Trigger)

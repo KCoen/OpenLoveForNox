@@ -7,7 +7,7 @@ StaticRandomDraw.AnimatePerSecond = 1 / 16
 local rdraw = renderer.drawObject
 
 function StaticRandomDraw:initObject(obj)
-	local rindex = obj.tt.SpriteAnimFrames[math.random(1, #obj.tt.SpriteAnimFrames)];
+	local rindex = obj.spriteAnimFrames[math.random(1, #obj.spriteAnimFrames)];
 	UpdateObjectSpriteId(obj, rindex)
 
 	self.shader = shaders.sampleShadow

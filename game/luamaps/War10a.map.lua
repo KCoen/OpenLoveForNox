@@ -332,13 +332,13 @@ function OpenBlockWallGroup3()
 	if true then return end
 end
 function FilterBlock5()
-	if not ObjIsCaller(Gvar_46) then 
+	if not (ObjIsCaller(Gvar_46)) then 
 		goto l13
 	end
-	if true then return end true
+	if true then return true end
 	goto l17
 	::l13::
-	if true then return end false
+	if true then return false end
 	::l17::
 	if true then return end
 end
@@ -397,14 +397,14 @@ function Blocks1Move()
 end
 function Lever1Check()
 	OpenSecretWallGroup(Gvar_62)
-	if not Gvar_71 == false then 
+	if not (Gvar_71 == false) then 
 		goto l33
 	end
 	Gvar_71 = true
 	AudioEvent("Gear3",Gvar_60)
 	DisableObject(Trigger)
 	::l33::
-	if not Gvar_71 == true and Gvar_72 == true then 
+	if not (Gvar_71 == true and Gvar_72 == true) then 
 		goto l52
 	end
 	Blocks1Move()
@@ -413,14 +413,14 @@ function Lever1Check()
 end
 function Lever2Check()
 	OpenSecretWallGroup(Gvar_61)
-	if not Gvar_72 == false then 
+	if not (Gvar_72 == false) then 
 		goto l33
 	end
 	Gvar_72 = true
 	AudioEvent("Gear3",Gvar_59)
 	DisableObject(Trigger)
 	::l33::
-	if not Gvar_71 == true and Gvar_72 == true then 
+	if not (Gvar_71 == true and Gvar_72 == true) then 
 		goto l52
 	end
 	Blocks1Move()
@@ -428,14 +428,14 @@ function Lever2Check()
 	if true then return end
 end
 function Lever3Check()
-	if not Gvar_73 == false then 
+	if not (Gvar_73 == false) then 
 		goto l28
 	end
 	Gvar_73 = true
 	AudioEvent("Gear3",Gvar_58)
 	DisableObject(Trigger)
 	::l28::
-	if not Gvar_73 == true and Gvar_74 == true then 
+	if not (Gvar_73 == true and Gvar_74 == true) then 
 		goto l52
 	end
 	OpenSecretWallGroup3()
@@ -444,14 +444,14 @@ function Lever3Check()
 	if true then return end
 end
 function Lever4Check()
-	if not Gvar_74 == false then 
+	if not (Gvar_74 == false) then 
 		goto l28
 	end
 	Gvar_74 = true
 	AudioEvent("Gear3",Gvar_58)
 	DisableObject(Trigger)
 	::l28::
-	if not Gvar_73 == true and Gvar_74 == true then 
+	if not (Gvar_73 == true and Gvar_74 == true) then 
 		goto l52
 	end
 	OpenSecretWallGroup3()
@@ -468,7 +468,7 @@ function OpenExitWallGroup()
 	if true then return end
 end
 function PuzzleCheck()
-	if not Gvar_82 and Gvar_83 then 
+	if not (Gvar_82 and Gvar_83) then 
 		goto l11
 	end
 	OpenExitWallGroup()
@@ -676,7 +676,7 @@ function Secret200XP()
 	if true then return end
 end
 function PlayWanderMusic()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l12
 	end
 	PlayMusic(17,100)
@@ -748,7 +748,7 @@ function BatDie()
 	if true then return end
 end
 function ChangeOnSight()
-	if not Gvar_128 == true then 
+	if not (Gvar_128 == true) then 
 		goto l25
 	end
 	MonsterSetAggressiveness(Trigger,0.83)

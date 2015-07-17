@@ -55,16 +55,16 @@ function PlayerDeath()
 end
 function ReleaseCharmedWolf(arg_0)
 	var_1 = arg_0
-	if var_1 == 0 then 
+	if (var_1 == 0) then 
 		goto l41
 	end
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l102
 	end
-	if var_1 == 2 then 
+	if (var_1 == 2) then 
 		goto l163
 	end
-	if var_1 == 3 then 
+	if (var_1 == 3) then 
 		goto l224
 	end
 	goto l285
@@ -105,13 +105,13 @@ function ReleaseCharmedWolf(arg_0)
 end
 function HenrickTalkStart()
 	var_0 = Gvar_12
-	if var_0 == Gvar_4 then 
+	if (var_0 == Gvar_4) then 
 		goto l36
 	end
-	if var_0 == Gvar_5 then 
+	if (var_0 == Gvar_5) then 
 		goto l51
 	end
-	if var_0 == Gvar_6 then 
+	if (var_0 == Gvar_6) then 
 		goto l66
 	end
 	goto l81
@@ -137,32 +137,32 @@ function HenrickTalkEnd()
 	var_3 = 2
 	var_4 = 0
 	var_7 = Gvar_12
-	if var_7 == Gvar_4 then 
+	if (var_7 == Gvar_4) then 
 		goto l66
 	end
-	if var_7 == Gvar_5 then 
+	if (var_7 == Gvar_5) then 
 		goto l198
 	end
-	if var_7 == Gvar_6 then 
+	if (var_7 == Gvar_6) then 
 		goto l349
 	end
 	goto l351
 	::l66::
 	var_1 = DialogGetResult(Gvar_7)
 	var_5 = var_1
-	if var_5 == var_2 then 
+	if (var_5 == var_2) then 
 		goto l111
 	end
-	if var_5 == var_3 then 
+	if (var_5 == var_3) then 
 		goto l192
 	end
-	if var_5 == var_4 then 
+	if (var_5 == var_4) then 
 		goto l194
 	end
 	goto l196
 	::l111::
 	var_0 = PlayerGetGold(GetHostPlayer())
-	if not var_0 < Gvar_9 then 
+	if not (var_0 < Gvar_9) then 
 		goto l147
 	end
 	SetupDialog(Gvar_7,"NORMAL",6,8)
@@ -186,19 +186,19 @@ function HenrickTalkEnd()
 	::l198::
 	var_1 = DialogGetResult(Gvar_7)
 	var_6 = var_1
-	if var_6 == var_2 then 
+	if (var_6 == var_2) then 
 		goto l243
 	end
-	if var_6 == var_3 then 
+	if (var_6 == var_3) then 
 		goto l343
 	end
-	if var_6 == var_4 then 
+	if (var_6 == var_4) then 
 		goto l345
 	end
 	goto l347
 	::l243::
 	var_0 = PlayerGetGold(GetHostPlayer())
-	if not var_0 < Gvar_9 then 
+	if not (var_0 < Gvar_9) then 
 		goto l279
 	end
 	SetupDialog(Gvar_7,"NORMAL",6,8)
@@ -210,7 +210,7 @@ function HenrickTalkEnd()
 	Gvar_11 = Gvar_11 + 1
 	SetupDialog(Gvar_7,"NORMAL",6,8)
 	StartDialogWithCaller("SwordsmanHurt","War08b:HenrickSaleSuccessful")
-	if not Gvar_11 >= 2 then 
+	if not (Gvar_11 >= 2) then 
 		goto l341
 	end
 	Gvar_12 = Gvar_6
@@ -259,7 +259,7 @@ function MayorSpeaks()
 	var_1 = GetObjY(Gvar_15)
 	var_2 = GetObjX(GetHostPlayer())
 	var_3 = GetObjY(GetHostPlayer())
-	if not GetDistance(var_0,var_1,var_2,var_3) < 150 then 
+	if not (GetDistance(var_0,var_1,var_2,var_3) < 150) then 
 		goto l69
 	end
 	ObjLookAtObj(Gvar_15,GetHostPlayer())
@@ -281,22 +281,22 @@ function MayorGuardTime()
 	if true then return end
 end
 function MayorTalkStart()
-	if not DoesHaveObject(GetHostPlayer(),ObjFromName("War03c:MayorScepter")) then 
+	if not (DoesHaveObject(GetHostPlayer(),ObjFromName("War03c:MayorScepter"))) then 
 		goto l17
 	end
 	Gvar_65 = Gvar_63
 	::l17::
 	var_0 = Gvar_65
-	if var_0 == Gvar_61 then 
+	if (var_0 == Gvar_61) then 
 		goto l62
 	end
-	if var_0 == Gvar_62 then 
+	if (var_0 == Gvar_62) then 
 		goto l77
 	end
-	if var_0 == Gvar_63 then 
+	if (var_0 == Gvar_63) then 
 		goto l97
 	end
-	if var_0 == Gvar_64 then 
+	if (var_0 == Gvar_64) then 
 		goto l112
 	end
 	goto l127
@@ -323,16 +323,16 @@ end
 function MayorsGuardTalkStart()
 	ObjLookAtObj(Gvar_16,GetHostPlayer())
 	var_0 = Gvar_93
-	if var_0 == Gvar_89 then 
+	if (var_0 == Gvar_89) then 
 		goto l52
 	end
-	if var_0 == Gvar_90 then 
+	if (var_0 == Gvar_90) then 
 		goto l60
 	end
-	if var_0 == Gvar_91 then 
+	if (var_0 == Gvar_91) then 
 		goto l68
 	end
-	if var_0 == Gvar_92 then 
+	if (var_0 == Gvar_92) then 
 		goto l76
 	end
 	goto l84
@@ -354,10 +354,10 @@ end
 function GatekeeperTalkStart()
 	ObjLookAtObj(Gvar_23,GetHostPlayer())
 	var_0 = Gvar_88
-	if var_0 == Gvar_86 then 
+	if (var_0 == Gvar_86) then 
 		goto l34
 	end
-	if var_0 == Gvar_87 then 
+	if (var_0 == Gvar_87) then 
 		goto l42
 	end
 	goto l50
@@ -373,10 +373,10 @@ end
 function BarkeeperTalkStart()
 	ObjLookAtObj(Gvar_24,GetHostPlayer())
 	var_0 = Gvar_85
-	if var_0 == Gvar_83 then 
+	if (var_0 == Gvar_83) then 
 		goto l34
 	end
-	if var_0 == Gvar_84 then 
+	if (var_0 == Gvar_84) then 
 		goto l42
 	end
 	goto l50
@@ -397,13 +397,13 @@ end
 function BridgeGuardTalkStart()
 	ObjLookAtObj(Gvar_36,GetHostPlayer())
 	var_0 = Gvar_97
-	if var_0 == Gvar_94 then 
+	if (var_0 == Gvar_94) then 
 		goto l43
 	end
-	if var_0 == Gvar_95 then 
+	if (var_0 == Gvar_95) then 
 		goto l51
 	end
-	if var_0 == Gvar_96 then 
+	if (var_0 == Gvar_96) then 
 		goto l59
 	end
 	goto l67
@@ -423,10 +423,10 @@ function Townsman1TalkStart()
 	MonsterIdle(Gvar_26)
 	ObjLookAtObj(Gvar_26,GetHostPlayer())
 	var_0 = Gvar_73
-	if var_0 == Gvar_71 then 
+	if (var_0 == Gvar_71) then 
 		goto l39
 	end
-	if var_0 == Gvar_72 then 
+	if (var_0 == Gvar_72) then 
 		goto l47
 	end
 	goto l55
@@ -443,10 +443,10 @@ function Townsman2TalkStart()
 	MonsterIdle(Gvar_27)
 	ObjLookAtObj(Gvar_27,GetHostPlayer())
 	var_0 = Gvar_76
-	if var_0 == Gvar_74 then 
+	if (var_0 == Gvar_74) then 
 		goto l39
 	end
-	if var_0 == Gvar_75 then 
+	if (var_0 == Gvar_75) then 
 		goto l47
 	end
 	goto l55
@@ -462,10 +462,10 @@ end
 function Townsman3TalkStart()
 	ObjLookAtObj(Gvar_28,GetHostPlayer())
 	var_0 = Gvar_79
-	if var_0 == Gvar_77 then 
+	if (var_0 == Gvar_77) then 
 		goto l34
 	end
-	if var_0 == Gvar_78 then 
+	if (var_0 == Gvar_78) then 
 		goto l43
 	end
 	goto l52
@@ -481,10 +481,10 @@ end
 function Townsman4TalkStart()
 	ObjLookAtObj(Gvar_29,GetHostPlayer())
 	var_0 = Gvar_82
-	if var_0 == Gvar_80 then 
+	if (var_0 == Gvar_80) then 
 		goto l34
 	end
-	if var_0 == Gvar_81 then 
+	if (var_0 == Gvar_81) then 
 		goto l42
 	end
 	goto l50
@@ -499,22 +499,22 @@ function Townsman4TalkStart()
 end
 function AldwynTalkStart()
 	ObjLookAtObj(Gvar_33,GetHostPlayer())
-	if not DoesHaveObject(GetHostPlayer(),ObjFromName("War03c:MayorScepter")) then 
+	if not (DoesHaveObject(GetHostPlayer(),ObjFromName("War03c:MayorScepter"))) then 
 		goto l24
 	end
 	Gvar_70 = Gvar_68
 	::l24::
 	var_0 = Gvar_70
-	if var_0 == Gvar_66 then 
+	if (var_0 == Gvar_66) then 
 		goto l69
 	end
-	if var_0 == Gvar_67 then 
+	if (var_0 == Gvar_67) then 
 		goto l77
 	end
-	if var_0 == Gvar_68 then 
+	if (var_0 == Gvar_68) then 
 		goto l85
 	end
-	if var_0 == Gvar_69 then 
+	if (var_0 == Gvar_69) then 
 		goto l93
 	end
 	goto l101
@@ -559,13 +559,13 @@ function Maiden2TalkStart()
 end
 function MayorTalkEnd()
 	var_0 = Gvar_65
-	if var_0 == Gvar_61 then 
+	if (var_0 == Gvar_61) then 
 		goto l36
 	end
-	if var_0 == Gvar_62 then 
+	if (var_0 == Gvar_62) then 
 		goto l99
 	end
-	if var_0 == Gvar_63 then 
+	if (var_0 == Gvar_63) then 
 		goto l128
 	end
 	goto l227
@@ -589,11 +589,11 @@ function MayorTalkEnd()
 	Gvar_70 = Gvar_69
 	Gvar_20 = InvGetTopObj(GetHostPlayer())
 	::l157::
-	if not Gvar_20 then 
+	if not (Gvar_20) then 
 		goto l195
 	end
 	Gvar_21 = InvGetNextObj(Gvar_20)
-	if not Gvar_20 == ObjFromName("War03c:MayorScepter") then 
+	if not (Gvar_20 == ObjFromName("War03c:MayorScepter")) then 
 		goto l186
 	end
 	DeleteObject(Gvar_20)
@@ -642,7 +642,7 @@ function Townsman4TalkEnd()
 end
 function AldwynTalkEnd()
 	var_0 = Gvar_70
-	if var_0 == Gvar_66 then 
+	if (var_0 == Gvar_66) then 
 		goto l18
 	end
 	goto l49
@@ -804,7 +804,7 @@ function MapEntry()
 	if true then return end
 end
 function QuestSwitch()
-	if not DoesHaveObject(GetHostPlayer(),ObjFromName("War03c:MayorScepter")) then 
+	if not (DoesHaveObject(GetHostPlayer(),ObjFromName("War03c:MayorScepter"))) then 
 		goto l92
 	end
 	DisableObjectGroup(Gvar_22)
@@ -834,7 +834,7 @@ function EnableWaitTrigGroup1()
 	if true then return end
 end
 function Wait1()
-	if not ObjIsCaller(Gvar_26) then 
+	if not (ObjIsCaller(Gvar_26)) then 
 		goto l19
 	end
 	MonsterWait(Gvar_26,500)
@@ -847,7 +847,7 @@ function EnableWaitTrigGroup2()
 	if true then return end
 end
 function Wait2()
-	if not ObjIsCaller(Gvar_27) then 
+	if not (ObjIsCaller(Gvar_27)) then 
 		goto l19
 	end
 	MonsterWait(Gvar_27,500)
@@ -860,7 +860,7 @@ function EnableWaitTrigGroup3()
 	if true then return end
 end
 function Wait3()
-	if not ObjIsCaller(Gvar_28) then 
+	if not (ObjIsCaller(Gvar_28)) then 
 		goto l19
 	end
 	MonsterWait(Gvar_28,500)
@@ -869,7 +869,7 @@ function Wait3()
 	if true then return end
 end
 function MonsterGoHome()
-	if not CheckObjClass(Caller,"MONSTER") == true then 
+	if not (CheckObjClass(Caller,"MONSTER") == true) then 
 		goto l25
 	end
 	MonsterSetAggressiveness(Caller,0.16)
@@ -891,7 +891,7 @@ function CaptainGuard()
 	if true then return end
 end
 function PlaySubMusic()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l12
 	end
 	PlayMusic(18,100)
@@ -899,7 +899,7 @@ function PlaySubMusic()
 	if true then return end
 end
 function PlayWanderMusic()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l12
 	end
 	PlayMusic(17,100)

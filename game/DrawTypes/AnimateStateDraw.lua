@@ -12,7 +12,7 @@ function AnimateStateDraw:initObject(obj)
 	obj.animationLastUpdate = love.timer.getTime() + math.random(0, 100) / 100 
 
 
-	local spriteid = obj.tt.SpriteStates[obj.spriteState].Animation.Frames[obj.animationState]
+	local spriteid = obj.spriteStates[obj.spriteState].Animation.Frames[obj.animationState]
 	UpdateObjectSpriteId(obj, spriteid)
 	self.shader = shaders.sampleShadow
 	self.curTime = love.timer.getTime()
@@ -26,9 +26,9 @@ function AnimateStateDraw:draw(obj)
 		obj.animationLastUpdate = self.curTime
 
 		obj.animationState = obj.animationState + 1
-		obj.animationState = ((obj.animationState -1) % #obj.tt.SpriteStates[obj.spriteState].Animation.Frames) + 1
+		obj.animationState = ((obj.animationState -1) % #obj.spriteStates[obj.spriteState].Animation.Frames) + 1
 
-		local spriteid = obj.tt.SpriteStates[obj.spriteState].Animation.Frames[obj.animationState]
+		local spriteid = obj.spriteStates[obj.spriteState].Animation.Frames[obj.animationState]
 		UpdateObjectSpriteId(obj, spriteid)
 	end
 	

@@ -26,7 +26,7 @@ function GLOBAL()
 	if true then return end
 end
 function PlaySwamp()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l12
 	end
 	PlayMusic(29,100)
@@ -38,7 +38,7 @@ function PlaySwamp2()
 	if true then return end
 end
 function PlayAction()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l12
 	end
 	PlayMusic(26,100)
@@ -46,7 +46,7 @@ function PlayAction()
 	if true then return end
 end
 function PlayOgre()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l12
 	end
 	PlayMusic(7,100)
@@ -59,19 +59,19 @@ function PlayerDeath()
 end
 function AidanDialogStart()
 	var_0 = Gvar_62
-	if var_0 == Gvar_54 then 
+	if (var_0 == Gvar_54) then 
 		goto l54
 	end
-	if var_0 == Gvar_55 then 
+	if (var_0 == Gvar_55) then 
 		goto l74
 	end
-	if var_0 == Gvar_56 then 
+	if (var_0 == Gvar_56) then 
 		goto l82
 	end
-	if var_0 == Gvar_57 then 
+	if (var_0 == Gvar_57) then 
 		goto l90
 	end
-	if var_0 == Gvar_58 then 
+	if (var_0 == Gvar_58) then 
 		goto l103
 	end
 	goto l116
@@ -99,19 +99,19 @@ function AidanDialogStart()
 end
 function AidanDialogEnd()
 	var_0 = Gvar_62
-	if var_0 == Gvar_54 then 
+	if (var_0 == Gvar_54) then 
 		goto l54
 	end
-	if var_0 == Gvar_55 then 
+	if (var_0 == Gvar_55) then 
 		goto l63
 	end
-	if var_0 == Gvar_56 then 
+	if (var_0 == Gvar_56) then 
 		goto l72
 	end
-	if var_0 == Gvar_57 then 
+	if (var_0 == Gvar_57) then 
 		goto l74
 	end
-	if var_0 == Gvar_58 then 
+	if (var_0 == Gvar_58) then 
 		goto l150
 	end
 	goto l152
@@ -229,7 +229,7 @@ function AidanRescued()
 	if true then return end
 end
 function KeepOut()
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer())) then 
 		goto l14
 	end
 	MonsterGotoHome(Caller)
@@ -237,11 +237,11 @@ function KeepOut()
 	if true then return end
 end
 function AidanNearPlayer()
-	if not Gvar_53 == false and ObjIsCaller(GetHostPlayer()) then 
+	if not (Gvar_53 == false and ObjIsCaller(GetHostPlayer())) then 
 		goto l49
 	end
 	SayChat(Gvar_5,"War09a:AidanPlea")
-	if not Gvar_65 == false then 
+	if not (Gvar_65 == false) then 
 		goto l49
 	end
 	ObjResetMaster(Gvar_5)
@@ -251,10 +251,10 @@ function AidanNearPlayer()
 	if true then return end
 end
 function CheckRescue()
-	if not DoorIsLocked(Gvar_8) == false then 
+	if not (DoorIsLocked(Gvar_8) == false) then 
 		goto l23
 	end
-	if not GetObjHealth(Gvar_5) > 0 then 
+	if not (GetObjHealth(Gvar_5) > 0) then 
 		goto l23
 	end
 	AidanRescued()
@@ -262,12 +262,12 @@ function CheckRescue()
 	if true then return end
 end
 function AidanMustGo()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l8
 	end
 	PlayOgre()
 	::l8::
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_64 == false then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_64 == false) then 
 		goto l55
 	end
 	Gvar_64 = true
@@ -276,7 +276,7 @@ function AidanMustGo()
 	JournalAddEntry(GetHostPlayer(),"FindLOTD",2)
 	PrintToAll("Con01a:NewJournalEntry")
 	::l55::
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_66 == true and GetObjHealth(Gvar_5) > 0 and Gvar_67 == false then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_66 == true and GetObjHealth(Gvar_5) > 0 and Gvar_67 == false) then 
 		goto l157
 	end
 	Gvar_67 = true
@@ -290,7 +290,7 @@ function AidanMustGo()
 	if true then return end
 end
 function DestroyAidan()
-	if not Gvar_67 == true then 
+	if not (Gvar_67 == true) then 
 		goto l14
 	end
 	DeleteObject(Gvar_5)
@@ -334,7 +334,7 @@ function Patrol()
 	if true then return end
 end
 function GoMedieval()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l13
 	end
 	MonsterSetAggressiveness(Trigger,0.83)
@@ -347,12 +347,12 @@ function GoNormal()
 end
 function StopAndListen()
 	var_0 = RandomInteger(1,3)
-	if not ObjIsCaller(GetHostPlayer()) and var_0 == 1 then 
+	if not (ObjIsCaller(GetHostPlayer()) and var_0 == 1) then 
 		goto l62
 	end
 	MonsterWait(Trigger,45)
 	ObjLookAtObj(Trigger,Caller)
-	if not ObjCanInteractWith(Trigger,Caller) then 
+	if not (ObjCanInteractWith(Trigger,Caller)) then 
 		goto l57
 	end
 	MonsterSetAggressiveness(Trigger,0.5)
@@ -431,7 +431,7 @@ end
 function CreatureOrders()
 	var_0 = 0
 	::l6::
-	if not var_0 < 9 then 
+	if not (var_0 < 9) then 
 		goto l53
 	end
 	MonsterSetWayFlag(Gvar_59[var_0],1)
@@ -451,7 +451,7 @@ function CreateZombies01()
 	BreakWallGroup(Gvar_38)
 	var_0 = 0
 	::l36::
-	if not var_0 < 5 then 
+	if not (var_0 < 5) then 
 		goto l71
 	end
 	Gvar_59[var_0] = SpawnObject("Zombie",Gvar_45[var_0])
@@ -460,7 +460,7 @@ function CreateZombies01()
 	::l71::
 	var_0 = 5
 	::l77::
-	if not var_0 < 7 then 
+	if not (var_0 < 7) then 
 		goto l112
 	end
 	Gvar_59[var_0] = SpawnObject("Ghost",Gvar_45[var_0])
@@ -469,7 +469,7 @@ function CreateZombies01()
 	::l112::
 	var_0 = 7
 	::l118::
-	if not var_0 < 9 then 
+	if not (var_0 < 9) then 
 		goto l153
 	end
 	Gvar_59[var_0] = SpawnObject("VileZombie",Gvar_45[var_0])
@@ -483,7 +483,7 @@ function NecroTeleport()
 	var_2 = RandomInteger(0,2)
 	var_0 = GetWaypointX(Gvar_46[var_2])
 	var_1 = GetWaypointY(Gvar_46[var_2])
-	if not ObjIsCaller(Gvar_4) then 
+	if not (ObjIsCaller(Gvar_4)) then 
 		goto l127
 	end
 	ApplyEnchant(Caller,"ENCHANT_INVISIBLE",1)
@@ -493,7 +493,7 @@ function NecroTeleport()
 	PlayFX("BLUE_SPARKS",var_0,var_1,0,0)
 	PlayFX("SMOKE_BLAST",var_0,var_1,0,0)
 	::l127::
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l135
 	end
 	PlaySwamp()
@@ -519,7 +519,7 @@ function HuntPlayer()
 end
 function FreeUrchins01()
 	UnlockDoor(Gvar_17)
-	if not Gvar_63 == false then 
+	if not (Gvar_63 == false) then 
 		goto l126
 	end
 	Gvar_63 = true
@@ -546,7 +546,7 @@ function LockUrchinCage()
 	if true then return end
 end
 function HurtUrchins01()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l23
 	end
 	MonsterSetAggressiveness(Trigger,0.5)
@@ -561,35 +561,35 @@ end
 function whichWisp:C:\nox\game\maps\War09b\Scripts\Wisps.scr(arg_0)
 	var_1 = 0
 	::l6::
-	if not var_1 < Gvar_75 then 
+	if not (var_1 < Gvar_75) then 
 		goto l40
 	end
-	if not Gvar_76[var_1] == arg_0 then 
+	if not (Gvar_76[var_1] == arg_0) then 
 		goto l32
 	end
-	if true then return end var_1
+	if true then return var_1 end
 	::l32::
 	var_1 = var_1 + 1
 	goto l6
 	::l40::
-	if true then return end -1
+	if true then return -1 end
 	if true then return end
 end
 function WispAction(arg_0)
 	var_2 = Gvar_78[arg_0]
-	if var_2 == Gvar_69 then 
+	if (var_2 == Gvar_69) then 
 		goto l40
 	end
-	if var_2 == Gvar_71 then 
+	if (var_2 == Gvar_71) then 
 		goto l109
 	end
-	if var_2 == Gvar_70 then 
+	if (var_2 == Gvar_70) then 
 		goto l166
 	end
 	goto l239
 	::l40::
 	var_1 = GetDistance(GetObjX(Gvar_76[arg_0]),GetObjY(Gvar_76[arg_0]),GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()))
-	if not var_1 < 70 then 
+	if not (var_1 < 70) then 
 		goto l107
 	end
 	Gvar_78[arg_0] = Gvar_70
@@ -599,7 +599,7 @@ function WispAction(arg_0)
 	::l109::
 	ObjLookAtObj(Gvar_76[arg_0],GetHostPlayer())
 	Gvar_79[arg_0] = Gvar_79[arg_0] + 1
-	if not Gvar_79[arg_0] > 4 then 
+	if not (Gvar_79[arg_0] > 4) then 
 		goto l164
 	end
 	Gvar_78[arg_0] = Gvar_69
@@ -608,7 +608,7 @@ function WispAction(arg_0)
 	goto l239
 	::l166::
 	var_1 = GetDistance(GetObjX(Gvar_76[arg_0]),GetObjY(Gvar_76[arg_0]),GetWaypointX(Gvar_77[arg_0]),GetWaypointY(Gvar_77[arg_0]))
-	if not var_1 < 30 then 
+	if not (var_1 < 30) then 
 		goto l237
 	end
 	Gvar_78[arg_0] = Gvar_72
@@ -621,22 +621,22 @@ function WispAction(arg_0)
 	if true then return end
 end
 function WispRecognize()
-	if not CheckObjClass(Caller,"PLAYER") == false then 
+	if not (CheckObjClass(Caller,"PLAYER") == false) then 
 		goto l14
 	end
 	if true then return end
 	::l14::
 	var_0 = whichWisp:C:\nox\game\maps\War09b\Scripts\Wisps.scr(ScriptTrigger())
-	if not var_0 < 0 then 
+	if not (var_0 < 0) then 
 		goto l31
 	end
 	if true then return end
 	::l31::
 	var_1 = Gvar_78[var_0]
-	if var_1 == Gvar_68 then 
+	if (var_1 == Gvar_68) then 
 		goto l62
 	end
-	if var_1 == Gvar_71 then 
+	if (var_1 == Gvar_71) then 
 		goto l101
 	end
 	goto l126
@@ -653,19 +653,19 @@ function WispRecognize()
 	if true then return end
 end
 function WispLoseSight()
-	if not CheckObjClass(Caller,"PLAYER") == false then 
+	if not (CheckObjClass(Caller,"PLAYER") == false) then 
 		goto l14
 	end
 	if true then return end
 	::l14::
 	var_0 = whichWisp:C:\nox\game\maps\War09b\Scripts\Wisps.scr(ScriptTrigger())
-	if not var_0 < 0 then 
+	if not (var_0 < 0) then 
 		goto l31
 	end
 	if true then return end
 	::l31::
 	var_1 = Gvar_78[var_0]
-	if var_1 == Gvar_70 then 
+	if (var_1 == Gvar_70) then 
 		goto l53
 	end
 	goto l81
@@ -678,13 +678,13 @@ function WispLoseSight()
 	if true then return end
 end
 function WispGetMad()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l54
 	end
 	MonsterSetAggressiveness(Trigger,0.83)
 	MonsterIdle(Trigger)
 	var_0 = whichWisp:C:\nox\game\maps\War09b\Scripts\Wisps.scr(ScriptTrigger())
-	if not var_0 >= 0 then 
+	if not (var_0 >= 0) then 
 		goto l54
 	end
 	Gvar_78[var_0] = Gvar_73
@@ -693,7 +693,7 @@ function WispGetMad()
 	if true then return end
 end
 function WispMedieval()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l18
 	end
 	MonsterSetAggressiveness(Trigger,0.83)

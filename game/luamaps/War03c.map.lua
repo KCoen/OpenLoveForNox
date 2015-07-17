@@ -81,7 +81,7 @@ function InitializeUrchinSetpiece()
 	if true then return end
 end
 function PlaySubMusic()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l12
 	end
 	PlayMusic(18,100)
@@ -160,7 +160,7 @@ function UnlockChamberDoors()
 	if true then return end
 end
 function MonsterGoHomeLobo()
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) == true then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer()) == true) then 
 		goto l25
 	end
 	MonsterSetAggressiveness(Caller,0)
@@ -170,7 +170,7 @@ function MonsterGoHomeLobo()
 end
 function MonsterGoHome()
 	PlaySubMusic()
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) == true then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer()) == true) then 
 		goto l20
 	end
 	MonsterGotoHome(Caller)
@@ -179,7 +179,7 @@ function MonsterGoHome()
 end
 function MonsterHostile()
 	PlaySubMusic()
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) == true then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer()) == true) then 
 		goto l22
 	end
 	MonsterSetAggressiveness(Caller,0.83)
@@ -187,7 +187,7 @@ function MonsterHostile()
 	if true then return end
 end
 function MonsterGoHomePassive()
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) == true then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer()) == true) then 
 		goto l18
 	end
 	MonsterGotoHome(Caller)
@@ -195,7 +195,7 @@ function MonsterGoHomePassive()
 	if true then return end
 end
 function MonsterGoHomeUrchin()
-	if not CheckObjClass(Caller,"MONSTER") == true and CheckInvObjNamed(Caller,"SMALL_MONSTER") == true then 
+	if not (CheckObjClass(Caller,"MONSTER") == true and CheckInvObjNamed(Caller,"SMALL_MONSTER") == true) then 
 		goto l30
 	end
 	MonsterGotoHome(Caller)
@@ -207,7 +207,7 @@ function HostilizeMe()
 	if true then return end
 end
 function PlayWanderMusic()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l12
 	end
 	PlayMusic(17,100)
@@ -273,12 +273,12 @@ function UrchinsEnter()
 	if true then return end
 end
 function CheckUrchins()
-	if not Gvar_45 ~= Gvar_41 then 
+	if not (Gvar_45 ~= Gvar_41) then 
 		goto l10
 	end
 	if true then return end
 	::l10::
-	if not Gvar_56 and Gvar_57 and Gvar_58 and Gvar_59 then 
+	if not (Gvar_56 and Gvar_57 and Gvar_58 and Gvar_59) then 
 		goto l40
 	end
 	Gvar_45 = Gvar_42
@@ -329,7 +329,7 @@ function StartUrchinSetpiece()
 	if true then return end
 end
 function Urchin01Report()
-	if not Gvar_45 ~= Gvar_41 then 
+	if not (Gvar_45 ~= Gvar_41) then 
 		goto l10
 	end
 	if true then return end
@@ -340,7 +340,7 @@ function Urchin01Report()
 	if true then return end
 end
 function Urchin02Report()
-	if not Gvar_45 ~= Gvar_41 then 
+	if not (Gvar_45 ~= Gvar_41) then 
 		goto l10
 	end
 	if true then return end
@@ -351,7 +351,7 @@ function Urchin02Report()
 	if true then return end
 end
 function Urchin03Report()
-	if not Gvar_45 ~= Gvar_41 then 
+	if not (Gvar_45 ~= Gvar_41) then 
 		goto l10
 	end
 	if true then return end
@@ -362,7 +362,7 @@ function Urchin03Report()
 	if true then return end
 end
 function Urchin04Report()
-	if not Gvar_45 ~= Gvar_41 then 
+	if not (Gvar_45 ~= Gvar_41) then 
 		goto l10
 	end
 	if true then return end
@@ -373,7 +373,7 @@ function Urchin04Report()
 	if true then return end
 end
 function ShamanReport()
-	if not Gvar_45 ~= Gvar_42 then 
+	if not (Gvar_45 ~= Gvar_42) then 
 		goto l10
 	end
 	if true then return end

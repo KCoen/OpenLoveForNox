@@ -140,10 +140,10 @@ function BlockAGotoC()
 end
 function BlockAGo()
 	var_0 = Gvar_43
-	if var_0 == Gvar_41 then 
+	if (var_0 == Gvar_41) then 
 		goto l27
 	end
-	if var_0 == Gvar_42 then 
+	if (var_0 == Gvar_42) then 
 		goto l31
 	end
 	goto l35
@@ -180,10 +180,10 @@ function BlockBGotoC()
 end
 function BlockBGo()
 	var_0 = Gvar_61
-	if var_0 == Gvar_59 then 
+	if (var_0 == Gvar_59) then 
 		goto l27
 	end
-	if var_0 == Gvar_60 then 
+	if (var_0 == Gvar_60) then 
 		goto l31
 	end
 	goto l35
@@ -216,10 +216,10 @@ function BlockCGotoC()
 end
 function BlockCGo()
 	var_0 = Gvar_73
-	if var_0 == Gvar_71 then 
+	if (var_0 == Gvar_71) then 
 		goto l27
 	end
-	if var_0 == Gvar_72 then 
+	if (var_0 == Gvar_72) then 
 		goto l31
 	end
 	goto l35
@@ -430,7 +430,7 @@ function PlayAction3Music()
 	if true then return end
 end
 function BatToVampireKnight()
-	if not Gvar_119 == false then 
+	if not (Gvar_119 == false) then 
 		goto l40
 	end
 	Gvar_117 = GetObjX(Trigger)
@@ -452,7 +452,7 @@ function SetRetreatBat()
 	if true then return end
 end
 function BatDie()
-	if not GetObjHealth(Gvar_113) <= 0 then 
+	if not (GetObjHealth(Gvar_113) <= 0) then 
 		goto l121
 	end
 	PlayFX("SMOKE_BLAST",GetObjX(Gvar_113),GetObjY(Gvar_113),0,0)
@@ -465,7 +465,7 @@ function BatDie()
 	ObjSetDecayTime(var_0,80)
 	ObjSetDecayTime(var_1,85)
 	ObjSetDecayTime(var_2,90)
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l121
 	end
 	PlayerGiveExp(GetHostPlayer(),250)
@@ -473,7 +473,7 @@ function BatDie()
 	if true then return end
 end
 function ChangeOnSight()
-	if not Gvar_120 == true then 
+	if not (Gvar_120 == true) then 
 		goto l25
 	end
 	MonsterSetAggressiveness(Trigger,0.83)
@@ -493,7 +493,7 @@ function InjureVampireKnight()
 	if true then return end
 end
 function BatMove()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l26
 	end
 	MonsterEventScript(Trigger,4,51)

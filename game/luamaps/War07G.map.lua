@@ -16,28 +16,28 @@ function LightShow()
 	TeleportWaypoint(Gvar_35,GetObjX(Gvar_4),GetObjY(Gvar_4))
 	var_0 = RandomInteger(1,8)
 	var_1 = var_0
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l98
 	end
-	if var_1 == 2 then 
+	if (var_1 == 2) then 
 		goto l131
 	end
-	if var_1 == 3 then 
+	if (var_1 == 3) then 
 		goto l164
 	end
-	if var_1 == 4 then 
+	if (var_1 == 4) then 
 		goto l197
 	end
-	if var_1 == 5 then 
+	if (var_1 == 5) then 
 		goto l230
 	end
-	if var_1 == 6 then 
+	if (var_1 == 6) then 
 		goto l263
 	end
-	if var_1 == 7 then 
+	if (var_1 == 7) then 
 		goto l296
 	end
-	if var_1 == 8 then 
+	if (var_1 == 8) then 
 		goto l329
 	end
 	goto l362
@@ -74,7 +74,7 @@ function LightShow()
 	PlayFX("LIGHTNING",GetObjX(Gvar_13),GetObjY(Gvar_13),GetObjX(Gvar_4),GetObjY(Gvar_4))
 	goto l362
 	::l362::
-	if not Gvar_41 == false then 
+	if not (Gvar_41 == false) then 
 		goto l377
 	end
 	WaitFrames(30,2)
@@ -83,7 +83,7 @@ function LightShow()
 end
 function PlateOneTrigger()
 	Gvar_38 = true
-	if not Gvar_39 == true and Gvar_40 == true then 
+	if not (Gvar_39 == true and Gvar_40 == true) then 
 		goto l49
 	end
 	OpenSecretWallGroup(Gvar_36)
@@ -94,7 +94,7 @@ function PlateOneTrigger()
 end
 function PlateTwoTrigger()
 	Gvar_39 = true
-	if not Gvar_38 == true and Gvar_40 == true then 
+	if not (Gvar_38 == true and Gvar_40 == true) then 
 		goto l49
 	end
 	OpenSecretWallGroup(Gvar_36)
@@ -105,7 +105,7 @@ function PlateTwoTrigger()
 end
 function PlateThreeTrigger()
 	Gvar_40 = true
-	if not Gvar_38 == true and Gvar_39 == true then 
+	if not (Gvar_38 == true and Gvar_39 == true) then 
 		goto l49
 	end
 	OpenSecretWallGroup(Gvar_36)
@@ -127,7 +127,7 @@ function PlateThreeRelease()
 	if true then return end
 end
 function HONTrigger()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l205
 	end
 	DisableObject(Gvar_4)
@@ -200,7 +200,7 @@ function CreatureSetup()
 end
 function Group1Die()
 	Gvar_112 = Gvar_112 + 1
-	if not Gvar_112 >= 2 then 
+	if not (Gvar_112 >= 2) then 
 		goto l24
 	end
 	UnlockDoor(Gvar_86)
@@ -220,7 +220,7 @@ function StartChamber()
 	if true then return end
 end
 function ChamberSpikes()
-	if not Gvar_105 == false then 
+	if not (Gvar_105 == false) then 
 		goto l34
 	end
 	AudioEvent("FloorSpikesDown",Gvar_109)
@@ -279,7 +279,7 @@ function SetTraitors()
 	if true then return end
 end
 function HaltMusic()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l17
 	end
 	DisableObject(Trigger)
@@ -288,7 +288,7 @@ function HaltMusic()
 	if true then return end
 end
 function NewMusic()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l17
 	end
 	DisableObject(Trigger)
@@ -298,7 +298,7 @@ function NewMusic()
 end
 function TraitorDeath()
 	Gvar_113 = Gvar_113 + 1
-	if not Gvar_113 >= 2 then 
+	if not (Gvar_113 >= 2) then 
 		goto l20
 	end
 	PlayerGiveExp(GetHostPlayer(),2000)
@@ -306,7 +306,7 @@ function TraitorDeath()
 	if true then return end
 end
 function LockStairGate()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l22
 	end
 	DisableObject(Trigger)

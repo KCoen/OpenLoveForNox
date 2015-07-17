@@ -160,7 +160,7 @@ function gauntletGearsStop()
 	if true then return end
 end
 function openGauntlet()
-	if not Gvar_6 == 0 then 
+	if not (Gvar_6 == 0) then 
 		goto l195
 	end
 	Gvar_6 = true
@@ -192,7 +192,7 @@ function openGauntlet()
 	if true then return end
 end
 function closeGauntlet()
-	if not Gvar_6 then 
+	if not (Gvar_6) then 
 		goto l189
 	end
 	Gvar_6 = false
@@ -308,10 +308,10 @@ function chickenShirtTalk1Start()
 	if true then return end
 end
 function horrendousSay1()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l69
 	end
-	if not Gvar_11 then 
+	if not (Gvar_11) then 
 		goto l69
 	end
 	PlayMusic(0,100)
@@ -345,7 +345,7 @@ function bonesFly()
 	AudioEvent("SkeletonDie",Gvar_89)
 	Gvar_4 = 0
 	::l50::
-	if not Gvar_4 < 40 then 
+	if not (Gvar_4 < 40) then 
 		goto l97
 	end
 	Gvar_54[Gvar_4] = SpawnObject("ArmBone",Gvar_88)
@@ -355,7 +355,7 @@ function bonesFly()
 	::l97::
 	Gvar_4 = 0
 	::l103::
-	if not Gvar_4 < 40 then 
+	if not (Gvar_4 < 40) then 
 		goto l150
 	end
 	Gvar_54[Gvar_4] = SpawnObject("LegBone",Gvar_88)
@@ -445,7 +445,7 @@ function releaseUrchins1()
 	if true then return end
 end
 function twoDeadUrchins()
-	if not Gvar_90 > 1 then 
+	if not (Gvar_90 > 1) then 
 		goto l18
 	end
 	UnlockDoor(Gvar_95)
@@ -454,12 +454,12 @@ function twoDeadUrchins()
 	if true then return end
 end
 function flamesOn()
-	if not Gvar_139 then 
+	if not (Gvar_139) then 
 		goto l275
 	end
 	Gvar_4 = 0
 	::l11::
-	if not Gvar_4 < 8 then 
+	if not (Gvar_4 < 8) then 
 		goto l127
 	end
 	Gvar_186[Gvar_4] = 0
@@ -517,23 +517,23 @@ function flamesOff()
 end
 function flameWalk()
 	var_0 = Gvar_166
-	if var_0 == Gvar_99 then 
+	if (var_0 == Gvar_99) then 
 		goto l45
 	end
-	if var_0 == Gvar_100 then 
+	if (var_0 == Gvar_100) then 
 		goto l108
 	end
-	if var_0 == Gvar_101 then 
+	if (var_0 == Gvar_101) then 
 		goto l208
 	end
-	if var_0 == Gvar_102 then 
+	if (var_0 == Gvar_102) then 
 		goto l318
 	end
 	goto l390
 	::l45::
 	Gvar_4 = 0
 	::l51::
-	if not Gvar_4 < 8 then 
+	if not (Gvar_4 < 8) then 
 		goto l86
 	end
 	DeleteObject(Gvar_186[Gvar_4])
@@ -548,7 +548,7 @@ function flameWalk()
 	::l108::
 	Gvar_4 = 0
 	::l114::
-	if not Gvar_4 < 8 then 
+	if not (Gvar_4 < 8) then 
 		goto l158
 	end
 	DeleteObject(Gvar_186[Gvar_4])
@@ -556,7 +556,7 @@ function flameWalk()
 	Gvar_4 = Gvar_4 + 1
 	goto l114
 	::l158::
-	if not Gvar_176 == Gvar_99 then 
+	if not (Gvar_176 == Gvar_99) then 
 		goto l186
 	end
 	Gvar_166 = Gvar_101
@@ -571,7 +571,7 @@ function flameWalk()
 	::l208::
 	Gvar_4 = 0
 	::l214::
-	if not Gvar_4 < 8 then 
+	if not (Gvar_4 < 8) then 
 		goto l258
 	end
 	DeleteObject(Gvar_186[Gvar_4])
@@ -579,7 +579,7 @@ function flameWalk()
 	Gvar_4 = Gvar_4 + 1
 	goto l214
 	::l258::
-	if not Gvar_176 == Gvar_100 then 
+	if not (Gvar_176 == Gvar_100) then 
 		goto l286
 	end
 	Gvar_166 = Gvar_102
@@ -595,7 +595,7 @@ function flameWalk()
 	::l318::
 	Gvar_4 = 0
 	::l324::
-	if not Gvar_4 < 8 then 
+	if not (Gvar_4 < 8) then 
 		goto l368
 	end
 	DeleteObject(Gvar_186[Gvar_4])
@@ -608,7 +608,7 @@ function flameWalk()
 	Gvar_156 = 12
 	goto l390
 	::l390::
-	if not Gvar_140 then 
+	if not (Gvar_140) then 
 		goto l404
 	end
 	WaitFrames(Gvar_156,41)
@@ -616,7 +616,7 @@ function flameWalk()
 	::l404::
 	Gvar_154 = 0
 	::l410::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l445
 	end
 	DeleteObject(Gvar_186[Gvar_154])
@@ -628,23 +628,23 @@ function flameWalk()
 end
 function flameWalk2()
 	var_0 = Gvar_167
-	if var_0 == Gvar_103 then 
+	if (var_0 == Gvar_103) then 
 		goto l45
 	end
-	if var_0 == Gvar_104 then 
+	if (var_0 == Gvar_104) then 
 		goto l108
 	end
-	if var_0 == Gvar_105 then 
+	if (var_0 == Gvar_105) then 
 		goto l208
 	end
-	if var_0 == Gvar_106 then 
+	if (var_0 == Gvar_106) then 
 		goto l318
 	end
 	goto l390
 	::l45::
 	Gvar_150 = 0
 	::l51::
-	if not Gvar_150 < 8 then 
+	if not (Gvar_150 < 8) then 
 		goto l86
 	end
 	DeleteObject(Gvar_187[Gvar_150])
@@ -659,7 +659,7 @@ function flameWalk2()
 	::l108::
 	Gvar_150 = 0
 	::l114::
-	if not Gvar_150 < 8 then 
+	if not (Gvar_150 < 8) then 
 		goto l158
 	end
 	DeleteObject(Gvar_187[Gvar_150])
@@ -667,7 +667,7 @@ function flameWalk2()
 	Gvar_150 = Gvar_150 + 1
 	goto l114
 	::l158::
-	if not Gvar_177 == Gvar_103 then 
+	if not (Gvar_177 == Gvar_103) then 
 		goto l186
 	end
 	Gvar_167 = Gvar_105
@@ -682,7 +682,7 @@ function flameWalk2()
 	::l208::
 	Gvar_150 = 0
 	::l214::
-	if not Gvar_150 < 8 then 
+	if not (Gvar_150 < 8) then 
 		goto l258
 	end
 	DeleteObject(Gvar_187[Gvar_150])
@@ -690,7 +690,7 @@ function flameWalk2()
 	Gvar_150 = Gvar_150 + 1
 	goto l214
 	::l258::
-	if not Gvar_177 == Gvar_104 then 
+	if not (Gvar_177 == Gvar_104) then 
 		goto l286
 	end
 	Gvar_167 = Gvar_106
@@ -706,7 +706,7 @@ function flameWalk2()
 	::l318::
 	Gvar_150 = 0
 	::l324::
-	if not Gvar_150 < 8 then 
+	if not (Gvar_150 < 8) then 
 		goto l368
 	end
 	DeleteObject(Gvar_187[Gvar_150])
@@ -719,7 +719,7 @@ function flameWalk2()
 	Gvar_157 = 12
 	goto l390
 	::l390::
-	if not Gvar_141 then 
+	if not (Gvar_141) then 
 		goto l404
 	end
 	WaitFrames(Gvar_157,42)
@@ -727,7 +727,7 @@ function flameWalk2()
 	::l404::
 	Gvar_154 = 0
 	::l410::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l445
 	end
 	DeleteObject(Gvar_187[Gvar_154])
@@ -739,23 +739,23 @@ function flameWalk2()
 end
 function flameWalk3()
 	var_0 = Gvar_168
-	if var_0 == Gvar_107 then 
+	if (var_0 == Gvar_107) then 
 		goto l45
 	end
-	if var_0 == Gvar_108 then 
+	if (var_0 == Gvar_108) then 
 		goto l108
 	end
-	if var_0 == Gvar_109 then 
+	if (var_0 == Gvar_109) then 
 		goto l208
 	end
-	if var_0 == Gvar_110 then 
+	if (var_0 == Gvar_110) then 
 		goto l318
 	end
 	goto l390
 	::l45::
 	Gvar_151 = 0
 	::l51::
-	if not Gvar_151 < 8 then 
+	if not (Gvar_151 < 8) then 
 		goto l86
 	end
 	DeleteObject(Gvar_188[Gvar_151])
@@ -770,7 +770,7 @@ function flameWalk3()
 	::l108::
 	Gvar_151 = 0
 	::l114::
-	if not Gvar_151 < 8 then 
+	if not (Gvar_151 < 8) then 
 		goto l158
 	end
 	DeleteObject(Gvar_188[Gvar_151])
@@ -778,7 +778,7 @@ function flameWalk3()
 	Gvar_151 = Gvar_151 + 1
 	goto l114
 	::l158::
-	if not Gvar_178 == Gvar_107 then 
+	if not (Gvar_178 == Gvar_107) then 
 		goto l186
 	end
 	Gvar_168 = Gvar_109
@@ -793,7 +793,7 @@ function flameWalk3()
 	::l208::
 	Gvar_151 = 0
 	::l214::
-	if not Gvar_151 < 8 then 
+	if not (Gvar_151 < 8) then 
 		goto l258
 	end
 	DeleteObject(Gvar_188[Gvar_151])
@@ -801,7 +801,7 @@ function flameWalk3()
 	Gvar_151 = Gvar_151 + 1
 	goto l214
 	::l258::
-	if not Gvar_178 == Gvar_108 then 
+	if not (Gvar_178 == Gvar_108) then 
 		goto l286
 	end
 	Gvar_168 = Gvar_110
@@ -817,7 +817,7 @@ function flameWalk3()
 	::l318::
 	Gvar_151 = 0
 	::l324::
-	if not Gvar_151 < 8 then 
+	if not (Gvar_151 < 8) then 
 		goto l368
 	end
 	DeleteObject(Gvar_188[Gvar_151])
@@ -830,7 +830,7 @@ function flameWalk3()
 	Gvar_158 = 12
 	goto l390
 	::l390::
-	if not Gvar_142 then 
+	if not (Gvar_142) then 
 		goto l404
 	end
 	WaitFrames(Gvar_158,43)
@@ -838,7 +838,7 @@ function flameWalk3()
 	::l404::
 	Gvar_154 = 0
 	::l410::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l445
 	end
 	DeleteObject(Gvar_188[Gvar_154])
@@ -850,23 +850,23 @@ function flameWalk3()
 end
 function flameWalk4()
 	var_0 = Gvar_169
-	if var_0 == Gvar_111 then 
+	if (var_0 == Gvar_111) then 
 		goto l45
 	end
-	if var_0 == Gvar_112 then 
+	if (var_0 == Gvar_112) then 
 		goto l108
 	end
-	if var_0 == Gvar_113 then 
+	if (var_0 == Gvar_113) then 
 		goto l208
 	end
-	if var_0 == Gvar_114 then 
+	if (var_0 == Gvar_114) then 
 		goto l318
 	end
 	goto l390
 	::l45::
 	Gvar_152 = 0
 	::l51::
-	if not Gvar_152 < 8 then 
+	if not (Gvar_152 < 8) then 
 		goto l86
 	end
 	DeleteObject(Gvar_189[Gvar_152])
@@ -881,7 +881,7 @@ function flameWalk4()
 	::l108::
 	Gvar_152 = 0
 	::l114::
-	if not Gvar_152 < 8 then 
+	if not (Gvar_152 < 8) then 
 		goto l158
 	end
 	DeleteObject(Gvar_189[Gvar_152])
@@ -889,7 +889,7 @@ function flameWalk4()
 	Gvar_152 = Gvar_152 + 1
 	goto l114
 	::l158::
-	if not Gvar_179 == Gvar_111 then 
+	if not (Gvar_179 == Gvar_111) then 
 		goto l186
 	end
 	Gvar_169 = Gvar_113
@@ -904,7 +904,7 @@ function flameWalk4()
 	::l208::
 	Gvar_152 = 0
 	::l214::
-	if not Gvar_152 < 8 then 
+	if not (Gvar_152 < 8) then 
 		goto l258
 	end
 	DeleteObject(Gvar_189[Gvar_152])
@@ -912,7 +912,7 @@ function flameWalk4()
 	Gvar_152 = Gvar_152 + 1
 	goto l214
 	::l258::
-	if not Gvar_179 == Gvar_112 then 
+	if not (Gvar_179 == Gvar_112) then 
 		goto l286
 	end
 	Gvar_169 = Gvar_114
@@ -928,7 +928,7 @@ function flameWalk4()
 	::l318::
 	Gvar_152 = 0
 	::l324::
-	if not Gvar_152 < 8 then 
+	if not (Gvar_152 < 8) then 
 		goto l368
 	end
 	DeleteObject(Gvar_189[Gvar_152])
@@ -941,7 +941,7 @@ function flameWalk4()
 	Gvar_159 = 12
 	goto l390
 	::l390::
-	if not Gvar_143 then 
+	if not (Gvar_143) then 
 		goto l404
 	end
 	WaitFrames(Gvar_159,44)
@@ -949,7 +949,7 @@ function flameWalk4()
 	::l404::
 	Gvar_154 = 0
 	::l410::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l445
 	end
 	DeleteObject(Gvar_189[Gvar_154])
@@ -961,23 +961,23 @@ function flameWalk4()
 end
 function flameWalk5()
 	var_0 = Gvar_170
-	if var_0 == Gvar_115 then 
+	if (var_0 == Gvar_115) then 
 		goto l45
 	end
-	if var_0 == Gvar_116 then 
+	if (var_0 == Gvar_116) then 
 		goto l108
 	end
-	if var_0 == Gvar_117 then 
+	if (var_0 == Gvar_117) then 
 		goto l208
 	end
-	if var_0 == Gvar_118 then 
+	if (var_0 == Gvar_118) then 
 		goto l318
 	end
 	goto l390
 	::l45::
 	Gvar_153 = 0
 	::l51::
-	if not Gvar_153 < 8 then 
+	if not (Gvar_153 < 8) then 
 		goto l86
 	end
 	DeleteObject(Gvar_190[Gvar_153])
@@ -992,7 +992,7 @@ function flameWalk5()
 	::l108::
 	Gvar_153 = 0
 	::l114::
-	if not Gvar_153 < 8 then 
+	if not (Gvar_153 < 8) then 
 		goto l158
 	end
 	DeleteObject(Gvar_190[Gvar_153])
@@ -1000,7 +1000,7 @@ function flameWalk5()
 	Gvar_153 = Gvar_153 + 1
 	goto l114
 	::l158::
-	if not Gvar_180 == Gvar_115 then 
+	if not (Gvar_180 == Gvar_115) then 
 		goto l186
 	end
 	Gvar_170 = Gvar_117
@@ -1015,7 +1015,7 @@ function flameWalk5()
 	::l208::
 	Gvar_153 = 0
 	::l214::
-	if not Gvar_153 < 8 then 
+	if not (Gvar_153 < 8) then 
 		goto l258
 	end
 	DeleteObject(Gvar_190[Gvar_153])
@@ -1023,7 +1023,7 @@ function flameWalk5()
 	Gvar_153 = Gvar_153 + 1
 	goto l214
 	::l258::
-	if not Gvar_180 == Gvar_116 then 
+	if not (Gvar_180 == Gvar_116) then 
 		goto l286
 	end
 	Gvar_170 = Gvar_118
@@ -1039,7 +1039,7 @@ function flameWalk5()
 	::l318::
 	Gvar_153 = 0
 	::l324::
-	if not Gvar_153 < 8 then 
+	if not (Gvar_153 < 8) then 
 		goto l368
 	end
 	DeleteObject(Gvar_190[Gvar_153])
@@ -1052,7 +1052,7 @@ function flameWalk5()
 	Gvar_160 = 12
 	goto l390
 	::l390::
-	if not Gvar_144 then 
+	if not (Gvar_144) then 
 		goto l404
 	end
 	WaitFrames(Gvar_160,45)
@@ -1060,7 +1060,7 @@ function flameWalk5()
 	::l404::
 	Gvar_154 = 0
 	::l410::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l445
 	end
 	DeleteObject(Gvar_190[Gvar_154])
@@ -1072,23 +1072,23 @@ function flameWalk5()
 end
 function flameWalk6()
 	var_0 = Gvar_171
-	if var_0 == Gvar_119 then 
+	if (var_0 == Gvar_119) then 
 		goto l45
 	end
-	if var_0 == Gvar_120 then 
+	if (var_0 == Gvar_120) then 
 		goto l108
 	end
-	if var_0 == Gvar_121 then 
+	if (var_0 == Gvar_121) then 
 		goto l208
 	end
-	if var_0 == Gvar_122 then 
+	if (var_0 == Gvar_122) then 
 		goto l318
 	end
 	goto l390
 	::l45::
 	Gvar_154 = 0
 	::l51::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l86
 	end
 	DeleteObject(Gvar_191[Gvar_154])
@@ -1103,7 +1103,7 @@ function flameWalk6()
 	::l108::
 	Gvar_154 = 0
 	::l114::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l158
 	end
 	DeleteObject(Gvar_191[Gvar_154])
@@ -1111,7 +1111,7 @@ function flameWalk6()
 	Gvar_154 = Gvar_154 + 1
 	goto l114
 	::l158::
-	if not Gvar_181 == Gvar_119 then 
+	if not (Gvar_181 == Gvar_119) then 
 		goto l186
 	end
 	Gvar_171 = Gvar_121
@@ -1126,7 +1126,7 @@ function flameWalk6()
 	::l208::
 	Gvar_154 = 0
 	::l214::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l258
 	end
 	DeleteObject(Gvar_191[Gvar_154])
@@ -1134,7 +1134,7 @@ function flameWalk6()
 	Gvar_154 = Gvar_154 + 1
 	goto l214
 	::l258::
-	if not Gvar_181 == Gvar_120 then 
+	if not (Gvar_181 == Gvar_120) then 
 		goto l286
 	end
 	Gvar_171 = Gvar_122
@@ -1150,7 +1150,7 @@ function flameWalk6()
 	::l318::
 	Gvar_154 = 0
 	::l324::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l368
 	end
 	DeleteObject(Gvar_191[Gvar_154])
@@ -1163,7 +1163,7 @@ function flameWalk6()
 	Gvar_161 = 12
 	goto l390
 	::l390::
-	if not Gvar_145 then 
+	if not (Gvar_145) then 
 		goto l404
 	end
 	WaitFrames(Gvar_161,46)
@@ -1171,7 +1171,7 @@ function flameWalk6()
 	::l404::
 	Gvar_154 = 0
 	::l410::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l445
 	end
 	DeleteObject(Gvar_191[Gvar_154])
@@ -1183,23 +1183,23 @@ function flameWalk6()
 end
 function flameWalk7()
 	var_0 = Gvar_172
-	if var_0 == Gvar_123 then 
+	if (var_0 == Gvar_123) then 
 		goto l45
 	end
-	if var_0 == Gvar_124 then 
+	if (var_0 == Gvar_124) then 
 		goto l108
 	end
-	if var_0 == Gvar_125 then 
+	if (var_0 == Gvar_125) then 
 		goto l208
 	end
-	if var_0 == Gvar_126 then 
+	if (var_0 == Gvar_126) then 
 		goto l318
 	end
 	goto l390
 	::l45::
 	Gvar_154 = 0
 	::l51::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l86
 	end
 	DeleteObject(Gvar_192[Gvar_154])
@@ -1214,7 +1214,7 @@ function flameWalk7()
 	::l108::
 	Gvar_154 = 0
 	::l114::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l158
 	end
 	DeleteObject(Gvar_192[Gvar_154])
@@ -1222,7 +1222,7 @@ function flameWalk7()
 	Gvar_154 = Gvar_154 + 1
 	goto l114
 	::l158::
-	if not Gvar_182 == Gvar_123 then 
+	if not (Gvar_182 == Gvar_123) then 
 		goto l186
 	end
 	Gvar_172 = Gvar_125
@@ -1237,7 +1237,7 @@ function flameWalk7()
 	::l208::
 	Gvar_154 = 0
 	::l214::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l258
 	end
 	DeleteObject(Gvar_192[Gvar_154])
@@ -1245,7 +1245,7 @@ function flameWalk7()
 	Gvar_154 = Gvar_154 + 1
 	goto l214
 	::l258::
-	if not Gvar_182 == Gvar_124 then 
+	if not (Gvar_182 == Gvar_124) then 
 		goto l286
 	end
 	Gvar_172 = Gvar_126
@@ -1261,7 +1261,7 @@ function flameWalk7()
 	::l318::
 	Gvar_154 = 0
 	::l324::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l368
 	end
 	DeleteObject(Gvar_192[Gvar_154])
@@ -1274,7 +1274,7 @@ function flameWalk7()
 	Gvar_162 = 12
 	goto l390
 	::l390::
-	if not Gvar_146 then 
+	if not (Gvar_146) then 
 		goto l404
 	end
 	WaitFrames(Gvar_162,47)
@@ -1282,7 +1282,7 @@ function flameWalk7()
 	::l404::
 	Gvar_154 = 0
 	::l410::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l445
 	end
 	DeleteObject(Gvar_192[Gvar_154])
@@ -1294,23 +1294,23 @@ function flameWalk7()
 end
 function flameWalk8()
 	var_0 = Gvar_173
-	if var_0 == Gvar_127 then 
+	if (var_0 == Gvar_127) then 
 		goto l45
 	end
-	if var_0 == Gvar_128 then 
+	if (var_0 == Gvar_128) then 
 		goto l108
 	end
-	if var_0 == Gvar_129 then 
+	if (var_0 == Gvar_129) then 
 		goto l208
 	end
-	if var_0 == Gvar_130 then 
+	if (var_0 == Gvar_130) then 
 		goto l318
 	end
 	goto l390
 	::l45::
 	Gvar_155 = 0
 	::l51::
-	if not Gvar_155 < 8 then 
+	if not (Gvar_155 < 8) then 
 		goto l86
 	end
 	DeleteObject(Gvar_193[Gvar_155])
@@ -1325,7 +1325,7 @@ function flameWalk8()
 	::l108::
 	Gvar_155 = 0
 	::l114::
-	if not Gvar_155 < 8 then 
+	if not (Gvar_155 < 8) then 
 		goto l158
 	end
 	DeleteObject(Gvar_193[Gvar_155])
@@ -1333,7 +1333,7 @@ function flameWalk8()
 	Gvar_155 = Gvar_155 + 1
 	goto l114
 	::l158::
-	if not Gvar_183 == Gvar_127 then 
+	if not (Gvar_183 == Gvar_127) then 
 		goto l186
 	end
 	Gvar_173 = Gvar_129
@@ -1348,7 +1348,7 @@ function flameWalk8()
 	::l208::
 	Gvar_155 = 0
 	::l214::
-	if not Gvar_155 < 8 then 
+	if not (Gvar_155 < 8) then 
 		goto l258
 	end
 	DeleteObject(Gvar_193[Gvar_155])
@@ -1356,7 +1356,7 @@ function flameWalk8()
 	Gvar_155 = Gvar_155 + 1
 	goto l214
 	::l258::
-	if not Gvar_183 == Gvar_128 then 
+	if not (Gvar_183 == Gvar_128) then 
 		goto l286
 	end
 	Gvar_173 = Gvar_130
@@ -1372,7 +1372,7 @@ function flameWalk8()
 	::l318::
 	Gvar_155 = 0
 	::l324::
-	if not Gvar_155 < 8 then 
+	if not (Gvar_155 < 8) then 
 		goto l368
 	end
 	DeleteObject(Gvar_193[Gvar_155])
@@ -1385,7 +1385,7 @@ function flameWalk8()
 	Gvar_163 = 12
 	goto l390
 	::l390::
-	if not Gvar_147 then 
+	if not (Gvar_147) then 
 		goto l404
 	end
 	WaitFrames(Gvar_163,48)
@@ -1393,7 +1393,7 @@ function flameWalk8()
 	::l404::
 	Gvar_154 = 0
 	::l410::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l445
 	end
 	DeleteObject(Gvar_193[Gvar_154])
@@ -1405,23 +1405,23 @@ function flameWalk8()
 end
 function flameWalk9()
 	var_0 = Gvar_174
-	if var_0 == Gvar_131 then 
+	if (var_0 == Gvar_131) then 
 		goto l45
 	end
-	if var_0 == Gvar_132 then 
+	if (var_0 == Gvar_132) then 
 		goto l108
 	end
-	if var_0 == Gvar_133 then 
+	if (var_0 == Gvar_133) then 
 		goto l208
 	end
-	if var_0 == Gvar_134 then 
+	if (var_0 == Gvar_134) then 
 		goto l318
 	end
 	goto l390
 	::l45::
 	Gvar_154 = 0
 	::l51::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l86
 	end
 	DeleteObject(Gvar_194[Gvar_154])
@@ -1436,7 +1436,7 @@ function flameWalk9()
 	::l108::
 	Gvar_154 = 0
 	::l114::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l158
 	end
 	DeleteObject(Gvar_194[Gvar_154])
@@ -1444,7 +1444,7 @@ function flameWalk9()
 	Gvar_154 = Gvar_154 + 1
 	goto l114
 	::l158::
-	if not Gvar_184 == Gvar_131 then 
+	if not (Gvar_184 == Gvar_131) then 
 		goto l186
 	end
 	Gvar_174 = Gvar_133
@@ -1459,7 +1459,7 @@ function flameWalk9()
 	::l208::
 	Gvar_154 = 0
 	::l214::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l258
 	end
 	DeleteObject(Gvar_194[Gvar_154])
@@ -1467,7 +1467,7 @@ function flameWalk9()
 	Gvar_154 = Gvar_154 + 1
 	goto l214
 	::l258::
-	if not Gvar_184 == Gvar_132 then 
+	if not (Gvar_184 == Gvar_132) then 
 		goto l286
 	end
 	Gvar_174 = Gvar_134
@@ -1483,7 +1483,7 @@ function flameWalk9()
 	::l318::
 	Gvar_154 = 0
 	::l324::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l368
 	end
 	DeleteObject(Gvar_194[Gvar_154])
@@ -1496,7 +1496,7 @@ function flameWalk9()
 	Gvar_164 = 12
 	goto l390
 	::l390::
-	if not Gvar_148 then 
+	if not (Gvar_148) then 
 		goto l404
 	end
 	WaitFrames(Gvar_164,49)
@@ -1504,7 +1504,7 @@ function flameWalk9()
 	::l404::
 	Gvar_154 = 0
 	::l410::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l445
 	end
 	DeleteObject(Gvar_194[Gvar_154])
@@ -1516,23 +1516,23 @@ function flameWalk9()
 end
 function flameWalk10()
 	var_0 = Gvar_175
-	if var_0 == Gvar_135 then 
+	if (var_0 == Gvar_135) then 
 		goto l45
 	end
-	if var_0 == Gvar_136 then 
+	if (var_0 == Gvar_136) then 
 		goto l108
 	end
-	if var_0 == Gvar_137 then 
+	if (var_0 == Gvar_137) then 
 		goto l208
 	end
-	if var_0 == Gvar_138 then 
+	if (var_0 == Gvar_138) then 
 		goto l318
 	end
 	goto l390
 	::l45::
 	Gvar_154 = 0
 	::l51::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l86
 	end
 	DeleteObject(Gvar_195[Gvar_154])
@@ -1547,7 +1547,7 @@ function flameWalk10()
 	::l108::
 	Gvar_154 = 0
 	::l114::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l158
 	end
 	DeleteObject(Gvar_195[Gvar_154])
@@ -1555,7 +1555,7 @@ function flameWalk10()
 	Gvar_154 = Gvar_154 + 1
 	goto l114
 	::l158::
-	if not Gvar_185 == Gvar_135 then 
+	if not (Gvar_185 == Gvar_135) then 
 		goto l186
 	end
 	Gvar_175 = Gvar_137
@@ -1570,7 +1570,7 @@ function flameWalk10()
 	::l208::
 	Gvar_154 = 0
 	::l214::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l258
 	end
 	DeleteObject(Gvar_195[Gvar_154])
@@ -1578,7 +1578,7 @@ function flameWalk10()
 	Gvar_154 = Gvar_154 + 1
 	goto l214
 	::l258::
-	if not Gvar_185 == Gvar_136 then 
+	if not (Gvar_185 == Gvar_136) then 
 		goto l286
 	end
 	Gvar_175 = Gvar_138
@@ -1594,7 +1594,7 @@ function flameWalk10()
 	::l318::
 	Gvar_154 = 0
 	::l324::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l368
 	end
 	DeleteObject(Gvar_195[Gvar_154])
@@ -1607,7 +1607,7 @@ function flameWalk10()
 	Gvar_165 = 12
 	goto l390
 	::l390::
-	if not Gvar_149 then 
+	if not (Gvar_149) then 
 		goto l404
 	end
 	WaitFrames(Gvar_165,50)
@@ -1615,7 +1615,7 @@ function flameWalk10()
 	::l404::
 	Gvar_154 = 0
 	::l410::
-	if not Gvar_154 < 8 then 
+	if not (Gvar_154 < 8) then 
 		goto l445
 	end
 	DeleteObject(Gvar_195[Gvar_154])
@@ -1628,7 +1628,7 @@ end
 function initFlameGrates()
 	Gvar_4 = 0
 	::l6::
-	if not Gvar_4 < 8 then 
+	if not (Gvar_4 < 8) then 
 		goto l232
 	end
 	Gvar_196[Gvar_4] = WaypointFromName("FlameWay1-" + IntToString(Gvar_4 + 1))
@@ -1661,7 +1661,7 @@ function urchins2Die()
 	if true then return end
 end
 function threeDeadUrchins()
-	if not Gvar_206 > 1 then 
+	if not (Gvar_206 > 1) then 
 		goto l18
 	end
 	UnlockDoor(Gvar_211)
@@ -1670,7 +1670,7 @@ function threeDeadUrchins()
 	if true then return end
 end
 function skullHallOn1()
-	if not Gvar_215 then 
+	if not (Gvar_215) then 
 		goto l23
 	end
 	ApplySpellXYXY("SPELL_FIREBALL",2323,2047,2794,2518)
@@ -1699,7 +1699,7 @@ function arena3Die()
 	if true then return end
 end
 function arena3DeathToll()
-	if not Gvar_219 > 2 then 
+	if not (Gvar_219 > 2) then 
 		goto l18
 	end
 	UnlockDoor(Gvar_222)
@@ -1736,7 +1736,7 @@ function arena4Die()
 	if true then return end
 end
 function arena4DeathToll()
-	if not Gvar_229 > 0 then 
+	if not (Gvar_229 > 0) then 
 		goto l24
 	end
 	PlayMusic(29,100)
@@ -1765,7 +1765,7 @@ function enableZipperOfDeath()
 	if true then return end
 end
 function zipperNoise()
-	if not Gvar_238 then 
+	if not (Gvar_238) then 
 		goto l102
 	end
 	AudioEvent("SecretWallStoneOpen",Gvar_262)
@@ -1786,7 +1786,7 @@ function zipperNoise()
 	if true then return end
 end
 function zipperNoise2()
-	if not Gvar_238 then 
+	if not (Gvar_238) then 
 		goto l25
 	end
 	AudioEvent("MechGolemPowerUp",Gvar_270)
@@ -2059,7 +2059,7 @@ function unlockExitDoor()
 	if true then return end
 end
 function finishGauntlet()
-	if not Gvar_282 then 
+	if not (Gvar_282) then 
 		goto l54
 	end
 	Gvar_282 = false

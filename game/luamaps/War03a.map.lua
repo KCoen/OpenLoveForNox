@@ -28,10 +28,10 @@ function BanditAttack()
 end
 function HorrendousTalkStart()
 	var_0 = Gvar_30
-	if var_0 == Gvar_28 then 
+	if (var_0 == Gvar_28) then 
 		goto l27
 	end
-	if var_0 == Gvar_29 then 
+	if (var_0 == Gvar_29) then 
 		goto l42
 	end
 	goto l50
@@ -83,10 +83,10 @@ end
 function GalavaGuard1TalkStart()
 	ObjLookAtObj(Gvar_11,GetHostPlayer())
 	var_0 = Gvar_33
-	if var_0 == Gvar_31 then 
+	if (var_0 == Gvar_31) then 
 		goto l34
 	end
-	if var_0 == Gvar_32 then 
+	if (var_0 == Gvar_32) then 
 		goto l42
 	end
 	goto l50
@@ -101,10 +101,10 @@ function GalavaGuard1TalkStart()
 end
 function GalavaGuard1TalkEnd()
 	var_0 = Gvar_33
-	if var_0 == Gvar_31 then 
+	if (var_0 == Gvar_31) then 
 		goto l27
 	end
-	if var_0 == Gvar_32 then 
+	if (var_0 == Gvar_32) then 
 		goto l29
 	end
 	goto l31
@@ -118,10 +118,10 @@ end
 function GalavaGuard2TalkStart()
 	ObjLookAtObj(Gvar_12,GetHostPlayer())
 	var_0 = Gvar_33
-	if var_0 == Gvar_31 then 
+	if (var_0 == Gvar_31) then 
 		goto l34
 	end
-	if var_0 == Gvar_32 then 
+	if (var_0 == Gvar_32) then 
 		goto l42
 	end
 	goto l50
@@ -136,10 +136,10 @@ function GalavaGuard2TalkStart()
 end
 function GalavaGuard2TalkEnd()
 	var_0 = Gvar_33
-	if var_0 == Gvar_31 then 
+	if (var_0 == Gvar_31) then 
 		goto l27
 	end
-	if var_0 == Gvar_32 then 
+	if (var_0 == Gvar_32) then 
 		goto l29
 	end
 	goto l31
@@ -153,10 +153,10 @@ end
 function IxGuard1TalkStart()
 	ObjLookAtObj(Gvar_18,GetHostPlayer())
 	var_0 = Gvar_36
-	if var_0 == Gvar_34 then 
+	if (var_0 == Gvar_34) then 
 		goto l34
 	end
-	if var_0 == Gvar_35 then 
+	if (var_0 == Gvar_35) then 
 		goto l42
 	end
 	goto l50
@@ -171,10 +171,10 @@ function IxGuard1TalkStart()
 end
 function IxGuard1TalkEnd()
 	var_0 = Gvar_36
-	if var_0 == Gvar_34 then 
+	if (var_0 == Gvar_34) then 
 		goto l27
 	end
-	if var_0 == Gvar_35 then 
+	if (var_0 == Gvar_35) then 
 		goto l53
 	end
 	goto l55
@@ -192,10 +192,10 @@ end
 function IxGuard2TalkStart()
 	ObjLookAtObj(Gvar_19,GetHostPlayer())
 	var_0 = Gvar_39
-	if var_0 == Gvar_37 then 
+	if (var_0 == Gvar_37) then 
 		goto l34
 	end
-	if var_0 == Gvar_38 then 
+	if (var_0 == Gvar_38) then 
 		goto l42
 	end
 	goto l50
@@ -210,10 +210,10 @@ function IxGuard2TalkStart()
 end
 function IxGuard2TalkEnd()
 	var_0 = Gvar_39
-	if var_0 == Gvar_37 then 
+	if (var_0 == Gvar_37) then 
 		goto l27
 	end
-	if var_0 == Gvar_38 then 
+	if (var_0 == Gvar_38) then 
 		goto l53
 	end
 	goto l55
@@ -229,7 +229,7 @@ function IxGuard2TalkEnd()
 	if true then return end
 end
 function PlayWanderMusic()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l12
 	end
 	PlayMusic(22,100)
@@ -239,7 +239,7 @@ end
 function MapEntry()
 	PlayWanderMusic()
 	CinematicFadeout()
-	if not JournalSetQuest("War03b:QuestComplete") == 1 then 
+	if not (JournalSetQuest("War03b:QuestComplete") == 1) then 
 		goto l23
 	end
 	CancelDialog(Gvar_18)
@@ -338,7 +338,7 @@ function WaspIdle()
 	if true then return end
 end
 function MonsterGoHome()
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) == true then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer()) == true) then 
 		goto l18
 	end
 	MonsterGotoHome(Caller)
@@ -346,7 +346,7 @@ function MonsterGoHome()
 	if true then return end
 end
 function PlaySubMusic()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l12
 	end
 	PlayMusic(20,100)
@@ -354,7 +354,7 @@ function PlaySubMusic()
 	if true then return end
 end
 function PlayActionMusic()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l12
 	end
 	PlayMusic(5,100)
@@ -362,7 +362,7 @@ function PlayActionMusic()
 	if true then return end
 end
 function RobberRecognize()
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_48 then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_48) then 
 		goto l31
 	end
 	Gvar_48 = false

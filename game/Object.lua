@@ -1,6 +1,177 @@
+--[[
+tt      table: 0x09b06ea8
+mobject table: 0x1022db50
+]]
+
+NoxBaseObject = {}
+NoxBaseObject.__index = NoxBaseObject
+NoxBaseObject.__newindex = function (table, key, value)
+	if(table._isInit) then
+		assert(false, "You're not allowed to add new keys to this object " .. tostring(key) .. " : " .. tostring(value))
+	end
+	rawset(table,key,value)
+end
+
+
+function NoxBaseObject.new(mobject)
+	local self = setmetatable({}, NoxBaseObject)
+
+	self.x = 0
+	self.y = 0
+	self.sizeX = 0
+	self.sizeY = 0
+	self.z = 0
+	self.last_x = 0
+	self.last_y = 0
+
+	self.spatialhashes = false
+	self.spatialhashPos = false
+	
+	self.collider = false
+	self.COLOR1 = false
+	self.COLOR2 = false
+	self.COLOR3 = false
+	self.COLOR4 = false
+	self.COLOR5 = false
+	self.COLOR6 = false
+
+	self.drawOffsetX = 0
+	self.drawOffsetY = 0
+
+	self.spriteId = 0
+	
+	self.img = false
+	self.quad = false
+
+	self.animationLastUpdate = 0
+	self.spriteState = 0
+	self.animationState = 0
+
+	self.spriteAnimFrames = false
+	self.spriteMenuIcon = false
+	self.conditionalAnimations = false
+	self.spriteStates = false
+
+	self.class = {}
+	self.flags = {}
+
+	self.childs = {}
+	self.phys = false
+
+	self.renderer = false
+	self.updater = false
+
+	self.direction = 1
+	self.elevatorheight = 0
+	self.mapXfer = false
+
+	self.mass = 0
+
+	self.drawType = ""
+	self.updateType = ""
+	self.collideType = ""
+
+	self.physExtentX = 0
+	self.physExtentY = 0
+	self.physExtentType = ""
+
+	self.xferType = ""
+
+	self.extentId = 0
+
+	self.isDisabled = false
+
+	self.floorheight = 0
+
+	self.objName = ""
+
+	self.elevatorTransfer = false
+	self.scriptName = ""
+
+	self.isLocked = false
+
+	self._isInit = true
+
+
+
+	if(mobject) then
+		self:initFromMapObject(mobject)
+	end
+
+
+
+	return self
+end
+
+function NoxBaseObject:initFromMapObject(mobject)
+	if mobject.Name == "PlayerStart" then
+		if(not player) then
+			player = Player.new(mobject.Location.X, mobject.Location.Y)
+			scene:add(player)
+			map.Objects:add(player)
+			DrawTypes:RegisterObject(player)
+			physics:registerDynamicObject(player)
+			--object = player
+		end
+	end
+	local tt = ThingDB.Things[mobject.Name]
+
+	self.spriteId = GetObjectSpriteId(mobject)
+	self.x = mobject.Location.X
+	self.y = mobject.Location.Y
+	self.mapXfer = mobject.ObjXfer
+	self.z = tt.Z
+	self.sizeX = tt.SizeX
+	self.sizeY = tt.SizeY
+	self.mass = tt.Mass
+	
+	self.objName = tt.Name
+
+	self.drawType = tt.DrawType
+	self.collideType = tt.Collide
+	self.updateType = tt.Update
+
+	self.physExtentX = tt.ExtentX
+	self.physExtentY = tt.ExtentY
+	self.physExtentType = tt.ExtentType
+
+	self.spriteAnimFrames = tt.SpriteAnimFrames
+	self.conditionalAnimations = tt.ConditionalAnimations
+	self.spriteMenuIcon = tt.SpriteMenuIcon
+	self.spriteStates = tt.SpriteStates
+
+	self.drawOffsetX = 0
+	self.drawOffsetY = 0
+
+	self.scriptName = mobject.ScrNameShort
+
+	self.extentId = mobject.Extent
+
+	self.xferType = tt.Xfer
+	
+	if tt.Flags then
+		for k,v in ipairs(tt.Flags) do
+			self.flags[v] = true
+		end
+	end
+	
+	if(tt.Class) then
+		for k,v in pairs(tt.Class) do
+			self.class[v] = true
+		end
+	end
+
+	if(self.class["DOOR"]) then
+		DoorCreate(self)
+	end
+	
+	Colliders:RegisterObject(self)
+	DrawTypes:RegisterObject(self)
+	Updates:RegisterObject(self)
+end
+
+--[[
 function ObjectFromMapObject(mobject)
-
-
 	local object = {}
 	if mobject.Name == "PlayerStart" then
 		if(not player) then
@@ -13,42 +184,16 @@ function ObjectFromMapObject(mobject)
 		end
 	end
 	local tt = ThingDB.Things[mobject.Name]
-	object.mobject = mobject
+	--object.mobject = mobject
 	object.spriteId = GetObjectSpriteId(mobject)
 	object.x = mobject.Location.X
 	object.y = mobject.Location.Y
 	object.z = tt.Z
-	object.tt = tt
+	object.mapXfer = mobject.ObjXfer
+	--object.tt = tt
 
 	object.drawOffsetX = 0
 	object.drawOffsetY = 0
-	object.drawOrderOffset = 0
-			
-	--[[if(object.spriteId) then
-		object.quad, object.img = GetObject(object.spriteId)
-		if(object.quad == nil) then
-			print("Could not load sprite for, " .. mobject.Name)
-			object.spriteId = nil
-		end
-
-		object.drawOffsetX, object.drawOffsetY = map:fixObjectPosition(0,0, object.spriteId, tt)
-		
-		object.x = round(object.x, 0)
-		object.y = round(object.y, 0)
-		
-		object.drawOffsetX = round(object.drawOffsetX, 0)
-		object.drawOffsetY = round(object.drawOffsetY, 0)
-		
-		if tt.ExtentType == "CIRCLE" then
-			local center = tt.Z
-		else
-		
-		end			
-	else
-		object.drawOffsetX = 0
-		object.drawOffsetY = 0
-		object.drawOrderOffset = 0
-	end--]]
 	
 	object.flags = {}
 	if tt.Flags then
@@ -72,14 +217,11 @@ function ObjectFromMapObject(mobject)
 	DrawTypes:RegisterObject(object)
 	Updates:RegisterObject(object)
 	
-	
-	
-	
 	return object
-end
+end ]]
 
-function fixObjectPosition(x, y, sid, tt)
-	local vbc_ent = VideoBag.Objects[sid]
+function fixObjectPosition(x, y, object)
+	local vbc_ent = VideoBag.Objects[object.spriteId]
 	
 	local offsetX
 	local offsetY
@@ -92,11 +234,11 @@ function fixObjectPosition(x, y, sid, tt)
 		offsetY = vbc_ent.offsetY
 	end
 	
-	local sizeX = tt.SizeX / 2
-	local sizeY = tt.SizeY / 2
+	local sizeX = object.sizeX / 2
+	local sizeY = object.sizeY / 2
 	
 	x = x - (sizeX - offsetX)
-	y = y - (sizeY - offsetY) - tt.Z
+	y = y - (sizeY - offsetY) - object.z
 	
 	return x,y
 end
@@ -105,11 +247,11 @@ function UpdateObjectSpriteId(object, spriteid)
 	object.spriteId = spriteid
 	object.quad, object.img = videobagcache:getObject(object.spriteId)--GetObject(object.spriteId)
 	if(object.quad == nil) then
-		print("Could not update sprite for, " .. object.tt.Name)
+		print("Could not update sprite for, " .. object.objName)
 		object.spriteId = nil
 	end
 	
-	object.drawOffsetX, object.drawOffsetY = fixObjectPosition(0,0, object.spriteId, object.tt)
+	object.drawOffsetX, object.drawOffsetY = fixObjectPosition(0,0, object)--object.spriteId, object.tt)
 	--object.drawOffsetX = object.drawOffsetX
 	--object.drawOffsetY = object.drawOffsetY
 end

@@ -39,26 +39,26 @@ function GLOBAL()
 end
 function Flame0()
 	var_2 = Gvar_15
-	if var_2 == Gvar_4 then 
+	if (var_2 == Gvar_4) then 
 		goto l54
 	end
-	if var_2 == Gvar_5 then 
+	if (var_2 == Gvar_5) then 
 		goto l101
 	end
-	if var_2 == Gvar_6 then 
+	if (var_2 == Gvar_6) then 
 		goto l234
 	end
-	if var_2 == Gvar_7 then 
+	if (var_2 == Gvar_7) then 
 		goto l367
 	end
-	if var_2 == Gvar_8 then 
+	if (var_2 == Gvar_8) then 
 		goto l500
 	end
 	goto l625
 	::l54::
 	var_0 = 0
 	::l60::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l85
 	end
 	DeleteObject(var_1[var_0])
@@ -71,7 +71,7 @@ function Flame0()
 	::l101::
 	var_0 = 0
 	::l107::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l132
 	end
 	DeleteObject(var_1[var_0])
@@ -82,7 +82,7 @@ function Flame0()
 	var_1[1] = SpawnObject("SmallFlame",Gvar_11[0])
 	var_1[2] = SpawnObject("SmallFlame",Gvar_12[0])
 	var_1[3] = SpawnObject("SmallFlame",Gvar_13[0])
-	if not Gvar_14 == Gvar_4 then 
+	if not (Gvar_14 == Gvar_4) then 
 		goto l218
 	end
 	Gvar_15 = Gvar_6
@@ -95,7 +95,7 @@ function Flame0()
 	::l234::
 	var_0 = 0
 	::l240::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l265
 	end
 	DeleteObject(var_1[var_0])
@@ -106,7 +106,7 @@ function Flame0()
 	var_1[1] = SpawnObject("MediumFlame",Gvar_11[0])
 	var_1[2] = SpawnObject("MediumFlame",Gvar_12[0])
 	var_1[3] = SpawnObject("MediumFlame",Gvar_13[0])
-	if not Gvar_14 == Gvar_5 then 
+	if not (Gvar_14 == Gvar_5) then 
 		goto l351
 	end
 	Gvar_15 = Gvar_7
@@ -119,7 +119,7 @@ function Flame0()
 	::l367::
 	var_0 = 0
 	::l373::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l398
 	end
 	DeleteObject(var_1[var_0])
@@ -130,7 +130,7 @@ function Flame0()
 	var_1[1] = SpawnObject("Flame",Gvar_11[0])
 	var_1[2] = SpawnObject("Flame",Gvar_12[0])
 	var_1[3] = SpawnObject("Flame",Gvar_13[0])
-	if not Gvar_14 == Gvar_6 then 
+	if not (Gvar_14 == Gvar_6) then 
 		goto l484
 	end
 	Gvar_15 = Gvar_8
@@ -144,7 +144,7 @@ function Flame0()
 	AudioEvent("DemonBreath",Gvar_9[0])
 	var_0 = 0
 	::l516::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l541
 	end
 	DeleteObject(var_1[var_0])
@@ -159,7 +159,7 @@ function Flame0()
 	Gvar_14 = Gvar_8
 	goto l625
 	::l625::
-	if not Gvar_14 ~= Gvar_4 then 
+	if not (Gvar_14 ~= Gvar_4) then 
 		goto l640
 	end
 	WaitFrames(2,2)
@@ -168,26 +168,26 @@ function Flame0()
 end
 function Flame1()
 	var_2 = Gvar_17
-	if var_2 == Gvar_4 then 
+	if (var_2 == Gvar_4) then 
 		goto l54
 	end
-	if var_2 == Gvar_5 then 
+	if (var_2 == Gvar_5) then 
 		goto l101
 	end
-	if var_2 == Gvar_6 then 
+	if (var_2 == Gvar_6) then 
 		goto l234
 	end
-	if var_2 == Gvar_7 then 
+	if (var_2 == Gvar_7) then 
 		goto l367
 	end
-	if var_2 == Gvar_8 then 
+	if (var_2 == Gvar_8) then 
 		goto l500
 	end
 	goto l625
 	::l54::
 	var_0 = 0
 	::l60::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l85
 	end
 	DeleteObject(var_1[var_0])
@@ -200,7 +200,7 @@ function Flame1()
 	::l101::
 	var_0 = 0
 	::l107::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l132
 	end
 	DeleteObject(var_1[var_0])
@@ -211,7 +211,7 @@ function Flame1()
 	var_1[1] = SpawnObject("SmallFlame",Gvar_11[1])
 	var_1[2] = SpawnObject("SmallFlame",Gvar_12[1])
 	var_1[3] = SpawnObject("SmallFlame",Gvar_13[1])
-	if not Gvar_16 == Gvar_4 then 
+	if not (Gvar_16 == Gvar_4) then 
 		goto l218
 	end
 	Gvar_17 = Gvar_6
@@ -224,7 +224,7 @@ function Flame1()
 	::l234::
 	var_0 = 0
 	::l240::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l265
 	end
 	DeleteObject(var_1[var_0])
@@ -235,7 +235,7 @@ function Flame1()
 	var_1[1] = SpawnObject("MediumFlame",Gvar_11[1])
 	var_1[2] = SpawnObject("MediumFlame",Gvar_12[1])
 	var_1[3] = SpawnObject("MediumFlame",Gvar_13[1])
-	if not Gvar_16 == Gvar_5 then 
+	if not (Gvar_16 == Gvar_5) then 
 		goto l351
 	end
 	Gvar_17 = Gvar_7
@@ -248,7 +248,7 @@ function Flame1()
 	::l367::
 	var_0 = 0
 	::l373::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l398
 	end
 	DeleteObject(var_1[var_0])
@@ -259,7 +259,7 @@ function Flame1()
 	var_1[1] = SpawnObject("Flame",Gvar_11[1])
 	var_1[2] = SpawnObject("Flame",Gvar_12[1])
 	var_1[3] = SpawnObject("Flame",Gvar_13[1])
-	if not Gvar_16 == Gvar_6 then 
+	if not (Gvar_16 == Gvar_6) then 
 		goto l484
 	end
 	Gvar_17 = Gvar_8
@@ -273,7 +273,7 @@ function Flame1()
 	AudioEvent("DemonBreath",Gvar_9[1])
 	var_0 = 0
 	::l516::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l541
 	end
 	DeleteObject(var_1[var_0])
@@ -288,7 +288,7 @@ function Flame1()
 	Gvar_16 = Gvar_8
 	goto l625
 	::l625::
-	if not Gvar_16 ~= Gvar_4 then 
+	if not (Gvar_16 ~= Gvar_4) then 
 		goto l640
 	end
 	WaitFrames(2,3)
@@ -297,26 +297,26 @@ function Flame1()
 end
 function Flame2()
 	var_2 = Gvar_19
-	if var_2 == Gvar_4 then 
+	if (var_2 == Gvar_4) then 
 		goto l54
 	end
-	if var_2 == Gvar_5 then 
+	if (var_2 == Gvar_5) then 
 		goto l101
 	end
-	if var_2 == Gvar_6 then 
+	if (var_2 == Gvar_6) then 
 		goto l234
 	end
-	if var_2 == Gvar_7 then 
+	if (var_2 == Gvar_7) then 
 		goto l367
 	end
-	if var_2 == Gvar_8 then 
+	if (var_2 == Gvar_8) then 
 		goto l500
 	end
 	goto l625
 	::l54::
 	var_0 = 0
 	::l60::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l85
 	end
 	DeleteObject(var_1[var_0])
@@ -329,7 +329,7 @@ function Flame2()
 	::l101::
 	var_0 = 0
 	::l107::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l132
 	end
 	DeleteObject(var_1[var_0])
@@ -340,7 +340,7 @@ function Flame2()
 	var_1[1] = SpawnObject("SmallFlame",Gvar_11[2])
 	var_1[2] = SpawnObject("SmallFlame",Gvar_12[2])
 	var_1[3] = SpawnObject("SmallFlame",Gvar_13[2])
-	if not Gvar_18 == Gvar_4 then 
+	if not (Gvar_18 == Gvar_4) then 
 		goto l218
 	end
 	Gvar_19 = Gvar_6
@@ -353,7 +353,7 @@ function Flame2()
 	::l234::
 	var_0 = 0
 	::l240::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l265
 	end
 	DeleteObject(var_1[var_0])
@@ -364,7 +364,7 @@ function Flame2()
 	var_1[1] = SpawnObject("MediumFlame",Gvar_11[2])
 	var_1[2] = SpawnObject("MediumFlame",Gvar_12[2])
 	var_1[3] = SpawnObject("MediumFlame",Gvar_13[2])
-	if not Gvar_18 == Gvar_5 then 
+	if not (Gvar_18 == Gvar_5) then 
 		goto l351
 	end
 	Gvar_19 = Gvar_7
@@ -377,7 +377,7 @@ function Flame2()
 	::l367::
 	var_0 = 0
 	::l373::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l398
 	end
 	DeleteObject(var_1[var_0])
@@ -388,7 +388,7 @@ function Flame2()
 	var_1[1] = SpawnObject("Flame",Gvar_11[2])
 	var_1[2] = SpawnObject("Flame",Gvar_12[2])
 	var_1[3] = SpawnObject("Flame",Gvar_13[2])
-	if not Gvar_18 == Gvar_6 then 
+	if not (Gvar_18 == Gvar_6) then 
 		goto l484
 	end
 	Gvar_19 = Gvar_8
@@ -402,7 +402,7 @@ function Flame2()
 	AudioEvent("DemonBreath",Gvar_9[2])
 	var_0 = 0
 	::l516::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l541
 	end
 	DeleteObject(var_1[var_0])
@@ -417,7 +417,7 @@ function Flame2()
 	Gvar_18 = Gvar_8
 	goto l625
 	::l625::
-	if not Gvar_18 ~= Gvar_4 then 
+	if not (Gvar_18 ~= Gvar_4) then 
 		goto l640
 	end
 	WaitFrames(2,4)
@@ -426,26 +426,26 @@ function Flame2()
 end
 function Flame3()
 	var_2 = Gvar_21
-	if var_2 == Gvar_4 then 
+	if (var_2 == Gvar_4) then 
 		goto l54
 	end
-	if var_2 == Gvar_5 then 
+	if (var_2 == Gvar_5) then 
 		goto l101
 	end
-	if var_2 == Gvar_6 then 
+	if (var_2 == Gvar_6) then 
 		goto l234
 	end
-	if var_2 == Gvar_7 then 
+	if (var_2 == Gvar_7) then 
 		goto l367
 	end
-	if var_2 == Gvar_8 then 
+	if (var_2 == Gvar_8) then 
 		goto l500
 	end
 	goto l625
 	::l54::
 	var_0 = 0
 	::l60::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l85
 	end
 	DeleteObject(var_1[var_0])
@@ -458,7 +458,7 @@ function Flame3()
 	::l101::
 	var_0 = 0
 	::l107::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l132
 	end
 	DeleteObject(var_1[var_0])
@@ -469,7 +469,7 @@ function Flame3()
 	var_1[1] = SpawnObject("SmallFlame",Gvar_11[3])
 	var_1[2] = SpawnObject("SmallFlame",Gvar_12[3])
 	var_1[3] = SpawnObject("SmallFlame",Gvar_13[3])
-	if not Gvar_20 == Gvar_4 then 
+	if not (Gvar_20 == Gvar_4) then 
 		goto l218
 	end
 	Gvar_21 = Gvar_6
@@ -482,7 +482,7 @@ function Flame3()
 	::l234::
 	var_0 = 0
 	::l240::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l265
 	end
 	DeleteObject(var_1[var_0])
@@ -493,7 +493,7 @@ function Flame3()
 	var_1[1] = SpawnObject("MediumFlame",Gvar_11[3])
 	var_1[2] = SpawnObject("MediumFlame",Gvar_12[3])
 	var_1[3] = SpawnObject("MediumFlame",Gvar_13[3])
-	if not Gvar_20 == Gvar_5 then 
+	if not (Gvar_20 == Gvar_5) then 
 		goto l351
 	end
 	Gvar_21 = Gvar_7
@@ -506,7 +506,7 @@ function Flame3()
 	::l367::
 	var_0 = 0
 	::l373::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l398
 	end
 	DeleteObject(var_1[var_0])
@@ -517,7 +517,7 @@ function Flame3()
 	var_1[1] = SpawnObject("Flame",Gvar_11[3])
 	var_1[2] = SpawnObject("Flame",Gvar_12[3])
 	var_1[3] = SpawnObject("Flame",Gvar_13[3])
-	if not Gvar_20 == Gvar_6 then 
+	if not (Gvar_20 == Gvar_6) then 
 		goto l484
 	end
 	Gvar_21 = Gvar_8
@@ -531,7 +531,7 @@ function Flame3()
 	AudioEvent("DemonBreath",Gvar_9[3])
 	var_0 = 0
 	::l516::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l541
 	end
 	DeleteObject(var_1[var_0])
@@ -546,7 +546,7 @@ function Flame3()
 	Gvar_20 = Gvar_8
 	goto l625
 	::l625::
-	if not Gvar_20 ~= Gvar_4 then 
+	if not (Gvar_20 ~= Gvar_4) then 
 		goto l640
 	end
 	WaitFrames(2,5)
@@ -555,26 +555,26 @@ function Flame3()
 end
 function Flame4()
 	var_2 = Gvar_23
-	if var_2 == Gvar_4 then 
+	if (var_2 == Gvar_4) then 
 		goto l54
 	end
-	if var_2 == Gvar_5 then 
+	if (var_2 == Gvar_5) then 
 		goto l101
 	end
-	if var_2 == Gvar_6 then 
+	if (var_2 == Gvar_6) then 
 		goto l234
 	end
-	if var_2 == Gvar_7 then 
+	if (var_2 == Gvar_7) then 
 		goto l367
 	end
-	if var_2 == Gvar_8 then 
+	if (var_2 == Gvar_8) then 
 		goto l500
 	end
 	goto l625
 	::l54::
 	var_0 = 0
 	::l60::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l85
 	end
 	DeleteObject(var_1[var_0])
@@ -587,7 +587,7 @@ function Flame4()
 	::l101::
 	var_0 = 0
 	::l107::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l132
 	end
 	DeleteObject(var_1[var_0])
@@ -598,7 +598,7 @@ function Flame4()
 	var_1[1] = SpawnObject("SmallFlame",Gvar_11[4])
 	var_1[2] = SpawnObject("SmallFlame",Gvar_12[4])
 	var_1[3] = SpawnObject("SmallFlame",Gvar_13[4])
-	if not Gvar_22 == Gvar_4 then 
+	if not (Gvar_22 == Gvar_4) then 
 		goto l218
 	end
 	Gvar_23 = Gvar_6
@@ -611,7 +611,7 @@ function Flame4()
 	::l234::
 	var_0 = 0
 	::l240::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l265
 	end
 	DeleteObject(var_1[var_0])
@@ -622,7 +622,7 @@ function Flame4()
 	var_1[1] = SpawnObject("MediumFlame",Gvar_11[4])
 	var_1[2] = SpawnObject("MediumFlame",Gvar_12[4])
 	var_1[3] = SpawnObject("MediumFlame",Gvar_13[4])
-	if not Gvar_22 == Gvar_5 then 
+	if not (Gvar_22 == Gvar_5) then 
 		goto l351
 	end
 	Gvar_23 = Gvar_7
@@ -635,7 +635,7 @@ function Flame4()
 	::l367::
 	var_0 = 0
 	::l373::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l398
 	end
 	DeleteObject(var_1[var_0])
@@ -646,7 +646,7 @@ function Flame4()
 	var_1[1] = SpawnObject("Flame",Gvar_11[4])
 	var_1[2] = SpawnObject("Flame",Gvar_12[4])
 	var_1[3] = SpawnObject("Flame",Gvar_13[4])
-	if not Gvar_22 == Gvar_6 then 
+	if not (Gvar_22 == Gvar_6) then 
 		goto l484
 	end
 	Gvar_23 = Gvar_8
@@ -660,7 +660,7 @@ function Flame4()
 	AudioEvent("DemonBreath",Gvar_9[4])
 	var_0 = 0
 	::l516::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l541
 	end
 	DeleteObject(var_1[var_0])
@@ -675,7 +675,7 @@ function Flame4()
 	Gvar_22 = Gvar_8
 	goto l625
 	::l625::
-	if not Gvar_22 ~= Gvar_4 then 
+	if not (Gvar_22 ~= Gvar_4) then 
 		goto l640
 	end
 	WaitFrames(2,6)
@@ -684,26 +684,26 @@ function Flame4()
 end
 function Flame5()
 	var_2 = Gvar_25
-	if var_2 == Gvar_4 then 
+	if (var_2 == Gvar_4) then 
 		goto l54
 	end
-	if var_2 == Gvar_5 then 
+	if (var_2 == Gvar_5) then 
 		goto l101
 	end
-	if var_2 == Gvar_6 then 
+	if (var_2 == Gvar_6) then 
 		goto l234
 	end
-	if var_2 == Gvar_7 then 
+	if (var_2 == Gvar_7) then 
 		goto l367
 	end
-	if var_2 == Gvar_8 then 
+	if (var_2 == Gvar_8) then 
 		goto l500
 	end
 	goto l625
 	::l54::
 	var_0 = 0
 	::l60::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l85
 	end
 	DeleteObject(var_1[var_0])
@@ -716,7 +716,7 @@ function Flame5()
 	::l101::
 	var_0 = 0
 	::l107::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l132
 	end
 	DeleteObject(var_1[var_0])
@@ -727,7 +727,7 @@ function Flame5()
 	var_1[1] = SpawnObject("SmallFlame",Gvar_11[5])
 	var_1[2] = SpawnObject("SmallFlame",Gvar_12[5])
 	var_1[3] = SpawnObject("SmallFlame",Gvar_13[5])
-	if not Gvar_24 == Gvar_4 then 
+	if not (Gvar_24 == Gvar_4) then 
 		goto l218
 	end
 	Gvar_25 = Gvar_6
@@ -740,7 +740,7 @@ function Flame5()
 	::l234::
 	var_0 = 0
 	::l240::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l265
 	end
 	DeleteObject(var_1[var_0])
@@ -751,7 +751,7 @@ function Flame5()
 	var_1[1] = SpawnObject("MediumFlame",Gvar_11[5])
 	var_1[2] = SpawnObject("MediumFlame",Gvar_12[5])
 	var_1[3] = SpawnObject("MediumFlame",Gvar_13[5])
-	if not Gvar_24 == Gvar_5 then 
+	if not (Gvar_24 == Gvar_5) then 
 		goto l351
 	end
 	Gvar_25 = Gvar_7
@@ -764,7 +764,7 @@ function Flame5()
 	::l367::
 	var_0 = 0
 	::l373::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l398
 	end
 	DeleteObject(var_1[var_0])
@@ -775,7 +775,7 @@ function Flame5()
 	var_1[1] = SpawnObject("Flame",Gvar_11[5])
 	var_1[2] = SpawnObject("Flame",Gvar_12[5])
 	var_1[3] = SpawnObject("Flame",Gvar_13[5])
-	if not Gvar_24 == Gvar_6 then 
+	if not (Gvar_24 == Gvar_6) then 
 		goto l484
 	end
 	Gvar_25 = Gvar_8
@@ -789,7 +789,7 @@ function Flame5()
 	AudioEvent("DemonBreath",Gvar_10[0])
 	var_0 = 0
 	::l516::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l541
 	end
 	DeleteObject(var_1[var_0])
@@ -804,7 +804,7 @@ function Flame5()
 	Gvar_24 = Gvar_8
 	goto l625
 	::l625::
-	if not Gvar_24 ~= Gvar_4 then 
+	if not (Gvar_24 ~= Gvar_4) then 
 		goto l640
 	end
 	WaitFrames(2,7)
@@ -813,26 +813,26 @@ function Flame5()
 end
 function Flame6()
 	var_2 = Gvar_27
-	if var_2 == Gvar_4 then 
+	if (var_2 == Gvar_4) then 
 		goto l54
 	end
-	if var_2 == Gvar_5 then 
+	if (var_2 == Gvar_5) then 
 		goto l101
 	end
-	if var_2 == Gvar_6 then 
+	if (var_2 == Gvar_6) then 
 		goto l234
 	end
-	if var_2 == Gvar_7 then 
+	if (var_2 == Gvar_7) then 
 		goto l367
 	end
-	if var_2 == Gvar_8 then 
+	if (var_2 == Gvar_8) then 
 		goto l500
 	end
 	goto l625
 	::l54::
 	var_0 = 0
 	::l60::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l85
 	end
 	DeleteObject(var_1[var_0])
@@ -845,7 +845,7 @@ function Flame6()
 	::l101::
 	var_0 = 0
 	::l107::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l132
 	end
 	DeleteObject(var_1[var_0])
@@ -856,7 +856,7 @@ function Flame6()
 	var_1[1] = SpawnObject("SmallFlame",Gvar_11[6])
 	var_1[2] = SpawnObject("SmallFlame",Gvar_12[6])
 	var_1[3] = SpawnObject("SmallFlame",Gvar_13[6])
-	if not Gvar_26 == Gvar_4 then 
+	if not (Gvar_26 == Gvar_4) then 
 		goto l218
 	end
 	Gvar_27 = Gvar_6
@@ -869,7 +869,7 @@ function Flame6()
 	::l234::
 	var_0 = 0
 	::l240::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l265
 	end
 	DeleteObject(var_1[var_0])
@@ -880,7 +880,7 @@ function Flame6()
 	var_1[1] = SpawnObject("MediumFlame",Gvar_11[6])
 	var_1[2] = SpawnObject("MediumFlame",Gvar_12[6])
 	var_1[3] = SpawnObject("MediumFlame",Gvar_13[6])
-	if not Gvar_26 == Gvar_5 then 
+	if not (Gvar_26 == Gvar_5) then 
 		goto l351
 	end
 	Gvar_27 = Gvar_7
@@ -893,7 +893,7 @@ function Flame6()
 	::l367::
 	var_0 = 0
 	::l373::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l398
 	end
 	DeleteObject(var_1[var_0])
@@ -904,7 +904,7 @@ function Flame6()
 	var_1[1] = SpawnObject("Flame",Gvar_11[6])
 	var_1[2] = SpawnObject("Flame",Gvar_12[6])
 	var_1[3] = SpawnObject("Flame",Gvar_13[6])
-	if not Gvar_26 == Gvar_6 then 
+	if not (Gvar_26 == Gvar_6) then 
 		goto l484
 	end
 	Gvar_27 = Gvar_8
@@ -918,7 +918,7 @@ function Flame6()
 	AudioEvent("DemonBreath",Gvar_10[1])
 	var_0 = 0
 	::l516::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l541
 	end
 	DeleteObject(var_1[var_0])
@@ -933,7 +933,7 @@ function Flame6()
 	Gvar_26 = Gvar_8
 	goto l625
 	::l625::
-	if not Gvar_26 ~= Gvar_4 then 
+	if not (Gvar_26 ~= Gvar_4) then 
 		goto l640
 	end
 	WaitFrames(2,8)
@@ -942,26 +942,26 @@ function Flame6()
 end
 function Flame7()
 	var_2 = Gvar_29
-	if var_2 == Gvar_4 then 
+	if (var_2 == Gvar_4) then 
 		goto l54
 	end
-	if var_2 == Gvar_5 then 
+	if (var_2 == Gvar_5) then 
 		goto l101
 	end
-	if var_2 == Gvar_6 then 
+	if (var_2 == Gvar_6) then 
 		goto l234
 	end
-	if var_2 == Gvar_7 then 
+	if (var_2 == Gvar_7) then 
 		goto l367
 	end
-	if var_2 == Gvar_8 then 
+	if (var_2 == Gvar_8) then 
 		goto l500
 	end
 	goto l625
 	::l54::
 	var_0 = 0
 	::l60::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l85
 	end
 	DeleteObject(var_1[var_0])
@@ -974,7 +974,7 @@ function Flame7()
 	::l101::
 	var_0 = 0
 	::l107::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l132
 	end
 	DeleteObject(var_1[var_0])
@@ -985,7 +985,7 @@ function Flame7()
 	var_1[1] = SpawnObject("SmallFlame",Gvar_11[7])
 	var_1[2] = SpawnObject("SmallFlame",Gvar_12[7])
 	var_1[3] = SpawnObject("SmallFlame",Gvar_13[7])
-	if not Gvar_28 == Gvar_4 then 
+	if not (Gvar_28 == Gvar_4) then 
 		goto l218
 	end
 	Gvar_29 = Gvar_6
@@ -998,7 +998,7 @@ function Flame7()
 	::l234::
 	var_0 = 0
 	::l240::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l265
 	end
 	DeleteObject(var_1[var_0])
@@ -1009,7 +1009,7 @@ function Flame7()
 	var_1[1] = SpawnObject("MediumFlame",Gvar_11[7])
 	var_1[2] = SpawnObject("MediumFlame",Gvar_12[7])
 	var_1[3] = SpawnObject("MediumFlame",Gvar_13[7])
-	if not Gvar_28 == Gvar_5 then 
+	if not (Gvar_28 == Gvar_5) then 
 		goto l351
 	end
 	Gvar_29 = Gvar_7
@@ -1022,7 +1022,7 @@ function Flame7()
 	::l367::
 	var_0 = 0
 	::l373::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l398
 	end
 	DeleteObject(var_1[var_0])
@@ -1033,7 +1033,7 @@ function Flame7()
 	var_1[1] = SpawnObject("Flame",Gvar_11[7])
 	var_1[2] = SpawnObject("Flame",Gvar_12[7])
 	var_1[3] = SpawnObject("Flame",Gvar_13[7])
-	if not Gvar_28 == Gvar_6 then 
+	if not (Gvar_28 == Gvar_6) then 
 		goto l484
 	end
 	Gvar_29 = Gvar_8
@@ -1047,7 +1047,7 @@ function Flame7()
 	AudioEvent("DemonBreath",Gvar_10[2])
 	var_0 = 0
 	::l516::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l541
 	end
 	DeleteObject(var_1[var_0])
@@ -1062,7 +1062,7 @@ function Flame7()
 	Gvar_28 = Gvar_8
 	goto l625
 	::l625::
-	if not Gvar_28 ~= Gvar_4 then 
+	if not (Gvar_28 ~= Gvar_4) then 
 		goto l640
 	end
 	WaitFrames(2,9)
@@ -1071,26 +1071,26 @@ function Flame7()
 end
 function Flame8()
 	var_2 = Gvar_31
-	if var_2 == Gvar_4 then 
+	if (var_2 == Gvar_4) then 
 		goto l54
 	end
-	if var_2 == Gvar_5 then 
+	if (var_2 == Gvar_5) then 
 		goto l101
 	end
-	if var_2 == Gvar_6 then 
+	if (var_2 == Gvar_6) then 
 		goto l234
 	end
-	if var_2 == Gvar_7 then 
+	if (var_2 == Gvar_7) then 
 		goto l367
 	end
-	if var_2 == Gvar_8 then 
+	if (var_2 == Gvar_8) then 
 		goto l500
 	end
 	goto l625
 	::l54::
 	var_0 = 0
 	::l60::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l85
 	end
 	DeleteObject(var_1[var_0])
@@ -1103,7 +1103,7 @@ function Flame8()
 	::l101::
 	var_0 = 0
 	::l107::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l132
 	end
 	DeleteObject(var_1[var_0])
@@ -1114,7 +1114,7 @@ function Flame8()
 	var_1[1] = SpawnObject("SmallFlame",Gvar_11[8])
 	var_1[2] = SpawnObject("SmallFlame",Gvar_12[8])
 	var_1[3] = SpawnObject("SmallFlame",Gvar_13[8])
-	if not Gvar_30 == Gvar_4 then 
+	if not (Gvar_30 == Gvar_4) then 
 		goto l218
 	end
 	Gvar_31 = Gvar_6
@@ -1127,7 +1127,7 @@ function Flame8()
 	::l234::
 	var_0 = 0
 	::l240::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l265
 	end
 	DeleteObject(var_1[var_0])
@@ -1138,7 +1138,7 @@ function Flame8()
 	var_1[1] = SpawnObject("MediumFlame",Gvar_11[8])
 	var_1[2] = SpawnObject("MediumFlame",Gvar_12[8])
 	var_1[3] = SpawnObject("MediumFlame",Gvar_13[8])
-	if not Gvar_30 == Gvar_5 then 
+	if not (Gvar_30 == Gvar_5) then 
 		goto l351
 	end
 	Gvar_31 = Gvar_7
@@ -1151,7 +1151,7 @@ function Flame8()
 	::l367::
 	var_0 = 0
 	::l373::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l398
 	end
 	DeleteObject(var_1[var_0])
@@ -1162,7 +1162,7 @@ function Flame8()
 	var_1[1] = SpawnObject("Flame",Gvar_11[8])
 	var_1[2] = SpawnObject("Flame",Gvar_12[8])
 	var_1[3] = SpawnObject("Flame",Gvar_13[8])
-	if not Gvar_30 == Gvar_6 then 
+	if not (Gvar_30 == Gvar_6) then 
 		goto l484
 	end
 	Gvar_31 = Gvar_8
@@ -1176,7 +1176,7 @@ function Flame8()
 	AudioEvent("DemonBreath",Gvar_10[3])
 	var_0 = 0
 	::l516::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l541
 	end
 	DeleteObject(var_1[var_0])
@@ -1191,7 +1191,7 @@ function Flame8()
 	Gvar_30 = Gvar_8
 	goto l625
 	::l625::
-	if not Gvar_30 ~= Gvar_4 then 
+	if not (Gvar_30 ~= Gvar_4) then 
 		goto l640
 	end
 	WaitFrames(2,10)
@@ -1269,14 +1269,14 @@ end
 function DemonCreate(arg_0)
 	Gvar_37 = Gvar_37 + 1
 	checkTotalDead()
-	if not Gvar_37 < 5 then 
+	if not (Gvar_37 < 5) then 
 		goto l178
 	end
-	if not Gvar_41 == 0 then 
+	if not (Gvar_41 == 0) then 
 		goto l178
 	end
 	Gvar_38 = RandomInteger(1,100)
-	if not Gvar_38 <= 25 and Gvar_42 == 0 then 
+	if not (Gvar_38 <= 25 and Gvar_42 == 0) then 
 		goto l89
 	end
 	Gvar_42 = 1
@@ -1309,7 +1309,7 @@ function DemonIdle()
 end
 function DemonDie()
 	Gvar_42 = 0
-	if not Gvar_39 == 0 then 
+	if not (Gvar_39 == 0) then 
 		goto l37
 	end
 	Gvar_39 = Gvar_39 + 1
@@ -1317,7 +1317,7 @@ function DemonDie()
 	WaitSpecial(600,Gvar_39,19)
 	goto l128
 	::l37::
-	if not Gvar_39 == 1 then 
+	if not (Gvar_39 == 1) then 
 		goto l68
 	end
 	Gvar_39 = Gvar_39 + 1
@@ -1325,7 +1325,7 @@ function DemonDie()
 	WaitSpecial(600,Gvar_39,19)
 	goto l128
 	::l68::
-	if not Gvar_39 == 2 then 
+	if not (Gvar_39 == 2) then 
 		goto l99
 	end
 	Gvar_39 = Gvar_39 + 1
@@ -1333,7 +1333,7 @@ function DemonDie()
 	WaitSpecial(600,Gvar_39,19)
 	goto l128
 	::l99::
-	if not Gvar_39 == 3 then 
+	if not (Gvar_39 == 3) then 
 		goto l128
 	end
 	Gvar_39 = 0
@@ -1343,7 +1343,7 @@ function DemonDie()
 	if true then return end
 end
 function EmberDie()
-	if not Gvar_39 == 0 then 
+	if not (Gvar_39 == 0) then 
 		goto l31
 	end
 	Gvar_39 = Gvar_39 + 1
@@ -1351,7 +1351,7 @@ function EmberDie()
 	WaitSpecial(600,Gvar_39,19)
 	goto l122
 	::l31::
-	if not Gvar_39 == 1 then 
+	if not (Gvar_39 == 1) then 
 		goto l62
 	end
 	Gvar_39 = Gvar_39 + 1
@@ -1359,7 +1359,7 @@ function EmberDie()
 	WaitSpecial(600,Gvar_39,19)
 	goto l122
 	::l62::
-	if not Gvar_39 == 2 then 
+	if not (Gvar_39 == 2) then 
 		goto l93
 	end
 	Gvar_39 = Gvar_39 + 1
@@ -1367,7 +1367,7 @@ function EmberDie()
 	WaitSpecial(600,Gvar_39,19)
 	goto l122
 	::l93::
-	if not Gvar_39 == 3 then 
+	if not (Gvar_39 == 3) then 
 		goto l122
 	end
 	Gvar_39 = 0
@@ -1379,10 +1379,10 @@ end
 function SetupGuards()
 	Gvar_40 = 0
 	::l6::
-	if not Gvar_40 < 5 then 
+	if not (Gvar_40 < 5) then 
 		goto l115
 	end
-	if not Gvar_40 == 4 then 
+	if not (Gvar_40 == 4) then 
 		goto l24
 	end
 	Flame4()
@@ -1430,37 +1430,37 @@ end
 function GuardCreate(arg_0)
 	Gvar_36 = Gvar_36 + 1
 	checkTotalDead()
-	if not Gvar_36 < 5 then 
+	if not (Gvar_36 < 5) then 
 		goto l207
 	end
-	if not Gvar_41 == 0 then 
+	if not (Gvar_41 == 0) then 
 		goto l207
 	end
 	Gvar_67[arg_0] = SpawnObject("EmberDemon",Gvar_9[arg_0])
 	MonsterSetRetreatRatio(Gvar_67[arg_0],0)
 	MonsterGuardArea(Gvar_67[arg_0],GetWaypointX(Gvar_9[arg_0]),GetWaypointY(Gvar_9[arg_0]),2900,2900,300)
 	ObjLookAtObj(Gvar_67[arg_0],GetHostPlayer())
-	if not arg_0 == 0 then 
+	if not (arg_0 == 0) then 
 		goto l118
 	end
 	MonsterEventScript(Gvar_67[0],5,25)
 	::l118::
-	if not arg_0 == 1 then 
+	if not (arg_0 == 1) then 
 		goto l138
 	end
 	MonsterEventScript(Gvar_67[1],5,26)
 	::l138::
-	if not arg_0 == 2 then 
+	if not (arg_0 == 2) then 
 		goto l158
 	end
 	MonsterEventScript(Gvar_67[2],5,27)
 	::l158::
-	if not arg_0 == 3 then 
+	if not (arg_0 == 3) then 
 		goto l178
 	end
 	MonsterEventScript(Gvar_67[3],5,28)
 	::l178::
-	if not arg_0 == 4 then 
+	if not (arg_0 == 4) then 
 		goto l198
 	end
 	MonsterEventScript(Gvar_67[4],5,29)
@@ -1475,7 +1475,7 @@ function GuardInit(arg_0)
 	if true then return end
 end
 function SetupDemons()
-	if not Gvar_39 < 4 then 
+	if not (Gvar_39 < 4) then 
 		goto l47
 	end
 	TeleportObj(Gvar_66[Gvar_39],GetWaypointX(Gvar_68[Gvar_39]),GetWaypointY(Gvar_68[Gvar_39]))
@@ -1513,7 +1513,7 @@ function HecTalk2()
 	if true then return end
 end
 function hecTalkDemonStart()
-	if not Gvar_33 then 
+	if not (Gvar_33) then 
 		goto l18
 	end
 	SayChat(Gvar_64,"War11a:Bah")
@@ -1526,7 +1526,7 @@ function hecTalkDemonEnd()
 	if true then return end
 end
 function hecTaunts()
-	if not Gvar_32 then 
+	if not (Gvar_32) then 
 		goto l25
 	end
 	Gvar_32 = false
@@ -1540,7 +1540,7 @@ function resetTaunts()
 	if true then return end
 end
 function hecRetreatTalk()
-	if not ObjCanInteractWith(GetHostPlayer(),Gvar_64) then 
+	if not (ObjCanInteractWith(GetHostPlayer(),Gvar_64)) then 
 		goto l34
 	end
 	ObjFreeze(GetHostPlayer(),true)
@@ -1581,7 +1581,7 @@ function hecTalkRetreatEnd()
 	if true then return end
 end
 function checkTotalDead()
-	if not Gvar_37 >= 8 and Gvar_36 >= 9 then 
+	if not (Gvar_37 >= 8 and Gvar_36 >= 9) then 
 		goto l17
 	end
 	hecTalkDemonStart()
@@ -1592,12 +1592,12 @@ function EnableDemons()
 	SetupGuards()
 	Gvar_39 = 0
 	::l8::
-	if not Gvar_39 < 4 then 
+	if not (Gvar_39 < 4) then 
 		goto l78
 	end
 	EnableObject(Gvar_66[Gvar_39])
 	MonsterSetRetreatRatio(Gvar_66[Gvar_39],0)
-	if not Gvar_39 ~= 2 then 
+	if not (Gvar_39 ~= 2) then 
 		goto l57
 	end
 	MonsterEventScript(Gvar_66[Gvar_39],5,23)
@@ -1668,17 +1668,17 @@ function HecubahDie5()
 	if true then return end
 end
 function HecubahDialogStart()
-	if not Gvar_43 == 1 then 
+	if not (Gvar_43 == 1) then 
 		goto l14
 	end
 	StartDialogWithCaller("DemonRecognize","War11a:PunyFlea")
 	::l14::
-	if not Gvar_43 == 2 then 
+	if not (Gvar_43 == 2) then 
 		goto l28
 	end
 	StartDialogWithCaller("DemonRecognize","War11a:CatchMe")
 	::l28::
-	if not Gvar_43 == 3 then 
+	if not (Gvar_43 == 3) then 
 		goto l42
 	end
 	StartDialogWithCaller("DemonRecognize","War11a:Nooooooooo")
@@ -1686,20 +1686,20 @@ function HecubahDialogStart()
 	if true then return end
 end
 function HecubahDialogEnd()
-	if not Gvar_43 == 1 then 
+	if not (Gvar_43 == 1) then 
 		goto l21
 	end
 	CancelDialog(Gvar_64)
 	SetupDemons()
 	WaitFrames(150,36)
 	::l21::
-	if not Gvar_43 == 2 then 
+	if not (Gvar_43 == 2) then 
 		goto l42
 	end
 	CancelDialog(Gvar_64)
 	MoveTo(Gvar_64,Gvar_69)
 	::l42::
-	if not Gvar_43 == 3 then 
+	if not (Gvar_43 == 3) then 
 		goto l57
 	end
 	CancelDialog(Gvar_64)
@@ -1802,7 +1802,7 @@ function HecubahDie()
 	CancelDialog(Gvar_64)
 	Gvar_40 = 0
 	::l43::
-	if not Gvar_40 < 5 then 
+	if not (Gvar_40 < 5) then 
 		goto l74
 	end
 	DamageObject(Gvar_67[Gvar_40],0,1000,0)
@@ -1811,7 +1811,7 @@ function HecubahDie()
 	::l74::
 	Gvar_39 = 0
 	::l80::
-	if not Gvar_39 < 4 then 
+	if not (Gvar_39 < 4) then 
 		goto l111
 	end
 	DamageObject(Gvar_66[Gvar_39],0,1000,0)

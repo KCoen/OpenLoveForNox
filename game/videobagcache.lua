@@ -11,7 +11,7 @@ local G = love.graphics
 function videobagcache:load()
 	local canvas = love.graphics.newCanvas(videobagcache.cacheSize, videobagcache.cacheSize)
 	love.graphics.setCanvas(canvas)
-	canvas:clear()
+	love.graphics.clear()--canvas:clear()
 	love.graphics.setCanvas(nil)
 
 	videobagcache.canvas = canvas

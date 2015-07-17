@@ -209,7 +209,10 @@ function Player.new(x, y)
 	self.shader = shaders.sampleShadow
 	self.sequence = "IDLE"
 	self.isonground = true
-	self.isjumping = false
+	self.isjumping = false	
+	self.height = 0
+	self.elevatorheight = 0
+	self.floorheight = 0
 
 	-- Default player colors
 	
@@ -261,45 +264,6 @@ function Player.new(x, y)
 	self.phys = {phys}
 	
 	self.noclip = false
-	
-	--[[physworld:setContactFilter( 
-		function(a,b) 
-			if a == phys.fix then 
-				if self.noclip == true then 
-					return false
-				end
-
-				if self.isjumping == true then
-					local obj = b:getUserData()
-
-					if obj then
-						if obj.flags and obj.flags["SHORT"] then
-							return false
-						end
-					end
-				end
-
-				return true 
-			elseif b == phys.fix then 
-				if self.noclip == true then 
-					return false
-				end
-
-				if self.isjumping == true then
-					local obj = a:getUserData()
-
-					if obj then
-						if obj.flags and obj.flags["SHORT"] then
-							return false
-						end
-					end
-				end
-
-				return true
-			else
-				return true 
-			end 
-		end )--]]
 
 	camera:set(self.x, self.y)
 	
@@ -313,11 +277,19 @@ end
 
 function Player:update(dt)
 	if(self.futureX and self.futureY) then
+		self.phys[1].body:setAwake( true )
 		self.phys[1].body:setPosition(self.futureX,self.futureY)
+		self.phys[1].body:setAwake( true )
 		camera:set(self.futureX, self.futureY)
 		self.futureX = nil
 		self.futureY = nil
+	end
 
+	if(self.height > self.floorheight) then
+		self.height = self.height -1 * 100 * dt
+	end
+	if(self.height < self.floorheight) then
+		self.height = self.floorheight
 	end
 
 
@@ -429,13 +401,11 @@ function Player:update(dt)
 end
 
 function Player:draw()
-	--local vx, vy = self.phys[1].body:getLinearVelocity()
-	--local vlength = math.sqrt(vx^2 + vy^2)
-
-	
-
-	self.shader:send("type46",true)
-	self.shader:send("pos",{camera:worldToLocal(self.x,self.y)})
+	if(self.height < 0) then
+		self.bottomClip = self.height * -1
+	else
+		self.bottomClip = 0
+	end
 
 	for k,v in pairs(self.equipment) do
 		self:UpdateObjectSpriteId(self.spriteStates[self.sequence].sequences[v.Name].Frames[self.animationOffset + (#self.spriteStates[self.sequence].sequences[v.Name].Frames / 8) * self.anidirection + 1])
@@ -458,8 +428,6 @@ function Player:draw()
 		if(v.COLOR6) then 
 			self.COLOR6 = v.COLOR6
 		end
-
-
 
 		if(self.quad) then
 			--love.graphics.draw(self.img, self.quad, round(self.x + self.drawOffsetX), round(self.y + self.drawOffsetY))

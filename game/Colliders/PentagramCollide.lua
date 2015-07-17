@@ -6,7 +6,7 @@ function PentagramCollide:initObject(obj)
 	local phys = {}
 	
 	phys.body = love.physics.newBody(physworld,obj.x,obj.y)
-	phys.shape = love.physics.newCircleShape(0,0,obj.tt.ExtentX)
+	phys.shape = love.physics.newCircleShape(0,0,obj.physExtentX)
 	phys.fix = love.physics.newFixture(phys.body,phys.shape)
 	phys.fix:setSensor(true)
 	
@@ -14,8 +14,8 @@ function PentagramCollide:initObject(obj)
 end
 
 function PentagramCollide:onCollide(obj, obj2)	
-	if obj.mobject.ObjXfer.ExtentLink ~= 0 then
-		local target = map:GetByExtendId(obj.mobject.ObjXfer.ExtentLink)
+	if obj.mapXfer.ExtentLink ~= 0 then
+		local target = map:GetByExtendId(obj.mapXfer.ExtentLink)
 		if target then
 			local dx = obj2.x - obj.x
 			local dy = obj2.y - obj.y

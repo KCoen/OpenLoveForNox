@@ -1,635 +1,651 @@
 mapscriptenv = {}
 
-function mapscriptenv.GetWallAt(intArgument, intArgument, intArgument)
+function mapscriptenv.GetWallAt(intArgument, intArgument)
 	return
 end
-function mapscriptenv.OpenSecretWall(genericArgument, intArgument)
+function mapscriptenv.OpenSecretWall(intArgument)
 	return
 end
-function mapscriptenv.OpenSecretWallGroup(genericArgument, intArgument)
+function mapscriptenv.OpenSecretWallGroup(intArgument)
 	return
 end
-function mapscriptenv.CloseSecretWall(genericArgument, intArgument)
+function mapscriptenv.CloseSecretWall(intArgument)
 	return
 end
-function mapscriptenv.CloseSecretWallGroup(genericArgument, intArgument)
+function mapscriptenv.CloseSecretWallGroup(intArgument)
 	return
 end
-function mapscriptenv.ToggleSecretWall(genericArgument, intArgument)
+function mapscriptenv.ToggleSecretWall(intArgument)
 	return
 end
-function mapscriptenv.ToggleSecretWallGroup(genericArgument, intArgument)
+function mapscriptenv.ToggleSecretWallGroup(intArgument)
 	return
 end
-function mapscriptenv.BreakWall(genericArgument, intArgument)
+function mapscriptenv.BreakWall(intArgument)
 	return
 end
-function mapscriptenv.BreakWallGroup(genericArgument, intArgument)
+function mapscriptenv.BreakWallGroup(intArgument)
 	return
 end
-function mapscriptenv.WaitSeconds(intArgument, intArgument, intArgument)
+function mapscriptenv.WaitSeconds(intArgument, intArgument)
 	return
 end
-function mapscriptenv.WaitFrames(intArgument, intArgument, intArgument)
+function mapscriptenv.WaitFrames(intArgument, intArgument)
 	return
 end
-function mapscriptenv.MoveTo(genericArgument, intArgument, intArgument)
+function mapscriptenv.MoveTo(intArgument, intArgument)
 	return
 end
-function mapscriptenv.GroupMoveTo(genericArgument, intArgument, intArgument)
+function mapscriptenv.GroupMoveTo(intArgument, intArgument)
 	return
 end
-function mapscriptenv.MonsterFaceObj(genericArgument, intArgument, intArgument)
+function mapscriptenv.MonsterFaceObj(intArgument, intArgument)
 	return
 end
-function mapscriptenv.GroupFaceObj(genericArgument, intArgument, intArgument)
+function mapscriptenv.GroupFaceObj(intArgument, intArgument)
 	return
 end
-function mapscriptenv.EnableObject(genericArgument, intArgument)
+function mapscriptenv.EnableObject(object)
+	object.isDisabled = false
 	return
 end
-function mapscriptenv.EnableObjectGroup(genericArgument, intArgument)
-	return
+function mapscriptenv.EnableObjectGroup(objects)
+	for k,v in pairs(objects) do
+		v.isDisabled = false
+	end
 end
-function mapscriptenv.EnableWaypoint(genericArgument, intArgument)
+function mapscriptenv.EnableWaypoint(waypoint)
+	waypoint.isDisabled = false
 	return
 end
-function mapscriptenv.EnableWaypointGroup(genericArgument, intArgument)
+function mapscriptenv.EnableWaypointGroup(waypoints)
+	for k,v in pairs(waypoints) do
+		v.isDisabled = false
+	end
 	return
 end
-function mapscriptenv.DisableObject(genericArgument, intArgument)
+function mapscriptenv.DisableObject(object)
+	object.isDisabled = true
 	return
 end
-function mapscriptenv.DisableObjectGroup(genericArgument, intArgument)
+function mapscriptenv.DisableObjectGroup(objects)
+	for k,v in pairs(objects) do
+		v.isDisabled = true
+	end
 	return
 end
-function mapscriptenv.DisableWaypoint(genericArgument, intArgument)
+function mapscriptenv.DisableWaypoint(intArgument)
+	waypoint.isDisabled = true
 	return
 end
-function mapscriptenv.DisableWaypointGroup(genericArgument, intArgument)
+function mapscriptenv.DisableWaypointGroup(waypoints)
+	for k,v in pairs(waypoints) do
+		v.isDisabled = true
+	end
 	return
 end
-function mapscriptenv.ToggleObject(genericArgument, intArgument)
+function mapscriptenv.ToggleObject(intArgument)
 	return
 end
-function mapscriptenv.ToggleObjectGroup(genericArgument, intArgument)
+function mapscriptenv.ToggleObjectGroup(intArgument)
 	return
 end
-function mapscriptenv.ToggleWaypoint(genericArgument, intArgument)
+function mapscriptenv.ToggleWaypoint(intArgument)
 	return
 end
-function mapscriptenv.ToggleWaypointGroup(genericArgument, intArgument)
+function mapscriptenv.ToggleWaypointGroup(intArgument)
 	return
 end
-function mapscriptenv.DeleteObject(genericArgument, intArgument)
+function mapscriptenv.DeleteObject(intArgument)
 	return
 end
-function mapscriptenv.DeleteObjectGroup(genericArgument, intArgument)
+function mapscriptenv.DeleteObjectGroup(intArgument)
 	return
 end
-function mapscriptenv.MonsterGoRoam(genericArgument, intArgument)
+function mapscriptenv.MonsterGoRoam(intArgument)
 	return
 end
-function mapscriptenv.GroupMonsterGoRoam(genericArgument, intArgument)
+function mapscriptenv.GroupMonsterGoRoam(intArgument)
 	return
 end
-function mapscriptenv.Unknown1(genericArgument, intArgument)
+function mapscriptenv.Unknown1(intArgument)
 	return
 end
-function mapscriptenv.Unknown2(genericArgument, intArgument)
+function mapscriptenv.Unknown2(intArgument)
 	return
 end
-function mapscriptenv.MonsterGotoHome(genericArgument, intArgument)
+function mapscriptenv.MonsterGotoHome(intArgument)
 	return
 end
-function mapscriptenv.AudioEvent(genericArgument, stringArgument, intArgument)
+function mapscriptenv.AudioEvent(stringArgument, intArgument)
 	return
 end
-function mapscriptenv.Print(genericArgument, stringArgument)
+function mapscriptenv.Print(stringArgument)
 	return
 end
-function mapscriptenv.PrintToAll(genericArgument, stringArgument)
+function mapscriptenv.PrintToAll(stringArgument)
 	return
 end
-function mapscriptenv.SayChat(genericArgument, intArgument, stringArgument)
+function mapscriptenv.SayChat(intArgument, stringArgument)
 	return
 end
-function mapscriptenv.ExitFunction(genericArgument)
+function mapscriptenv.ExitFunction()
 	return
 end
-function mapscriptenv.UnlockDoor(genericArgument, intArgument)
-	return
+function mapscriptenv.UnlockDoor(door)
+	return door:unlock()
 end
-function mapscriptenv.LockDoor(genericArgument, intArgument)
-	return
+function mapscriptenv.LockDoor(door)
+	return door:lock()
 end
-function mapscriptenv.ObjIsEnabled(intArgument, intArgument)
+function mapscriptenv.ObjIsEnabled(intArgument)
 	return
 end
-function mapscriptenv.WaypointIsEnabled(intArgument, intArgument)
+function mapscriptenv.WaypointIsEnabled(intArgument)
 	return
 end
-function mapscriptenv.DoorIsLocked(intArgument, intArgument)
-	return
+function mapscriptenv.DoorIsLocked(door)
+	return door.isLocked
 end
-function mapscriptenv.RandomFloat(floatArgument, floatArgument, floatArgument)
+function mapscriptenv.RandomFloat(floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.RandomInteger(intArgument, intArgument, intArgument)
+function mapscriptenv.RandomInteger(intArgument, intArgument)
 	return
 end
-function mapscriptenv.WaitSecondsSpecial(intArgument, intArgument, intArgument, intArgument)
+function mapscriptenv.WaitSecondsSpecial(intArgument, intArgument, intArgument)
 	return
 end
-function mapscriptenv.WaitSpecial(intArgument, intArgument, intArgument, intArgument)
+function mapscriptenv.WaitSpecial(intArgument, intArgument, intArgument)
 	return
 end
-function mapscriptenv.IntToString(stringArgument, intArgument)
+function mapscriptenv.IntToString(intArgument)
 	return
 end
-function mapscriptenv.FloatToString(stringArgument, floatArgument)
+function mapscriptenv.FloatToString(floatArgument)
 	return
 end
-function mapscriptenv.SpawnObject(intArgument, stringArgument, intArgument)
+function mapscriptenv.SpawnObject(stringArgument, intArgument)
 	return
 end
-function mapscriptenv.DamageObject(genericArgument, intArgument, intArgument, intArgument, intArgument)
+function mapscriptenv.DamageObject(intArgument, intArgument, intArgument, intArgument)
 	return
 end
-function mapscriptenv.DamageObjectGroup(genericArgument, intArgument, intArgument, intArgument, intArgument)
+function mapscriptenv.DamageObjectGroup(intArgument, intArgument, intArgument, intArgument)
 	return
 end
-function mapscriptenv.Unknown3(intArgument, intArgument, intArgument, intArgument)
+function mapscriptenv.Unknown3(intArgument, intArgument, intArgument)
 	return
 end
-function mapscriptenv.Unknown4(genericArgument, intArgument, intArgument, intArgument)
+function mapscriptenv.Unknown4(intArgument, intArgument, intArgument)
 	return
 end
-function mapscriptenv.AwardSpell(intArgument, intArgument, stringArgument)
+function mapscriptenv.AwardSpell(intArgument, stringArgument)
 	return
 end
-function mapscriptenv.AwardSpellGroup(genericArgument, intArgument, stringArgument)
+function mapscriptenv.AwardSpellGroup(intArgument, stringArgument)
 	return
 end
-function mapscriptenv.ApplyEnchant(genericArgument, intArgument, stringArgument, floatArgument)
+function mapscriptenv.ApplyEnchant(intArgument, stringArgument, floatArgument)
 	return
 end
-function mapscriptenv.GroupApplyEnchant(genericArgument, intArgument, stringArgument, floatArgument)
+function mapscriptenv.GroupApplyEnchant(intArgument, stringArgument, floatArgument)
 	return
 end
-function mapscriptenv.GetHostPlayer(intArgument)
-	return
+function mapscriptenv.GetHostPlayer()
+	return localplayer
 end
-function mapscriptenv.ObjFromName(intArgument, stringArgument)
-	return
+function mapscriptenv.ObjFromName(name)
+	return map:GetByScriptName(name)
 end
-function mapscriptenv.GetObjX(floatArgument, intArgument)
+function mapscriptenv.GetObjX(intArgument)
 	return
 end
-function mapscriptenv.GetWaypointX(floatArgument, intArgument)
+function mapscriptenv.GetWaypointX(intArgument)
 	return
 end
-function mapscriptenv.GetObjY(floatArgument, intArgument)
+function mapscriptenv.GetObjY(intArgument)
 	return
 end
-function mapscriptenv.GetWaypointY(floatArgument, intArgument)
+function mapscriptenv.GetWaypointY(intArgument)
 	return
 end
-function mapscriptenv.GetObjHeight(floatArgument, intArgument)
+function mapscriptenv.GetObjHeight(intArgument)
 	return
 end
-function mapscriptenv.GetObjFacing(intArgument, intArgument)
+function mapscriptenv.GetObjFacing(intArgument)
 	return
 end
-function mapscriptenv.TeleportObj(genericArgument, intArgument, floatArgument, floatArgument)
+function mapscriptenv.TeleportObj(intArgument, floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.TeleportWaypoint(genericArgument, intArgument, floatArgument, floatArgument)
+function mapscriptenv.TeleportWaypoint(intArgument, floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.SetObjHeight(genericArgument, intArgument, floatArgument)
+function mapscriptenv.SetObjHeight(intArgument, floatArgument)
 	return
 end
-function mapscriptenv.SetObjFacing(genericArgument, intArgument, intArgument)
+function mapscriptenv.SetObjFacing(intArgument, intArgument)
 	return
 end
-function mapscriptenv.PushObjectVector(genericArgument, intArgument, floatArgument, floatArgument)
+function mapscriptenv.PushObjectVector(intArgument, floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.PushObject(genericArgument, intArgument, floatArgument, floatArgument, floatArgument)
+function mapscriptenv.PushObject(intArgument, floatArgument, floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.InvGetTopObj(intArgument, intArgument)
+function mapscriptenv.InvGetTopObj(intArgument)
 	return
 end
-function mapscriptenv.InvGetNextObj(intArgument, intArgument)
+function mapscriptenv.InvGetNextObj(intArgument)
 	return
 end
-function mapscriptenv.DoesHaveObject(intArgument, intArgument, intArgument)
+function mapscriptenv.DoesHaveObject(intArgument, intArgument)
 	return
 end
-function mapscriptenv.GetInvHolder(intArgument, intArgument)
+function mapscriptenv.GetInvHolder(intArgument)
 	return
 end
-function mapscriptenv.InvPutObj(intArgument, intArgument, intArgument)
+function mapscriptenv.InvPutObj(intArgument, intArgument)
 	return
 end
-function mapscriptenv.InvDropObj(intArgument, intArgument, intArgument)
+function mapscriptenv.InvDropObj(intArgument, intArgument)
 	return
 end
-function mapscriptenv.CheckObjClass(intArgument, intArgument, stringArgument)
+function mapscriptenv.CheckObjClass(intArgument, stringArgument)
 	return
 end
-function mapscriptenv.Unknown5(genericArgument)
+function mapscriptenv.Unknown5()
 	return
 end
-function mapscriptenv.IsEnchantActive(intArgument, intArgument, stringArgument)
+function mapscriptenv.IsEnchantActive(intArgument, stringArgument)
 	return
 end
-function mapscriptenv.CancelEnchant(genericArgument, intArgument, stringArgument)
+function mapscriptenv.CancelEnchant(intArgument, stringArgument)
 	return
 end
-function mapscriptenv.GetObjHealth(intArgument, intArgument)
+function mapscriptenv.GetObjHealth(intArgument)
 	return
 end
-function mapscriptenv.GetObjMaxHealth(intArgument, intArgument)
+function mapscriptenv.GetObjMaxHealth(intArgument)
 	return
 end
-function mapscriptenv.ObjAddHealth(genericArgument, intArgument, intArgument)
+function mapscriptenv.ObjAddHealth(intArgument, intArgument)
 	return
 end
-function mapscriptenv.GetDistance(floatArgument, floatArgument, floatArgument, floatArgument, floatArgument)
+function mapscriptenv.GetDistance(floatArgument, floatArgument, floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.ObjCanInteractWith(intArgument, intArgument, intArgument)
+function mapscriptenv.ObjCanInteractWith(intArgument, intArgument)
 	return
 end
-function mapscriptenv.Unknown6(genericArgument, intArgument, intArgument)
+function mapscriptenv.Unknown6(intArgument, intArgument)
 	return
 end
-function mapscriptenv.Unknown7(genericArgument, intArgument, intArgument)
+function mapscriptenv.Unknown7(intArgument, intArgument)
 	return
 end
-function mapscriptenv.Unknown8(genericArgument, intArgument, intArgument)
+function mapscriptenv.Unknown8(intArgument, intArgument)
 	return
 end
-function mapscriptenv.Unknown9(genericArgument, intArgument, intArgument)
+function mapscriptenv.Unknown9(intArgument, intArgument)
 	return
 end
-function mapscriptenv.Unknown10(genericArgument, intArgument, intArgument)
+function mapscriptenv.Unknown10(intArgument, intArgument)
 	return
 end
-function mapscriptenv.Unknown11(genericArgument, intArgument, intArgument)
+function mapscriptenv.Unknown11(intArgument, intArgument)
 	return
 end
-function mapscriptenv.Unknown12(stringArgument, stringArgument)
+function mapscriptenv.Unknown12(stringArgument)
 	return
 end
-function mapscriptenv.GetServerInfo(intArgument, intArgument)
+function mapscriptenv.GetServerInfo(intArgument)
 	return
 end
-function mapscriptenv.ObjLookAtObj(genericArgument, intArgument, intArgument)
+function mapscriptenv.ObjLookAtObj(intArgument, intArgument)
 	return
 end
-function mapscriptenv.MonsterGoto(genericArgument, intArgument, floatArgument, floatArgument)
+function mapscriptenv.MonsterGoto(intArgument, floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.MonsterGroupGoto(genericArgument, intArgument, floatArgument, floatArgument)
+function mapscriptenv.MonsterGroupGoto(intArgument, floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.CancelWait(intArgument, intArgument)
+function mapscriptenv.CancelWait(intArgument)
 	return
 end
-function mapscriptenv.PlayFX(genericArgument, stringArgument, floatArgument, floatArgument, floatArgument, floatArgument)
+function mapscriptenv.PlayFX(stringArgument, floatArgument, floatArgument, floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.ObjSetMaster(genericArgument, intArgument, intArgument)
+function mapscriptenv.ObjSetMaster(intArgument, intArgument)
 	return
 end
-function mapscriptenv.ObjGroupSetMaster(genericArgument, intArgument, intArgument)
+function mapscriptenv.ObjGroupSetMaster(intArgument, intArgument)
 	return
 end
-function mapscriptenv.ObjSetMasterGroup(genericArgument, intArgument, intArgument)
+function mapscriptenv.ObjSetMasterGroup(intArgument, intArgument)
 	return
 end
-function mapscriptenv.ObjGroupSetMasterObjGroup(genericArgument, intArgument, intArgument)
+function mapscriptenv.ObjGroupSetMasterObjGroup(intArgument, intArgument)
 	return
 end
-function mapscriptenv.ObjIsMasterTo(intArgument, intArgument, intArgument)
+function mapscriptenv.ObjIsMasterTo(intArgument, intArgument)
 	return
 end
-function mapscriptenv.ObjIsMasteredByGroup(intArgument, intArgument, intArgument)
+function mapscriptenv.ObjIsMasteredByGroup(intArgument, intArgument)
 	return
 end
-function mapscriptenv.UnknownMasterCheck(intArgument, intArgument, intArgument)
+function mapscriptenv.UnknownMasterCheck(intArgument, intArgument)
 	return
 end
-function mapscriptenv.GroupIsMasteredByObj(intArgument, intArgument, intArgument)
+function mapscriptenv.GroupIsMasteredByObj(intArgument, intArgument)
 	return
 end
-function mapscriptenv.ObjResetMaster(genericArgument, intArgument)
+function mapscriptenv.ObjResetMaster(intArgument)
 	return
 end
-function mapscriptenv.WaypointFromName(intArgument, stringArgument)
-	return
+function mapscriptenv.WaypointFromName(waypointname)
+	return map:GetWaypointByName(waypointname)
 end
-function mapscriptenv.WaypointGroupFromName(intArgument, stringArgument)
-	return
+function mapscriptenv.WaypointGroupFromName(stringArgument)
+	return {}
 end
-function mapscriptenv.ObjGroupFromName(intArgument, stringArgument)
-	return
+function mapscriptenv.ObjGroupFromName(groupname)
+	print(groupname)
+	return map:GetGroupByShortName(groupname)
 end
-function mapscriptenv.WallGroupFromName(intArgument, stringArgument)
+function mapscriptenv.WallGroupFromName(stringArgument)
 	return
 end
-function mapscriptenv.SayForSeconds(genericArgument, intArgument, stringArgument, intArgument)
+function mapscriptenv.SayForSeconds(intArgument, stringArgument, intArgument)
 	return
 end
-function mapscriptenv.SayForFrames(genericArgument, intArgument, stringArgument, intArgument)
+function mapscriptenv.SayForFrames(intArgument, stringArgument, intArgument)
 	return
 end
-function mapscriptenv.Unknown13(genericArgument, intArgument, intArgument)
+function mapscriptenv.Unknown13(intArgument, intArgument)
 	return
 end
-function mapscriptenv.CancelChat(genericArgument, intArgument)
+function mapscriptenv.CancelChat(intArgument)
 	return
 end
-function mapscriptenv.RemoveAllChat(genericArgument)
+function mapscriptenv.RemoveAllChat()
 	return
 end
-function mapscriptenv.JournalSetObjective(genericArgument, intArgument, stringArgument)
+function mapscriptenv.JournalSetObjective(intArgument, stringArgument)
 	return
 end
-function mapscriptenv.JournalSetObjectiveBool(genericArgument, intArgument, stringArgument)
+function mapscriptenv.JournalSetObjectiveBool(intArgument, stringArgument)
 	return
 end
-function mapscriptenv.JournalSetQuest(intArgument, stringArgument)
-	return
+function mapscriptenv.JournalSetQuest(stringArgument)
+	return 1
 end
-function mapscriptenv.JournalSetQuestBool(intArgument, stringArgument)
+function mapscriptenv.JournalSetQuestBool(stringArgument)
 	return
 end
-function mapscriptenv.JournalRestoreQuestStatus(genericArgument, stringArgument)
+function mapscriptenv.JournalRestoreQuestStatus(stringArgument)
 	return
 end
-function mapscriptenv.ObjIsTrigger(intArgument, intArgument)
+function mapscriptenv.ObjIsTrigger(intArgument)
 	return
 end
-function mapscriptenv.ObjIsCaller(intArgument, intArgument)
+function mapscriptenv.ObjIsCaller(intArgument)
 	return
 end
-function mapscriptenv.SetupDialog(genericArgument, intArgument, stringArgument, intArgument, intArgument)
+function mapscriptenv.SetupDialog(intArgument, stringArgument, intArgument, intArgument)
 	return
 end
-function mapscriptenv.CancelDialog(genericArgument, intArgument)
+function mapscriptenv.CancelDialog(intArgument)
 	return
 end
-function mapscriptenv.SetDialogPortrait(genericArgument, intArgument, stringArgument)
+function mapscriptenv.SetDialogPortrait(intArgument, stringArgument)
 	return
 end
-function mapscriptenv.StartDialogWithCaller(genericArgument, stringArgument, stringArgument)
+function mapscriptenv.StartDialogWithCaller(stringArgument, stringArgument)
 	return
 end
-function mapscriptenv.ForceDialog(genericArgument, intArgument, intArgument)
+function mapscriptenv.ForceDialog(intArgument, intArgument)
 	return
 end
-function mapscriptenv.ApplySpellObjObj(genericArgument, stringArgument, intArgument, intArgument)
+function mapscriptenv.ApplySpellObjObj(stringArgument, intArgument, intArgument)
 	return
 end
-function mapscriptenv.ApplySpellObjXY(genericArgument, stringArgument, intArgument, floatArgument, floatArgument)
+function mapscriptenv.ApplySpellObjXY(stringArgument, intArgument, floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.ApplySpellXYObj(genericArgument, stringArgument, floatArgument, floatArgument, intArgument)
+function mapscriptenv.ApplySpellXYObj(stringArgument, floatArgument, floatArgument, intArgument)
 	return
 end
-function mapscriptenv.ApplySpellXYXY(genericArgument, stringArgument, floatArgument, floatArgument, floatArgument, floatArgument)
+function mapscriptenv.ApplySpellXYXY(stringArgument, floatArgument, floatArgument, floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.CinematicFadeout(genericArgument)
+function mapscriptenv.CinematicFadeout()
 	return
 end
-function mapscriptenv.CinematicFade(genericArgument)
+function mapscriptenv.CinematicFade()
 	return
 end
-function mapscriptenv.CinematicBorders(genericArgument, intArgument)
+function mapscriptenv.CinematicBorders(intArgument)
 	return
 end
-function mapscriptenv.GetElevatorState(intArgument, intArgument)
+function mapscriptenv.GetElevatorState(intArgument)
 	return
 end
-function mapscriptenv.MonsterGuardArea(genericArgument, intArgument, floatArgument, floatArgument, floatArgument, floatArgument, floatArgument)
+function mapscriptenv.MonsterGuardArea(intArgument, floatArgument, floatArgument, floatArgument, floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.MonsterGroupGuardArea(genericArgument, intArgument, floatArgument, floatArgument, floatArgument, floatArgument, floatArgument)
+function mapscriptenv.MonsterGroupGuardArea(intArgument, floatArgument, floatArgument, floatArgument, floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.MonsterGoHunt(genericArgument, intArgument)
+function mapscriptenv.MonsterGoHunt(intArgument)
 	return
 end
-function mapscriptenv.MonsterGroupGoHunt(genericArgument, intArgument)
+function mapscriptenv.MonsterGroupGoHunt(intArgument)
 	return
 end
-function mapscriptenv.MonsterIdle(genericArgument, intArgument)
+function mapscriptenv.MonsterIdle(intArgument)
 	return
 end
-function mapscriptenv.MonsterGroupIdle(genericArgument, intArgument)
+function mapscriptenv.MonsterGroupIdle(intArgument)
 	return
 end
-function mapscriptenv.MonsterFollowObj(genericArgument, intArgument, intArgument)
+function mapscriptenv.MonsterFollowObj(intArgument, intArgument)
 	return
 end
-function mapscriptenv.MonsterGroupFollowObj(genericArgument, intArgument, intArgument)
+function mapscriptenv.MonsterGroupFollowObj(intArgument, intArgument)
 	return
 end
-function mapscriptenv.MonsterSetAggressiveness(genericArgument, intArgument, floatArgument)
+function mapscriptenv.MonsterSetAggressiveness(intArgument, floatArgument)
 	return
 end
-function mapscriptenv.MonsterGroupSetAggressiveness(genericArgument, intArgument, floatArgument)
+function mapscriptenv.MonsterGroupSetAggressiveness(intArgument, floatArgument)
 	return
 end
-function mapscriptenv.MonsterAttackMelee(genericArgument, intArgument, floatArgument, floatArgument)
+function mapscriptenv.MonsterAttackMelee(intArgument, floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.MonsterGroupAttackMelee(genericArgument, intArgument, floatArgument, floatArgument)
+function mapscriptenv.MonsterGroupAttackMelee(intArgument, floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.MonsterAttackRanged(genericArgument, intArgument, floatArgument, floatArgument)
+function mapscriptenv.MonsterAttackRanged(intArgument, floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.MonsterGroupAttackRanged(genericArgument, intArgument, floatArgument, floatArgument)
+function mapscriptenv.MonsterGroupAttackRanged(intArgument, floatArgument, floatArgument)
 	return
 end
-function mapscriptenv.MonsterSetWayFlag(genericArgument, intArgument, intArgument)
+function mapscriptenv.MonsterSetWayFlag(intArgument, intArgument)
 	return
 end
-function mapscriptenv.MonsterGroupSetWayFlag(genericArgument, intArgument, intArgument)
+function mapscriptenv.MonsterGroupSetWayFlag(intArgument, intArgument)
 	return
 end
-function mapscriptenv.MonsterGoFight(genericArgument, intArgument, intArgument)
+function mapscriptenv.MonsterGoFight(intArgument, intArgument)
 	return
 end
-function mapscriptenv.MonsterGroupGoFight(genericArgument, intArgument, intArgument)
+function mapscriptenv.MonsterGroupGoFight(intArgument, intArgument)
 	return
 end
-function mapscriptenv.JournalAddEntry(genericArgument, intArgument, stringArgument, intArgument)
+function mapscriptenv.JournalAddEntry(intArgument, stringArgument, intArgument)
 	return
 end
-function mapscriptenv.JournalRemoveEntry(genericArgument, intArgument, stringArgument)
+function mapscriptenv.JournalRemoveEntry(intArgument, stringArgument)
 	return
 end
-function mapscriptenv.JournalUpdateEntry(genericArgument, intArgument, stringArgument, intArgument)
+function mapscriptenv.JournalUpdateEntry(intArgument, stringArgument, intArgument)
 	return
 end
-function mapscriptenv.MonsterSetRetreatRatio(genericArgument, intArgument, floatArgument)
+function mapscriptenv.MonsterSetRetreatRatio(intArgument, floatArgument)
 	return
 end
-function mapscriptenv.MonsterGroupSetRetreatRatio(genericArgument, intArgument, floatArgument)
+function mapscriptenv.MonsterGroupSetRetreatRatio(intArgument, floatArgument)
 	return
 end
-function mapscriptenv.MonsterSetResumeRatio(genericArgument, intArgument, floatArgument)
+function mapscriptenv.MonsterSetResumeRatio(intArgument, floatArgument)
 	return
 end
-function mapscriptenv.MonsterGroupSetResumeRatio(genericArgument, intArgument, floatArgument)
+function mapscriptenv.MonsterGroupSetResumeRatio(intArgument, floatArgument)
 	return
 end
-function mapscriptenv.MonsterFleeFrom(genericArgument, intArgument, intArgument, floatArgument)
+function mapscriptenv.MonsterFleeFrom(intArgument, intArgument, floatArgument)
 	return
 end
-function mapscriptenv.MonsterGroupFleeFrom(genericArgument, intArgument, intArgument, floatArgument)
+function mapscriptenv.MonsterGroupFleeFrom(intArgument, intArgument, floatArgument)
 	return
 end
-function mapscriptenv.MonsterWait(genericArgument, intArgument, intArgument)
+function mapscriptenv.MonsterWait(intArgument, intArgument)
 	return
 end
-function mapscriptenv.MonsterGroupWait(genericArgument, intArgument, intArgument)
+function mapscriptenv.MonsterGroupWait(intArgument, intArgument)
 	return
 end
-function mapscriptenv.ObjIsHostileTo(intArgument, intArgument, intArgument)
+function mapscriptenv.ObjIsHostileTo(intArgument, intArgument)
 	return
 end
-function mapscriptenv.PlayerGetGold(intArgument, intArgument)
+function mapscriptenv.PlayerGetGold(intArgument)
 	return
 end
-function mapscriptenv.PlayerAddGold(genericArgument, intArgument, intArgument)
+function mapscriptenv.PlayerAddGold(intArgument, intArgument)
 	return
 end
-function mapscriptenv.DialogGetResult(intArgument, intArgument)
+function mapscriptenv.DialogGetResult(intArgument)
 	return
 end
-function mapscriptenv.PlayerGiveExp(genericArgument, intArgument, floatArgument)
+function mapscriptenv.PlayerGiveExp(intArgument, floatArgument)
 	return
 end
-function mapscriptenv.CheckInvObjNamed(intArgument, intArgument, stringArgument)
+function mapscriptenv.CheckInvObjNamed(intArgument, stringArgument)
 	return
 end
-function mapscriptenv.ForceAutosave(genericArgument)
+function mapscriptenv.ForceAutosave()
 	return
 end
-function mapscriptenv.PlayMusic(genericArgument, intArgument, intArgument)
-	return
+function mapscriptenv.PlayMusic(songnr, volume)
+	return music:playByNr(songnr, volume)
 end
-function mapscriptenv.StartScreen(genericArgument, intArgument)
+function mapscriptenv.StartScreen(intArgument)
 	return
 end
-function mapscriptenv.HostPlayerIsTalking(intArgument)
+function mapscriptenv.HostPlayerIsTalking()
 	return
 end
-function mapscriptenv.ScriptTrigger(intArgument)
+function mapscriptenv.ScriptTrigger()
 	return
 end
-function mapscriptenv.ScriptCaller(intArgument)
+function mapscriptenv.ScriptCaller()
 	return
 end
-function mapscriptenv.ObjSetMasterByHost(genericArgument, intArgument)
+function mapscriptenv.ObjSetMasterByHost(intArgument)
 	return
 end
-function mapscriptenv.ObjClearMaster(genericArgument, intArgument)
+function mapscriptenv.ObjClearMaster(intArgument)
 	return
 end
-function mapscriptenv.MonsterMakeFriendly(genericArgument, intArgument)
+function mapscriptenv.MonsterMakeFriendly(intArgument)
 	return
 end
-function mapscriptenv.MonsterMakeHostile(genericArgument, intArgument)
+function mapscriptenv.MonsterMakeHostile(intArgument)
 	return
 end
-function mapscriptenv.UnkSubclassCheck1(intArgument, intArgument)
+function mapscriptenv.UnkSubclassCheck1(intArgument)
 	return
 end
-function mapscriptenv.UnkSubclassCheck2(intArgument, intArgument)
+function mapscriptenv.UnkSubclassCheck2(intArgument)
 	return
 end
-function mapscriptenv.SetOblivionStatus(genericArgument, intArgument)
+function mapscriptenv.SetOblivionStatus(intArgument)
 	return
 end
-function mapscriptenv.DeathScreen(genericArgument, intArgument)
+function mapscriptenv.DeathScreen(intArgument)
 	return
 end
-function mapscriptenv.ObjFreeze(genericArgument, intArgument, intArgument)
+function mapscriptenv.ObjFreeze(intArgument, intArgument)
 	return
 end
-function mapscriptenv.WallMakeSilent(genericArgument, intArgument)
+function mapscriptenv.WallMakeSilent(intArgument)
 	return
 end
-function mapscriptenv.MonsterEventScript(genericArgument, intArgument, intArgument, intArgument)
+function mapscriptenv.MonsterEventScript(intArgument, intArgument, intArgument)
 	return
 end
-function mapscriptenv.ObjSetDecayTime(genericArgument, intArgument, intArgument)
+function mapscriptenv.ObjSetDecayTime(intArgument, intArgument)
 	return
 end
-function mapscriptenv.MonsterTrapSpells(genericArgument, intArgument, stringArgument, stringArgument, stringArgument)
+function mapscriptenv.MonsterTrapSpells(intArgument, stringArgument, stringArgument, stringArgument)
 	return
 end
-function mapscriptenv.HostPlayerIsTrading(intArgument)
+function mapscriptenv.HostPlayerIsTrading()
 	return
 end
-function mapscriptenv.RemovePrintMessages(genericArgument, intArgument)
+function mapscriptenv.RemovePrintMessages(intArgument)
 	return
 end
-function mapscriptenv.SetShopkeeperGreet(genericArgument, intArgument, stringArgument)
+function mapscriptenv.SetShopkeeperGreet(intArgument, stringArgument)
 	return
 end
-function mapscriptenv.Unknown14(genericArgument)
+function mapscriptenv.Unknown14()
 	return
 end
-function mapscriptenv.Unknown15(intArgument, intArgument)
+function mapscriptenv.Unknown15(intArgument)
 	return
 end
-function mapscriptenv.ZombieStayDead(genericArgument, intArgument)
+function mapscriptenv.ZombieStayDead(intArgument)
 	return
 end
-function mapscriptenv.ZombieGroupStayDead(genericArgument, intArgument)
+function mapscriptenv.ZombieGroupStayDead(intArgument)
 	return
 end
-function mapscriptenv.ZombieStandUp(genericArgument, intArgument)
+function mapscriptenv.ZombieStandUp(intArgument)
 	return
 end
-function mapscriptenv.ZombieGroupStandUp(genericArgument, intArgument)
+function mapscriptenv.ZombieGroupStandUp(intArgument)
 	return
 end
-function mapscriptenv.PushMusicStack(genericArgument)
+function mapscriptenv.PushMusicStack()
 	return
 end
-function mapscriptenv.PopMusicStack(genericArgument)
+function mapscriptenv.PopMusicStack()
 	return
 end
-function mapscriptenv.ResetMusic(genericArgument)
+function mapscriptenv.ResetMusic()
 	return
 end
-function mapscriptenv.ObjIsGameBall(intArgument, intArgument)
+function mapscriptenv.ObjIsGameBall(intArgument)
 	return
 end
-function mapscriptenv.ObjIsCrown(intArgument, intArgument)
+function mapscriptenv.ObjIsCrown(intArgument)
 	return
 end
-function mapscriptenv.ExitLevel(genericArgument, intArgument)
+function mapscriptenv.ExitLevel(intArgument)
 	return
 end
-function mapscriptenv.BlackScreen(genericArgument)
+function mapscriptenv.BlackScreen()
 	return
 end
-function mapscriptenv.PlayerAddLessons(genericArgument, intArgument, intArgument)
+function mapscriptenv.PlayerAddLessons(intArgument, intArgument)
 	return
 end
-function mapscriptenv.PlayerGetLessons(intArgument, intArgument)
+function mapscriptenv.PlayerGetLessons(intArgument)
 	return
 end

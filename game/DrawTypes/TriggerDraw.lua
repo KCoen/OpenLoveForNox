@@ -7,7 +7,7 @@ TriggerDraw.AnimatePerSecond = 1 / 16
 local rdraw = renderer.drawObject
 
 function TriggerDraw:initObject(obj)
-	local index = obj.tt.SpriteMenuIcon;
+	local index = obj.spriteMenuIcon;
 	UpdateObjectSpriteId(obj, index)
 
 	self.shader = shaders.sampleShadow

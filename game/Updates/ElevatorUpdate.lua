@@ -3,10 +3,12 @@ local ElevatorUpdate = {}
 ElevatorUpdate.name = "ElevatorUpdate"
 
 ElevatorUpdate.AnimatePerSecond = 1 / 16
+ElevatorUpdate.MaxHeight = 64
+ElevatorUpdate.Speed = 2
 
 function ElevatorUpdate:initObject(obj)
 	obj.elevatorheight = 0
-	obj.direction = 1
+	obj.direction = ElevatorUpdate.Speed
 	obj.animationLastUpdate = love.timer.getTime() + math.random(0, 100) / 100 
 end
 
@@ -23,16 +25,45 @@ function ElevatorUpdate:updateObject(obj, dt)
 		obj.animationLastUpdate = self.curTime
 		obj.elevatorheight = obj.elevatorheight + obj.direction
 
-		if(obj.elevatorheight == #obj.tt.SpriteAnimFrames - 1) then
-			obj.direction = -1
+
+
+		if(obj.elevatorheight > ElevatorUpdate.MaxHeight) then
+			obj.direction = -1 * ElevatorUpdate.Speed
 		end
 		if(obj.elevatorheight == 0) then
-			obj.direction = 1
+			obj.direction = ElevatorUpdate.Speed
 		end
 
-		local index = obj.tt.SpriteAnimFrames[obj.elevatorheight + 1];
+		if(obj.elevatorheight > ElevatorUpdate.MaxHeight - 24) then
+			for k,v in pairs(obj.childs) do
+				local target = map:GetByExtendId(obj.mapXfer.ExtentLink)
+				if target then
+					
+					if(v.setPosition) then
+						v:setPosition(target.x, target.y)
+					else
+						v.x = target.x
+						v.y = target.y
+					end
+
+					v.elevatorTransfer = true
+					v.height = (ElevatorUpdate.MaxHeight - obj.elevatorheight) * -1
+					v.floorheight = (ElevatorUpdate.MaxHeight - obj.elevatorheight) * -1
+					table.remove(obj.childs, table.find(obj.childs, v))
+				end
+			end
+		end
+
+		local index = obj.spriteAnimFrames[round(obj.elevatorheight / ElevatorUpdate.MaxHeight * (#obj.spriteAnimFrames-1) - 0.5) + 1];
 		UpdateObjectSpriteId(obj, index)
+
+		for k,v in pairs(obj.childs) do
+			v.floorheight = obj.elevatorheight
+			--v.height = (obj.elevatorheight - 1) * 4
+		end
 	end
+
+	
 end
 
 return ElevatorUpdate

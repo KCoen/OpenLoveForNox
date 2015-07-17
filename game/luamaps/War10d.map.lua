@@ -28,7 +28,7 @@ end
 function ActivateSmokePuffs()
 	var_0 = 0
 	::l6::
-	if not var_0 < 32 then 
+	if not (var_0 < 32) then 
 		goto l48
 	end
 	PlayFX("SMOKE_BLAST",GetWaypointX(Gvar_23[var_0]),GetWaypointY(Gvar_23[var_0]),0,0)
@@ -38,13 +38,13 @@ function ActivateSmokePuffs()
 	if true then return end
 end
 function FilterHecubah()
-	if not ObjIsCaller(Gvar_5) then 
+	if not (ObjIsCaller(Gvar_5)) then 
 		goto l13
 	end
-	if true then return end true
+	if true then return true end
 	goto l17
 	::l13::
-	if true then return end false
+	if true then return false end
 	::l17::
 	if true then return end
 end
@@ -214,7 +214,7 @@ function LichWallsDown2()
 	if true then return end
 end
 function LichDieCheck()
-	if not Gvar_37 and Gvar_38 then 
+	if not (Gvar_37 and Gvar_38) then 
 		goto l11
 	end
 	LichWallsDown2()
@@ -267,22 +267,22 @@ function LichWallsDown()
 end
 function SentryRun()
 	var_0 = Gvar_69
-	if var_0 == Gvar_63 then 
+	if (var_0 == Gvar_63) then 
 		goto l63
 	end
-	if var_0 == Gvar_64 then 
+	if (var_0 == Gvar_64) then 
 		goto l108
 	end
-	if var_0 == Gvar_65 then 
+	if (var_0 == Gvar_65) then 
 		goto l153
 	end
-	if var_0 == Gvar_66 then 
+	if (var_0 == Gvar_66) then 
 		goto l198
 	end
-	if var_0 == Gvar_67 then 
+	if (var_0 == Gvar_67) then 
 		goto l243
 	end
-	if var_0 == Gvar_68 then 
+	if (var_0 == Gvar_68) then 
 		goto l288
 	end
 	goto l333
@@ -478,7 +478,7 @@ function MapInitialize()
 	OpenSecretWallGroup(Gvar_25)
 	var_0 = 0
 	::l857::
-	if not var_0 < 32 then 
+	if not (var_0 < 32) then 
 		goto l894
 	end
 	Gvar_23[var_0] = WaypointFromName("SmokeWP" + IntToString(var_0 + 1))
@@ -529,7 +529,7 @@ function SpikeMove()
 	if true then return end
 end
 function OpenOrbWallGroup1()
-	if not ObjIsEnabled(Gvar_98) == 0 and ObjIsEnabled(Gvar_99) == 0 and ObjIsEnabled(Gvar_100) == 0 and ObjIsEnabled(Gvar_101) == 0 and ObjIsEnabled(Gvar_102) == 0 and ObjIsEnabled(Gvar_103) == 0 and ObjIsEnabled(Gvar_104) == 0 and ObjIsEnabled(Gvar_105) == 0 then 
+	if not (ObjIsEnabled(Gvar_98) == 0 and ObjIsEnabled(Gvar_99) == 0 and ObjIsEnabled(Gvar_100) == 0 and ObjIsEnabled(Gvar_101) == 0 and ObjIsEnabled(Gvar_102) == 0 and ObjIsEnabled(Gvar_103) == 0 and ObjIsEnabled(Gvar_104) == 0 and ObjIsEnabled(Gvar_105) == 0) then 
 		goto l62
 	end
 	OpenSecretWallGroup(Gvar_112)
@@ -593,7 +593,7 @@ function OpenOrbWallGroup4()
 	if true then return end
 end
 function BossDieCheck()
-	if not Gvar_115 and Gvar_116 and Gvar_117 and Gvar_118 then 
+	if not (Gvar_115 and Gvar_116 and Gvar_117 and Gvar_118) then 
 		goto l19
 	end
 	OpenOrbWallGroup3()

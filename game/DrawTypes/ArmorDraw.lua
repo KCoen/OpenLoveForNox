@@ -7,10 +7,10 @@ ArmorDraw.AnimatePerSecond = 1 / 16
 local rdraw = renderer.drawObject
 
 function ArmorDraw:initObject(obj)
-	local index = obj.tt.SpriteAnimFrames[1];
+	local index = obj.spriteAnimFrames[1];
 	UpdateObjectSpriteId(obj, index)
 	
-	local db = ModDB.Mods[obj.tt.Name]
+	local db = ModDB.Mods[obj.objName]
 	if(db.COLOR1) then
 		obj.COLOR1 = { db.COLOR1.R, db.COLOR1.G, db.COLOR1.B, db.COLOR1.A }
 	end

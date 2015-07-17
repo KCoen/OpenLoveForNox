@@ -19,6 +19,7 @@ require("videobagcache")
 require("door")
 require("mapscriptfunctions")
 require("Updates")
+require("music")
 
 local function runMapScript(untrusted_code_name)
 	print(untrusted_code_name)
@@ -42,7 +43,42 @@ local function runMapScript(untrusted_code_name)
 	return status, err
 end
 
-runMapScript("luamaps/War01A.map.lua")
+--[[runMapScript("luamaps/War02A.map.lua")
+runMapScript("luamaps/War02b.map.lua")
+runMapScript("luamaps/War03a.map.lua")
+runMapScript("luamaps/War03b.map.lua")
+runMapScript("luamaps/War03c.map.lua")
+runMapScript("luamaps/War03d.map.lua")
+runMapScript("luamaps/War04a.map.lua")
+runMapScript("luamaps/War04b.map.lua")
+runMapScript("luamaps/War04c.map.lua")
+runMapScript("luamaps/War05A.map.lua")
+runMapScript("luamaps/War05B.map.lua")
+runMapScript("luamaps/War05C.map.lua")
+runMapScript("luamaps/War06a.map.lua")
+runMapScript("luamaps/War06b.map.lua")
+runMapScript("luamaps/War07A.map.lua")
+runMapScript("luamaps/War07B.map.lua")
+runMapScript("luamaps/War07C.map.lua")
+runMapScript("luamaps/War07D.map.lua")
+runMapScript("luamaps/War07E.map.lua")
+runMapScript("luamaps/War07F.map.lua")
+runMapScript("luamaps/War07G.map.lua")
+runMapScript("luamaps/War07H.map.lua")
+runMapScript("luamaps/War08a.map.lua")
+runMapScript("luamaps/War08b.map.lua")
+runMapScript("luamaps/War08c.map.lua")
+runMapScript("luamaps/War08d.map.lua")
+runMapScript("luamaps/War08e.map.lua")
+runMapScript("luamaps/War09a.map.lua")
+runMapScript("luamaps/War09b.map.lua")
+runMapScript("luamaps/War09c.map.lua")
+runMapScript("luamaps/War09d.map.lua")
+runMapScript("luamaps/War10a.map.lua")
+runMapScript("luamaps/War10b.map.lua")
+runMapScript("luamaps/War10c.map.lua")
+runMapScript("luamaps/War10d.map.lua")
+runMapScript("luamaps/War11a.map.lua")]]
 
 
 JSON = require("JSON")
@@ -194,6 +230,10 @@ function love.load(arg)
 	scene:add(camera)
 	scene:add(map)
 	renderer.load()
+
+	runMapScript("luamaps/War01A.map.lua")
+	mapscriptenv.GLOBAL()
+
 	
 	loadMap(getFirstMap())	
 	
@@ -285,6 +325,12 @@ function love.keypressed(key, u)
 					end
 				end
 			end
+		end
+	end
+
+	if(key == 'f6') then
+		for k,v in pairs(keysfound) do
+			print(k, v)
 		end
 	end
 

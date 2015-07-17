@@ -12,15 +12,15 @@ function Door:UpdateObjectSpriteId(spriteid)
 		self.spriteId = nil
 	end
 
-	self.drawOffsetX, self.drawOffsetY = fixObjectPosition(0,0, self.spriteId, self.tt)
+	self.drawOffsetX, self.drawOffsetY = fixObjectPosition(0,0, self)
 end
 
 function Door:draw()
 	local b = self.phys[1].body
-	local dir = self.mobject.ObjXfer.Direction + round(((b:getAngle() - math.pi / 8) / (math.pi * 2)) * #self.tt.SpriteAnimFrames) + #self.tt.SpriteAnimFrames + 1
+	local dir = self.mapXfer.Direction + round(((b:getAngle() - math.pi / 8) / (math.pi * 2)) * #self.spriteAnimFrames) + #self.spriteAnimFrames + 1
 	dir = math.abs(dir)
-	dir = (dir + 1) % #self.tt.SpriteAnimFrames + 1
-	self:UpdateObjectSpriteId(self.tt.SpriteAnimFrames[dir])
+	dir = (dir + 1) % #self.spriteAnimFrames + 1
+	self:UpdateObjectSpriteId(self.spriteAnimFrames[dir])
 	renderer.drawObject(self)
 end
 
@@ -32,6 +32,16 @@ function Door:update(dt)
 	--end
 end
 
+function Door:lock()
+	self.isLocked = true
+	self.phys[1].joint:setLimits(-0.01, 0.01)
+end
+
+function Door:unlock()
+	self.isLocked = false
+	self.phys[1].joint:setLimits((1/16) * -14.5 * math.pi, (1/16) * 14.5 * math.pi)
+end
+
 function DoorCreate(object)
 	object = setmetatable(object, Door)
 	object.collide = true
@@ -40,7 +50,7 @@ function DoorCreate(object)
 
 	object.type = "DOOR"
 
-	local rangle = object.mobject.ObjXfer.Direction * (6.28318530718 / 32) + math.pi * 0.25
+	local rangle = object.mapXfer.Direction * (6.28318530718 / 32) + math.pi * 0.25
 	local doorvector = vector.new(math.cos(rangle), math.sin(rangle)):normalized()
 
 	local doorLength = 46 / 2 * 1.4
@@ -54,9 +64,9 @@ function DoorCreate(object)
 	phys.fix = love.physics.newFixture(phys.body, phys.shape)	
 	physics:setFilterData(phys.fix, "DOOR", false, { "WALL" })	
 	phys.joint = love.physics.newRevoluteJoint(phys.body, physworldbody, center.x, center.y)
-	phys.joint:setLimits((1/16) * -14.5 * math.pi, (1/16) * 14.5 * math.pi)
+	phys.joint:setLimits((1/16) * -14.5 * math.pi, (1/16) * 14.5 * math.pi)	
 	phys.joint:setLimitsEnabled(true)
-	phys.body:setMass(object.tt.Mass)
+	phys.body:setMass(object.mass)
 	phys.body:setAngularDamping( 25 )
 
 	object.nopartial = true

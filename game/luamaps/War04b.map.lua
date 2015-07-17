@@ -44,7 +44,7 @@ function UnlockExitGate()
 	if true then return end
 end
 function setUpFlameLever()
-	if not Gvar_19 then 
+	if not (Gvar_19) then 
 		goto l6
 	end
 	if true then return end
@@ -54,7 +54,7 @@ function setUpFlameLever()
 	Gvar_25 = 2
 	Gvar_24 = 0
 	::l32::
-	if not Gvar_24 < 56 then 
+	if not (Gvar_24 < 56) then 
 		goto l58
 	end
 	Gvar_32[Gvar_24] = 0
@@ -65,39 +65,39 @@ function setUpFlameLever()
 	if true then return end
 end
 function flameLever()
-	if not Gvar_19 then 
+	if not (Gvar_19) then 
 		goto l647
 	end
 	var_0 = Gvar_26
-	if var_0 == Gvar_12 then 
+	if (var_0 == Gvar_12) then 
 		goto l86
 	end
-	if var_0 == Gvar_13 then 
+	if (var_0 == Gvar_13) then 
 		goto l165
 	end
-	if var_0 == Gvar_14 then 
+	if (var_0 == Gvar_14) then 
 		goto l244
 	end
-	if var_0 == Gvar_15 then 
+	if (var_0 == Gvar_15) then 
 		goto l309
 	end
-	if var_0 == Gvar_16 then 
+	if (var_0 == Gvar_16) then 
 		goto l374
 	end
-	if var_0 == Gvar_17 then 
+	if (var_0 == Gvar_17) then 
 		goto l439
 	end
-	if var_0 == Gvar_18 then 
+	if (var_0 == Gvar_18) then 
 		goto l518
 	end
-	if var_0 == Gvar_11 then 
+	if (var_0 == Gvar_11) then 
 		goto l583
 	end
 	goto l640
 	::l86::
 	Gvar_24 = 0
 	::l92::
-	if not Gvar_24 < 56 then 
+	if not (Gvar_24 < 56) then 
 		goto l136
 	end
 	DeleteObject(Gvar_32[Gvar_24])
@@ -113,7 +113,7 @@ function flameLever()
 	::l165::
 	Gvar_24 = 0
 	::l171::
-	if not Gvar_24 < 56 then 
+	if not (Gvar_24 < 56) then 
 		goto l215
 	end
 	DeleteObject(Gvar_32[Gvar_24])
@@ -129,7 +129,7 @@ function flameLever()
 	::l244::
 	Gvar_24 = 0
 	::l250::
-	if not Gvar_24 < 56 then 
+	if not (Gvar_24 < 56) then 
 		goto l294
 	end
 	DeleteObject(Gvar_32[Gvar_24])
@@ -143,7 +143,7 @@ function flameLever()
 	::l309::
 	Gvar_24 = 0
 	::l315::
-	if not Gvar_24 < 56 then 
+	if not (Gvar_24 < 56) then 
 		goto l359
 	end
 	DeleteObject(Gvar_32[Gvar_24])
@@ -157,7 +157,7 @@ function flameLever()
 	::l374::
 	Gvar_24 = 0
 	::l380::
-	if not Gvar_24 < 56 then 
+	if not (Gvar_24 < 56) then 
 		goto l424
 	end
 	DeleteObject(Gvar_32[Gvar_24])
@@ -171,7 +171,7 @@ function flameLever()
 	::l439::
 	Gvar_24 = 0
 	::l445::
-	if not Gvar_24 < 56 then 
+	if not (Gvar_24 < 56) then 
 		goto l489
 	end
 	DeleteObject(Gvar_32[Gvar_24])
@@ -187,7 +187,7 @@ function flameLever()
 	::l518::
 	Gvar_24 = 0
 	::l524::
-	if not Gvar_24 < 56 then 
+	if not (Gvar_24 < 56) then 
 		goto l568
 	end
 	DeleteObject(Gvar_32[Gvar_24])
@@ -201,7 +201,7 @@ function flameLever()
 	::l583::
 	Gvar_24 = 0
 	::l589::
-	if not Gvar_24 < 56 then 
+	if not (Gvar_24 < 56) then 
 		goto l624
 	end
 	DeleteObject(Gvar_32[Gvar_24])
@@ -218,7 +218,7 @@ function flameLever()
 	if true then return end
 end
 function skullHallOn()
-	if not Gvar_20 then 
+	if not (Gvar_20) then 
 		goto l35
 	end
 	ApplySpellXYXY("SPELL_FIREBALL",3012,2229,3185,2403)
@@ -272,7 +272,7 @@ function HecubahEncounterSEG3()
 	if true then return end
 end
 function hecGone()
-	if not ObjIsCaller(Gvar_33) then 
+	if not (ObjIsCaller(Gvar_33)) then 
 		goto l32
 	end
 	DisableObject(Trigger)
@@ -282,7 +282,7 @@ function hecGone()
 	if true then return end
 end
 function ReleasePlayer()
-	if not ObjIsCaller(Gvar_33) then 
+	if not (ObjIsCaller(Gvar_33)) then 
 		goto l91
 	end
 	DisableObject(Trigger)
@@ -312,19 +312,19 @@ function necroDies()
 end
 function necroTalkStart()
 	var_0 = Gvar_27
-	if var_0 == 1 then 
+	if (var_0 == 1) then 
 		goto l49
 	end
-	if var_0 == 2 then 
+	if (var_0 == 2) then 
 		goto l81
 	end
-	if var_0 == 3 then 
+	if (var_0 == 3) then 
 		goto l113
 	end
-	if var_0 == 4 then 
+	if (var_0 == 4) then 
 		goto l145
 	end
-	if var_0 == 5 then 
+	if (var_0 == 5) then 
 		goto l194
 	end
 	goto l240
@@ -371,7 +371,7 @@ function necroTalkEnd()
 	ObjFreeze(Gvar_34,false)
 	ObjFreeze(Gvar_41,false)
 	ObjFreeze(Gvar_43,false)
-	if not Gvar_27 == 4 then 
+	if not (Gvar_27 == 4) then 
 		goto l61
 	end
 	JournalUpdateEntry(GetHostPlayer(),"Chapter4SearchCrypts",4)
@@ -435,7 +435,7 @@ end
 function MapInitialize()
 	Gvar_24 = 0
 	::l6::
-	if not Gvar_24 < 56 then 
+	if not (Gvar_24 < 56) then 
 		goto l43
 	end
 	Gvar_56[Gvar_24] = WaypointFromName("FlameWay" + IntToString(Gvar_24 + 1))
@@ -487,7 +487,7 @@ function PlayerDeath()
 	if true then return end
 end
 function ToggleSkullHall()
-	if not Gvar_20 then 
+	if not (Gvar_20) then 
 		goto l14
 	end
 	Gvar_20 = false
@@ -500,16 +500,16 @@ function ToggleSkullHall()
 end
 function HecubahDialogStart()
 	var_0 = Gvar_28
-	if var_0 == Gvar_7 then 
+	if (var_0 == Gvar_7) then 
 		goto l45
 	end
-	if var_0 == Gvar_8 then 
+	if (var_0 == Gvar_8) then 
 		goto l53
 	end
-	if var_0 == Gvar_9 then 
+	if (var_0 == Gvar_9) then 
 		goto l61
 	end
-	if var_0 == Gvar_10 then 
+	if (var_0 == Gvar_10) then 
 		goto l76
 	end
 	goto l91
@@ -532,16 +532,16 @@ function HecubahDialogStart()
 end
 function HecubahDialogEnd()
 	var_5 = Gvar_28
-	if var_5 == Gvar_7 then 
+	if (var_5 == Gvar_7) then 
 		goto l45
 	end
-	if var_5 == Gvar_8 then 
+	if (var_5 == Gvar_8) then 
 		goto l83
 	end
-	if var_5 == Gvar_9 then 
+	if (var_5 == Gvar_9) then 
 		goto l234
 	end
-	if var_5 == Gvar_10 then 
+	if (var_5 == Gvar_10) then 
 		goto l254
 	end
 	goto l332
@@ -605,7 +605,7 @@ function HecubahEncounterSEG2()
 	if true then return end
 end
 function HecubahEncounterSEG1()
-	if not Gvar_21 == 0 and ObjIsCaller(GetHostPlayer()) then 
+	if not (Gvar_21 == 0 and ObjIsCaller(GetHostPlayer())) then 
 		goto l54
 	end
 	Gvar_21 = true
@@ -684,7 +684,7 @@ function ActivateFistTrap13()
 	if true then return end
 end
 function NoEnemys()
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer())) then 
 		goto l14
 	end
 	MonsterGotoHome(Caller)

@@ -25,7 +25,7 @@ function GoToIxSEG2()
 	if true then return end
 end
 function GoToIx()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l45
 	end
 	ObjFreeze(GetHostPlayer(),true)
@@ -105,7 +105,7 @@ function LeaveTemple()
 	if true then return end
 end
 function StayAway()
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer())) then 
 		goto l14
 	end
 	MonsterGotoHome(Caller)
@@ -113,7 +113,7 @@ function StayAway()
 	if true then return end
 end
 function NoMonsters()
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer())) then 
 		goto l14
 	end
 	MonsterGotoHome(Caller)
@@ -121,7 +121,7 @@ function NoMonsters()
 	if true then return end
 end
 function BearAttack()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l22
 	end
 	MonsterFollowObj(Gvar_5,Gvar_4)
@@ -147,16 +147,16 @@ function PriestSetPieceSEG3()
 end
 function PriestDialogStart()
 	var_0 = Gvar_19
-	if var_0 == Gvar_15 then 
+	if (var_0 == Gvar_15) then 
 		goto l45
 	end
-	if var_0 == Gvar_16 then 
+	if (var_0 == Gvar_16) then 
 		goto l53
 	end
-	if var_0 == Gvar_17 then 
+	if (var_0 == Gvar_17) then 
 		goto l61
 	end
-	if var_0 == Gvar_18 then 
+	if (var_0 == Gvar_18) then 
 		goto l69
 	end
 	goto l88
@@ -178,16 +178,16 @@ function PriestDialogStart()
 end
 function PriestDialogEnd()
 	var_0 = Gvar_19
-	if var_0 == Gvar_15 then 
+	if (var_0 == Gvar_15) then 
 		goto l45
 	end
-	if var_0 == Gvar_16 then 
+	if (var_0 == Gvar_16) then 
 		goto l56
 	end
-	if var_0 == Gvar_17 then 
+	if (var_0 == Gvar_17) then 
 		goto l67
 	end
-	if var_0 == Gvar_18 then 
+	if (var_0 == Gvar_18) then 
 		goto l78
 	end
 	goto l155
@@ -204,7 +204,7 @@ function PriestDialogEnd()
 	PriestDialogStart()
 	goto l155
 	::l78::
-	if not Gvar_21 == 0 then 
+	if not (Gvar_21 == 0) then 
 		goto l153
 	end
 	Gvar_21 = true
@@ -226,10 +226,10 @@ function ReleasePlayer()
 	if true then return end
 end
 function StartPriestSetPiece()
-	if not Gvar_20 == 0 then 
+	if not (Gvar_20 == 0) then 
 		goto l52
 	end
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l52
 	end
 	PushMusicStack()

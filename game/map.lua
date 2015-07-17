@@ -57,15 +57,21 @@ function map:preCacheFloorTiles()
 	self.floortileSize = gameconf.maptilechunksize
 	self.floorCache = {}
 	
+	local markedForRemoval = {}
+
 	for x=1,gameconf.maxmapsize/self.floortileSize do
 		self.floorCache[x] = self.floorCache[x] or {}
+
+
+
 		for y=1, gameconf.maxmapsize/self.floortileSize do
 			self.floorCache[x][y] = {}
 
 			local canvas = G.newCanvas(gameconf.maptilechunksize, gameconf.maptilechunksize)
 			G.setCanvas(canvas)
 		
-			canvas:clear()
+			G.clear()
+			--canvas:clear()
 
 			local x1 = (x - 1) * self.floortileSize
 			local y1 = (y - 1) * self.floortileSize
@@ -92,9 +98,9 @@ function map:preCacheFloorTiles()
 				
 			for obj in map.Objects:Iter(x1 - 128, y1 - 128, gameconf.maptilechunksize + 128, gameconf.maptilechunksize + 128) do
 				if(obj.renderer) then
-					if(obj.flags["BELOW"] and obj.class["IMMOBILE"]) then
+					if(obj.flags["BELOW"] and obj.class["IMMOBILE"] and not obj.class["ELEVATOR_SHAFT"]) then
 						obj.renderer:draw(obj)
-						map.Objects:removeObject(obj)
+						table.insert(markedForRemoval, obj)
 					end
 				end
 				--G.draw(obj.img, obj.quad, tile.x + tile.drawOffsetX, tile.y + tile.drawOffsetY)
@@ -108,6 +114,10 @@ function map:preCacheFloorTiles()
 			
 			self.floorCache[x][y].canvas = canvas		
 		end
+	end
+
+	for k, v in pairs(markedForRemoval) do
+		map.Objects:removeObject(v)
 	end
 end
 
@@ -139,12 +149,41 @@ end
 
 function map:GetByExtendId(id)	
 	for k, obj in pairs(self._Objects) do
-		if (obj.mobject.Extent == id) then
+		if (obj.extentId == id) then
 			return obj
 		end
 	end
 	
 	return nil
+end
+
+function map:GetGroupByShortName(name)
+	for k,v in pairs(self.Groups) do
+		local names = k:split(":")
+		if(names[2]:trim() == name:trim()) then
+			return v
+		end
+	end
+	return {}
+end
+
+function map:GetByScriptName(name)
+	for k, obj in pairs(self._Objects) do
+		if (obj.scriptName == name) then
+			return obj
+		end
+	end
+	
+	return nil
+end
+
+function map:GetWaypointByName(name)
+	local names = name:split(":")
+	for k, v in pairs(self.Waypoints) do
+		if v.ShortName and (v.ShortName == names[2]) then
+			return v
+		end
+	end	
 end
 
 
@@ -156,16 +195,17 @@ function map:load()
 	map.Objects = SpatialHash.new(gameconf.maxmapsize, gameconf.maxmapsize, gameconf.mapchunksize)
 	map.Walls = SpatialHash.new(gameconf.maxmapsize, gameconf.maxmapsize, gameconf.mapchunksize)
 	map._Objects = {}
+	map.Groups = {}
+	map.Waypoints = {}
 
 	local counti = 0 
 	for k, obj in pairs(Map.Objects) do		
-		local object = ObjectFromMapObject(obj)
+		local object = NoxBaseObject.new(obj)--ObjectFromMapObject(obj)
 		counti = counti + 1
 		map.Objects:add(object)
 		map._Objects[#map._Objects + 1] = object
 	end
 	
-	print(counti)
 	for k, obj in pairs(Map.Walls) do
 		local wall = WallFromMapWall(obj.Value)
 		map.Walls:add(wall)
@@ -202,6 +242,26 @@ function map:load()
 	
 	self.shadowmesh = G.newMesh( 5000, nil, "triangles" )
 	map:preCacheFloorTiles()
+
+	for k, v in pairs(Map.Groups) do
+		local fixedname = v.Key:sub( 1, #v.Key - 1 )
+		map.Groups[fixedname] = {}
+		for k2,v2 in pairs(v.Value) do
+			table.insert(map.Groups[fixedname], map:GetByExtendId(v2))
+		end
+	end
+
+	for k, v in pairs(Map.Waypoints) do
+		map.Waypoints[v.num] = v
+	end
+
+	if(mapscriptenv.MapInitialize) then
+		mapscriptenv.MapInitialize()
+	end
+	if(mapscriptenv.MapEntry) then
+		mapscriptenv.MapEntry()
+	end	
+
 	love.timer.stopTimer("Map Load")
 end
 
@@ -230,18 +290,7 @@ end
 
 function shadowMesh:constructEdgeShadow(cx,cy,x1,y1,x2,y2)
 	local verts,offset,oversize,len = self.vertices,self.length,self.oversize,0
-	
-	--[[verts[offset+1] = { x1, y1 }
-	verts[offset+2] = { x2, y2 }
-	verts[offset+3] = { verts[offset +2][1]-cx, verts[offset +2][2]-cy }
-	verts[offset+4] = { verts[offset +1][1]-cx, verts[offset +1][2]-cy }
-	len = sqrt(verts[offset +3][1]*verts[offset + 3][1]+verts[offset + 3][2]*verts[offset + 3][2])
-	verts[offset+3] = { verts[offset + 2][1]+verts[offset + 3][1]/len*oversize, verts[offset + 2][2]+verts[offset + 3][2]/len*oversize }
-	len = sqrt(verts[offset+4][1]*verts[offset+4][1]+verts[offset+4][2]*verts[offset+4][2])
-	verts[offset+4] = { verts[offset+1][1] + verts[offset+4][1]/len*oversize, verts[offset+1][2] + verts[offset+4][2]/len*oversize }
-	verts[offset+5] = verts[offset+3]
-	verts[offset+6] = verts[offset+1]--]]
-	
+		
 	insertVertex(verts, offset+1, x1, y1)
 	insertVertex(verts, offset+2, x2, y2)
 	insertVertex(verts, offset+3, verts[offset +2][1]-cx, verts[offset +2][2]-cy)
@@ -341,10 +390,9 @@ function map:drawShadows(objects, walls)
 		if (obj.phys and obj.type == "DOOR" and obj.flags["SHADOW"]) then
 			for k,v in ipairs(obj.phys) do
 				local body = v.body 
-				--local posx, posy = body:getPosition()
 				local fixtures = body:getFixtureList()
 
-				for i2=1, #fixtures do -- in pairs(fixtures) do
+				for i2=1, #fixtures do 
 					local shape = fixtures[i2]:getShape()
 					local shapeType = shape:getType()
 					if shapeType == "polygon" then
@@ -361,11 +409,16 @@ function map:drawShadows(objects, walls)
 	
 	for i=1, #walls do
 		local obj = walls[i]
-		if(not obj.window and not obj.transparent) then
+		if(obj.window) then
+			local dist = math.sqrt((player.x - obj.x)*(player.x - obj.x) + (player.y - obj.y)*(player.y - obj.y))
+			if(dist < 50.0) then -- Don't draw a shadow if its a window, and closer then 50 units
+				goto continue
+			end
+		end
+		if(not obj.transparent) then
 			if(obj.phys) then
 				for k,v in ipairs(obj.phys) do
 					local body = v.body 
-					--local posx, posy = body:getPosition()
 					local fixtures = body:getFixtureList()
 
 					for i2 = 1, #fixtures do
@@ -384,6 +437,7 @@ function map:drawShadows(objects, walls)
 				end
 			end
 		end
+		::continue::
 	end
 	
 	local shadow_verts = shadowMesh.vertices
@@ -393,14 +447,12 @@ function map:drawShadows(objects, walls)
 	end
 	
 	G.setColor(0,0,0,255)
-	--local mesh = G.newMesh(shadow_verts, nil, "triangles")
 	
 	if shadowMesh.length > 0 then
 		self.shadowmesh:setVertices(shadow_verts)
 		G.draw(self.shadowmesh, 0, 0)
 	end
 	
-	--G.polygon("fill",shadow_verts)
 	G.setColor(255,255,255,255)
 	
 	G.setCanvas(oldCanvas)
@@ -480,45 +532,6 @@ function map:drawWalls(walls)
 	end
 end
 
---[[
-function map:objectLOSPass(objects,walls) -- obsolete, dont delete yet though
-	camera:pop()
-	local oldCanvas = G.getCanvas()
-	G.setCanvas(lightEngine.shadowBufferObjects)
-	G.draw(lightEngine.shadowBuffer,0,0)
-	camera:push()
-	
-	G.setShader(shaders.sampleShadow)
-	G.setColor(255,255,255,255)
-	local cx,cy = player.x,player.y
-	shaders.sampleShadow:send("wall",false)
-	--for obj in map.Objects:Iter(x1, y1, x2, y2) do
-	for i=1, #objects do
-		local obj = objects[i]
-		if obj.spriteId then
-			--i = i + 1
-			local x,y = obj.x,obj.y
-			shaders.sampleShadow:send("pos",{camera:worldToLocal(x,y)})
-			G.draw(obj.img, obj.quad, obj.x + obj.drawOffsetX, obj.y + obj.drawOffsetY)
-		end
-	end
-	shaders.sampleShadow:send("wall",true)
-	--for obj in map.Walls:Iter(x1, y1, x2, y2) do
-	for i=1, #walls do
-		local obj = walls[i]
-		if obj.spriteId and obj.img then	
-			--i = i + 1
-			local x,y = self:GetClosestWallPointToMouse(obj, cx ,cy)
-			shaders.sampleShadow:send("pos",{camera:worldToLocal(x,y)})
-			G.draw(obj.img, obj.quad, obj.x + obj.drawOffsetX, obj.y + obj.drawOffsetY)
-		end
-	end
-	camera:pop()
-	G.setShader()
-	G.setCanvas(oldCanvas)
-end]]
-
-
 function map:drawLights(objects)
 	if not screenBuffer then
 		return;
@@ -534,22 +547,13 @@ function map:drawLights(objects)
 	local theTime = love.timer.getTime()
 	for i=1,#objects do
 		local obj = objects[i]
-		if obj.tt.Xfer == "InvisibleLightXfer" then
-			local ObjXfer = obj.mobject.ObjXfer
+		if obj.xferType == "InvisibleLightXfer" then
+			local ObjXfer = obj.mapXfer
 			local color = ObjXfer.BaseColor
 			local intensity = ObjXfer.LightIntensity/255
 			local radius = ObjXfer.LightRadius
 			local changeColors = ObjXfer.ChangeColors
-			--[[local index = ObjXfer.ColorChangeIndex
-			obj.lightUpdateTime = obj.lightUpdateTime or 0
-			if obj.lightUpdateTime < theTime then
-				obj.lightUpdateTime = theTime+0.15
-				index = index+1
-				if index > #changeColors then
-					index = 1
-				end
-				ObjXfer.ColorChangeIndex = index
-			end--]]
+
 			color = changeColors[ObjXfer.StateMB+1]
 			G.setColor(color.R,color.G,color.B,255)
 			G.drawLight(obj.x,obj.y,radius,intensity,2)
@@ -561,7 +565,6 @@ function map:drawLights(objects)
 	G.setCanvas(lightEngine.shadowBufferObjects)
 	camera:pop()
 	G.setShader(shaders.overBright)
-	--G.setBlendMode("multiplicative")
 	G.draw(oldCanvas,0,0)
 	G.setShader()
 	G.setCanvas(oldCanvas)

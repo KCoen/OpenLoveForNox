@@ -10,10 +10,10 @@ local UpdateObjectSpriteId = UpdateObjectSpriteId
 function ConditionalAnimateDraw:initObject(obj)
 	obj.spriteState = 1
 
-	obj.animationState = math.random(1, #obj.tt.ConditionalAnimations[obj.spriteState].Frames) -- Random starting animation
+	obj.animationState = math.random(1, #obj.conditionalAnimations[obj.spriteState].Frames) -- Random starting animation
 	obj.animationLastUpdate = love.timer.getTime() + math.random(0, 100) / 100 -- Random starting time
 
-	local spriteid = obj.tt.ConditionalAnimations[obj.spriteState].Frames[obj.animationState]
+	local spriteid = obj.conditionalAnimations[obj.spriteState].Frames[obj.animationState]
 	UpdateObjectSpriteId(obj, spriteid)
 	self.shader = shaders.sampleShadow
 end
@@ -27,9 +27,9 @@ function ConditionalAnimateDraw:draw(obj)
 		obj.animationLastUpdate = self.curTime
 
 		obj.animationState = obj.animationState + 1
-		obj.animationState = ((obj.animationState -1) % #obj.tt.ConditionalAnimations[obj.spriteState].Frames) + 1
+		obj.animationState = ((obj.animationState -1) % #obj.conditionalAnimations[obj.spriteState].Frames) + 1
 
-		local spriteid = obj.tt.ConditionalAnimations[obj.spriteState].Frames[obj.animationState]
+		local spriteid = obj.conditionalAnimations[obj.spriteState].Frames[obj.animationState]
 		UpdateObjectSpriteId(obj, spriteid)
 	end
 	

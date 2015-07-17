@@ -208,3 +208,6 @@ FakesAssemblies/
 *.wav
 *.png
 *.json
+*.MP3
+*.mp3
+game/profreport.txt

@@ -30,23 +30,23 @@ function NullCallback()
 	if true then return end
 end
 function fireKnightsRecognize()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l94
 	end
 	Gvar_17 = RandomInteger(1,3)
-	if not Gvar_17 == 1 then 
+	if not (Gvar_17 == 1) then 
 		goto l42
 	end
 	SetDialogPortrait(Trigger,"WarriorPic")
 	SetupDialog(Trigger,"NORMAL",4,5)
 	::l42::
-	if not Gvar_17 == 2 then 
+	if not (Gvar_17 == 2) then 
 		goto l68
 	end
 	SetDialogPortrait(Trigger,"Warrior2Pic")
 	SetupDialog(Trigger,"NORMAL",6,7)
 	::l68::
-	if not Gvar_17 == 3 then 
+	if not (Gvar_17 == 3) then 
 		goto l94
 	end
 	SetDialogPortrait(Trigger,"Warrior3Pic")
@@ -127,7 +127,7 @@ function secretArea()
 	if true then return end
 end
 function toggleMainGates()
-	if not Gvar_19 == 0 then 
+	if not (Gvar_19 == 0) then 
 		goto l18
 	end
 	Gvar_19 = 1
@@ -198,7 +198,7 @@ function horrendousDead()
 	TeleportObj(Gvar_24,GetObjX(Gvar_23),GetObjY(Gvar_23))
 	DeleteObject(Gvar_23)
 	AudioEvent("DemonDie",Gvar_90)
-	if not Gvar_54 then 
+	if not (Gvar_54) then 
 		goto l48
 	end
 	DeleteObject(Gvar_54)
@@ -328,7 +328,7 @@ function hecubahBreakIn()
 	if true then return end
 end
 function hecKillsEveryone()
-	if not ObjIsCaller(Gvar_54) or ObjIsCaller(Gvar_55) then 
+	if not (ObjIsCaller(Gvar_54) or ObjIsCaller(Gvar_55)) then 
 		goto l25
 	end
 	PlayMusic(28,75)
@@ -337,7 +337,7 @@ function hecKillsEveryone()
 	if true then return end
 end
 function isHecKilling()
-	if not Gvar_9 then 
+	if not (Gvar_9) then 
 		goto l11
 	end
 	WaitFrames(3,40)
@@ -345,25 +345,25 @@ function isHecKilling()
 	if true then return end
 end
 function hecIsKilling()
-	if not Gvar_10 then 
+	if not (Gvar_10) then 
 		goto l409
 	end
 	Gvar_9 = false
 	ObjLookAtObj(GetHostPlayer(),Gvar_54)
 	var_0 = Gvar_20
-	if var_0 == Gvar_4 then 
+	if (var_0 == Gvar_4) then 
 		goto l73
 	end
-	if var_0 == Gvar_5 then 
+	if (var_0 == Gvar_5) then 
 		goto l139
 	end
-	if var_0 == Gvar_6 then 
+	if (var_0 == Gvar_6) then 
 		goto l205
 	end
-	if var_0 == Gvar_7 then 
+	if (var_0 == Gvar_7) then 
 		goto l271
 	end
-	if var_0 == Gvar_8 then 
+	if (var_0 == Gvar_8) then 
 		goto l337
 	end
 	goto l403
@@ -537,22 +537,22 @@ function necroSetPiece()
 	if true then return end
 end
 function wallWalk()
-	if not Gvar_17 == 0 then 
+	if not (Gvar_17 == 0) then 
 		goto l15
 	end
 	AudioEvent("SpellPhonemeUpLeft",Gvar_103)
 	::l15::
-	if not Gvar_17 == 1 then 
+	if not (Gvar_17 == 1) then 
 		goto l30
 	end
 	AudioEvent("SpellPhonemeUp",Gvar_103)
 	::l30::
-	if not Gvar_17 == 2 then 
+	if not (Gvar_17 == 2) then 
 		goto l45
 	end
 	AudioEvent("SpellPhonemeUpRight",Gvar_103)
 	::l45::
-	if not Gvar_17 < 49 then 
+	if not (Gvar_17 < 49) then 
 		goto l87
 	end
 	CloseSecretWall(GetWallAt(Gvar_96,Gvar_97))
@@ -619,10 +619,10 @@ function necroDies()
 	if true then return end
 end
 function necroDies2()
-	if not Gvar_18 > 4 then 
+	if not (Gvar_18 > 4) then 
 		goto l48
 	end
-	if not DoesHaveObject(GetHostPlayer(),Gvar_26) then 
+	if not (DoesHaveObject(GetHostPlayer(),Gvar_26)) then 
 		goto l40
 	end
 	JournalUpdateEntry(GetHostPlayer(),"War6Necro",4)
@@ -772,16 +772,16 @@ function lockCells()
 	if true then return end
 end
 function setNecroPosition()
-	if not ObjIsCaller(Gvar_55) then 
+	if not (ObjIsCaller(Gvar_55)) then 
 		goto l24
 	end
 	ObjFreeze(Gvar_55,true)
 	TeleportObj(Gvar_55,1776,1502)
 	::l24::
-	if not ObjIsCaller(Gvar_54) then 
+	if not (ObjIsCaller(Gvar_54)) then 
 		goto l41
 	end
-	if not Gvar_54 then 
+	if not (Gvar_54) then 
 		goto l41
 	end
 	DeleteObject(Gvar_54)
@@ -795,7 +795,7 @@ function setupNecroSetPiece()
 	if true then return end
 end
 function setNecroPosition2()
-	if not ObjIsCaller(Gvar_55) then 
+	if not (ObjIsCaller(Gvar_55)) then 
 		goto l16
 	end
 	TeleportObj(Gvar_55,5057,3809)
@@ -813,11 +813,11 @@ function necroGuardDies()
 	if true then return end
 end
 function NecroInjured()
-	if not ObjIsCaller(GetHostPlayer()) == 0 then 
+	if not (ObjIsCaller(GetHostPlayer()) == 0) then 
 		goto l31
 	end
 	ObjAddHealth(Gvar_55,14)
-	if not GetObjHealth(Gvar_55) < 50 then 
+	if not (GetObjHealth(Gvar_55) < 50) then 
 		goto l31
 	end
 	ObjAddHealth(Gvar_55,50)

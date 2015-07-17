@@ -45,10 +45,10 @@ function ActivateArrowTrap03()
 	if true then return end
 end
 function BeholderAttackExit()
-	if not GetObjHealth(Gvar_8) > 0 then 
+	if not (GetObjHealth(Gvar_8) > 0) then 
 		goto l28
 	end
-	if not ObjCanInteractWith(Gvar_8,GetHostPlayer()) == 0 then 
+	if not (ObjCanInteractWith(Gvar_8,GetHostPlayer()) == 0) then 
 		goto l28
 	end
 	MoveTo(Gvar_8,Gvar_11)
@@ -56,12 +56,12 @@ function BeholderAttackExit()
 	if true then return end
 end
 function BeholderStay()
-	if not ObjIsCaller(Gvar_8) then 
+	if not (ObjIsCaller(Gvar_8)) then 
 		goto l12
 	end
 	MonsterGoRoam(Gvar_8)
 	::l12::
-	if not ObjIsCaller(Gvar_9) then 
+	if not (ObjIsCaller(Gvar_9)) then 
 		goto l24
 	end
 	MonsterGoRoam(Gvar_9)
@@ -94,7 +94,7 @@ end
 function InitializeSummoningCircles()
 	var_0 = 0
 	::l6::
-	if not var_0 < 10 then 
+	if not (var_0 < 10) then 
 		goto l43
 	end
 	Gvar_44[var_0] = true
@@ -178,7 +178,7 @@ function MapEntry()
 	if true then return end
 end
 function EnableSpiderPitElevator()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l11
 	end
 	EnableObject(Gvar_22)
@@ -221,7 +221,7 @@ function ReleasePlayer()
 	CinematicBorders(false)
 	ObjResetMaster(Gvar_8)
 	ObjFreeze(GetHostPlayer(),false)
-	if not GetObjHealth(Gvar_16) > 0 then 
+	if not (GetObjHealth(Gvar_16) > 0) then 
 		goto l32
 	end
 	EnableObject(Gvar_16)
@@ -251,7 +251,7 @@ function BeholderSetpiece()
 	ObjFreeze(GetHostPlayer(),true)
 	MonsterIdle(GetHostPlayer())
 	CinematicBorders(true)
-	if not GetObjHealth(Gvar_16) > 0 then 
+	if not (GetObjHealth(Gvar_16) > 0) then 
 		goto l43
 	end
 	DisableObject(Gvar_16)
@@ -295,7 +295,7 @@ function ResetSummonCircle(arg_0)
 end
 function SummoningCircleCleared(arg_0)
 	Gvar_39 = Gvar_39 + 1
-	if not Gvar_39 == 9 then 
+	if not (Gvar_39 == 9) then 
 		goto l116
 	end
 	PrintToAll("GeneralPrint:SecretFound")
@@ -315,21 +315,21 @@ function SummoningCircleCleared(arg_0)
 end
 function SummonCircle01Activate()
 	Gvar_37 = 0
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true) then 
 		goto l238
 	end
 	Gvar_44[Gvar_37] = false
 	DisableObjectGroup(Gvar_33[Gvar_37])
 	AudioEvent("SummonCast",Gvar_45[Gvar_37])
 	PlayFX("SMOKE_BLAST",GetWaypointX(Gvar_45[Gvar_37]),GetWaypointY(Gvar_45[Gvar_37]),0,0)
-	if not RandomInteger(0,100) <= Gvar_42 then 
+	if not (RandomInteger(0,100) <= Gvar_42) then 
 		goto l168
 	end
 	var_1 = RandomInteger(0,1)
-	if var_1 == 0 then 
+	if (var_1 == 0) then 
 		goto l121
 	end
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l149
 	end
 	goto l166
@@ -347,7 +347,7 @@ function SummonCircle01Activate()
 	SpawnObject(Gvar_46[Gvar_41],Gvar_45[Gvar_37])
 	::l194::
 	Gvar_43[Gvar_37] = Gvar_43[Gvar_37] + 1
-	if not Gvar_43[Gvar_37] > Gvar_38 then 
+	if not (Gvar_43[Gvar_37] > Gvar_38) then 
 		goto l228
 	end
 	WaitSpecial(30,Gvar_37,34)
@@ -359,21 +359,21 @@ function SummonCircle01Activate()
 end
 function SummonCircle02Activate()
 	Gvar_37 = 1
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true) then 
 		goto l238
 	end
 	Gvar_44[Gvar_37] = false
 	DisableObjectGroup(Gvar_33[Gvar_37])
 	AudioEvent("SummonCast",Gvar_45[Gvar_37])
 	PlayFX("SMOKE_BLAST",GetWaypointX(Gvar_45[Gvar_37]),GetWaypointY(Gvar_45[Gvar_37]),0,0)
-	if not RandomInteger(0,100) <= Gvar_42 then 
+	if not (RandomInteger(0,100) <= Gvar_42) then 
 		goto l168
 	end
 	var_1 = RandomInteger(0,1)
-	if var_1 == 0 then 
+	if (var_1 == 0) then 
 		goto l121
 	end
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l149
 	end
 	goto l166
@@ -391,7 +391,7 @@ function SummonCircle02Activate()
 	SpawnObject(Gvar_46[Gvar_41],Gvar_45[Gvar_37])
 	::l194::
 	Gvar_43[Gvar_37] = Gvar_43[Gvar_37] + 1
-	if not Gvar_43[Gvar_37] > Gvar_38 then 
+	if not (Gvar_43[Gvar_37] > Gvar_38) then 
 		goto l228
 	end
 	WaitSpecial(30,Gvar_37,34)
@@ -403,21 +403,21 @@ function SummonCircle02Activate()
 end
 function SummonCircle03Activate()
 	Gvar_37 = 2
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true) then 
 		goto l238
 	end
 	Gvar_44[Gvar_37] = false
 	DisableObjectGroup(Gvar_33[Gvar_37])
 	AudioEvent("SummonCast",Gvar_45[Gvar_37])
 	PlayFX("SMOKE_BLAST",GetWaypointX(Gvar_45[Gvar_37]),GetWaypointY(Gvar_45[Gvar_37]),0,0)
-	if not RandomInteger(0,100) <= Gvar_42 then 
+	if not (RandomInteger(0,100) <= Gvar_42) then 
 		goto l168
 	end
 	var_1 = RandomInteger(0,1)
-	if var_1 == 0 then 
+	if (var_1 == 0) then 
 		goto l121
 	end
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l149
 	end
 	goto l166
@@ -435,7 +435,7 @@ function SummonCircle03Activate()
 	SpawnObject(Gvar_46[Gvar_41],Gvar_45[Gvar_37])
 	::l194::
 	Gvar_43[Gvar_37] = Gvar_43[Gvar_37] + 1
-	if not Gvar_43[Gvar_37] > Gvar_38 then 
+	if not (Gvar_43[Gvar_37] > Gvar_38) then 
 		goto l228
 	end
 	WaitSpecial(30,Gvar_37,34)
@@ -447,21 +447,21 @@ function SummonCircle03Activate()
 end
 function SummonCircle04Activate()
 	Gvar_37 = 3
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true) then 
 		goto l238
 	end
 	Gvar_44[Gvar_37] = false
 	DisableObjectGroup(Gvar_33[Gvar_37])
 	AudioEvent("SummonCast",Gvar_45[Gvar_37])
 	PlayFX("SMOKE_BLAST",GetWaypointX(Gvar_45[Gvar_37]),GetWaypointY(Gvar_45[Gvar_37]),0,0)
-	if not RandomInteger(0,100) <= Gvar_42 then 
+	if not (RandomInteger(0,100) <= Gvar_42) then 
 		goto l168
 	end
 	var_1 = RandomInteger(0,1)
-	if var_1 == 0 then 
+	if (var_1 == 0) then 
 		goto l121
 	end
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l149
 	end
 	goto l166
@@ -479,7 +479,7 @@ function SummonCircle04Activate()
 	SpawnObject(Gvar_46[Gvar_41],Gvar_45[Gvar_37])
 	::l194::
 	Gvar_43[Gvar_37] = Gvar_43[Gvar_37] + 1
-	if not Gvar_43[Gvar_37] > Gvar_38 then 
+	if not (Gvar_43[Gvar_37] > Gvar_38) then 
 		goto l228
 	end
 	WaitSpecial(30,Gvar_37,34)
@@ -491,21 +491,21 @@ function SummonCircle04Activate()
 end
 function SummonCircle05Activate()
 	Gvar_37 = 4
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true) then 
 		goto l238
 	end
 	Gvar_44[Gvar_37] = false
 	DisableObjectGroup(Gvar_33[Gvar_37])
 	AudioEvent("SummonCast",Gvar_45[Gvar_37])
 	PlayFX("SMOKE_BLAST",GetWaypointX(Gvar_45[Gvar_37]),GetWaypointY(Gvar_45[Gvar_37]),0,0)
-	if not RandomInteger(0,100) <= Gvar_42 then 
+	if not (RandomInteger(0,100) <= Gvar_42) then 
 		goto l168
 	end
 	var_1 = RandomInteger(0,1)
-	if var_1 == 0 then 
+	if (var_1 == 0) then 
 		goto l121
 	end
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l149
 	end
 	goto l166
@@ -523,7 +523,7 @@ function SummonCircle05Activate()
 	SpawnObject(Gvar_46[Gvar_41],Gvar_45[Gvar_37])
 	::l194::
 	Gvar_43[Gvar_37] = Gvar_43[Gvar_37] + 1
-	if not Gvar_43[Gvar_37] > Gvar_38 then 
+	if not (Gvar_43[Gvar_37] > Gvar_38) then 
 		goto l228
 	end
 	WaitSpecial(30,Gvar_37,34)
@@ -535,21 +535,21 @@ function SummonCircle05Activate()
 end
 function SummonCircle06Activate()
 	Gvar_37 = 5
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true) then 
 		goto l238
 	end
 	Gvar_44[Gvar_37] = false
 	DisableObjectGroup(Gvar_33[Gvar_37])
 	AudioEvent("SummonCast",Gvar_45[Gvar_37])
 	PlayFX("SMOKE_BLAST",GetWaypointX(Gvar_45[Gvar_37]),GetWaypointY(Gvar_45[Gvar_37]),0,0)
-	if not RandomInteger(0,100) <= Gvar_42 then 
+	if not (RandomInteger(0,100) <= Gvar_42) then 
 		goto l168
 	end
 	var_1 = RandomInteger(0,1)
-	if var_1 == 0 then 
+	if (var_1 == 0) then 
 		goto l121
 	end
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l149
 	end
 	goto l166
@@ -567,7 +567,7 @@ function SummonCircle06Activate()
 	SpawnObject(Gvar_46[Gvar_41],Gvar_45[Gvar_37])
 	::l194::
 	Gvar_43[Gvar_37] = Gvar_43[Gvar_37] + 1
-	if not Gvar_43[Gvar_37] > Gvar_38 then 
+	if not (Gvar_43[Gvar_37] > Gvar_38) then 
 		goto l228
 	end
 	WaitSpecial(30,Gvar_37,34)
@@ -579,21 +579,21 @@ function SummonCircle06Activate()
 end
 function SummonCircle07Activate()
 	Gvar_37 = 6
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true) then 
 		goto l238
 	end
 	Gvar_44[Gvar_37] = false
 	DisableObjectGroup(Gvar_33[Gvar_37])
 	AudioEvent("SummonCast",Gvar_45[Gvar_37])
 	PlayFX("SMOKE_BLAST",GetWaypointX(Gvar_45[Gvar_37]),GetWaypointY(Gvar_45[Gvar_37]),0,0)
-	if not RandomInteger(0,100) <= Gvar_42 then 
+	if not (RandomInteger(0,100) <= Gvar_42) then 
 		goto l168
 	end
 	var_1 = RandomInteger(0,1)
-	if var_1 == 0 then 
+	if (var_1 == 0) then 
 		goto l121
 	end
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l149
 	end
 	goto l166
@@ -611,7 +611,7 @@ function SummonCircle07Activate()
 	SpawnObject(Gvar_46[Gvar_41],Gvar_45[Gvar_37])
 	::l194::
 	Gvar_43[Gvar_37] = Gvar_43[Gvar_37] + 1
-	if not Gvar_43[Gvar_37] > Gvar_38 then 
+	if not (Gvar_43[Gvar_37] > Gvar_38) then 
 		goto l228
 	end
 	WaitSpecial(30,Gvar_37,34)
@@ -623,21 +623,21 @@ function SummonCircle07Activate()
 end
 function SummonCircle08Activate()
 	Gvar_37 = 7
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true) then 
 		goto l238
 	end
 	Gvar_44[Gvar_37] = false
 	DisableObjectGroup(Gvar_33[Gvar_37])
 	AudioEvent("SummonCast",Gvar_45[Gvar_37])
 	PlayFX("SMOKE_BLAST",GetWaypointX(Gvar_45[Gvar_37]),GetWaypointY(Gvar_45[Gvar_37]),0,0)
-	if not RandomInteger(0,100) <= Gvar_42 then 
+	if not (RandomInteger(0,100) <= Gvar_42) then 
 		goto l168
 	end
 	var_1 = RandomInteger(0,1)
-	if var_1 == 0 then 
+	if (var_1 == 0) then 
 		goto l121
 	end
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l149
 	end
 	goto l166
@@ -655,7 +655,7 @@ function SummonCircle08Activate()
 	SpawnObject(Gvar_46[Gvar_41],Gvar_45[Gvar_37])
 	::l194::
 	Gvar_43[Gvar_37] = Gvar_43[Gvar_37] + 1
-	if not Gvar_43[Gvar_37] > Gvar_38 then 
+	if not (Gvar_43[Gvar_37] > Gvar_38) then 
 		goto l228
 	end
 	WaitSpecial(30,Gvar_37,34)
@@ -667,21 +667,21 @@ function SummonCircle08Activate()
 end
 function SummonCircle09Activate()
 	Gvar_37 = 8
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true) then 
 		goto l238
 	end
 	Gvar_44[Gvar_37] = false
 	DisableObjectGroup(Gvar_33[Gvar_37])
 	AudioEvent("SummonCast",Gvar_45[Gvar_37])
 	PlayFX("SMOKE_BLAST",GetWaypointX(Gvar_45[Gvar_37]),GetWaypointY(Gvar_45[Gvar_37]),0,0)
-	if not RandomInteger(0,100) <= Gvar_42 then 
+	if not (RandomInteger(0,100) <= Gvar_42) then 
 		goto l168
 	end
 	var_1 = RandomInteger(0,1)
-	if var_1 == 0 then 
+	if (var_1 == 0) then 
 		goto l121
 	end
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l149
 	end
 	goto l166
@@ -699,7 +699,7 @@ function SummonCircle09Activate()
 	SpawnObject(Gvar_46[Gvar_41],Gvar_45[Gvar_37])
 	::l194::
 	Gvar_43[Gvar_37] = Gvar_43[Gvar_37] + 1
-	if not Gvar_43[Gvar_37] > Gvar_38 then 
+	if not (Gvar_43[Gvar_37] > Gvar_38) then 
 		goto l228
 	end
 	WaitSpecial(30,Gvar_37,34)
@@ -711,21 +711,21 @@ function SummonCircle09Activate()
 end
 function SummonCircle10Activate()
 	Gvar_37 = 9
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_44[Gvar_37] == true) then 
 		goto l238
 	end
 	Gvar_44[Gvar_37] = false
 	DisableObjectGroup(Gvar_33[Gvar_37])
 	AudioEvent("SummonCast",Gvar_45[Gvar_37])
 	PlayFX("SMOKE_BLAST",GetWaypointX(Gvar_45[Gvar_37]),GetWaypointY(Gvar_45[Gvar_37]),0,0)
-	if not RandomInteger(0,100) <= Gvar_42 then 
+	if not (RandomInteger(0,100) <= Gvar_42) then 
 		goto l168
 	end
 	var_1 = RandomInteger(0,1)
-	if var_1 == 0 then 
+	if (var_1 == 0) then 
 		goto l121
 	end
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l149
 	end
 	goto l166
@@ -743,7 +743,7 @@ function SummonCircle10Activate()
 	SpawnObject(Gvar_46[Gvar_41],Gvar_45[Gvar_37])
 	::l194::
 	Gvar_43[Gvar_37] = Gvar_43[Gvar_37] + 1
-	if not Gvar_43[Gvar_37] > Gvar_38 then 
+	if not (Gvar_43[Gvar_37] > Gvar_38) then 
 		goto l228
 	end
 	WaitSpecial(30,Gvar_37,34)
@@ -754,7 +754,7 @@ function SummonCircle10Activate()
 	if true then return end
 end
 function EnableBomberPitElevator()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l11
 	end
 	EnableObject(Gvar_21)

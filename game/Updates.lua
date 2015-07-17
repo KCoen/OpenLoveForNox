@@ -34,15 +34,15 @@ function Updates:update(dt)
 end
 
 function Updates:RegisterObject(object)
-	if object.update or not object.tt.Update or object.tt.Update == "NoUpdate" then
+	if object.update or not object.updateType or object.updateType == "NoUpdate" then
 		return
 	end
 	
-	object.updater = Updates.interfaces[object.tt.Update]
+	object.updater = Updates.interfaces[object.updateType]
 	if(object.updater) then
 		object.updater:initObject(object)
 	else
-		print("Unsuported update type " .. object.tt.Update, object.tt.Name)
+		print("Unsuported update type " .. object.updateType, object.objName)
 	end
 end
 

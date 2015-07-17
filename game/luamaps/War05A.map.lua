@@ -56,12 +56,12 @@ function GLOBAL()
 end
 function OgreDeath()
 	Gvar_69 = Gvar_69 + 1
-	if not ObjIsTrigger(Gvar_51) then 
+	if not (ObjIsTrigger(Gvar_51)) then 
 		goto l38
 	end
 	MonsterGuardArea(Gvar_130,GetWaypointX(Gvar_191),GetWaypointY(Gvar_191),GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()),0)
 	::l38::
-	if not Gvar_69 >= 7 then 
+	if not (Gvar_69 >= 7) then 
 		goto l54
 	end
 	SetTownDialog()
@@ -84,7 +84,7 @@ function SetTownDialog()
 	if true then return end
 end
 function CheckFlame()
-	if not ObjIsEnabled(Gvar_66) then 
+	if not (ObjIsEnabled(Gvar_66)) then 
 		goto l13
 	end
 	PrintToAll("Flame Exists")
@@ -103,7 +103,7 @@ function FarmerSavedEnd()
 	if true then return end
 end
 function BearGoAway()
-	if not ObjIsCaller(Gvar_59) then 
+	if not (ObjIsCaller(Gvar_59)) then 
 		goto l19
 	end
 	Gvar_68 = true
@@ -112,7 +112,7 @@ function BearGoAway()
 	if true then return end
 end
 function BearReport()
-	if not Gvar_68 == true then 
+	if not (Gvar_68 == true) then 
 		goto l48
 	end
 	MonsterSetAggressiveness(Gvar_59,0.5)
@@ -145,10 +145,10 @@ function SwordsmanStart()
 	MonsterIdle(Gvar_144)
 	ObjLookAtObj(Gvar_144,GetHostPlayer())
 	var_0 = Gvar_72
-	if var_0 == Gvar_12 then 
+	if (var_0 == Gvar_12) then 
 		goto l47
 	end
-	if var_0 == Gvar_13 then 
+	if (var_0 == Gvar_13) then 
 		goto l62
 	end
 	goto l77
@@ -167,10 +167,10 @@ function SwordsmanEnd()
 	ObjFreeze(Gvar_144,false)
 	MonsterGuardArea(Gvar_144,GetWaypointX(Gvar_189),GetWaypointY(Gvar_189),GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()),240)
 	var_0 = Gvar_72
-	if var_0 == Gvar_12 then 
+	if (var_0 == Gvar_12) then 
 		goto l60
 	end
-	if var_0 == Gvar_13 then 
+	if (var_0 == Gvar_13) then 
 		goto l75
 	end
 	goto l84
@@ -195,27 +195,27 @@ function DrunkEnd()
 end
 function FarmerStart()
 	var_2 = Gvar_70
-	if var_2 == Gvar_4 then 
+	if (var_2 == Gvar_4) then 
 		goto l63
 	end
-	if var_2 == Gvar_5 then 
+	if (var_2 == Gvar_5) then 
 		goto l116
 	end
-	if var_2 == Gvar_6 then 
+	if (var_2 == Gvar_6) then 
 		goto l136
 	end
-	if var_2 == Gvar_7 then 
+	if (var_2 == Gvar_7) then 
 		goto l222
 	end
-	if var_2 == Gvar_8 then 
+	if (var_2 == Gvar_8) then 
 		goto l242
 	end
-	if var_2 == Gvar_9 then 
+	if (var_2 == Gvar_9) then 
 		goto l262
 	end
 	goto l290
 	::l63::
-	if not DoesHaveObject(GetHostPlayer(),Gvar_127) then 
+	if not (DoesHaveObject(GetHostPlayer(),Gvar_127)) then 
 		goto l96
 	end
 	Gvar_70 = Gvar_7
@@ -236,7 +236,7 @@ function FarmerStart()
 	::l136::
 	MonsterIdle(Gvar_130)
 	ObjLookAtObj(Gvar_130,GetHostPlayer())
-	if not DoesHaveObject(GetHostPlayer(),Gvar_127) then 
+	if not (DoesHaveObject(GetHostPlayer(),Gvar_127)) then 
 		goto l214
 	end
 	var_0 = GetWaypointX(Gvar_191)
@@ -261,7 +261,7 @@ function FarmerStart()
 	StartDialogWithCaller("SwordsmanHurt","War05A.scr:FarmerIdle")
 	goto l290
 	::l262::
-	if not DoesHaveObject(GetHostPlayer(),Gvar_127) then 
+	if not (DoesHaveObject(GetHostPlayer(),Gvar_127)) then 
 		goto l282
 	end
 	Gvar_70 = Gvar_7
@@ -280,27 +280,27 @@ function FarmerEnd()
 	var_3 = 0
 	var_0 = DialogGetResult(Gvar_130)
 	var_4 = Gvar_70
-	if var_4 == Gvar_4 then 
+	if (var_4 == Gvar_4) then 
 		goto l96
 	end
-	if var_4 == Gvar_5 then 
+	if (var_4 == Gvar_5) then 
 		goto l186
 	end
-	if var_4 == Gvar_6 then 
+	if (var_4 == Gvar_6) then 
 		goto l276
 	end
-	if var_4 == Gvar_7 then 
+	if (var_4 == Gvar_7) then 
 		goto l278
 	end
-	if var_4 == Gvar_8 then 
+	if (var_4 == Gvar_8) then 
 		goto l328
 	end
-	if var_4 == Gvar_9 then 
+	if (var_4 == Gvar_9) then 
 		goto l330
 	end
 	goto l332
 	::l96::
-	if not var_0 == var_1 then 
+	if not (var_0 == var_1) then 
 		goto l139
 	end
 	Gvar_70 = Gvar_6
@@ -310,7 +310,7 @@ function FarmerEnd()
 	goto l332
 	goto l186
 	::l139::
-	if not var_0 == var_2 then 
+	if not (var_0 == var_2) then 
 		goto l170
 	end
 	SetupDialog(Gvar_130,"YESNO",16,17)
@@ -318,12 +318,12 @@ function FarmerEnd()
 	goto l332
 	goto l186
 	::l170::
-	if not Gvar_130 == var_3 then 
+	if not (Gvar_130 == var_3) then 
 		goto l186
 	end
 	Gvar_70 = Gvar_4
 	::l186::
-	if not var_0 == var_1 then 
+	if not (var_0 == var_1) then 
 		goto l229
 	end
 	Gvar_70 = Gvar_6
@@ -333,7 +333,7 @@ function FarmerEnd()
 	goto l332
 	goto l276
 	::l229::
-	if not var_0 == var_2 then 
+	if not (var_0 == var_2) then 
 		goto l260
 	end
 	SetupDialog(Gvar_130,"NORMAL",16,17)
@@ -341,7 +341,7 @@ function FarmerEnd()
 	goto l332
 	goto l276
 	::l260::
-	if not Gvar_130 == var_3 then 
+	if not (Gvar_130 == var_3) then 
 		goto l276
 	end
 	Gvar_70 = Gvar_4
@@ -377,10 +377,10 @@ function HoundEnd()
 end
 function FarmerWifeStart()
 	var_0 = Gvar_71
-	if var_0 == Gvar_10 then 
+	if (var_0 == Gvar_10) then 
 		goto l27
 	end
-	if var_0 == Gvar_11 then 
+	if (var_0 == Gvar_11) then 
 		goto l42
 	end
 	goto l57
@@ -397,10 +397,10 @@ function FarmerWifeStart()
 end
 function FarmerWifeEnd()
 	var_0 = Gvar_71
-	if var_0 == Gvar_10 then 
+	if (var_0 == Gvar_10) then 
 		goto l27
 	end
-	if var_0 == Gvar_11 then 
+	if (var_0 == Gvar_11) then 
 		goto l45
 	end
 	goto l47
@@ -416,16 +416,16 @@ function FarmerWifeEnd()
 end
 function IngridStart()
 	var_2 = Gvar_76
-	if var_2 == Gvar_28 then 
+	if (var_2 == Gvar_28) then 
 		goto l45
 	end
-	if var_2 == Gvar_29 then 
+	if (var_2 == Gvar_29) then 
 		goto l53
 	end
-	if var_2 == Gvar_30 then 
+	if (var_2 == Gvar_30) then 
 		goto l132
 	end
-	if var_2 == Gvar_31 then 
+	if (var_2 == Gvar_31) then 
 		goto l140
 	end
 	goto l148
@@ -433,7 +433,7 @@ function IngridStart()
 	StartDialogWithCaller("SwordsmanHurt","War05A.scr:IngridGreeting")
 	goto l148
 	::l53::
-	if not Gvar_84 == 1 then 
+	if not (Gvar_84 == 1) then 
 		goto l124
 	end
 	var_0 = GetWaypointX(Gvar_204)
@@ -459,16 +459,16 @@ function IngridStart()
 end
 function IngridEnd()
 	var_0 = Gvar_76
-	if var_0 == Gvar_28 then 
+	if (var_0 == Gvar_28) then 
 		goto l45
 	end
-	if var_0 == Gvar_29 then 
+	if (var_0 == Gvar_29) then 
 		goto l72
 	end
-	if var_0 == Gvar_30 then 
+	if (var_0 == Gvar_30) then 
 		goto l74
 	end
-	if var_0 == Gvar_31 then 
+	if (var_0 == Gvar_31) then 
 		goto l83
 	end
 	goto l85
@@ -489,10 +489,10 @@ function IngridEnd()
 end
 function CaptainStart()
 	var_2 = Gvar_77
-	if var_2 == Gvar_32 then 
+	if (var_2 == Gvar_32) then 
 		goto l27
 	end
-	if var_2 == Gvar_33 then 
+	if (var_2 == Gvar_33) then 
 		goto l35
 	end
 	goto l43
@@ -507,10 +507,10 @@ function CaptainStart()
 end
 function CaptainEnd()
 	var_0 = Gvar_77
-	if var_0 == Gvar_32 then 
+	if (var_0 == Gvar_32) then 
 		goto l27
 	end
-	if var_0 == Gvar_33 then 
+	if (var_0 == Gvar_33) then 
 		goto l48
 	end
 	goto l50
@@ -527,21 +527,21 @@ function CaptainEnd()
 end
 function MaidenStart()
 	var_2 = Gvar_75
-	if var_2 == Gvar_24 then 
+	if (var_2 == Gvar_24) then 
 		goto l45
 	end
-	if var_2 == Gvar_25 then 
+	if (var_2 == Gvar_25) then 
 		goto l90
 	end
-	if var_2 == Gvar_26 then 
+	if (var_2 == Gvar_26) then 
 		goto l153
 	end
-	if var_2 == Gvar_27 then 
+	if (var_2 == Gvar_27) then 
 		goto l161
 	end
 	goto l169
 	::l45::
-	if not DoesHaveObject(GetHostPlayer(),Gvar_129) then 
+	if not (DoesHaveObject(GetHostPlayer(),Gvar_129)) then 
 		goto l82
 	end
 	Gvar_75 = Gvar_26
@@ -553,7 +553,7 @@ function MaidenStart()
 	StartDialogWithCaller("SwordsmanHurt","War05A.scr:MaidenGreeting")
 	goto l169
 	::l90::
-	if not DoesHaveObject(GetHostPlayer(),Gvar_129) then 
+	if not (DoesHaveObject(GetHostPlayer(),Gvar_129)) then 
 		goto l145
 	end
 	var_0 = GetWaypointX(Gvar_209)
@@ -582,21 +582,21 @@ function MaidenEnd()
 	var_3 = 0
 	var_0 = DialogGetResult(Gvar_128)
 	var_4 = Gvar_75
-	if var_4 == Gvar_24 then 
+	if (var_4 == Gvar_24) then 
 		goto l78
 	end
-	if var_4 == Gvar_25 then 
+	if (var_4 == Gvar_25) then 
 		goto l174
 	end
-	if var_4 == Gvar_26 then 
+	if (var_4 == Gvar_26) then 
 		goto l187
 	end
-	if var_4 == Gvar_27 then 
+	if (var_4 == Gvar_27) then 
 		goto l237
 	end
 	goto l250
 	::l78::
-	if not var_0 == 1 then 
+	if not (var_0 == 1) then 
 		goto l118
 	end
 	Gvar_75 = Gvar_25
@@ -605,14 +605,14 @@ function MaidenEnd()
 	PrintToAll("Con01a:NewJournalEntry")
 	goto l250
 	::l118::
-	if not var_0 == 2 then 
+	if not (var_0 == 2) then 
 		goto l146
 	end
 	Gvar_75 = Gvar_24
 	SetupDialog(Gvar_128,"YESNO",26,27)
 	goto l250
 	::l146::
-	if not var_0 == 0 then 
+	if not (var_0 == 0) then 
 		goto l174
 	end
 	Gvar_75 = Gvar_24
@@ -723,16 +723,16 @@ function EndCurse5()
 end
 function FrogStart()
 	var_0 = Gvar_73
-	if var_0 == Gvar_20 then 
+	if (var_0 == Gvar_20) then 
 		goto l45
 	end
-	if var_0 == Gvar_21 then 
+	if (var_0 == Gvar_21) then 
 		goto l95
 	end
-	if var_0 == Gvar_22 then 
+	if (var_0 == Gvar_22) then 
 		goto l110
 	end
-	if var_0 == Gvar_23 then 
+	if (var_0 == Gvar_23) then 
 		goto l125
 	end
 	goto l140
@@ -763,16 +763,16 @@ function FrogStart()
 end
 function FrogEnd()
 	var_0 = Gvar_73
-	if var_0 == Gvar_20 then 
+	if (var_0 == Gvar_20) then 
 		goto l45
 	end
-	if var_0 == Gvar_21 then 
+	if (var_0 == Gvar_21) then 
 		goto l54
 	end
-	if var_0 == Gvar_22 then 
+	if (var_0 == Gvar_22) then 
 		goto l56
 	end
-	if var_0 == Gvar_23 then 
+	if (var_0 == Gvar_23) then 
 		goto l65
 	end
 	goto l67
@@ -862,22 +862,22 @@ function Villager5End()
 end
 function SadVillagerStart()
 	var_2 = Gvar_74
-	if var_2 == Gvar_14 then 
+	if (var_2 == Gvar_14) then 
 		goto l63
 	end
-	if var_2 == Gvar_15 then 
+	if (var_2 == Gvar_15) then 
 		goto l83
 	end
-	if var_2 == Gvar_16 then 
+	if (var_2 == Gvar_16) then 
 		goto l173
 	end
-	if var_2 == Gvar_17 then 
+	if (var_2 == Gvar_17) then 
 		goto l181
 	end
-	if var_2 == Gvar_18 then 
+	if (var_2 == Gvar_18) then 
 		goto l189
 	end
-	if var_2 == Gvar_19 then 
+	if (var_2 == Gvar_19) then 
 		goto l197
 	end
 	goto l205
@@ -889,7 +889,7 @@ function SadVillagerStart()
 	::l83::
 	MonsterIdle(Gvar_133)
 	ObjLookAtObj(Gvar_133,GetHostPlayer())
-	if not Gvar_86 == 1 then 
+	if not (Gvar_86 == 1) then 
 		goto l165
 	end
 	var_0 = GetWaypointX(Gvar_206)
@@ -926,27 +926,28 @@ function SadVillagerEnd()
 	var_3 = 0
 	var_0 = DialogGetResult(Gvar_133)
 	var_4 = Gvar_74
-	if var_4 == Gvar_14 then 
+	if (var_4 == Gvar_14) then 
 		goto l96
 	end
-	if var_4 == Gvar_15 then 
+	if (var_4 == Gvar_15) then 
 		goto l192
 	end
-	if var_4 == Gvar_16 then 
+	if (var_4 == Gvar_16) then 
 		goto l205
 	end
-	if var_4 == Gvar_17 then 
+	if (var_4 == Gvar_17) then 
 		goto l263
 	end
-	if var_4 == Gvar_18 then 
+	if (var_4 == Gvar_18) then 
 		goto l276
 	end
-	if var_4 == Gvar_19 then 
+	if (var_4 == Gvar_19) then 
 		goto l323
 	end
 	goto l330
 	::l96::
-	if not var_0 = 1 then 
+	var_0 = 1
+	if not (var_0) then 
 		goto l136
 	end
 	Gvar_74 = Gvar_15
@@ -955,14 +956,16 @@ function SadVillagerEnd()
 	PrintToAll("Con01a:NewJournalEntry")
 	goto l330
 	::l136::
-	if not var_0 = 2 then 
+	var_0 = 2
+	if not (var_0) then 
 		goto l164
 	end
 	Gvar_74 = Gvar_14
 	SetupDialog(Gvar_133,"YESNO",48,49)
 	goto l330
 	::l164::
-	if not var_0 = 0 then 
+	var_0 = 0
+	if not (var_0) then 
 		goto l192
 	end
 	Gvar_74 = Gvar_14
@@ -1076,7 +1079,7 @@ function PickUpObjects()
 	if true then return end
 end
 function StartSwordsmanTrigger()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l17
 	end
 	DisableObject(Trigger)
@@ -1169,7 +1172,7 @@ function MapEntry()
 	PlayMusic(23,100)
 	ObjFreeze(GetHostPlayer(),false)
 	LetterBoxOff()
-	if not JournalSetQuest("War05B:ChicksSaved") == 1 then 
+	if not (JournalSetQuest("War05B:ChicksSaved") == 1) then 
 		goto l34
 	end
 	DeleteObject(Gvar_93)
@@ -1261,7 +1264,7 @@ function Ingrid2()
 	if true then return end
 end
 function Ingrid3()
-	if not ObjIsCaller(Gvar_92) then 
+	if not (ObjIsCaller(Gvar_92)) then 
 		goto l71
 	end
 	DisableObject(Trigger)
@@ -1498,7 +1501,7 @@ function MapInitialize()
 	if true then return end
 end
 function KeepOut()
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer())) then 
 		goto l14
 	end
 	MonsterGotoHome(Caller)
@@ -1506,7 +1509,7 @@ function KeepOut()
 	if true then return end
 end
 function FrogReturned()
-	if not ObjIsCaller(Gvar_134) then 
+	if not (ObjIsCaller(Gvar_134)) then 
 		goto l74
 	end
 	var_0 = GetWaypointX(Gvar_194)
@@ -1576,7 +1579,7 @@ function OgreAttackStart()
 	if true then return end
 end
 function DeadGuyArrive()
-	if not ObjIsCaller(Gvar_55) then 
+	if not (ObjIsCaller(Gvar_55)) then 
 		goto l81
 	end
 	DisableObject(Trigger)
@@ -1609,7 +1612,7 @@ function DeadGuyDie()
 	if true then return end
 end
 function LunchOgreReport()
-	if not GetObjHealth(Gvar_55) > 0 then 
+	if not (GetObjHealth(Gvar_55) > 0) then 
 		goto l18
 	end
 	MonsterGoFight(Trigger,Gvar_55)
@@ -1617,7 +1620,7 @@ function LunchOgreReport()
 	if true then return end
 end
 function LunchOgre1Trigger()
-	if not ObjIsCaller(Gvar_48) then 
+	if not (ObjIsCaller(Gvar_48)) then 
 		goto l25
 	end
 	DisableObject(Trigger)
@@ -1627,7 +1630,7 @@ function LunchOgre1Trigger()
 	if true then return end
 end
 function LunchOgre2Trigger()
-	if not ObjIsCaller(Gvar_49) then 
+	if not (ObjIsCaller(Gvar_49)) then 
 		goto l25
 	end
 	DisableObject(Trigger)
@@ -1656,10 +1659,10 @@ function UnfreezeAll()
 	if true then return end
 end
 function GoAway()
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer())) then 
 		goto l24
 	end
-	if not GetObjHealth(Caller) > 0 then 
+	if not (GetObjHealth(Caller) > 0) then 
 		goto l24
 	end
 	MonsterGotoHome(Caller)
@@ -1679,16 +1682,16 @@ function KillWoundedRefugee2()
 end
 function WoundedRefugeeStart()
 	var_2 = Gvar_234
-	if var_2 == Gvar_230 then 
+	if (var_2 == Gvar_230) then 
 		goto l45
 	end
-	if var_2 == Gvar_231 then 
+	if (var_2 == Gvar_231) then 
 		goto l53
 	end
-	if var_2 == Gvar_232 then 
+	if (var_2 == Gvar_232) then 
 		goto l136
 	end
-	if var_2 == Gvar_233 then 
+	if (var_2 == Gvar_233) then 
 		goto l151
 	end
 	goto l159
@@ -1696,7 +1699,7 @@ function WoundedRefugeeStart()
 	StartDialogWithCaller("SwordsmanHurt","War05A:WoundedRefugeeGreeting")
 	goto l159
 	::l53::
-	if not DoesHaveObject(GetHostPlayer(),Gvar_44) then 
+	if not (DoesHaveObject(GetHostPlayer(),Gvar_44)) then 
 		goto l128
 	end
 	var_0 = GetWaypointX(Gvar_34)
@@ -1724,16 +1727,16 @@ function WoundedRefugeeStart()
 end
 function WoundedRefugeeEnd()
 	var_0 = Gvar_234
-	if var_0 == Gvar_230 then 
+	if (var_0 == Gvar_230) then 
 		goto l45
 	end
-	if var_0 == Gvar_231 then 
+	if (var_0 == Gvar_231) then 
 		goto l54
 	end
-	if var_0 == Gvar_232 then 
+	if (var_0 == Gvar_232) then 
 		goto l56
 	end
-	if var_0 == Gvar_233 then 
+	if (var_0 == Gvar_233) then 
 		goto l73
 	end
 	goto l75

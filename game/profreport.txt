@@ -1,151 +1,154 @@
 ###############################################################################################################
-#####  ProFi, a lua profiler. This profile was generated on: 07/05/15 10:06:56
+#####  ProFi, a lua profiler. This profile was generated on: 07/15/15 19:29:36
 #####  ProFi is created by Luke Perkin 2012 under the MIT Licence, www.locofilm.co.uk
 #####  Version 1.3. Get the most recent version at this gist: https://gist.github.com/2838755
 ###############################################################################################################
 
-| TOTAL TIME = 0.429000
+| TOTAL TIME = 0.807000
 | FILE                                              : FUNCTION                                : LINE                : TIME        : RELATIVE    : CALLED      : MEMORY      |
-| main.lua                                          : update                                  :  205                : 9.555       : 2227.27%    :       5     : -173084.24121094|
-| scene.lua                                         : draw                                    :   16                : 0.364       : 84.85%      :       5     : 72251.483398438|
-| main.lua                                          : draw                                    :  234                : 0.364       : 84.85%      :       5     : 72406.702148438|
-| map.lua                                           : draw                                    :  572                : 0.336       : 78.32%      :       5     : 66388.453125|
-| renderer.lua                                      : addToBatch                              :   28                : 0.225       : 52.45%      :    3130     : 45889.333984375|
-| map.lua                                           : drawObjects                             :  431                : 0.174       : 40.56%      :       5     : 36601.309570313|
-| renderer.lua                                      : rdraw                                   :  101                : 0.141       : 32.87%      :    1330     : 29591.109375|
-| map.lua                                           : drawWalls                               :  448                : 0.091       : 21.21%      :       5     : 17438.893554688|
-| DrawTypes/AnimateDraw.lua                         : draw                                    :   24                : 0.076       : 17.72%      :     590     : 16915.59375 |
-| DrawTypes/StaticDraw.lua                          : draw                                    :   16                : 0.069       : 16.08%      :     575     : 13624.192382813|
-| scene.lua                                         : update                                  :   23                : 0.055       : 12.82%      :       5     : 6433.728515625|
-| renderer.lua                                      : drawWallA                               :  105                : 0.055       : 12.82%      :     955     : 9981.6767578125|
-| physics.lua                                       : update                                  :  249                : 0.042       : 9.79%       :       5     : 5702.017578125|
-| map.lua                                           : drawShadows                             :  297                : 0.040       : 9.32%       :       5     : 8114.34375  |
-| camera.lua                                        : round                                   :   62                : 0.031       : 7.23%       :    6440     : 5191.96875  |
-| renderer.lua                                      : drawObject                              :  101                : 0.029       : 6.76%       :     235     : 5151.421875 |
-| renderer.lua                                      : drawWallB                               :  109                : 0.026       : 6.06%       :     610     : 6207.31640625|
-| door.lua                                          : draw                                    :   18                : 0.022       : 5.13%       :     165     : 4731.6875   |
-| renderer.lua                                      : drawBatch                               :  129                : 0.016       : 3.73%       :      15     : 110.8212890625|
-| player.lua                                        : draw                                    :  431                : 0.014       : 3.26%       :      10     : 1945.30859375|
-| DrawTypes/StaticRandomDraw.lua                    : draw                                    :   16                : 0.012       : 2.80%       :     145     : 3391.1484375|
-| map.lua                                           : update                                  :  616                : 0.010       : 2.33%       :       5     : 103.5810546875|
-| camera.lua                                        : worldToLocal                            :   54                : 0.009       : 2.10%       :    3150     : 2537.125    |
-| Updates/ElevatorUpdate.lua                        : updateObject                            :   17                : 0.009       : 2.10%       :      10     : 60.9609375  |
-| spatialhash.lua                                   : updateObject                            :   51                : 0.008       : 1.86%       :    2240     : 1597.0029296875|
-| renderer.lua                                      : GetClosestWallPoint                     :   13                : 0.007       : 1.63%       :    1565     : 1245.25     |
-| Object.lua                                        : UpdateObjectSpriteId                    :  104                : 0.006       : 1.40%       :     488     : 2271.798828125|
-| renderer.lua                                      : drawObjects                             :  162                : 0.006       : 1.40%       :       5     : 44.78125    |
-| renderer.lua                                      : drawWallsA                              :  166                : 0.006       : 1.40%       :       5     : 46.208984375|
-| map.lua                                           : drawCachedFloor                         :  208                : 0.005       : 1.17%       :       5     : 589.849609375|
-| renderer.lua                                      : drawWallsB                              :  170                : 0.004       : 0.93%       :       5     : 52.90625    |
-| door.lua                                          : update                                  :   27                : 0.003       : 0.70%       :     165     : 402.974609375|
-| player.lua                                        : UpdateObjectSpriteId                    :  153                : 0.003       : 0.70%       :      70     : 288.01171875|
-| Object.lua                                        : fixObjectPosition                       :   81                : 0.002       : 0.47%       :     488     : 454.28125   |
-| camera.lua                                        : pop                                     :   36                : 0.002       : 0.47%       :      15     : 28.8779296875|
-| DrawTypes/ArmorDraw.lua                           : draw                                    :   36                : 0.002       : 0.47%       :      10     : 311.96875   |
-| map.lua                                           : drawLights                              :  522                : 0.002       : 0.47%       :       5     : 106.421875  |
-| DrawTypes/AnimateStateDraw.lua                    : draw                                    :   24                : 0.001       : 0.23%       :      10     : 281.9375    |
-| videobagcache.lua                                 : getObject                               :   20                : 0.001       : 0.23%       :     488     : 454.28125   |
-| spatialhash.lua                                   : getPVS                                  :   74                : 0.001       : 0.23%       :      10     : 171.478515625|
-| videobagcache.lua                                 : getSequence                             :   53                : 0.001       : 0.23%       :      70     : 56.96875    |
-| spatialhash.lua                                   : Iter                                    :   82                : 0.001       : 0.23%       :      10     : 44.9375     |
-| [C]                                               : getY                                    :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| DrawTypes/AnimateStateDraw.lua                    : update                                  :   21                : 0.000       : 0.00%       :       5     : 8.21875     |
-| [C]                                               : clear                                   :   -1                : 0.000       : 0.00%       :      35     : nil         |
-| [C]                                               : ipairs                                  :   -1                : 0.000       : 0.00%       :    2085     : nil         |
-| DrawTypes/ConditionalAnimateDraw.lua              : update                                  :   21                : 0.000       : 0.00%       :       5     : 8.21875     |
-| [C]                                               : getBodyList                             :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| DrawTypes/AnimateDraw.lua                         : update                                  :   20                : 0.000       : 0.00%       :       5     : 8.21875     |
-| [C]                                               : atan2                                   :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| map.lua                                           : constructEdgeShadow                     :  231                : 0.000       : 0.00%       :     755     : nil         |
-| DrawTypes.lua                                     : update                                  :   28                : 0.000       : 0.00%       :       5     : 46.1806640625|
-| [C]                                               : getX                                    :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| [C]                                               : getPosition                             :   -1                : 0.000       : 0.00%       :    2245     : nil         |
-| [C]                                               : floor                                   :   -1                : 0.000       : 0.00%       :     430     : nil         |
-| camera.lua                                        : update                                  :   67                : 0.000       : 0.00%       :       5     : 4.15625     |
-| [C]                                               : getCanvas                               :   -1                : 0.000       : 0.00%       :      15     : nil         |
-| [C]                                               : setLinearVelocity                       :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| renderer.lua                                      : update                                  :  122                : 0.000       : 0.00%       :       5     : 20.7529296875|
-| [C]                                               : pairs                                   :   -1                : 0.000       : 0.00%       :    2291     : nil         |
-| Updates.lua                                       : update                                  :   28                : 0.000       : 0.00%       :       5     : 21.4375     |
-| Updates/ElevatorUpdate.lua                        : update                                  :   13                : 0.000       : 0.00%       :       5     : 8.26171875  |
-| ProFi.lua                                         : start                                   :   67                : 0.000       : 0.00%       :       0     : nil         |
-| [C]                                               : getTime                                 :   -1                : 0.000       : 0.00%       :      42     : nil         |
-| [C]                                               : setBlendMode                            :   -1                : 0.000       : 0.00%       :     380     : nil         |
-| [C]                                               : (for generator)                         :   -1                : 0.000       : 0.00%       :   12431     : nil         |
-| utils.lua                                         : print                                   :  222                : 0.000       : 0.00%       :      55     : 74.8935546875|
-| [C]                                               : getLinearVelocity                       :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| [C]                                               : push                                    :   -1                : 0.000       : 0.00%       :      15     : nil         |
-| [C]                                               : origin                                  :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| [C]                                               : isCreated                               :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| camera.lua                                        : draw                                    :   87                : 0.000       : 0.00%       :       5     : 4.15625     |
-| [C]                                               : scale                                   :   -1                : 0.000       : 0.00%       :      15     : nil         |
-| [C]                                               : rotate                                  :   -1                : 0.000       : 0.00%       :      15     : nil         |
-| [C]                                               : sethook                                 :   -1                : 0.000       : 0.00%       :       1     : nil         |
-| camera.lua                                        : worldaabb                               :   91                : 0.000       : 0.00%       :       5     : 4.15625     |
-| [C]                                               : translate                               :   -1                : 0.000       : 0.00%       :      15     : nil         |
-| [C]                                               : setColor                                :   -1                : 0.000       : 0.00%       :     225     : nil         |
-| [C]                                               : draw                                    :   -1                : 0.000       : 0.00%       :     230     : nil         |
-| camera.lua                                        : push                                    :   25                : 0.000       : 0.00%       :      15     : 72.57421875 |
-| [C]                                               : type                                    :   -1                : 0.000       : 0.00%       :      75     : nil         |
-| [C]                                               : getPoints                               :   -1                : 0.000       : 0.00%       :     755     : nil         |
-| [C]                                               : getShape                                :   -1                : 0.000       : 0.00%       :     755     : nil         |
-| ProFi.lua                                         : stopHooks                               :  238                : 0.000       : 0.00%       :       1     : nil         |
-| [C]                                               : getFixtureList                          :   -1                : 0.000       : 0.00%       :     755     : nil         |
-| [C]                                               : setCanvas                               :   -1                : 0.000       : 0.00%       :      50     : nil         |
-| [C]                                               : getRadius                               :   -1                : 0.000       : 0.00%       :       0     : nil         |
-| [C]                                               : getWorldPoint                           :   -1                : 0.000       : 0.00%       :       0     : nil         |
-| [C]                                               : getPoint                                :   -1                : 0.000       : 0.00%       :       0     : nil         |
-| map.lua                                           : SortObjects                             :   21                : 0.000       : 0.00%       :       0     : nil         |
-| camera.lua                                        : localToWorld                            :   47                : 0.000       : 0.00%       :       5     : 4.15625     |
-| [C]                                               : isDown                                  :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| [C]                                               : insert                                  :   -1                : 0.000       : 0.00%       :      35     : nil         |
-| [C]                                               : sqrt                                    :   -1                : 0.000       : 0.00%       :      10     : nil         |
-| [C]                                               : setTexture                              :   -1                : 0.000       : 0.00%       :      15     : nil         |
-| [C]                                               : getDelta                                :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| ProFi.lua                                         : startHooks                              :  234                : 0.000       : 0.00%       :       0     : nil         |
+| main.lua                                          : draw                                    :  234                : 0.770       : 95.42%      :       5     : 76469.018554688|
+| scene.lua                                         : draw                                    :   16                : 0.769       : 95.29%      :       5     : 76392.420898438|
+| map.lua                                           : draw                                    :  571                : 0.728       : 90.21%      :       5     : 72166.666992188|
+| renderer.lua                                      : addToBatch                              :   93                : 0.502       : 62.21%      :    4785     : 51310.87890625|
+| map.lua                                           : drawObjects                             :  430                : 0.335       : 41.51%      :       5     : 35784.46484375|
+| renderer.lua                                      : rdraw                                   :  278                : 0.298       : 36.93%      :    1785     : 31209.703125|
+| DrawTypes/StaticDraw.lua                          : draw                                    :   16                : 0.199       : 24.66%      :    1090     : 19943.6875  |
+| map.lua                                           : drawWalls                               :  447                : 0.191       : 23.67%      :       5     : 19754.32421875|
+| renderer.lua                                      : drawWallA                               :  282                : 0.137       : 16.98%      :    2110     : 14605.25    |
+| map.lua                                           : drawShadows                             :  296                : 0.129       : 15.99%      :       5     : 11779.840820313|
+| spatialhash.lua                                   : (for generator)                         :  107                : 0.126       : 15.61%      :      10     : 16280.640625|
+| DrawTypes/StaticRandomDraw.lua                    : draw                                    :   16                : 0.077       : 9.54%       :     490     : 8965.5625   |
+| renderer.lua                                      : drawObject                              :  278                : 0.052       : 6.44%       :     305     : 5332.828125 |
+| camera.lua                                        : round                                   :   62                : 0.048       : 5.95%       :    9820     : 3991.5      |
+| door.lua                                          : draw                                    :   18                : 0.046       : 5.70%       :     235     : 4873.732421875|
+| renderer.lua                                      : drawWallB                               :  286                : 0.044       : 5.45%       :     585     : 4051.55859375|
+| map.lua                                           : draw                                    :  272                : 0.036       : 4.46%       :       5     : 1967.3837890625|
+| scene.lua                                         : update                                  :   23                : 0.028       : 3.47%       :       5     : 2194.640625 |
+| DrawTypes/AnimateDraw.lua                         : draw                                    :   24                : 0.023       : 2.85%       :     110     : 2102.4921875|
+| main.lua                                          : update                                  :  205                : 0.022       : 2.73%       :       5     : 1789.53125  |
+| physics.lua                                       : update                                  :  249                : 0.022       : 2.73%       :       5     : 1830.1572265625|
+| camera.lua                                        : worldToLocal                            :   54                : 0.022       : 2.73%       :    4800     : 1950.09375  |
+| renderer.lua                                      : GetClosestWallPoint                     :   48                : 0.019       : 2.35%       :    2695     : 1094.9375   |
+| renderer.lua                                      : drawBatch                               :  313                : 0.016       : 1.98%       :      15     : 55.9775390625|
+| player.lua                                        : draw                                    :  438                : 0.015       : 1.86%       :      10     : 1450.486328125|
+| map.lua                                           : insert                                  :  263                : 0.011       : 1.36%       :    2390     : 971.03125   |
+| DrawTypes/ConditionalAnimateDraw.lua              : draw                                    :   25                : 0.009       : 1.12%       :      85     : 1624.390625 |
+| map.lua                                           : constructEdgeShadow                     :  230                : 0.007       : 0.87%       :    1140     : 463.21875   |
+| spatialhash.lua                                   : getPVS                                  :   74                : 0.007       : 0.87%       :      10     : 727.9248046875|
+| renderer.lua                                      : drawWallsA                              :  352                : 0.006       : 0.74%       :       5     : 23.8447265625|
+| renderer.lua                                      : drawWallsB                              :  356                : 0.005       : 0.62%       :       5     : 26.5        |
+| renderer.lua                                      : drawObjects                             :  348                : 0.005       : 0.62%       :       5     : 22.4375     |
+| spatialhash.lua                                   : updateObject                            :   51                : 0.005       : 0.62%       :    1120     : 459.5029296875|
+| map.lua                                           : drawCachedFloor                         :  207                : 0.004       : 0.50%       :       5     : 297.318359375|
+| camera.lua                                        : push                                    :   25                : 0.003       : 0.37%       :      20     : 42.10546875 |
+| door.lua                                          : UpdateObjectSpriteId                    :    4                : 0.002       : 0.25%       :     235     : 95.5625     |
+| DrawTypes/WeaponDraw.lua                          : draw                                    :   36                : 0.002       : 0.25%       :       5     : 112.1640625 |
+| door.lua                                          : update                                  :   27                : 0.001       : 0.12%       :     165     : 201.880859375|
+| map.lua                                           : drawLights                              :  521                : 0.001       : 0.12%       :       5     : 53.2578125  |
+| map.lua                                           : update                                  :  615                : 0.001       : 0.12%       :       5     : 47.365234375|
+| utils.lua                                         : printReset                              :  226                : 0.001       : 0.12%       :       5     : 27.0029296875|
+| DrawTypes/SlaveDraw.lua                           : draw                                    :   17                : 0.001       : 0.12%       :       5     : 91.578125   |
+| player.lua                                        : update                                  :  314                : 0.001       : 0.12%       :       5     : 32.3251953125|
+| [C]                                               : send                                    :   -1                : 0.000       : 0.00%       :     115     : nil         |
+| [C]                                               : getHeight                               :   -1                : 0.000       : 0.00%       :      10     : nil         |
+| [C]                                               : __index                                 :   -1                : 0.000       : 0.00%       :    4785     : nil         |
+| [C]                                               : getWidth                                :   -1                : 0.000       : 0.00%       :      10     : nil         |
 | [C]                                               : refresh                                 :   -1                : 0.000       : 0.00%       :      15     : nil         |
-| [C]                                               : add                                     :   -1                : 0.000       : 0.00%       :    3130     : nil         |
+| [C]                                               : flush                                   :   -1                : 0.000       : 0.00%       :      15     : nil         |
+| camera.lua                                        : pop                                     :   36                : 0.000       : 0.00%       :      20     : 16.6904296875|
+| [C]                                               : add                                     :   -1                : 0.000       : 0.00%       :    4785     : nil         |
+| [C]                                               : __newindex                              :   -1                : 0.000       : 0.00%       :   77660     : nil         |
+| [C]                                               : setShader                               :   -1                : 0.000       : 0.00%       :      70     : nil         |
+| [C]                                               : pop                                     :   -1                : 0.000       : 0.00%       :      20     : nil         |
+| [C]                                               : setTexture                              :   -1                : 0.000       : 0.00%       :      15     : nil         |
+| ProFi.lua                                         : startHooks                              :  234                : 0.000       : 0.00%       :       0     : nil         |
+| player.lua                                        : UpdateObjectSpriteId                    :  153                : 0.000       : 0.00%       :      70     : 144.416015625|
+| scene.lua                                         : keyreleased                             :   38                : 0.000       : 0.00%       :       1     : 2.0859375   |
+| camera.lua                                        : keyreleased                             :  136                : 0.000       : 0.00%       :       1     : 0.5         |
+| main.lua                                          : anonymous                               :  302                : 0.000       : 0.00%       :       1     : 3.265625    |
 | [string "boot.lua"]                               : anonymous                               :  125                : 0.000       : 0.00%       :       1     : nil         |
 | [C]                                               : poll                                    :   -1                : 0.000       : 0.00%       :       5     : nil         |
 | [C]                                               : step                                    :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| main.lua                                          : anonymous                               :  296                : 0.000       : 0.00%       :       1     : 5.744140625 |
-| [C]                                               : pump                                    :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| camera.lua                                        : keyreleased                             :  136                : 0.000       : 0.00%       :       1     : 0.90625     |
-| [C]                                               : setPixel                                :   -1                : 0.000       : 0.00%       :   14085     : nil         |
-| [C]                                               : pop                                     :   -1                : 0.000       : 0.00%       :      15     : nil         |
-| map.lua                                           : insert                                  :  264                : 0.000       : 0.00%       :       0     : 199.15625   |
-| spatialhash.lua                                   : (for generator)                         :  107                : 0.000       : 0.00%       :      10     : 347.0810546875|
-| utils.lua                                         : printReset                              :  226                : 0.000       : 0.00%       :       5     : 53.21875    |
-| map.lua                                           : draw                                    :  273                : 0.000       : 0.00%       :       5     : 1010.6650390625|
-| [C]                                               : setShader                               :   -1                : 0.000       : 0.00%       :      70     : nil         |
-| player.lua                                        : fixPlayerPosition                       :  154                : 0.000       : 0.00%       :      70     : 56.96875    |
-| [C]                                               : getWidth                                :   -1                : 0.000       : 0.00%       :      10     : nil         |
-| [C]                                               : getHeight                               :   -1                : 0.000       : 0.00%       :      10     : nil         |
-| [C]                                               : send                                    :   -1                : 0.000       : 0.00%       :     155     : nil         |
-| [C]                                               : setVertices                             :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| [C]                                               : applyTorque                             :   -1                : 0.000       : 0.00%       :     165     : nil         |
-| scene.lua                                         : keyreleased                             :   38                : 0.000       : 0.00%       :       1     : 3.7314453125|
+| [string "boot.lua"]                               : anonymous                               :  134                : 0.000       : 0.00%       :       1     : 0.5         |
+| [C]                                               : getDelta                                :   -1                : 0.000       : 0.00%       :       5     : nil         |
+| ProFi.lua                                         : shouldReturn                            :  199                : 0.000       : 0.00%       :       1     : 0.5         |
 | ProFi.lua                                         : stop                                    :   85                : 0.000       : 0.00%       :       1     : nil         |
-| [C]                                               : getWorldPoints                          :   -1                : 0.000       : 0.00%       :     755     : nil         |
-| [C]                                               : print                                   :   -1                : 0.000       : 0.00%       :      63     : nil         |
-| [C]                                               : getType                                 :   -1                : 0.000       : 0.00%       :     755     : nil         |
-| [C]                                               : tostring                                :   -1                : 0.000       : 0.00%       :      10     : nil         |
-| door.lua                                          : UpdateObjectSpriteId                    :    4                : 0.000       : 0.00%       :     165     : 134.15625   |
-| utils.lua                                         : startProfile                            :  198                : 0.000       : 0.00%       :       5     : 9           |
-| [C]                                               : update                                  :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| utils.lua                                         : stopProfile                             :  203                : 0.000       : 0.00%       :       5     : 8.21875     |
-| player.lua                                        : update                                  :  314                : 0.000       : 0.00%       :       5     : 60.783203125|
-| [C]                                               : getAngle                                :   -1                : 0.000       : 0.00%       :     330     : nil         |
-| ProFi.lua                                         : shouldReturn                            :  199                : 0.000       : 0.00%       :       1     : 0.90625     |
-| [C]                                               : getFPS                                  :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| [C]                                               : abs                                     :   -1                : 0.000       : 0.00%       :     165     : nil         |
-| [C]                                               : getStats                                :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| [C]                                               : sleep                                   :   -1                : 0.000       : 0.00%       :       5     : nil         |
-| [C]                                               : flush                                   :   -1                : 0.000       : 0.00%       :      15     : nil         |
-| utils.lua                                         : drawProfiles                            :  207                : 0.000       : 0.00%       :       5     : 32.59375    |
-| [C]                                               : circle                                  :   -1                : 0.000       : 0.00%       :       0     : nil         |
-| map.lua                                           : SortObjects                             :   52                : 0.000       : 0.00%       :       5     : nil         |
-| [C]                                               : polygon                                 :   -1                : 0.000       : 0.00%       :       0     : nil         |
-| [C]                                               : line                                    :   -1                : 0.000       : 0.00%       :       0     : nil         |
+| [C]                                               : abs                                     :   -1                : 0.000       : 0.00%       :     235     : nil         |
+| [C]                                               : pump                                    :   -1                : 0.000       : 0.00%       :       5     : nil         |
 | [C]                                               : present                                 :   -1                : 0.000       : 0.00%       :       5     : nil         |
+| [C]                                               : polygon                                 :   -1                : 0.000       : 0.00%       :     440     : nil         |
+| [C]                                               : circle                                  :   -1                : 0.000       : 0.00%       :     810     : nil         |
+| player.lua                                        : fixPlayerPosition                       :  154                : 0.000       : 0.00%       :      70     : 28.53125    |
+| videobagcache.lua                                 : getSequence                             :   53                : 0.000       : 0.00%       :      70     : 28.53125    |
+| [C]                                               : sleep                                   :   -1                : 0.000       : 0.00%       :       5     : nil         |
+| [C]                                               : line                                    :   -1                : 0.000       : 0.00%       :    1140     : nil         |
+| [C]                                               : getFPS                                  :   -1                : 0.000       : 0.00%       :       5     : nil         |
+| utils.lua                                         : drawProfiles                            :  207                : 0.000       : 0.00%       :       5     : 14.3125     |
+| [C]                                               : print                                   :   -1                : 0.000       : 0.00%       :      55     : nil         |
+| [C]                                               : getStats                                :   -1                : 0.000       : 0.00%       :       5     : nil         |
+| [C]                                               : setVertices                             :   -1                : 0.000       : 0.00%       :       5     : nil         |
+| [C]                                               : getType                                 :   -1                : 0.000       : 0.00%       :    2460     : nil         |
+| [C]                                               : getRadius                               :   -1                : 0.000       : 0.00%       :     810     : nil         |
+| [C]                                               : setFilterData                           :   -1                : 0.000       : 0.00%       :      10     : nil         |
+| Object.lua                                        : UpdateObjectSpriteId                    :  234                : 0.000       : 0.00%       :     205     : 83.375      |
+| [C]                                               : getAngle                                :   -1                : 0.000       : 0.00%       :     400     : nil         |
+| [C]                                               : getFilterData                           :   -1                : 0.000       : 0.00%       :      10     : nil         |
+| utils.lua                                         : stopProfile                             :  203                : 0.000       : 0.00%       :       5     : 4.15625     |
+| Updates/ElevatorUpdate.lua                        : updateObject                            :   17                : 0.000       : 0.00%       :      10     : 25.53515625 |
+| utils.lua                                         : startProfile                            :  198                : 0.000       : 0.00%       :       5     : 4.546875    |
+| [C]                                               : applyTorque                             :   -1                : 0.000       : 0.00%       :     165     : nil         |
+| [C]                                               : setLinearVelocity                       :   -1                : 0.000       : 0.00%       :       5     : nil         |
+| [C]                                               : getY                                    :   -1                : 0.000       : 0.00%       :       5     : nil         |
+| [C]                                               : getLinearVelocity                       :   -1                : 0.000       : 0.00%       :       5     : nil         |
+| [C]                                               : getX                                    :   -1                : 0.000       : 0.00%       :       5     : nil         |
+| [C]                                               : isDown                                  :   -1                : 0.000       : 0.00%       :       5     : nil         |
+| [C]                                               : sqrt                                    :   -1                : 0.000       : 0.00%       :      10     : nil         |
+| camera.lua                                        : localToWorld                            :   47                : 0.000       : 0.00%       :       5     : 2.125       |
+| [C]                                               : update                                  :   -1                : 0.000       : 0.00%       :       5     : nil         |
+| [C]                                               : getPosition                             :   -1                : 0.000       : 0.00%       :    1125     : nil         |
+| [C]                                               : pairs                                   :   -1                : 0.000       : 0.00%       :    1181     : nil         |
+| Updates/ElevatorUpdate.lua                        : update                                  :   13                : 0.000       : 0.00%       :       5     : 4.177734375 |
+| Updates.lua                                       : update                                  :   28                : 0.000       : 0.00%       :       5     : 11.1748046875|
+| [C]                                               : getTime                                 :   -1                : 0.000       : 0.00%       :      42     : nil         |
+| ProFi.lua                                         : start                                   :   67                : 0.000       : 0.00%       :       0     : nil         |
+| [C]                                               : floor                                   :   -1                : 0.000       : 0.00%       :      60     : nil         |
+| renderer.lua                                      : update                                  :  306                : 0.000       : 0.00%       :       5     : 10.5966796875|
+| DrawTypes.lua                                     : update                                  :   28                : 0.000       : 0.00%       :       5     : 23.6572265625|
+| camera.lua                                        : update                                  :   67                : 0.000       : 0.00%       :       5     : 2.125       |
+| [C]                                               : clear                                   :   -1                : 0.000       : 0.00%       :      35     : nil         |
+| DrawTypes/ConditionalAnimateDraw.lua              : update                                  :   21                : 0.000       : 0.00%       :       5     : 4.15625     |
+| DrawTypes/AnimateDraw.lua                         : update                                  :   20                : 0.000       : 0.00%       :       5     : 4.15625     |
+| DrawTypes/AnimateStateDraw.lua                    : update                                  :   21                : 0.000       : 0.00%       :       5     : 4.15625     |
+| [C]                                               : tostring                                :   -1                : 0.000       : 0.00%       :      10     : nil         |
+| [C]                                               : atan2                                   :   -1                : 0.000       : 0.00%       :       5     : nil         |
+| [C]                                               : origin                                  :   -1                : 0.000       : 0.00%       :       5     : nil         |
+| [C]                                               : ipairs                                  :   -1                : 0.000       : 0.00%       :    2170     : nil         |
+| [C]                                               : (for generator)                         :   -1                : 0.000       : 0.00%       :    6957     : nil         |
+| [C]                                               : getBodyList                             :   -1                : 0.000       : 0.00%       :       5     : nil         |
+| [C]                                               : draw                                    :   -1                : 0.000       : 0.00%       :     230     : nil         |
+| [C]                                               : getCanvas                               :   -1                : 0.000       : 0.00%       :      15     : nil         |
+| [C]                                               : setBlendMode                            :   -1                : 0.000       : 0.00%       :     380     : nil         |
+| [C]                                               : getFixtureList                          :   -1                : 0.000       : 0.00%       :    2460     : nil         |
+| ProFi.lua                                         : stopHooks                               :  238                : 0.000       : 0.00%       :       1     : nil         |
+| [C]                                               : getWorldPoint                           :   -1                : 0.000       : 0.00%       :     810     : nil         |
+| [C]                                               : getShape                                :   -1                : 0.000       : 0.00%       :    2460     : nil         |
+| [C]                                               : getPoint                                :   -1                : 0.000       : 0.00%       :     810     : nil         |
+| [C]                                               : getPoints                               :   -1                : 0.000       : 0.00%       :    1650     : nil         |
+| [C]                                               : getWorldPoints                          :   -1                : 0.000       : 0.00%       :    1650     : nil         |
+| [C]                                               : isCreated                               :   -1                : 0.000       : 0.00%       :       5     : nil         |
+| [C]                                               : insert                                  :   -1                : 0.000       : 0.00%       :      20     : nil         |
+| map.lua                                           : SortObjects                             :   21                : 0.000       : 0.00%       :       0     : nil         |
+| [C]                                               : rotate                                  :   -1                : 0.000       : 0.00%       :      20     : nil         |
+| [C]                                               : scale                                   :   -1                : 0.000       : 0.00%       :      20     : nil         |
+| [C]                                               : push                                    :   -1                : 0.000       : 0.00%       :      20     : nil         |
+| camera.lua                                        : draw                                    :   87                : 0.000       : 0.00%       :       5     : 2.125       |
+| [C]                                               : setCanvas                               :   -1                : 0.000       : 0.00%       :      50     : nil         |
+| utils.lua                                         : print                                   :  222                : 0.000       : 0.00%       :      55     : 31.5732421875|
+| [C]                                               : translate                               :   -1                : 0.000       : 0.00%       :      20     : nil         |
+| camera.lua                                        : worldaabb                               :   91                : 0.000       : 0.00%       :       5     : 2.125       |
 | map.lua                                           : SortObjects                             :   32                : 0.000       : 0.00%       :       5     : nil         |
+| [C]                                               : setColor                                :   -1                : 0.000       : 0.00%       :     225     : nil         |
+| map.lua                                           : SortObjects                             :   52                : 0.000       : 0.00%       :       5     : nil         |
+| spatialhash.lua                                   : Iter                                    :   82                : 0.000       : 0.00%       :      10     : 22.515625   |
+| [C]                                               : type                                    :   -1                : 0.000       : 0.00%       :    1180     : nil         |
+| [C]                                               : sethook                                 :   -1                : 0.000       : 0.00%       :       1     : nil         |

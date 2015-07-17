@@ -11,7 +11,7 @@ function GLOBAL()
 end
 function EnableReceptionist()
 	EnableObject(Gvar_5)
-	if not GetObjHealth(Gvar_5) > 0 then 
+	if not (GetObjHealth(Gvar_5) > 0) then 
 		goto l22
 	end
 	SayChat(Gvar_5,"War07B.scr:MainReceptionistTalk01")
@@ -28,10 +28,10 @@ function ClassroomAttacks()
 	if true then return end
 end
 function BirdManAttacks()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l29
 	end
-	if not Gvar_29 == false then 
+	if not (Gvar_29 == false) then 
 		goto l29
 	end
 	SayChat(Gvar_7,"War07B.scr:BirdManTalk01")
@@ -51,7 +51,7 @@ function OpenLabBookcase()
 	if true then return end
 end
 function DestroyLab()
-	if not Gvar_28 == false then 
+	if not (Gvar_28 == false) then 
 		goto l38
 	end
 	SayChat(Gvar_8,"War07B.scr:TempWizardTalk01")
@@ -63,26 +63,26 @@ function DestroyLab()
 	if true then return end
 end
 function EnterClassroom()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l94
 	end
 	DisableObject(Trigger)
-	if not GetObjHealth(Gvar_11) > 0 then 
+	if not (GetObjHealth(Gvar_11) > 0) then 
 		goto l29
 	end
 	ObjFreeze(Gvar_11,true)
 	::l29::
-	if not GetObjHealth(Gvar_12) > 0 then 
+	if not (GetObjHealth(Gvar_12) > 0) then 
 		goto l47
 	end
 	ObjFreeze(Gvar_12,true)
 	::l47::
-	if not GetObjHealth(Gvar_13) > 0 then 
+	if not (GetObjHealth(Gvar_13) > 0) then 
 		goto l65
 	end
 	ObjFreeze(Gvar_13,true)
 	::l65::
-	if not GetObjHealth(Gvar_6) > 0 then 
+	if not (GetObjHealth(Gvar_6) > 0) then 
 		goto l92
 	end
 	ObjFreeze(Gvar_6,true)
@@ -99,17 +99,17 @@ function TeacherStart()
 end
 function TeacherEnd()
 	CancelDialog(Gvar_6)
-	if not GetObjHealth(Gvar_11) > 0 then 
+	if not (GetObjHealth(Gvar_11) > 0) then 
 		goto l23
 	end
 	ObjFreeze(Gvar_11,false)
 	::l23::
-	if not GetObjHealth(Gvar_12) > 0 then 
+	if not (GetObjHealth(Gvar_12) > 0) then 
 		goto l41
 	end
 	ObjFreeze(Gvar_12,false)
 	::l41::
-	if not GetObjHealth(Gvar_13) > 0 then 
+	if not (GetObjHealth(Gvar_13) > 0) then 
 		goto l59
 	end
 	ObjFreeze(Gvar_13,false)

@@ -30,10 +30,10 @@ function CloseBlockTrap02()
 end
 function BlockTrapLoop()
 	var_0 = Gvar_6
-	if var_0 == 1 then 
+	if (var_0 == 1) then 
 		goto l25
 	end
-	if var_0 == 2 then 
+	if (var_0 == 2) then 
 		goto l35
 	end
 	goto l45
@@ -65,10 +65,10 @@ function InitializeBlockTrap()
 end
 function BlockTrapBoom(arg_0)
 	var_1 = arg_0
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l25
 	end
-	if var_1 == 2 then 
+	if (var_1 == 2) then 
 		goto l53
 	end
 	goto l81
@@ -85,10 +85,10 @@ function BlockTrapBoom(arg_0)
 end
 function ResetBlockTrap(arg_0)
 	var_1 = arg_0
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l25
 	end
-	if var_1 == 2 then 
+	if (var_1 == 2) then 
 		goto l39
 	end
 	goto l53
@@ -109,10 +109,10 @@ function PlayerDeath()
 end
 function CaptainDialogStart()
 	var_0 = Gvar_20
-	if var_0 == Gvar_18 then 
+	if (var_0 == Gvar_18) then 
 		goto l27
 	end
-	if var_0 == Gvar_19 then 
+	if (var_0 == Gvar_19) then 
 		goto l35
 	end
 	goto l43
@@ -127,10 +127,10 @@ function CaptainDialogStart()
 end
 function CaptainDialogEnd()
 	var_0 = Gvar_20
-	if var_0 == Gvar_18 then 
+	if (var_0 == Gvar_18) then 
 		goto l27
 	end
-	if var_0 == Gvar_19 then 
+	if (var_0 == Gvar_19) then 
 		goto l48
 	end
 	goto l50

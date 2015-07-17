@@ -107,7 +107,7 @@ function Zombie3Rise()
 end
 function SetpieceZombieDie()
 	Gvar_23 = Gvar_23 + 1
-	if not Gvar_23 >= 3 then 
+	if not (Gvar_23 >= 3) then 
 		goto l80
 	end
 	SetDialogPortrait(Gvar_18,"WarriorPic")
@@ -144,7 +144,7 @@ function InitializeGuardianSetpiece()
 	if true then return end
 end
 function StartGuardianSetpiece()
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_22 == 0 then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_22 == 0) then 
 		goto l63
 	end
 	Gvar_22 = true
@@ -289,7 +289,7 @@ function MapInitialize()
 	if true then return end
 end
 function NoEnemys()
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer())) then 
 		goto l14
 	end
 	MonsterGotoHome(Caller)
@@ -297,7 +297,7 @@ function NoEnemys()
 	if true then return end
 end
 function MonstersGoHome()
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer())) then 
 		goto l21
 	end
 	MonsterSetAggressiveness(Caller,0.16)
@@ -318,23 +318,23 @@ function OwnTownspeople()
 	if true then return end
 end
 function fireKnightsRecognize()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l94
 	end
 	Gvar_47 = RandomInteger(1,3)
-	if not Gvar_47 == 1 then 
+	if not (Gvar_47 == 1) then 
 		goto l42
 	end
 	SetDialogPortrait(Trigger,"WarriorPic")
 	SetupDialog(Trigger,"NORMAL",34,35)
 	::l42::
-	if not Gvar_47 == 2 then 
+	if not (Gvar_47 == 2) then 
 		goto l68
 	end
 	SetDialogPortrait(Trigger,"Warrior2Pic")
 	SetupDialog(Trigger,"NORMAL",36,37)
 	::l68::
-	if not Gvar_47 == 3 then 
+	if not (Gvar_47 == 3) then 
 		goto l94
 	end
 	SetDialogPortrait(Trigger,"Warrior3Pic")
@@ -391,10 +391,10 @@ function fireKnightsTalk3End()
 	if true then return end
 end
 function fireKnightsStayTalkInit()
-	if not ObjIsCaller(Gvar_18) or ObjIsCaller(Gvar_19) or ObjIsCaller(Gvar_39) or ObjIsCaller(Gvar_40) or ObjIsCaller(Gvar_41) then 
+	if not (ObjIsCaller(Gvar_18) or ObjIsCaller(Gvar_19) or ObjIsCaller(Gvar_39) or ObjIsCaller(Gvar_40) or ObjIsCaller(Gvar_41)) then 
 		goto l149
 	end
-	if not ObjCanInteractWith(Caller,GetHostPlayer()) then 
+	if not (ObjCanInteractWith(Caller,GetHostPlayer())) then 
 		goto l135
 	end
 	MonsterIdle(Caller)
@@ -402,13 +402,13 @@ function fireKnightsStayTalkInit()
 	MonsterGuardArea(Caller,GetObjX(Caller),GetObjY(Caller),GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()),150)
 	MonsterSetAggressiveness(Caller,0.5)
 	MonsterGoRoam(Caller)
-	if not Gvar_48 then 
+	if not (Gvar_48) then 
 		goto l133
 	end
 	Gvar_48 = false
 	Gvar_46 = Caller
 	SetupDialog(Caller,"NORMAL",41,42)
-	if not HostPlayerIsTalking() == 0 and HostPlayerIsTrading() == 0 then 
+	if not (HostPlayerIsTalking() == 0 and HostPlayerIsTrading() == 0) then 
 		goto l133
 	end
 	ForceDialog(Caller,GetHostPlayer())
@@ -434,23 +434,23 @@ function fireKnightsStayTalkEnd()
 	if true then return end
 end
 function townsMenRecognize()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l94
 	end
 	Gvar_47 = RandomInteger(1,3)
-	if not Gvar_47 == 1 then 
+	if not (Gvar_47 == 1) then 
 		goto l42
 	end
 	SetDialogPortrait(Trigger,"Townsman1Pic")
 	SetupDialog(Trigger,"NORMAL",44,45)
 	::l42::
-	if not Gvar_47 == 2 then 
+	if not (Gvar_47 == 2) then 
 		goto l68
 	end
 	SetDialogPortrait(Trigger,"Townsman2Pic")
 	SetupDialog(Trigger,"NORMAL",46,47)
 	::l68::
-	if not Gvar_47 == 3 then 
+	if not (Gvar_47 == 3) then 
 		goto l94
 	end
 	SetDialogPortrait(Trigger,"Townsman3Pic")
@@ -492,23 +492,23 @@ function townsmenTalk3End()
 	if true then return end
 end
 function townsWomenRecognize()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l94
 	end
 	Gvar_47 = RandomInteger(1,3)
-	if not Gvar_47 == 1 then 
+	if not (Gvar_47 == 1) then 
 		goto l42
 	end
 	SetDialogPortrait(Trigger,"MaidenPic")
 	SetupDialog(Trigger,"NORMAL",51,52)
 	::l42::
-	if not Gvar_47 == 2 then 
+	if not (Gvar_47 == 2) then 
 		goto l68
 	end
 	SetDialogPortrait(Trigger,"MaidenPic2")
 	SetupDialog(Trigger,"NORMAL",53,54)
 	::l68::
-	if not Gvar_47 == 3 then 
+	if not (Gvar_47 == 3) then 
 		goto l94
 	end
 	SetDialogPortrait(Trigger,"MaidenPic3")
@@ -550,7 +550,7 @@ function townsWomenTalk3End()
 	if true then return end
 end
 function leavingDunMir()
-	if not ObjIsCaller(Gvar_49) or ObjIsCaller(Gvar_50) or ObjIsCaller(Gvar_51) or ObjIsCaller(Gvar_52) or ObjIsCaller(Gvar_53) or ObjIsCaller(Gvar_54) or ObjIsCaller(Gvar_55) or ObjIsCaller(Gvar_56) or ObjIsCaller(Gvar_57) or ObjIsCaller(Gvar_58) or ObjIsCaller(Gvar_59) or ObjIsCaller(Gvar_60) then 
+	if not (ObjIsCaller(Gvar_49) or ObjIsCaller(Gvar_50) or ObjIsCaller(Gvar_51) or ObjIsCaller(Gvar_52) or ObjIsCaller(Gvar_53) or ObjIsCaller(Gvar_54) or ObjIsCaller(Gvar_55) or ObjIsCaller(Gvar_56) or ObjIsCaller(Gvar_57) or ObjIsCaller(Gvar_58) or ObjIsCaller(Gvar_59) or ObjIsCaller(Gvar_60)) then 
 		goto l93
 	end
 	TeleportObj(Caller,GetWaypointX(Gvar_61),GetWaypointY(Gvar_61))

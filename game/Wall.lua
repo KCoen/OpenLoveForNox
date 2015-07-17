@@ -77,6 +77,7 @@ function WallFromMapWall(mwall)
 	wall.z = 40
 	wall.window = mwall.Window
 	wall.destructable = mwall.Destructable
+	wall.bottomClip = 0
 	
 
 	local facing = mwall.Facing
@@ -90,11 +91,20 @@ function WallFromMapWall(mwall)
 	end
 	
 	local wri
-	if(mwall.Destructable) then
-		wri = thingWall.RenderBreakable[facing+1][actualVari+1]
+	if(mwall.Window) then
+		if(mwall.Facing == WallFacing["NORTH"]) then
+			wri = thingWall.RenderNormal[12][actualVari+1]
+		elseif (mwall.Facing == WallFacing["WEST"]) then
+			wri = thingWall.RenderNormal[13][actualVari+1]
+		end
 	else
-		wri = thingWall.RenderNormal[facing+1][actualVari+1]
+		if(mwall.Destructable) then
+			wri = thingWall.RenderBreakable[facing+1][actualVari+1]
+		else
+			wri = thingWall.RenderNormal[facing+1][actualVari+1]
+		end
 	end
+	
 	if(wri) then
 		wall.spriteId = wri.SpriteIndex
 	else

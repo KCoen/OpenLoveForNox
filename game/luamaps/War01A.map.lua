@@ -37,6 +37,7 @@ function GLOBAL()
 	Gvar_133 = Gvar_126
 	Gvar_134 = 0
 	Gvar_135 = false
+
 	if true then return end
 end
 function GHStart6()
@@ -86,10 +87,10 @@ end
 function BatGroup1Die()
 	Gvar_23 = Gvar_23 + 1
 	var_0 = Gvar_23
-	if var_0 == 1 then 
+	if (var_0 == 1) then 
 		goto l31
 	end
-	if var_0 == 2 then 
+	if (var_0 == 2) then 
 		goto l47
 	end
 	goto l55
@@ -106,10 +107,10 @@ end
 function BatGroup2Die()
 	Gvar_24 = Gvar_24 + 1
 	var_0 = Gvar_24
-	if var_0 == 1 then 
+	if (var_0 == 1) then 
 		goto l31
 	end
-	if var_0 == 2 then 
+	if (var_0 == 2) then 
 		goto l47
 	end
 	goto l55
@@ -124,17 +125,17 @@ function BatGroup2Die()
 	if true then return end
 end
 function batToOrchard()
-	if not ObjIsHostileTo(GetHostPlayer(),Caller) then 
+	if not (ObjIsHostileTo(GetHostPlayer(),Caller)) then 
 		goto l26
 	end
 	MonsterGotoHome(Caller)
 	Gvar_9 = ScriptCaller()
 	WaitFrames(90,26)
 	::l26::
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l44
 	end
-	if not Gvar_8 then 
+	if not (Gvar_8) then 
 		goto l44
 	end
 	MonsterFollowObj(Gvar_17,GetHostPlayer())
@@ -142,7 +143,7 @@ function batToOrchard()
 	if true then return end
 end
 function stopEscorting()
-	if not ObjIsCaller(Gvar_17) then 
+	if not (ObjIsCaller(Gvar_17)) then 
 		goto l33
 	end
 	Gvar_8 = true
@@ -165,13 +166,13 @@ function IdleMaiden2()
 	if true then return end
 end
 function Maiden1See()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l43
 	end
-	if not Gvar_4 == true then 
+	if not (Gvar_4 == true) then 
 		goto l43
 	end
-	if not Gvar_23 < 2 then 
+	if not (Gvar_23 < 2) then 
 		goto l43
 	end
 	SayChat(Gvar_14,"War01A.scr:Maiden1Talk03")
@@ -181,13 +182,13 @@ function Maiden1See()
 	if true then return end
 end
 function Maiden2See()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l43
 	end
-	if not Gvar_4 == true then 
+	if not (Gvar_4 == true) then 
 		goto l43
 	end
-	if not Gvar_24 < 2 then 
+	if not (Gvar_24 < 2) then 
 		goto l43
 	end
 	SayChat(Gvar_15,"War01A.scr:Maiden2Talk02")
@@ -217,10 +218,10 @@ function ResetMaiden()
 	if true then return end
 end
 function Maiden1Contact()
-	if not Gvar_5 then 
+	if not (Gvar_5) then 
 		goto l38
 	end
-	if not ObjIsHostileTo(Gvar_14,Caller) then 
+	if not (ObjIsHostileTo(Gvar_14,Caller)) then 
 		goto l38
 	end
 	MonsterGoRoam(Gvar_14)
@@ -231,10 +232,10 @@ function Maiden1Contact()
 	if true then return end
 end
 function Maiden2Contact()
-	if not Gvar_6 then 
+	if not (Gvar_6) then 
 		goto l38
 	end
-	if not ObjIsHostileTo(Gvar_15,Caller) then 
+	if not (ObjIsHostileTo(Gvar_15,Caller)) then 
 		goto l38
 	end
 	MonsterGoRoam(Gvar_15)
@@ -284,7 +285,7 @@ function ShortDelay()
 end
 function ElevatorExplode()
 	var_0 = Gvar_35
-	if var_0 == 3 then 
+	if (var_0 == 3) then 
 		goto l17
 	end
 	goto l45
@@ -294,7 +295,7 @@ function ElevatorExplode()
 	WaitFrames(30,30)
 	goto l207
 	::l45::
-	if not Gvar_35 == 0 then 
+	if not (Gvar_35 == 0) then 
 		goto l65
 	end
 	ObjFreeze(GetHostPlayer(),true)
@@ -310,12 +311,12 @@ function ElevatorExplode()
 	DisableObject(Gvar_29)
 	DisableObject(Gvar_32)
 	Gvar_35 = Gvar_35 + 1
-	if not Gvar_35 == 1 then 
+	if not (Gvar_35 == 1) then 
 		goto l182
 	end
 	TeleportObj(Gvar_30,4507,4426)
 	::l182::
-	if not Gvar_35 == 2 then 
+	if not (Gvar_35 == 2) then 
 		goto l199
 	end
 	TeleportObj(Gvar_31,4507,4426)
@@ -353,7 +354,7 @@ function TurnOffLights()
 	ToggleObject(Gvar_53)
 	ToggleObject(Gvar_54)
 	ToggleObject(Gvar_55)
-	if not Gvar_84 == true then 
+	if not (Gvar_84 == true) then 
 		goto l159
 	end
 	Gvar_84 = false
@@ -364,10 +365,10 @@ function TurnOffLights()
 	SetupDialog(Gvar_44,"NORMAL",47,48)
 	SetupDialog(Gvar_16,"NORMAL",98,99)
 	SetupDialog(Gvar_45,"NORMAL",53,54)
-	if not JournalSetQuest("EnteredGauntlet") ~= 1 then 
+	if not (JournalSetQuest("EnteredGauntlet") ~= 1) then 
 		goto l157
 	end
-	if not ObjCanInteractWith(Gvar_16,GetHostPlayer()) then 
+	if not (ObjCanInteractWith(Gvar_16,GetHostPlayer())) then 
 		goto l157
 	end
 	WaitFrames(2,87)
@@ -539,22 +540,22 @@ function BingStart1()
 	RemoveAllChat()
 	var_0 = RandomInteger(1,6)
 	var_1 = var_0
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l69
 	end
-	if var_1 == 2 then 
+	if (var_1 == 2) then 
 		goto l77
 	end
-	if var_1 == 3 then 
+	if (var_1 == 3) then 
 		goto l85
 	end
-	if var_1 == 4 then 
+	if (var_1 == 4) then 
 		goto l93
 	end
-	if var_1 == 5 then 
+	if (var_1 == 5) then 
 		goto l101
 	end
-	if var_1 == 6 then 
+	if (var_1 == 6) then 
 		goto l109
 	end
 	goto l117
@@ -614,10 +615,10 @@ end
 function LydiaStart3()
 	var_0 = RandomInteger(1,2)
 	var_1 = var_0
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l35
 	end
-	if var_1 == 2 then 
+	if (var_1 == 2) then 
 		goto l43
 	end
 	goto l51
@@ -641,10 +642,10 @@ function MelStart1()
 	ObjLookAtObj(Gvar_47,GetHostPlayer())
 	Gvar_90 = RandomInteger(1,2)
 	var_0 = Gvar_90
-	if var_0 == 1 then 
+	if (var_0 == 1) then 
 		goto l57
 	end
-	if var_0 == 2 then 
+	if (var_0 == 2) then 
 		goto l65
 	end
 	goto l73
@@ -680,32 +681,32 @@ function EvelynEnd1()
 end
 function QMProd()
 	var_0 = GetDistance(GetObjX(Gvar_17),GetObjY(Gvar_17),GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()))
-	if not var_0 > 300 then 
+	if not (var_0 > 300) then 
 		goto l60
 	end
-	if not Gvar_89 == 1 then 
+	if not (Gvar_89 == 1) then 
 		goto l60
 	end
 	MonsterFollowObj(Gvar_17,GetHostPlayer())
 	Gvar_8 = true
 	Gvar_89 = 2
 	::l60::
-	if not var_0 < 150 then 
+	if not (var_0 < 150) then 
 		goto l113
 	end
-	if not Gvar_89 == 2 then 
+	if not (Gvar_89 == 2) then 
 		goto l113
 	end
-	if not HostPlayerIsTalking() == false and HostPlayerIsTrading() == false then 
+	if not (HostPlayerIsTalking() == false and HostPlayerIsTrading() == false) then 
 		goto l113
 	end
-	if not ObjCanInteractWith(Gvar_17,GetHostPlayer()) then 
+	if not (ObjCanInteractWith(Gvar_17,GetHostPlayer())) then 
 		goto l113
 	end
 	Gvar_89 = 1
 	ForceDialog(Gvar_17,GetHostPlayer())
 	::l113::
-	if not Gvar_26 == false then 
+	if not (Gvar_26 == false) then 
 		goto l128
 	end
 	WaitSeconds(3,69)
@@ -713,7 +714,7 @@ function QMProd()
 	if true then return end
 end
 function QMGearTrigger()
-	if not ObjIsCaller(Gvar_17) then 
+	if not (ObjIsCaller(Gvar_17)) then 
 		goto l36
 	end
 	DisableObject(Trigger)
@@ -728,7 +729,7 @@ function QMStart1()
 	if true then return end
 end
 function QMEnd1()
-	if not Gvar_85 == false then 
+	if not (Gvar_85 == false) then 
 		goto l43
 	end
 	TeleportObj(Gvar_16,1720,3432)
@@ -737,7 +738,7 @@ function QMEnd1()
 	SetupDialog(Gvar_16,"YESNO",88,89)
 	::l43::
 	SetupDialog(Gvar_17,"NORMAL",73,74)
-	if not Gvar_88 == true then 
+	if not (Gvar_88 == true) then 
 		goto l71
 	end
 	JournalUpdateEntry(GetHostPlayer(),"FirstQuest",4)
@@ -805,7 +806,7 @@ end
 function QMEnd6()
 	CancelDialog(Gvar_17)
 	MonsterGuardArea(Gvar_17,2280,3101,GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()),0)
-	if not Gvar_26 == false then 
+	if not (Gvar_26 == false) then 
 		goto l42
 	end
 	MonsterGoto(Gvar_17,2276,3120)
@@ -818,12 +819,12 @@ function QMStart7()
 	if true then return end
 end
 function QMEnd7()
-	if not Gvar_40 then 
+	if not (Gvar_40) then 
 		goto l10
 	end
 	DeleteObject(Gvar_40)
 	::l10::
-	if not Gvar_73 then 
+	if not (Gvar_73) then 
 		goto l20
 	end
 	DeleteObject(Gvar_73)
@@ -849,7 +850,7 @@ function GHStart1()
 	if true then return end
 end
 function GHEnd1()
-	if not DialogGetResult(Gvar_16) == 1 then 
+	if not (DialogGetResult(Gvar_16) == 1) then 
 		goto l25
 	end
 	SetupDialog(Gvar_16,"NORMAL",90,91)
@@ -877,7 +878,7 @@ function GHEnd2()
 	JournalAddEntry(GetHostPlayer(),"OrchardQuest",2)
 	PrintToAll("GeneralPrint:GainedKey")
 	PrintToAll("Con01a:NewJournalEntry")
-	if not Gvar_87 == false then 
+	if not (Gvar_87 == false) then 
 		goto l86
 	end
 	EnableObject(Gvar_71)
@@ -896,7 +897,7 @@ function GHEnd3()
 	ObjFreeze(Gvar_16,false)
 	SetupDialog(Gvar_16,"YESNO",96,97)
 	Gvar_25 = 1
-	if not Gvar_87 == false then 
+	if not (Gvar_87 == false) then 
 		goto l54
 	end
 	EnableObject(Gvar_71)
@@ -922,7 +923,7 @@ function GHStart5()
 	if true then return end
 end
 function GHEnd5()
-	if not DialogGetResult(Gvar_16) == 1 then 
+	if not (DialogGetResult(Gvar_16) == 1) then 
 		goto l25
 	end
 	SetupDialog(Gvar_16,"NORMAL",90,91)
@@ -943,19 +944,19 @@ function GHStart8()
 end
 function GHEnd8()
 	var_0 = Gvar_25
-	if var_0 == 0 then 
+	if (var_0 == 0) then 
 		goto l49
 	end
-	if var_0 == 1 then 
+	if (var_0 == 1) then 
 		goto l56
 	end
-	if var_0 == 2 then 
+	if (var_0 == 2) then 
 		goto l69
 	end
-	if var_0 == 3 then 
+	if (var_0 == 3) then 
 		goto l82
 	end
-	if var_0 == 4 then 
+	if (var_0 == 4) then 
 		goto l95
 	end
 	goto l108
@@ -1024,7 +1025,7 @@ function HorEnd2()
 	if true then return end
 end
 function HorTalkStart()
-	if not Gvar_36 then 
+	if not (Gvar_36) then 
 		goto l19
 	end
 	Gvar_36 = false
@@ -1033,13 +1034,13 @@ function HorTalkStart()
 	if true then return end
 end
 function GHInRoom()
-	if not ObjIsCaller(Gvar_16) then 
+	if not (ObjIsCaller(Gvar_16)) then 
 		goto l77
 	end
 	DisableObject(Trigger)
 	Gvar_87 = true
 	MonsterGuardArea(Gvar_16,GetObjX(Gvar_16),GetObjY(Gvar_16),GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()),0)
-	if not Gvar_86 == true then 
+	if not (Gvar_86 == true) then 
 		goto l66
 	end
 	SetupDialog(Gvar_16,"NORMAL",94,95)
@@ -1050,7 +1051,7 @@ function GHInRoom()
 	if true then return end
 end
 function PlayerInGearRoom()
-	if not ObjCanInteractWith(Gvar_17,GetHostPlayer()) then 
+	if not (ObjCanInteractWith(Gvar_17,GetHostPlayer())) then 
 		goto l32
 	end
 	DisableObjectGroup(Gvar_81)
@@ -1060,7 +1061,7 @@ function PlayerInGearRoom()
 	if true then return end
 end
 function PlayerExitSewers()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l215
 	end
 	DisableObject(Trigger)
@@ -1122,7 +1123,7 @@ function secretSound()
 	if true then return end
 end
 function QMEndTrigger()
-	if not ObjIsCaller(Gvar_17) then 
+	if not (ObjIsCaller(Gvar_17)) then 
 		goto l44
 	end
 	DisableObject(Trigger)
@@ -1181,7 +1182,7 @@ function CaveMusic()
 end
 function TownMusic()
 	DisableObjectGroup(Gvar_21)
-	if not Gvar_118 then 
+	if not (Gvar_118) then 
 		goto l15
 	end
 	EnableObject(Gvar_113)
@@ -1193,12 +1194,12 @@ function runFromPain()
 	MonsterFleeFrom(Trigger,GetHostPlayer(),60)
 	Gvar_94 = Trigger
 	ObjAddHealth(Gvar_94,1000)
-	if not Gvar_37 then 
+	if not (Gvar_37) then 
 		goto l34
 	end
 	WaitFrames(63,130)
 	::l34::
-	if not Trigger == Gvar_17 then 
+	if not (Trigger == Gvar_17) then 
 		goto l49
 	end
 	WaitFrames(63,130)
@@ -1249,10 +1250,10 @@ function CreatureSetup()
 	ObjSetMaster(GetHostPlayer(),Gvar_59)
 	ObjSetMaster(GetHostPlayer(),Gvar_60)
 	ObjSetMaster(GetHostPlayer(),Gvar_39)
-	if not JournalSetQuest("War02A:EnteredGauntlet") == 1 then 
+	if not (JournalSetQuest("War02A:EnteredGauntlet") == 1) then 
 		goto l441
 	end
-	if not Gvar_38 then 
+	if not (Gvar_38) then 
 		goto l441
 	end
 	Gvar_38 = false
@@ -1273,7 +1274,7 @@ function CreatureSetup()
 	SetupDialog(Gvar_45,"NORMAL",51,52)
 	TeleportObj(Gvar_16,2590,3279)
 	MonsterGuardArea(Gvar_16,GetObjX(Gvar_16),GetObjY(Gvar_16),GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()),0)
-	if not JournalSetQuest("PlayerInSewers") ~= 1 then 
+	if not (JournalSetQuest("PlayerInSewers") ~= 1) then 
 		goto l349
 	end
 	MonsterFollowObj(Gvar_17,GetHostPlayer())
@@ -1295,10 +1296,10 @@ function CreatureSetup()
 	TeleportObj(Gvar_41,3829,3524)
 	WaitFrames(1,150)
 	::l441::
-	if not JournalSetQuest("War02A:EnteredGauntlet") == 2 then 
+	if not (JournalSetQuest("War02A:EnteredGauntlet") == 2) then 
 		goto l595
 	end
-	if not Gvar_27 then 
+	if not (Gvar_27) then 
 		goto l595
 	end
 	Gvar_27 = false
@@ -1372,7 +1373,7 @@ function GateGuard2BEnd()
 	if true then return end
 end
 function OpenGearDoor()
-	if not ObjIsCaller(Gvar_16) then 
+	if not (ObjIsCaller(Gvar_16)) then 
 		goto l22
 	end
 	UnlockDoor(Gvar_119)
@@ -1397,16 +1398,16 @@ end
 function CaptainStart2()
 	var_0 = RandomInteger(1,4)
 	var_1 = var_0
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l51
 	end
-	if var_1 == 2 then 
+	if (var_1 == 2) then 
 		goto l59
 	end
-	if var_1 == 3 then 
+	if (var_1 == 3) then 
 		goto l67
 	end
-	if var_1 == 4 then 
+	if (var_1 == 4) then 
 		goto l75
 	end
 	goto l83
@@ -1448,10 +1449,10 @@ function DisableDudes()
 	if true then return end
 end
 function IntroBatAttack()
-	if not Gvar_93 then 
+	if not (Gvar_93) then 
 		goto l29
 	end
-	if not HostPlayerIsTrading() then 
+	if not (HostPlayerIsTrading()) then 
 		goto l23
 	end
 	ObjFreeze(Gvar_40,true)
@@ -1462,7 +1463,7 @@ function IntroBatAttack()
 	if true then return end
 end
 function ResetBat()
-	if not Gvar_93 then 
+	if not (Gvar_93) then 
 		goto l13
 	end
 	ObjFreeze(Gvar_40,false)
@@ -1631,12 +1632,12 @@ function MapInitialize()
 	if true then return end
 end
 function MapEntry()
-	if not JournalSetQuest("War02A:EnteredGauntlet") == 1 then 
+	if not (JournalSetQuest("War02A:EnteredGauntlet") == 1) then 
 		goto l15
 	end
 	PlayMusic(16,100)
 	::l15::
-	if not JournalSetQuest("War02A:EnteredGauntlet") == 2 then 
+	if not (JournalSetQuest("War02A:EnteredGauntlet") == 2) then 
 		goto l30
 	end
 	PlayMusic(16,100)
@@ -1645,13 +1646,13 @@ function MapEntry()
 	if true then return end
 end
 function PlayerDeath()
-	if not JournalSetQuest("War02A:EnteredGauntlet") == 1 then 
+	if not (JournalSetQuest("War02A:EnteredGauntlet") == 1) then 
 		goto l15
 	end
 	DeathScreen(2)
 	goto l34
 	::l15::
-	if not JournalSetQuest("War02A:EnteredGauntlet") == 2 then 
+	if not (JournalSetQuest("War02A:EnteredGauntlet") == 2) then 
 		goto l30
 	end
 	DeathScreen(3)
@@ -1724,7 +1725,7 @@ function DisableGuys()
 end
 function WizardReport()
 	var_0 = Gvar_133
-	if var_0 == Gvar_127 then 
+	if (var_0 == Gvar_127) then 
 		goto l18
 	end
 	goto l48
@@ -1750,14 +1751,14 @@ function SwapWizards()
 end
 function WizardInjured()
 	Gvar_134 = Gvar_134 + 1
-	if not Gvar_134 > 1 then 
+	if not (Gvar_134 > 1) then 
 		goto l102
 	end
 	var_0 = Gvar_133
-	if var_0 == Gvar_129 then 
+	if (var_0 == Gvar_129) then 
 		goto l41
 	end
-	if var_0 == Gvar_131 then 
+	if (var_0 == Gvar_131) then 
 		goto l82
 	end
 	goto l102
@@ -1771,7 +1772,7 @@ function WizardInjured()
 	WaitFrames(20,162)
 	goto l102
 	::l82::
-	if not ObjIsCaller(Gvar_140) then 
+	if not (ObjIsCaller(Gvar_140)) then 
 		goto l100
 	end
 	DamageObject(Trigger,0,1000,0)
@@ -1781,10 +1782,10 @@ function WizardInjured()
 	if true then return end
 end
 function StartWizardSetpiece()
-	if not Gvar_135 == 0 and ObjIsCaller(GetHostPlayer()) then 
+	if not (Gvar_135 == 0 and ObjIsCaller(GetHostPlayer())) then 
 		goto l96
 	end
-	if not Gvar_40 then 
+	if not (Gvar_40) then 
 		goto l33
 	end
 	DamageObject(Gvar_40,0,100,0)

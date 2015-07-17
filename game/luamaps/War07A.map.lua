@@ -84,7 +84,7 @@ function CreatureSetup()
 	Gvar_107 = GetObjHealth(Gvar_38)
 	Gvar_106 = 0
 	::l15::
-	if not Gvar_106 < 100 then 
+	if not (Gvar_106 < 100) then 
 		goto l41
 	end
 	Gvar_5[Gvar_106] = 0
@@ -124,7 +124,7 @@ function CreatureSetup()
 	if true then return end
 end
 function PlayerChurchEnter()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l15
 	end
 	Gvar_82 = true
@@ -136,7 +136,7 @@ function PlayerChurchEnter()
 end
 function PlayerChurchExit()
 	Gvar_82 = false
-	if not Gvar_81 == true then 
+	if not (Gvar_81 == true) then 
 		goto l53
 	end
 	Gvar_81 = false
@@ -154,13 +154,13 @@ function PlayerSneakExit()
 	if true then return end
 end
 function DrunkRecognize()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l57
 	end
-	if not Gvar_100 == Gvar_118 then 
+	if not (Gvar_100 == Gvar_118) then 
 		goto l57
 	end
-	if not GetObjHealth(Gvar_31) > 0 then 
+	if not (GetObjHealth(Gvar_31) > 0) then 
 		goto l57
 	end
 	SetupDialog(Gvar_31,"NORMAL",11,12)
@@ -168,13 +168,13 @@ function DrunkRecognize()
 	MonsterFollowObj(Gvar_31,GetHostPlayer())
 	ForceDialog(Gvar_31,GetHostPlayer())
 	::l57::
-	if not ObjIsCaller(Gvar_22) then 
+	if not (ObjIsCaller(Gvar_22)) then 
 		goto l98
 	end
-	if not Gvar_72 == false and Gvar_68 == false then 
+	if not (Gvar_72 == false and Gvar_68 == false) then 
 		goto l98
 	end
-	if not GetObjHealth(Gvar_22) > 0 then 
+	if not (GetObjHealth(Gvar_22) > 0) then 
 		goto l98
 	end
 	MonsterFollowObj(Gvar_22,GetHostPlayer())
@@ -182,7 +182,7 @@ function DrunkRecognize()
 	if true then return end
 end
 function DrunkReport()
-	if not Gvar_93 == true then 
+	if not (Gvar_93 == true) then 
 		goto l21
 	end
 	Gvar_93 = false
@@ -191,27 +191,27 @@ function DrunkReport()
 	if true then return end
 end
 function DrunkAttacks()
-	if not Gvar_100 == Gvar_119 then 
+	if not (Gvar_100 == Gvar_119) then 
 		goto l136
 	end
-	if not GetObjHealth(Gvar_31) > 0 then 
+	if not (GetObjHealth(Gvar_31) > 0) then 
 		goto l136
 	end
 	var_0 = RandomInteger(1,5)
 	var_1 = var_0
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l78
 	end
-	if var_1 == 2 then 
+	if (var_1 == 2) then 
 		goto l87
 	end
-	if var_1 == 3 then 
+	if (var_1 == 3) then 
 		goto l96
 	end
-	if var_1 == 4 then 
+	if (var_1 == 4) then 
 		goto l105
 	end
-	if var_1 == 5 then 
+	if (var_1 == 5) then 
 		goto l114
 	end
 	goto l123
@@ -237,13 +237,13 @@ function DrunkAttacks()
 	if true then return end
 end
 function DrunkInjured()
-	if not Gvar_72 == false then 
+	if not (Gvar_72 == false) then 
 		goto l83
 	end
-	if not GetObjHealth(Gvar_31) > 0 then 
+	if not (GetObjHealth(Gvar_31) > 0) then 
 		goto l81
 	end
-	if not Gvar_74 == false then 
+	if not (Gvar_74 == false) then 
 		goto l42
 	end
 	Gvar_74 = true
@@ -252,7 +252,7 @@ function DrunkInjured()
 	Gvar_100 = Gvar_120
 	MonsterSetAggressiveness(Gvar_22,0.16)
 	MonsterSetAggressiveness(Gvar_31,0.16)
-	if not GetObjHealth(Gvar_22) > 0 then 
+	if not (GetObjHealth(Gvar_22) > 0) then 
 		goto l81
 	end
 	MonsterFollowObj(Gvar_31,Gvar_22)
@@ -271,7 +271,7 @@ function DrunkDied()
 	TeleportObj(Gvar_16,GetWaypointX(Gvar_138),GetWaypointY(Gvar_138))
 	TeleportObj(Gvar_14,GetWaypointX(Gvar_136),GetWaypointY(Gvar_136))
 	CancelDialog(Gvar_22)
-	if not Gvar_102 == Gvar_126 then 
+	if not (Gvar_102 == Gvar_126) then 
 		goto l134
 	end
 	Gvar_102 = Gvar_127
@@ -303,7 +303,7 @@ function DrunkEnd()
 	if true then return end
 end
 function DrunkLoseSight()
-	if not Gvar_100 == Gvar_119 and Gvar_72 == false and Gvar_70 == false then 
+	if not (Gvar_100 == Gvar_119 and Gvar_72 == false and Gvar_70 == false) then 
 		goto l54
 	end
 	MonsterSetAggressiveness(Gvar_31,0.16)
@@ -322,7 +322,7 @@ function PutPeopleInJail()
 	MonsterSetAggressiveness(Gvar_22,0)
 	ObjLookAtObj(Gvar_22,GetHostPlayer())
 	Gvar_72 = true
-	if not GetObjHealth(Gvar_31) > 0 then 
+	if not (GetObjHealth(Gvar_31) > 0) then 
 		goto l73
 	end
 	MonsterSetAggressiveness(Gvar_31,0.16)
@@ -335,27 +335,27 @@ end
 function GetRandomMobYell()
 	Gvar_105 = RandomInteger(1,Gvar_103)
 	var_0 = Gvar_105
-	if var_0 == 1 then 
+	if (var_0 == 1) then 
 		goto l68
 	end
-	if var_0 == 2 then 
+	if (var_0 == 2) then 
 		goto l203
 	end
-	if var_0 == 3 then 
+	if (var_0 == 3) then 
 		goto l338
 	end
-	if var_0 == 4 then 
+	if (var_0 == 4) then 
 		goto l473
 	end
-	if var_0 == 5 then 
+	if (var_0 == 5) then 
 		goto l608
 	end
-	if var_0 == 6 then 
+	if (var_0 == 6) then 
 		goto l743
 	end
 	goto l878
 	::l68::
-	if not Gvar_75 == true and GetObjHealth(Gvar_25) > 0 then 
+	if not (Gvar_75 == true and GetObjHealth(Gvar_25) > 0) then 
 		goto l186
 	end
 	SayChat(Gvar_25,"War07A.scr:MobYell")
@@ -374,14 +374,14 @@ function GetRandomMobYell()
 	Gvar_80 = true
 	goto l201
 	::l186::
-	if not Gvar_80 == false then 
+	if not (Gvar_80 == false) then 
 		goto l201
 	end
 	WaitFrames(1,15)
 	::l201::
 	goto l878
 	::l203::
-	if not Gvar_73 == true and GetObjHealth(Gvar_28) > 0 then 
+	if not (Gvar_73 == true and GetObjHealth(Gvar_28) > 0) then 
 		goto l321
 	end
 	SayChat(Gvar_28,"War07A.scr:MobYell")
@@ -400,14 +400,14 @@ function GetRandomMobYell()
 	Gvar_80 = true
 	goto l336
 	::l321::
-	if not Gvar_80 == false then 
+	if not (Gvar_80 == false) then 
 		goto l336
 	end
 	WaitFrames(1,15)
 	::l336::
 	goto l878
 	::l338::
-	if not Gvar_76 == true and GetObjHealth(Gvar_26) > 0 then 
+	if not (Gvar_76 == true and GetObjHealth(Gvar_26) > 0) then 
 		goto l456
 	end
 	SayChat(Gvar_26,"War07A.scr:MobYell")
@@ -426,14 +426,14 @@ function GetRandomMobYell()
 	Gvar_80 = true
 	goto l471
 	::l456::
-	if not Gvar_80 == false then 
+	if not (Gvar_80 == false) then 
 		goto l471
 	end
 	WaitFrames(1,15)
 	::l471::
 	goto l878
 	::l473::
-	if not Gvar_77 == true and GetObjHealth(Gvar_27) > 0 then 
+	if not (Gvar_77 == true and GetObjHealth(Gvar_27) > 0) then 
 		goto l591
 	end
 	SayChat(Gvar_27,"War07A.scr:MobYell")
@@ -452,14 +452,14 @@ function GetRandomMobYell()
 	Gvar_80 = true
 	goto l606
 	::l591::
-	if not Gvar_80 == false then 
+	if not (Gvar_80 == false) then 
 		goto l606
 	end
 	WaitFrames(1,15)
 	::l606::
 	goto l878
 	::l608::
-	if not Gvar_78 == true and GetObjHealth(Gvar_29) > 0 then 
+	if not (Gvar_78 == true and GetObjHealth(Gvar_29) > 0) then 
 		goto l726
 	end
 	SayChat(Gvar_29,"War07A.scr:MobYell")
@@ -478,14 +478,14 @@ function GetRandomMobYell()
 	Gvar_80 = true
 	goto l741
 	::l726::
-	if not Gvar_80 == false then 
+	if not (Gvar_80 == false) then 
 		goto l741
 	end
 	WaitFrames(1,15)
 	::l741::
 	goto l878
 	::l743::
-	if not Gvar_79 == true and GetObjHealth(Gvar_30) > 0 then 
+	if not (Gvar_79 == true and GetObjHealth(Gvar_30) > 0) then 
 		goto l861
 	end
 	SayChat(Gvar_30,"War07A.scr:MobYell")
@@ -504,7 +504,7 @@ function GetRandomMobYell()
 	Gvar_80 = true
 	goto l876
 	::l861::
-	if not Gvar_80 == false then 
+	if not (Gvar_80 == false) then 
 		goto l876
 	end
 	WaitFrames(1,15)
@@ -518,7 +518,7 @@ function AppleManRecognize()
 	if true then return end
 end
 function PlayerPit()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l11
 	end
 	EnableObject(Gvar_52)
@@ -527,10 +527,10 @@ function PlayerPit()
 end
 function MaxDialogStart()
 	var_0 = Gvar_148
-	if var_0 == Gvar_142 then 
+	if (var_0 == Gvar_142) then 
 		goto l27
 	end
-	if var_0 == Gvar_143 then 
+	if (var_0 == Gvar_143) then 
 		goto l35
 	end
 	goto l43
@@ -551,13 +551,13 @@ function MaxDialogEnd()
 	var_4 = 0
 	var_0 = DialogGetResult(Gvar_21)
 	var_5 = var_0
-	if var_5 == var_4 then 
+	if (var_5 == var_4) then 
 		goto l75
 	end
-	if var_5 == var_3 then 
+	if (var_5 == var_3) then 
 		goto l86
 	end
-	if var_5 == var_2 then 
+	if (var_5 == var_2) then 
 		goto l112
 	end
 	goto l199
@@ -572,7 +572,7 @@ function MaxDialogEnd()
 	goto l199
 	::l112::
 	var_1 = PlayerGetGold(GetHostPlayer())
-	if not var_1 >= 50000 then 
+	if not (var_1 >= 50000) then 
 		goto l173
 	end
 	SetupDialog(Gvar_21,"NORMAL",100,99)
@@ -592,7 +592,7 @@ function MaxDialogEnd()
 	if true then return end
 end
 function PriestGreetingStart()
-	if not Gvar_81 == false then 
+	if not (Gvar_81 == false) then 
 		goto l17
 	end
 	StartDialogWithCaller("HumanMaleEatFood","War07A.scr:PriestTalk01")
@@ -615,30 +615,30 @@ function UndertakerTalkEnd()
 	if true then return end
 end
 function DorianRecognize()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l113
 	end
 	Gvar_83 = true
-	if not Gvar_82 == false then 
+	if not (Gvar_82 == false) then 
 		goto l113
 	end
 	var_0 = Gvar_102
-	if var_0 == Gvar_127 then 
+	if (var_0 == Gvar_127) then 
 		goto l49
 	end
-	if var_0 == Gvar_128 then 
+	if (var_0 == Gvar_128) then 
 		goto l97
 	end
 	goto l113
 	::l49::
 	MonsterFollowObj(Gvar_28,GetHostPlayer())
-	if not Gvar_73 == false then 
+	if not (Gvar_73 == false) then 
 		goto l78
 	end
 	Gvar_103 = Gvar_103 + 1
 	Gvar_73 = true
 	::l78::
-	if not Gvar_103 == 3 then 
+	if not (Gvar_103 == 3) then 
 		goto l95
 	end
 	Gvar_102 = Gvar_128
@@ -653,30 +653,30 @@ function DorianRecognize()
 	if true then return end
 end
 function GrunbarRecognize()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l113
 	end
 	Gvar_85 = true
-	if not Gvar_82 == false then 
+	if not (Gvar_82 == false) then 
 		goto l113
 	end
 	var_0 = Gvar_102
-	if var_0 == Gvar_127 then 
+	if (var_0 == Gvar_127) then 
 		goto l49
 	end
-	if var_0 == Gvar_128 then 
+	if (var_0 == Gvar_128) then 
 		goto l97
 	end
 	goto l113
 	::l49::
 	MonsterFollowObj(Gvar_27,GetHostPlayer())
-	if not Gvar_77 == false then 
+	if not (Gvar_77 == false) then 
 		goto l78
 	end
 	Gvar_103 = Gvar_103 + 1
 	Gvar_77 = true
 	::l78::
-	if not Gvar_103 == 3 then 
+	if not (Gvar_103 == 3) then 
 		goto l95
 	end
 	Gvar_102 = Gvar_128
@@ -691,30 +691,30 @@ function GrunbarRecognize()
 	if true then return end
 end
 function JorganRecognize()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l113
 	end
 	Gvar_86 = true
-	if not Gvar_82 == false then 
+	if not (Gvar_82 == false) then 
 		goto l113
 	end
 	var_0 = Gvar_102
-	if var_0 == Gvar_127 then 
+	if (var_0 == Gvar_127) then 
 		goto l49
 	end
-	if var_0 == Gvar_128 then 
+	if (var_0 == Gvar_128) then 
 		goto l97
 	end
 	goto l113
 	::l49::
 	MonsterFollowObj(Gvar_26,GetHostPlayer())
-	if not Gvar_76 == false then 
+	if not (Gvar_76 == false) then 
 		goto l78
 	end
 	Gvar_103 = Gvar_103 + 1
 	Gvar_76 = true
 	::l78::
-	if not Gvar_103 == 3 then 
+	if not (Gvar_103 == 3) then 
 		goto l95
 	end
 	Gvar_102 = Gvar_128
@@ -729,30 +729,30 @@ function JorganRecognize()
 	if true then return end
 end
 function AlbiRecognize()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l113
 	end
 	Gvar_84 = true
-	if not Gvar_82 == false then 
+	if not (Gvar_82 == false) then 
 		goto l113
 	end
 	var_0 = Gvar_102
-	if var_0 == Gvar_127 then 
+	if (var_0 == Gvar_127) then 
 		goto l49
 	end
-	if var_0 == Gvar_128 then 
+	if (var_0 == Gvar_128) then 
 		goto l97
 	end
 	goto l113
 	::l49::
 	MonsterFollowObj(Gvar_25,GetHostPlayer())
-	if not Gvar_75 == false then 
+	if not (Gvar_75 == false) then 
 		goto l78
 	end
 	Gvar_103 = Gvar_103 + 1
 	Gvar_75 = true
 	::l78::
-	if not Gvar_103 == 3 then 
+	if not (Gvar_103 == 3) then 
 		goto l95
 	end
 	Gvar_102 = Gvar_128
@@ -767,30 +767,30 @@ function AlbiRecognize()
 	if true then return end
 end
 function Civvy3Recognize()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l113
 	end
 	Gvar_87 = true
-	if not Gvar_82 == false then 
+	if not (Gvar_82 == false) then 
 		goto l113
 	end
 	var_0 = Gvar_102
-	if var_0 == Gvar_127 then 
+	if (var_0 == Gvar_127) then 
 		goto l49
 	end
-	if var_0 == Gvar_128 then 
+	if (var_0 == Gvar_128) then 
 		goto l97
 	end
 	goto l113
 	::l49::
 	MonsterFollowObj(Gvar_29,GetHostPlayer())
-	if not Gvar_78 == false then 
+	if not (Gvar_78 == false) then 
 		goto l78
 	end
 	Gvar_103 = Gvar_103 + 1
 	Gvar_78 = true
 	::l78::
-	if not Gvar_103 == 3 then 
+	if not (Gvar_103 == 3) then 
 		goto l95
 	end
 	Gvar_102 = Gvar_128
@@ -805,30 +805,30 @@ function Civvy3Recognize()
 	if true then return end
 end
 function Civvy4Recognize()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l113
 	end
 	Gvar_88 = true
-	if not Gvar_82 == false then 
+	if not (Gvar_82 == false) then 
 		goto l113
 	end
 	var_0 = Gvar_102
-	if var_0 == Gvar_127 then 
+	if (var_0 == Gvar_127) then 
 		goto l49
 	end
-	if var_0 == Gvar_128 then 
+	if (var_0 == Gvar_128) then 
 		goto l97
 	end
 	goto l113
 	::l49::
 	MonsterFollowObj(Gvar_30,GetHostPlayer())
-	if not Gvar_79 == false then 
+	if not (Gvar_79 == false) then 
 		goto l78
 	end
 	Gvar_103 = Gvar_103 + 1
 	Gvar_79 = true
 	::l78::
-	if not Gvar_103 == 3 then 
+	if not (Gvar_103 == 3) then 
 		goto l95
 	end
 	Gvar_102 = Gvar_128
@@ -843,13 +843,13 @@ function Civvy4Recognize()
 	if true then return end
 end
 function AlbiWaiting()
-	if not ObjIsCaller(Gvar_25) then 
+	if not (ObjIsCaller(Gvar_25)) then 
 		goto l76
 	end
-	if not Gvar_102 ~= Gvar_126 or Gvar_94 == 1 then 
+	if not (Gvar_102 ~= Gvar_126 or Gvar_94 == 1) then 
 		goto l76
 	end
-	if not Gvar_82 == true then 
+	if not (Gvar_82 == true) then 
 		goto l76
 	end
 	Gvar_81 = true
@@ -860,13 +860,13 @@ function AlbiWaiting()
 	if true then return end
 end
 function DorianWaiting()
-	if not ObjIsCaller(Gvar_28) then 
+	if not (ObjIsCaller(Gvar_28)) then 
 		goto l76
 	end
-	if not Gvar_102 ~= Gvar_126 or Gvar_95 == 1 then 
+	if not (Gvar_102 ~= Gvar_126 or Gvar_95 == 1) then 
 		goto l76
 	end
-	if not Gvar_82 == true then 
+	if not (Gvar_82 == true) then 
 		goto l76
 	end
 	Gvar_81 = true
@@ -877,13 +877,13 @@ function DorianWaiting()
 	if true then return end
 end
 function GrunbarWaiting()
-	if not ObjIsCaller(Gvar_27) then 
+	if not (ObjIsCaller(Gvar_27)) then 
 		goto l76
 	end
-	if not Gvar_102 ~= Gvar_126 or Gvar_96 == 1 then 
+	if not (Gvar_102 ~= Gvar_126 or Gvar_96 == 1) then 
 		goto l76
 	end
-	if not Gvar_82 == true then 
+	if not (Gvar_82 == true) then 
 		goto l76
 	end
 	Gvar_81 = true
@@ -894,13 +894,13 @@ function GrunbarWaiting()
 	if true then return end
 end
 function JorganWaiting()
-	if not ObjIsCaller(Gvar_26) then 
+	if not (ObjIsCaller(Gvar_26)) then 
 		goto l76
 	end
-	if not Gvar_102 ~= Gvar_126 or Gvar_97 == 1 then 
+	if not (Gvar_102 ~= Gvar_126 or Gvar_97 == 1) then 
 		goto l76
 	end
-	if not Gvar_82 == true then 
+	if not (Gvar_82 == true) then 
 		goto l76
 	end
 	Gvar_81 = true
@@ -911,13 +911,13 @@ function JorganWaiting()
 	if true then return end
 end
 function Civvy3Waiting()
-	if not ObjIsCaller(Gvar_29) then 
+	if not (ObjIsCaller(Gvar_29)) then 
 		goto l76
 	end
-	if not Gvar_102 ~= Gvar_126 or Gvar_98 == 1 then 
+	if not (Gvar_102 ~= Gvar_126 or Gvar_98 == 1) then 
 		goto l76
 	end
-	if not Gvar_82 == true then 
+	if not (Gvar_82 == true) then 
 		goto l76
 	end
 	Gvar_81 = true
@@ -928,13 +928,13 @@ function Civvy3Waiting()
 	if true then return end
 end
 function Civvy4Waiting()
-	if not ObjIsCaller(Gvar_30) then 
+	if not (ObjIsCaller(Gvar_30)) then 
 		goto l76
 	end
-	if not Gvar_102 ~= Gvar_126 or Gvar_99 == 1 then 
+	if not (Gvar_102 ~= Gvar_126 or Gvar_99 == 1) then 
 		goto l76
 	end
-	if not Gvar_82 == true then 
+	if not (Gvar_82 == true) then 
 		goto l76
 	end
 	Gvar_81 = true
@@ -945,7 +945,7 @@ function Civvy4Waiting()
 	if true then return end
 end
 function DorianLoseSight()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l13
 	end
 	Gvar_83 = false
@@ -953,7 +953,7 @@ function DorianLoseSight()
 	if true then return end
 end
 function AlbiLoseSight()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l13
 	end
 	Gvar_84 = false
@@ -961,7 +961,7 @@ function AlbiLoseSight()
 	if true then return end
 end
 function JorganLoseSight()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l13
 	end
 	Gvar_86 = false
@@ -969,7 +969,7 @@ function JorganLoseSight()
 	if true then return end
 end
 function GrunbarLoseSight()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l13
 	end
 	Gvar_85 = false
@@ -977,7 +977,7 @@ function GrunbarLoseSight()
 	if true then return end
 end
 function Civvy3LoseSight()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l13
 	end
 	Gvar_87 = false
@@ -985,7 +985,7 @@ function Civvy3LoseSight()
 	if true then return end
 end
 function Civvy4LoseSight()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l13
 	end
 	Gvar_88 = false
@@ -1009,7 +1009,7 @@ function MlurghRumorEnd()
 	if true then return end
 end
 function FreezePhim()
-	if not ObjIsCaller(Gvar_9) then 
+	if not (ObjIsCaller(Gvar_9)) then 
 		goto l39
 	end
 	DisableObject(Trigger)
@@ -1020,7 +1020,7 @@ function FreezePhim()
 	if true then return end
 end
 function FreezeMage()
-	if not ObjIsCaller(Gvar_12) then 
+	if not (ObjIsCaller(Gvar_12)) then 
 		goto l39
 	end
 	DisableObject(Trigger)
@@ -1031,7 +1031,7 @@ function FreezeMage()
 	if true then return end
 end
 function FreezeKin()
-	if not ObjIsCaller(Gvar_16) then 
+	if not (ObjIsCaller(Gvar_16)) then 
 		goto l39
 	end
 	DisableObject(Trigger)
@@ -1042,7 +1042,7 @@ function FreezeKin()
 	if true then return end
 end
 function FreezeBB()
-	if not ObjIsCaller(Gvar_14) then 
+	if not (ObjIsCaller(Gvar_14)) then 
 		goto l39
 	end
 	DisableObject(Trigger)
@@ -1053,26 +1053,26 @@ function FreezeBB()
 	if true then return end
 end
 function WardenRecognize()
-	if not Gvar_68 == true then 
+	if not (Gvar_68 == true) then 
 		goto l34
 	end
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l34
 	end
 	MonsterSetAggressiveness(Gvar_22,0.83)
 	MonsterGoHunt(Gvar_22)
 	MonsterGoFight(Gvar_22,GetHostPlayer())
 	::l34::
-	if not Gvar_72 == false and Gvar_68 == false and Gvar_70 == false then 
+	if not (Gvar_72 == false and Gvar_68 == false and Gvar_70 == false) then 
 		goto l122
 	end
-	if not ObjIsCaller(Gvar_31) then 
+	if not (ObjIsCaller(Gvar_31)) then 
 		goto l80
 	end
 	MonsterSetAggressiveness(Gvar_22,0.16)
 	MonsterFollowObj(Gvar_22,GetHostPlayer())
 	::l80::
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l120
 	end
 	Gvar_101 = Gvar_124
@@ -1083,13 +1083,13 @@ function WardenRecognize()
 	::l120::
 	goto l221
 	::l122::
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l221
 	end
-	if not Gvar_72 == true then 
+	if not (Gvar_72 == true) then 
 		goto l202
 	end
-	if not Gvar_71 == false then 
+	if not (Gvar_71 == false) then 
 		goto l184
 	end
 	SayChat(Gvar_22,"War07A.scr:WardenTalk02")
@@ -1099,7 +1099,7 @@ function WardenRecognize()
 	Gvar_101 = Gvar_125
 	LockDoor(Gvar_43)
 	::l184::
-	if not Gvar_71 == true then 
+	if not (Gvar_71 == true) then 
 		goto l200
 	end
 	MonsterSetAggressiveness(Gvar_22,0.16)
@@ -1151,13 +1151,13 @@ function WardenArrestEnd()
 	MonsterGoRoam(Gvar_30)
 	var_0 = DialogGetResult(Gvar_22)
 	var_1 = var_0
-	if var_1 == 0 then 
+	if (var_1 == 0) then 
 		goto l141
 	end
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l203
 	end
-	if var_1 == 2 then 
+	if (var_1 == 2) then 
 		goto l227
 	end
 	goto l289
@@ -1202,7 +1202,7 @@ function WardenUpsetEnd()
 	if true then return end
 end
 function WardenJailCellTalk()
-	if not Gvar_65 == false then 
+	if not (Gvar_65 == false) then 
 		goto l31
 	end
 	MonsterSetAggressiveness(Gvar_22,0)
@@ -1226,21 +1226,21 @@ function WardenBack()
 	if true then return end
 end
 function WardenDied()
-	if not DoorIsLocked(Gvar_43) then 
+	if not (DoorIsLocked(Gvar_43)) then 
 		goto l12
 	end
 	UnlockDoor(Gvar_43)
 	::l12::
-	if not GetObjHealth(Gvar_31) > 0 then 
+	if not (GetObjHealth(Gvar_31) > 0) then 
 		goto l34
 	end
 	Gvar_93 = true
 	MonsterGotoHome(Gvar_31)
 	::l34::
-	if not Gvar_69 == false then 
+	if not (Gvar_69 == false) then 
 		goto l267
 	end
-	if not Gvar_66 == true then 
+	if not (Gvar_66 == true) then 
 		goto l88
 	end
 	MonsterGuardArea(Gvar_24,GetObjX(Gvar_24),GetObjY(Gvar_24),GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()),0)
@@ -1248,10 +1248,10 @@ function WardenDied()
 	::l88::
 	Gvar_69 = true
 	CancelDialog(Gvar_22)
-	if not Gvar_84 == true or Gvar_85 == true or Gvar_86 == true or Gvar_83 == true or Gvar_87 == true or Gvar_88 == true then 
+	if not (Gvar_84 == true or Gvar_85 == true or Gvar_86 == true or Gvar_83 == true or Gvar_87 == true or Gvar_88 == true) then 
 		goto l267
 	end
-	if not Gvar_102 ~= Gvar_128 then 
+	if not (Gvar_102 ~= Gvar_128) then 
 		goto l267
 	end
 	Gvar_102 = Gvar_128
@@ -1273,22 +1273,22 @@ function WardenMad()
 	if true then return end
 end
 function StartWardenTalk()
-	if not Gvar_70 == false then 
+	if not (Gvar_70 == false) then 
 		goto l81
 	end
-	if not GetDistance(GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()),GetObjX(Gvar_22),GetObjY(Gvar_22)) > 120 then 
+	if not (GetDistance(GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()),GetObjX(Gvar_22),GetObjY(Gvar_22)) > 120) then 
 		goto l42
 	end
 	WaitFrames(10,59)
 	goto l81
 	::l42::
-	if not HostPlayerIsTrading() == true then 
+	if not (HostPlayerIsTrading() == true) then 
 		goto l58
 	end
 	WaitFrames(10,59)
 	goto l81
 	::l58::
-	if not GetObjHealth(GetHostPlayer()) > 0 then 
+	if not (GetObjHealth(GetHostPlayer()) > 0) then 
 		goto l81
 	end
 	Gvar_70 = true
@@ -1297,7 +1297,7 @@ function StartWardenTalk()
 	if true then return end
 end
 function WardenHurt()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l25
 	end
 	MonsterSetAggressiveness(Gvar_22,0.83)
@@ -1307,7 +1307,7 @@ function WardenHurt()
 	if true then return end
 end
 function LockBackDoor()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l16
 	end
 	DisableObject(Trigger)
@@ -1340,7 +1340,7 @@ function MorganRequestEnd()
 	if true then return end
 end
 function OpenEscapeWall()
-	if not ObjIsCaller(Gvar_23) then 
+	if not (ObjIsCaller(Gvar_23)) then 
 		goto l15
 	end
 	OpenSecretWall(GetWallAt(166,220))
@@ -1348,13 +1348,13 @@ function OpenEscapeWall()
 	if true then return end
 end
 function MorganThanksTrigger()
-	if not ObjIsCaller(Gvar_23) then 
+	if not (ObjIsCaller(Gvar_23)) then 
 		goto l43
 	end
 	MonsterGuardArea(Gvar_23,GetObjX(Gvar_23),GetObjY(Gvar_23),GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()),0)
 	SetupDialog(Gvar_23,"NORMAL",69,70)
 	::l43::
-	if not Gvar_89 == true then 
+	if not (Gvar_89 == true) then 
 		goto l100
 	end
 	ObjFreeze(GetHostPlayer(),true)
@@ -1366,7 +1366,7 @@ function MorganThanksTrigger()
 	DisableObject(Gvar_51)
 	goto l176
 	::l100::
-	if not Gvar_91 == true and Gvar_90 == true then 
+	if not (Gvar_91 == true and Gvar_90 == true) then 
 		goto l170
 	end
 	ObjFreeze(GetHostPlayer(),true)
@@ -1384,7 +1384,7 @@ function MorganThanksTrigger()
 	if true then return end
 end
 function MorganThanksStart()
-	if not Gvar_66 == true then 
+	if not (Gvar_66 == true) then 
 		goto l27
 	end
 	TeleportObj(Gvar_24,3756,4777)
@@ -1403,7 +1403,7 @@ function MorganThanksEnd()
 	InvPutObj(GetHostPlayer(),Gvar_57)
 	PlayerGiveExp(GetHostPlayer(),500)
 	PrintToAll("GeneralPrint:GainedKey")
-	if not Gvar_66 == true then 
+	if not (Gvar_66 == true) then 
 		goto l59
 	end
 	JournalUpdateEntry(GetHostPlayer(),"RescueMorgan",4)
@@ -1420,10 +1420,10 @@ function MorganThanksEnd()
 	if true then return end
 end
 function MorganContact()
-	if not ObjIsHostileTo(Gvar_23,Caller) then 
+	if not (ObjIsHostileTo(Gvar_23,Caller)) then 
 		goto l26
 	end
-	if not Gvar_92 == true then 
+	if not (Gvar_92 == true) then 
 		goto l26
 	end
 	MonsterSetAggressiveness(Gvar_23,0.83)
@@ -1444,7 +1444,7 @@ function MorganFriendEnd()
 	if true then return end
 end
 function UnlockGearDoor()
-	if not DoorIsLocked(Gvar_39) then 
+	if not (DoorIsLocked(Gvar_39)) then 
 		goto l12
 	end
 	UnlockDoor(Gvar_39)
@@ -1452,7 +1452,7 @@ function UnlockGearDoor()
 	if true then return end
 end
 function CheckMorganDoor()
-	if not DoorIsLocked(Gvar_45) then 
+	if not (DoorIsLocked(Gvar_45)) then 
 		goto l15
 	end
 	WaitFrames(10,75)
@@ -1468,10 +1468,10 @@ function CheckMorganDoor()
 	if true then return end
 end
 function SeeMorgan()
-	if not ObjIsCaller(Gvar_23) then 
+	if not (ObjIsCaller(Gvar_23)) then 
 		goto l34
 	end
-	if not Gvar_67 == false then 
+	if not (Gvar_67 == false) then 
 		goto l34
 	end
 	Gvar_67 = true
@@ -1509,10 +1509,10 @@ function FriendWaitEnd()
 	if true then return end
 end
 function LookForPlayer()
-	if not HostPlayerIsTalking() == 0 then 
+	if not (HostPlayerIsTalking() == 0) then 
 		goto l55
 	end
-	if not Gvar_89 == true or Gvar_90 == true then 
+	if not (Gvar_89 == true or Gvar_90 == true) then 
 		goto l55
 	end
 	MonsterGuardArea(Gvar_24,GetObjX(Gvar_24),GetObjY(Gvar_24),GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()),0)
@@ -1523,10 +1523,10 @@ function LookForPlayer()
 	if true then return end
 end
 function RewardTrigger()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l49
 	end
-	if not DoorIsLocked(Gvar_45) == 0 then 
+	if not (DoorIsLocked(Gvar_45) == 0) then 
 		goto l49
 	end
 	DisableObjectGroup(Gvar_53)
@@ -1539,18 +1539,18 @@ function RewardTrigger()
 	if true then return end
 end
 function PlayerExitRoom()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l13
 	end
 	Gvar_90 = false
 	::l13::
-	if not ObjIsCaller(Gvar_23) then 
+	if not (ObjIsCaller(Gvar_23)) then 
 		goto l52
 	end
 	MonsterSetAggressiveness(Gvar_23,0.16)
 	MonsterGuardArea(Gvar_23,GetWaypointX(Gvar_140),GetWaypointY(Gvar_140),GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()),0)
 	::l52::
-	if not ObjIsCaller(Gvar_24) then 
+	if not (ObjIsCaller(Gvar_24)) then 
 		goto l91
 	end
 	MonsterSetAggressiveness(Gvar_24,0.16)
@@ -1559,21 +1559,21 @@ function PlayerExitRoom()
 	if true then return end
 end
 function OpenTowerGate()
-	if not DoorIsLocked(Gvar_47) == 0 or DoorIsLocked(Gvar_48) == 0 then 
+	if not (DoorIsLocked(Gvar_47) == 0 or DoorIsLocked(Gvar_48) == 0) then 
 		goto l81
 	end
 	var_0 = InvGetTopObj(GetHostPlayer())
 	::l23::
-	if not var_0 ~= 0 then 
+	if not (var_0 ~= 0) then 
 		goto l81
 	end
-	if not var_0 == ObjFromName("GoldKey2") then 
+	if not (var_0 == ObjFromName("GoldKey2")) then 
 		goto l48
 	end
 	DeleteObject(var_0)
 	goto l81
 	::l48::
-	if not var_0 == ObjFromName("GoldKey1") then 
+	if not (var_0 == ObjFromName("GoldKey1")) then 
 		goto l70
 	end
 	DeleteObject(var_0)
@@ -1611,19 +1611,19 @@ function WarTrigger()
 	if true then return end
 end
 function Injured()
-	if not Gvar_82 ~= true then 
+	if not (Gvar_82 ~= true) then 
 		goto l16
 	end
 	MonsterSetAggressiveness(Trigger,0.83)
 	::l16::
-	if not ObjIsTrigger(Gvar_25) then 
+	if not (ObjIsTrigger(Gvar_25)) then 
 		goto l130
 	end
 	Gvar_94 = 1
-	if not Gvar_82 ~= true then 
+	if not (Gvar_82 ~= true) then 
 		goto l128
 	end
-	if not Gvar_86 == true or Gvar_83 == true or Gvar_85 == true or Gvar_87 == true or Gvar_88 == true then 
+	if not (Gvar_86 == true or Gvar_83 == true or Gvar_85 == true or Gvar_87 == true or Gvar_88 == true) then 
 		goto l128
 	end
 	Gvar_102 = Gvar_128
@@ -1636,14 +1636,14 @@ function Injured()
 	::l128::
 	goto l698
 	::l130::
-	if not ObjIsTrigger(Gvar_26) then 
+	if not (ObjIsTrigger(Gvar_26)) then 
 		goto l244
 	end
 	Gvar_97 = 1
-	if not Gvar_82 ~= true then 
+	if not (Gvar_82 ~= true) then 
 		goto l242
 	end
-	if not Gvar_84 == true or Gvar_83 == true or Gvar_85 == true or Gvar_87 == true or Gvar_88 == true then 
+	if not (Gvar_84 == true or Gvar_83 == true or Gvar_85 == true or Gvar_87 == true or Gvar_88 == true) then 
 		goto l242
 	end
 	Gvar_102 = Gvar_128
@@ -1656,14 +1656,14 @@ function Injured()
 	::l242::
 	goto l698
 	::l244::
-	if not ObjIsTrigger(Gvar_28) then 
+	if not (ObjIsTrigger(Gvar_28)) then 
 		goto l358
 	end
 	Gvar_95 = 1
-	if not Gvar_82 ~= true then 
+	if not (Gvar_82 ~= true) then 
 		goto l356
 	end
-	if not Gvar_86 == true or Gvar_84 == true or Gvar_85 == true or Gvar_87 == true or Gvar_88 == true then 
+	if not (Gvar_86 == true or Gvar_84 == true or Gvar_85 == true or Gvar_87 == true or Gvar_88 == true) then 
 		goto l356
 	end
 	Gvar_102 = Gvar_128
@@ -1676,14 +1676,14 @@ function Injured()
 	::l356::
 	goto l698
 	::l358::
-	if not ObjIsTrigger(Gvar_27) then 
+	if not (ObjIsTrigger(Gvar_27)) then 
 		goto l472
 	end
 	Gvar_96 = 1
-	if not Gvar_82 ~= true then 
+	if not (Gvar_82 ~= true) then 
 		goto l470
 	end
-	if not Gvar_86 == true or Gvar_83 == true or Gvar_84 == true or Gvar_87 == true or Gvar_88 == true then 
+	if not (Gvar_86 == true or Gvar_83 == true or Gvar_84 == true or Gvar_87 == true or Gvar_88 == true) then 
 		goto l470
 	end
 	Gvar_102 = Gvar_128
@@ -1696,14 +1696,14 @@ function Injured()
 	::l470::
 	goto l698
 	::l472::
-	if not ObjIsTrigger(Gvar_29) then 
+	if not (ObjIsTrigger(Gvar_29)) then 
 		goto l586
 	end
 	Gvar_98 = 1
-	if not Gvar_82 ~= true then 
+	if not (Gvar_82 ~= true) then 
 		goto l584
 	end
-	if not Gvar_86 == true or Gvar_83 == true or Gvar_85 == true or Gvar_84 == true or Gvar_88 == true then 
+	if not (Gvar_86 == true or Gvar_83 == true or Gvar_85 == true or Gvar_84 == true or Gvar_88 == true) then 
 		goto l584
 	end
 	Gvar_102 = Gvar_128
@@ -1716,14 +1716,14 @@ function Injured()
 	::l584::
 	goto l698
 	::l586::
-	if not ObjIsTrigger(Gvar_30) then 
+	if not (ObjIsTrigger(Gvar_30)) then 
 		goto l698
 	end
 	Gvar_99 = 1
-	if not Gvar_82 ~= true then 
+	if not (Gvar_82 ~= true) then 
 		goto l698
 	end
-	if not Gvar_86 == true or Gvar_83 == true or Gvar_85 == true or Gvar_87 == true or Gvar_84 == true then 
+	if not (Gvar_86 == true or Gvar_83 == true or Gvar_85 == true or Gvar_87 == true or Gvar_84 == true) then 
 		goto l698
 	end
 	Gvar_102 = Gvar_128
@@ -1737,18 +1737,18 @@ function Injured()
 	if true then return end
 end
 function Killed()
-	if not Gvar_82 ~= true then 
+	if not (Gvar_82 ~= true) then 
 		goto l16
 	end
 	MonsterSetAggressiveness(Trigger,0.83)
 	::l16::
-	if not ObjIsTrigger(Gvar_25) then 
+	if not (ObjIsTrigger(Gvar_25)) then 
 		goto l184
 	end
-	if not Gvar_82 ~= true then 
+	if not (Gvar_82 ~= true) then 
 		goto l182
 	end
-	if not Gvar_86 == true or Gvar_83 == true or Gvar_85 == true or Gvar_87 == true or Gvar_88 == true then 
+	if not (Gvar_86 == true or Gvar_83 == true or Gvar_85 == true or Gvar_87 == true or Gvar_88 == true) then 
 		goto l182
 	end
 	Gvar_102 = Gvar_128
@@ -1765,13 +1765,13 @@ function Killed()
 	::l182::
 	goto l1022
 	::l184::
-	if not ObjIsTrigger(Gvar_26) then 
+	if not (ObjIsTrigger(Gvar_26)) then 
 		goto l352
 	end
-	if not Gvar_82 ~= true then 
+	if not (Gvar_82 ~= true) then 
 		goto l350
 	end
-	if not Gvar_84 == true or Gvar_83 == true or Gvar_85 == true or Gvar_87 == true or Gvar_88 == true then 
+	if not (Gvar_84 == true or Gvar_83 == true or Gvar_85 == true or Gvar_87 == true or Gvar_88 == true) then 
 		goto l350
 	end
 	Gvar_102 = Gvar_128
@@ -1788,13 +1788,13 @@ function Killed()
 	::l350::
 	goto l1022
 	::l352::
-	if not ObjIsTrigger(Gvar_28) then 
+	if not (ObjIsTrigger(Gvar_28)) then 
 		goto l520
 	end
-	if not Gvar_82 ~= true then 
+	if not (Gvar_82 ~= true) then 
 		goto l518
 	end
-	if not Gvar_86 == true or Gvar_84 == true or Gvar_85 == true or Gvar_87 == true or Gvar_88 == true then 
+	if not (Gvar_86 == true or Gvar_84 == true or Gvar_85 == true or Gvar_87 == true or Gvar_88 == true) then 
 		goto l518
 	end
 	Gvar_102 = Gvar_128
@@ -1811,13 +1811,13 @@ function Killed()
 	::l518::
 	goto l1022
 	::l520::
-	if not ObjIsTrigger(Gvar_27) then 
+	if not (ObjIsTrigger(Gvar_27)) then 
 		goto l688
 	end
-	if not Gvar_82 ~= true then 
+	if not (Gvar_82 ~= true) then 
 		goto l686
 	end
-	if not Gvar_86 == true or Gvar_83 == true or Gvar_84 == true or Gvar_87 == true or Gvar_88 == true then 
+	if not (Gvar_86 == true or Gvar_83 == true or Gvar_84 == true or Gvar_87 == true or Gvar_88 == true) then 
 		goto l686
 	end
 	Gvar_102 = Gvar_128
@@ -1834,13 +1834,13 @@ function Killed()
 	::l686::
 	goto l1022
 	::l688::
-	if not ObjIsTrigger(Gvar_29) then 
+	if not (ObjIsTrigger(Gvar_29)) then 
 		goto l856
 	end
-	if not Gvar_82 ~= true then 
+	if not (Gvar_82 ~= true) then 
 		goto l854
 	end
-	if not Gvar_86 == true or Gvar_83 == true or Gvar_85 == true or Gvar_84 == true or Gvar_88 == true then 
+	if not (Gvar_86 == true or Gvar_83 == true or Gvar_85 == true or Gvar_84 == true or Gvar_88 == true) then 
 		goto l854
 	end
 	Gvar_102 = Gvar_128
@@ -1857,13 +1857,13 @@ function Killed()
 	::l854::
 	goto l1022
 	::l856::
-	if not ObjIsTrigger(Gvar_30) then 
+	if not (ObjIsTrigger(Gvar_30)) then 
 		goto l1022
 	end
-	if not Gvar_82 ~= true then 
+	if not (Gvar_82 ~= true) then 
 		goto l1022
 	end
-	if not Gvar_86 == true or Gvar_83 == true or Gvar_85 == true or Gvar_87 == true or Gvar_84 == true then 
+	if not (Gvar_86 == true or Gvar_83 == true or Gvar_85 == true or Gvar_87 == true or Gvar_84 == true) then 
 		goto l1022
 	end
 	Gvar_102 = Gvar_128
@@ -1881,7 +1881,7 @@ function Killed()
 	if true then return end
 end
 function EscapeHatch()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l11
 	end
 	OpenSecretWallGroup(Gvar_64)
@@ -1889,7 +1889,7 @@ function EscapeHatch()
 	if true then return end
 end
 function CloseHatch()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l11
 	end
 	CloseSecretWallGroup(Gvar_64)
@@ -2005,10 +2005,10 @@ function PlayerDeath()
 	if true then return end
 end
 function MickContact()
-	if not ObjIsHostileTo(Gvar_24,Caller) then 
+	if not (ObjIsHostileTo(Gvar_24,Caller)) then 
 		goto l26
 	end
-	if not Gvar_92 == true then 
+	if not (Gvar_92 == true) then 
 		goto l26
 	end
 	MonsterSetAggressiveness(Gvar_24,0.83)
@@ -2016,13 +2016,13 @@ function MickContact()
 	if true then return end
 end
 function WardenWaiting()
-	if not ObjIsCaller(Gvar_22) then 
+	if not (ObjIsCaller(Gvar_22)) then 
 		goto l70
 	end
-	if not Gvar_102 ~= Gvar_126 or Gvar_101 == Gvar_125 then 
+	if not (Gvar_102 ~= Gvar_126 or Gvar_101 == Gvar_125) then 
 		goto l70
 	end
-	if not Gvar_82 == true then 
+	if not (Gvar_82 == true) then 
 		goto l70
 	end
 	MonsterIdle(Gvar_22)
@@ -2032,7 +2032,7 @@ function WardenWaiting()
 	if true then return end
 end
 function ResetMaxDialog()
-	if not Gvar_148 == Gvar_147 then 
+	if not (Gvar_148 == Gvar_147) then 
 		goto l16
 	end
 	CancelDialog(Gvar_21)
@@ -2050,7 +2050,7 @@ function MaxDie()
 	if true then return end
 end
 function DaManDragged()
-	if not ObjIsCaller(Gvar_38) then 
+	if not (ObjIsCaller(Gvar_38)) then 
 		goto l22
 	end
 	DisableObject(Trigger)
@@ -2061,10 +2061,10 @@ function DaManDragged()
 end
 function EmptyPlayerInventory()
 	var_0 = Gvar_151
-	if var_0 == Gvar_149 then 
+	if (var_0 == Gvar_149) then 
 		goto l27
 	end
-	if var_0 == Gvar_150 then 
+	if (var_0 == Gvar_150) then 
 		goto l57
 	end
 	goto l104
@@ -2074,7 +2074,7 @@ function EmptyPlayerInventory()
 	Gvar_151 = Gvar_150
 	WaitFrames(1,103)
 	::l57::
-	if not Gvar_153 <= Gvar_152 then 
+	if not (Gvar_153 <= Gvar_152) then 
 		goto l104
 	end
 	TeleportObj(Gvar_5[Gvar_153],GetWaypointX(Gvar_4),GetWaypointY(Gvar_4))
@@ -2094,13 +2094,13 @@ function MakeAWish()
 	if true then return end
 end
 function Jump()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l52
 	end
-	if not DoesHaveObject(GetHostPlayer(),Gvar_60) then 
+	if not (DoesHaveObject(GetHostPlayer(),Gvar_60)) then 
 		goto l52
 	end
-	if not DoesHaveObject(GetHostPlayer(),Gvar_61) then 
+	if not (DoesHaveObject(GetHostPlayer(),Gvar_61)) then 
 		goto l52
 	end
 	DisableObject(Trigger)
@@ -2123,7 +2123,7 @@ function StartJump()
 	if true then return end
 end
 function MoveJumper()
-	if not ObjIsCaller(Gvar_6) then 
+	if not (ObjIsCaller(Gvar_6)) then 
 		goto l29
 	end
 	DisableObject(Trigger)
@@ -2134,7 +2134,7 @@ function MoveJumper()
 	if true then return end
 end
 function KillJumper()
-	if not ObjIsCaller(Gvar_6) then 
+	if not (ObjIsCaller(Gvar_6)) then 
 		goto l40
 	end
 	DisableObject(Trigger)
@@ -2147,7 +2147,7 @@ function KillJumper()
 	if true then return end
 end
 function DaManHurt()
-	if not DoorIsLocked(Gvar_41) == 0 or DoorIsLocked(Gvar_42) == 0 then 
+	if not (DoorIsLocked(Gvar_41) == 0 or DoorIsLocked(Gvar_42) == 0) then 
 		goto l29
 	end
 	MonsterSetAggressiveness(Gvar_38,0.83)
@@ -2156,7 +2156,7 @@ function DaManHurt()
 	if true then return end
 end
 function DaManDie()
-	if not DoorIsLocked(Gvar_41) and DoorIsLocked(Gvar_42) then 
+	if not (DoorIsLocked(Gvar_41) and DoorIsLocked(Gvar_42)) then 
 		goto l26
 	end
 	InvDropObj(Gvar_38,Gvar_62)
@@ -2165,7 +2165,7 @@ function DaManDie()
 	if true then return end
 end
 function MorganRecognize()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l13
 	end
 	Gvar_91 = true
@@ -2173,7 +2173,7 @@ function MorganRecognize()
 	if true then return end
 end
 function MorganLoseSight()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l13
 	end
 	Gvar_91 = false
@@ -2181,7 +2181,7 @@ function MorganLoseSight()
 	if true then return end
 end
 function ScorpionAway()
-	if not ObjIsHostileTo(GetHostPlayer(),Caller) then 
+	if not (ObjIsHostileTo(GetHostPlayer(),Caller)) then 
 		goto l14
 	end
 	MonsterGotoHome(Caller)
@@ -2189,37 +2189,37 @@ function ScorpionAway()
 	if true then return end
 end
 function CivvyJailCheck()
-	if not ObjIsCaller(Gvar_26) then 
+	if not (ObjIsCaller(Gvar_26)) then 
 		goto l19
 	end
 	Gvar_160 = true
 	MonsterGotoHome(Gvar_26)
 	::l19::
-	if not ObjIsCaller(Gvar_27) then 
+	if not (ObjIsCaller(Gvar_27)) then 
 		goto l38
 	end
 	Gvar_159 = true
 	MonsterGotoHome(Gvar_27)
 	::l38::
-	if not ObjIsCaller(Gvar_25) then 
+	if not (ObjIsCaller(Gvar_25)) then 
 		goto l57
 	end
 	Gvar_158 = true
 	MonsterGotoHome(Gvar_25)
 	::l57::
-	if not ObjIsCaller(Gvar_28) then 
+	if not (ObjIsCaller(Gvar_28)) then 
 		goto l76
 	end
 	Gvar_157 = true
 	MonsterGotoHome(Gvar_28)
 	::l76::
-	if not ObjIsCaller(Gvar_29) then 
+	if not (ObjIsCaller(Gvar_29)) then 
 		goto l95
 	end
 	Gvar_161 = true
 	MonsterGotoHome(Gvar_29)
 	::l95::
-	if not ObjIsCaller(Gvar_30) then 
+	if not (ObjIsCaller(Gvar_30)) then 
 		goto l114
 	end
 	Gvar_162 = true
@@ -2228,7 +2228,7 @@ function CivvyJailCheck()
 	if true then return end
 end
 function FireballSecret()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l41
 	end
 	DisableObject(Trigger)
@@ -2240,42 +2240,42 @@ function FireballSecret()
 	if true then return end
 end
 function PlayerEnterRoom()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l13
 	end
 	Gvar_90 = true
 	::l13::
-	if not ObjIsCaller(Gvar_26) then 
+	if not (ObjIsCaller(Gvar_26)) then 
 		goto l32
 	end
 	Gvar_160 = true
 	MonsterGotoHome(Gvar_26)
 	::l32::
-	if not ObjIsCaller(Gvar_27) then 
+	if not (ObjIsCaller(Gvar_27)) then 
 		goto l51
 	end
 	Gvar_159 = true
 	MonsterGotoHome(Gvar_27)
 	::l51::
-	if not ObjIsCaller(Gvar_25) then 
+	if not (ObjIsCaller(Gvar_25)) then 
 		goto l70
 	end
 	Gvar_158 = true
 	MonsterGotoHome(Gvar_25)
 	::l70::
-	if not ObjIsCaller(Gvar_28) then 
+	if not (ObjIsCaller(Gvar_28)) then 
 		goto l89
 	end
 	Gvar_157 = true
 	MonsterGotoHome(Gvar_28)
 	::l89::
-	if not ObjIsCaller(Gvar_29) then 
+	if not (ObjIsCaller(Gvar_29)) then 
 		goto l108
 	end
 	Gvar_161 = true
 	MonsterGotoHome(Gvar_29)
 	::l108::
-	if not ObjIsCaller(Gvar_30) then 
+	if not (ObjIsCaller(Gvar_30)) then 
 		goto l127
 	end
 	Gvar_162 = true
@@ -2284,7 +2284,7 @@ function PlayerEnterRoom()
 	if true then return end
 end
 function JorganReport()
-	if not Gvar_97 == 1 then 
+	if not (Gvar_97 == 1) then 
 		goto l22
 	end
 	MonsterSetAggressiveness(Gvar_26,0.83)
@@ -2298,7 +2298,7 @@ function JorganReport()
 	if true then return end
 end
 function AlbiReport()
-	if not Gvar_94 == 1 then 
+	if not (Gvar_94 == 1) then 
 		goto l22
 	end
 	MonsterSetAggressiveness(Gvar_25,0.83)
@@ -2312,7 +2312,7 @@ function AlbiReport()
 	if true then return end
 end
 function GrunbarReport()
-	if not Gvar_96 == 1 then 
+	if not (Gvar_96 == 1) then 
 		goto l22
 	end
 	MonsterSetAggressiveness(Gvar_27,0.83)
@@ -2326,7 +2326,7 @@ function GrunbarReport()
 	if true then return end
 end
 function DorianReport()
-	if not Gvar_95 == 1 then 
+	if not (Gvar_95 == 1) then 
 		goto l22
 	end
 	MonsterSetAggressiveness(Gvar_28,0.83)
@@ -2340,7 +2340,7 @@ function DorianReport()
 	if true then return end
 end
 function Civvy3Report()
-	if not Gvar_98 == 1 then 
+	if not (Gvar_98 == 1) then 
 		goto l22
 	end
 	MonsterSetAggressiveness(Gvar_29,0.83)
@@ -2354,7 +2354,7 @@ function Civvy3Report()
 	if true then return end
 end
 function Civvy4Report()
-	if not Gvar_99 == 1 then 
+	if not (Gvar_99 == 1) then 
 		goto l22
 	end
 	MonsterSetAggressiveness(Gvar_30,0.83)

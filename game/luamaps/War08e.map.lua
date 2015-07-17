@@ -91,7 +91,7 @@ function OpenElevatorWalls()
 	if true then return end
 end
 function NoMonsters()
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer())) then 
 		goto l14
 	end
 	MonsterGotoHome(Caller)
@@ -116,15 +116,15 @@ function SecretFound()
 end
 function PriestReport()
 	var_0 = Gvar_48
-	if var_0 == Gvar_42 then 
+	if (var_0 == Gvar_42) then 
 		goto l27
 	end
-	if var_0 == Gvar_43 then 
+	if (var_0 == Gvar_43) then 
 		goto l170
 	end
 	goto l231
 	::l27::
-	if not ObjIsTrigger(Gvar_22) then 
+	if not (ObjIsTrigger(Gvar_22)) then 
 		goto l86
 	end
 	Gvar_53 = true
@@ -133,7 +133,7 @@ function PriestReport()
 	AudioEvent("ImpRecognize",Gvar_57)
 	DeleteObject(Gvar_22)
 	::l86::
-	if not ObjIsTrigger(Gvar_23) then 
+	if not (ObjIsTrigger(Gvar_23)) then 
 		goto l145
 	end
 	Gvar_54 = true
@@ -142,10 +142,10 @@ function PriestReport()
 	AudioEvent("ImpRecognize",Gvar_57)
 	DeleteObject(Gvar_23)
 	::l145::
-	if not Gvar_53 then 
+	if not (Gvar_53) then 
 		goto l168
 	end
-	if not Gvar_54 then 
+	if not (Gvar_54) then 
 		goto l168
 	end
 	Gvar_48 = Gvar_44
@@ -153,17 +153,17 @@ function PriestReport()
 	::l168::
 	goto l231
 	::l170::
-	if not ObjIsTrigger(Gvar_22) then 
+	if not (ObjIsTrigger(Gvar_22)) then 
 		goto l184
 	end
 	Gvar_55 = true
 	::l184::
-	if not ObjIsTrigger(Gvar_23) then 
+	if not (ObjIsTrigger(Gvar_23)) then 
 		goto l198
 	end
 	Gvar_56 = true
 	::l198::
-	if not Gvar_55 and Gvar_56 then 
+	if not (Gvar_55 and Gvar_56) then 
 		goto l229
 	end
 	CloseSecretWallGroup(Gvar_28)
@@ -176,7 +176,7 @@ function PriestReport()
 	if true then return end
 end
 function GolemDie()
-	if not GetObjHealth(Gvar_50) <= 0 and GetObjHealth(Gvar_51) <= 0 then 
+	if not (GetObjHealth(Gvar_50) <= 0 and GetObjHealth(Gvar_51) <= 0) then 
 		goto l44
 	end
 	PlayerGiveExp(GetHostPlayer(),1000)
@@ -226,16 +226,16 @@ function PriestsExit()
 	if true then return end
 end
 function GetGolemHandles()
-	if not Gvar_52 or ObjIsCaller(Gvar_22) or ObjIsCaller(Gvar_23) then 
+	if not (Gvar_52 or ObjIsCaller(Gvar_22) or ObjIsCaller(Gvar_23)) then 
 		goto l18
 	end
 	if true then return end
 	::l18::
 	var_0 = Gvar_49
-	if var_0 == Gvar_46 then 
+	if (var_0 == Gvar_46) then 
 		goto l45
 	end
-	if var_0 == Gvar_47 then 
+	if (var_0 == Gvar_47) then 
 		goto l98
 	end
 	goto l181
@@ -288,12 +288,12 @@ function ImpsEnter()
 	if true then return end
 end
 function GolemSetPiece()
-	if not Gvar_48 ~= Gvar_41 then 
+	if not (Gvar_48 ~= Gvar_41) then 
 		goto l10
 	end
 	if true then return end
 	::l10::
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l93
 	end
 	PushMusicStack()
@@ -312,12 +312,12 @@ function GolemSetPiece()
 	if true then return end
 end
 function RetrieveWierdling()
-	if not Gvar_58 then 
+	if not (Gvar_58) then 
 		goto l6
 	end
 	if true then return end
 	::l6::
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l65
 	end
 	PopMusicStack()

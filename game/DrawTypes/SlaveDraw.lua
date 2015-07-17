@@ -8,7 +8,7 @@ local rdraw = renderer.drawObject
 SlaveDraw.AnimatePerSecond = 1 / 16
 
 function SlaveDraw:initObject(obj)
-	local index = obj.tt.SpriteAnimFrames[#obj.tt.SpriteAnimFrames];
+	local index = obj.spriteAnimFrames[#obj.spriteAnimFrames];
 	UpdateObjectSpriteId(obj, index)
 
 	self.shader = shaders.sampleShadow

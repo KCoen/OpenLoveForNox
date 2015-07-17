@@ -8,10 +8,10 @@ AnimateDraw.name = "AnimateDraw"
 AnimateDraw.AnimatePerSecond = 1 / 16
 
 function AnimateDraw:initObject(obj)
-	obj.animationState = math.random(1, #obj.tt.SpriteAnimFrames)
+	obj.animationState = math.random(1, #obj.spriteAnimFrames)
 	obj.animationLastUpdate = love.timer.getTime() + math.random(0, 100) / 100 
 	
-	local spriteid = obj.tt.SpriteAnimFrames[obj.animationState];
+	local spriteid = obj.spriteAnimFrames[obj.animationState];
 	UpdateObjectSpriteId(obj, spriteid)
 
 	self.shader = shaders.sampleShadow
@@ -26,9 +26,9 @@ function AnimateDraw:draw(obj)
 		obj.animationLastUpdate = self.curTime
 
 		obj.animationState = obj.animationState + 1
-		obj.animationState = ((obj.animationState -1) % #obj.tt.SpriteAnimFrames) + 1
+		obj.animationState = ((obj.animationState -1) % #obj.spriteAnimFrames) + 1
 
-		UpdateObjectSpriteId(obj, obj.tt.SpriteAnimFrames[obj.animationState])
+		UpdateObjectSpriteId(obj, obj.spriteAnimFrames[obj.animationState])
 	end
 	
 	--self.shader:send("type46",false)

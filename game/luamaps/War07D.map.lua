@@ -15,7 +15,7 @@ function SetUpCreatures()
 	if true then return end
 end
 function OpenMuseumWalls()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l16
 	end
 	DisableObject(Trigger)

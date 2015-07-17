@@ -70,16 +70,16 @@ function GLOBAL()
 end
 function JandorStart()
 	var_0 = Gvar_41
-	if var_0 == Gvar_4 then 
+	if (var_0 == Gvar_4) then 
 		goto l45
 	end
-	if var_0 == Gvar_5 then 
+	if (var_0 == Gvar_5) then 
 		goto l53
 	end
-	if var_0 == Gvar_6 then 
+	if (var_0 == Gvar_6) then 
 		goto l61
 	end
-	if var_0 == Gvar_7 then 
+	if (var_0 == Gvar_7) then 
 		goto l69
 	end
 	goto l86
@@ -102,16 +102,16 @@ function JandorStart()
 end
 function JandorEnd()
 	var_0 = Gvar_41
-	if var_0 == Gvar_4 then 
+	if (var_0 == Gvar_4) then 
 		goto l45
 	end
-	if var_0 == Gvar_5 then 
+	if (var_0 == Gvar_5) then 
 		goto l66
 	end
-	if var_0 == Gvar_6 then 
+	if (var_0 == Gvar_6) then 
 		goto l68
 	end
-	if var_0 == Gvar_7 then 
+	if (var_0 == Gvar_7) then 
 		goto l77
 	end
 	goto l94
@@ -135,26 +135,26 @@ function JandorEnd()
 end
 function JacobDialogStart()
 	var_2 = Gvar_40
-	if var_2 == Gvar_27 then 
+	if (var_2 == Gvar_27) then 
 		goto l36
 	end
-	if var_2 == Gvar_28 then 
+	if (var_2 == Gvar_28) then 
 		goto l105
 	end
-	if var_2 == Gvar_29 then 
+	if (var_2 == Gvar_29) then 
 		goto l113
 	end
 	goto l121
 	::l36::
 	var_0 = RandomInteger(1,3)
 	var_1 = var_0
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l79
 	end
-	if var_1 == 2 then 
+	if (var_1 == 2) then 
 		goto l87
 	end
-	if var_1 == 3 then 
+	if (var_1 == 3) then 
 		goto l95
 	end
 	goto l103
@@ -180,13 +180,13 @@ function JacobDialogStart()
 end
 function JacobDialogEnd()
 	var_0 = Gvar_40
-	if var_0 == Gvar_28 then 
+	if (var_0 == Gvar_28) then 
 		goto l36
 	end
-	if var_0 == Gvar_29 then 
+	if (var_0 == Gvar_29) then 
 		goto l52
 	end
-	if var_0 == Gvar_30 then 
+	if (var_0 == Gvar_30) then 
 		goto l68
 	end
 	goto l82
@@ -206,10 +206,10 @@ function JacobDialogEnd()
 	if true then return end
 end
 function ResetJacobDialog()
-	if not ObjIsCaller(Gvar_75) then 
+	if not (ObjIsCaller(Gvar_75)) then 
 		goto l52
 	end
-	if not Gvar_40 == Gvar_30 then 
+	if not (Gvar_40 == Gvar_30) then 
 		goto l52
 	end
 	Gvar_40 = Gvar_27
@@ -221,19 +221,19 @@ function ResetJacobDialog()
 	if true then return end
 end
 function MorganInjured()
-	if not Gvar_46 == false then 
+	if not (Gvar_46 == false) then 
 		goto l200
 	end
 	Gvar_46 = true
 	Gvar_45 = Gvar_45 + 1
 	var_0 = Gvar_45
-	if var_0 == 1 then 
+	if (var_0 == 1) then 
 		goto l55
 	end
-	if var_0 == 2 then 
+	if (var_0 == 2) then 
 		goto l106
 	end
-	if var_0 == 3 then 
+	if (var_0 == 3) then 
 		goto l157
 	end
 	goto l200
@@ -243,7 +243,7 @@ function MorganInjured()
 	MonsterIdle(GetHostPlayer())
 	ObjLookAtObj(GetHostPlayer(),Gvar_75)
 	ObjLookAtObj(Gvar_75,GetHostPlayer())
-	if not GetObjHealth(Gvar_75) > 0 then 
+	if not (GetObjHealth(Gvar_75) > 0) then 
 		goto l104
 	end
 	ForceDialog(Gvar_75,GetHostPlayer())
@@ -255,7 +255,7 @@ function MorganInjured()
 	MonsterIdle(GetHostPlayer())
 	ObjLookAtObj(GetHostPlayer(),Gvar_75)
 	ObjLookAtObj(Gvar_75,GetHostPlayer())
-	if not GetObjHealth(Gvar_75) > 0 then 
+	if not (GetObjHealth(Gvar_75) > 0) then 
 		goto l155
 	end
 	ForceDialog(Gvar_75,GetHostPlayer())
@@ -266,7 +266,7 @@ function MorganInjured()
 	CancelDialog(Gvar_75)
 	ObjResetMaster(Gvar_75)
 	MonsterSetAggressiveness(Gvar_75,0.83)
-	if not GetObjHealth(Gvar_75) > 0 then 
+	if not (GetObjHealth(Gvar_75) > 0) then 
 		goto l198
 	end
 	MonsterGoFight(Gvar_75,GetHostPlayer())
@@ -276,7 +276,7 @@ function MorganInjured()
 	if true then return end
 end
 function PlayerFlee()
-	if not Gvar_40 == Gvar_30 then 
+	if not (Gvar_40 == Gvar_30) then 
 		goto l53
 	end
 	EnableObject(Gvar_77)
@@ -288,13 +288,13 @@ function PlayerFlee()
 end
 function HenrickDialogStart()
 	var_0 = Gvar_32
-	if var_0 == Gvar_11 then 
+	if (var_0 == Gvar_11) then 
 		goto l36
 	end
-	if var_0 == Gvar_12 then 
+	if (var_0 == Gvar_12) then 
 		goto l51
 	end
-	if var_0 == Gvar_13 then 
+	if (var_0 == Gvar_13) then 
 		goto l66
 	end
 	goto l81
@@ -320,32 +320,32 @@ function HenrickDialogEnd()
 	var_3 = 2
 	var_4 = 0
 	var_7 = Gvar_32
-	if var_7 == Gvar_11 then 
+	if (var_7 == Gvar_11) then 
 		goto l66
 	end
-	if var_7 == Gvar_12 then 
+	if (var_7 == Gvar_12) then 
 		goto l198
 	end
-	if var_7 == Gvar_13 then 
+	if (var_7 == Gvar_13) then 
 		goto l349
 	end
 	goto l351
 	::l66::
 	var_1 = DialogGetResult(Gvar_48)
 	var_5 = var_1
-	if var_5 == var_2 then 
+	if (var_5 == var_2) then 
 		goto l111
 	end
-	if var_5 == var_3 then 
+	if (var_5 == var_3) then 
 		goto l192
 	end
-	if var_5 == var_4 then 
+	if (var_5 == var_4) then 
 		goto l194
 	end
 	goto l196
 	::l111::
 	var_0 = PlayerGetGold(GetHostPlayer())
-	if not var_0 < Gvar_42 then 
+	if not (var_0 < Gvar_42) then 
 		goto l147
 	end
 	SetupDialog(Gvar_48,"NORMAL",45,11)
@@ -369,19 +369,19 @@ function HenrickDialogEnd()
 	::l198::
 	var_1 = DialogGetResult(Gvar_48)
 	var_6 = var_1
-	if var_6 == var_2 then 
+	if (var_6 == var_2) then 
 		goto l243
 	end
-	if var_6 == var_3 then 
+	if (var_6 == var_3) then 
 		goto l343
 	end
-	if var_6 == var_4 then 
+	if (var_6 == var_4) then 
 		goto l345
 	end
 	goto l347
 	::l243::
 	var_0 = PlayerGetGold(GetHostPlayer())
-	if not var_0 < Gvar_42 then 
+	if not (var_0 < Gvar_42) then 
 		goto l279
 	end
 	SetupDialog(Gvar_48,"NORMAL",45,11)
@@ -393,7 +393,7 @@ function HenrickDialogEnd()
 	Gvar_44 = Gvar_44 + 1
 	SetupDialog(Gvar_48,"NORMAL",45,11)
 	StartDialogWithCaller("SwordsmanHurt","War08b:HenrickSaleSuccessful")
-	if not Gvar_44 >= 2 then 
+	if not (Gvar_44 >= 2) then 
 		goto l341
 	end
 	Gvar_32 = Gvar_13
@@ -426,7 +426,7 @@ end
 function GatekeeperDialogStart()
 	ObjLookAtObj(Gvar_52,GetHostPlayer())
 	var_0 = Gvar_36
-	if var_0 == Gvar_23 then 
+	if (var_0 == Gvar_23) then 
 		goto l25
 	end
 	goto l33
@@ -442,7 +442,7 @@ end
 function Gatekeeper2DialogStart()
 	ObjLookAtObj(Gvar_63,GetHostPlayer())
 	var_0 = Gvar_37
-	if var_0 == Gvar_24 then 
+	if (var_0 == Gvar_24) then 
 		goto l25
 	end
 	goto l33
@@ -458,7 +458,7 @@ end
 function Gatekeeper3DialogStart()
 	ObjLookAtObj(Gvar_64,GetHostPlayer())
 	var_0 = Gvar_38
-	if var_0 == Gvar_25 then 
+	if (var_0 == Gvar_25) then 
 		goto l25
 	end
 	goto l33
@@ -477,10 +477,10 @@ function MayorDialogStart()
 	ObjLookAtObj(GetHostPlayer(),Gvar_55)
 	var_0 = RandomInteger(1,2)
 	var_1 = var_0
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l53
 	end
-	if var_1 == 2 then 
+	if (var_1 == 2) then 
 		goto l61
 	end
 	goto l69
@@ -499,7 +499,7 @@ function MayorDialogEnd()
 end
 function MayorsGuardDialogStart()
 	var_0 = Gvar_31
-	if var_0 == Gvar_14 then 
+	if (var_0 == Gvar_14) then 
 		goto l18
 	end
 	goto l33
@@ -515,13 +515,13 @@ function MayorsGuardDialogEnd()
 end
 function AldwinDialogStart()
 	var_0 = Gvar_33
-	if var_0 == Gvar_8 then 
+	if (var_0 == Gvar_8) then 
 		goto l36
 	end
-	if var_0 == Gvar_9 then 
+	if (var_0 == Gvar_9) then 
 		goto l51
 	end
-	if var_0 == Gvar_10 then 
+	if (var_0 == Gvar_10) then 
 		goto l66
 	end
 	goto l81
@@ -542,13 +542,13 @@ function AldwinDialogStart()
 end
 function AldwinDialogEnd()
 	var_0 = Gvar_33
-	if var_0 == Gvar_8 then 
+	if (var_0 == Gvar_8) then 
 		goto l36
 	end
-	if var_0 == Gvar_9 then 
+	if (var_0 == Gvar_9) then 
 		goto l80
 	end
-	if var_0 == Gvar_10 then 
+	if (var_0 == Gvar_10) then 
 		goto l89
 	end
 	goto l91
@@ -571,7 +571,7 @@ function AldwinDialogEnd()
 end
 function BridgeGuardDialogStart()
 	var_0 = Gvar_39
-	if var_0 == Gvar_26 then 
+	if (var_0 == Gvar_26) then 
 		goto l18
 	end
 	goto l33
@@ -584,7 +584,7 @@ function BridgeGuardDialogStart()
 end
 function BridgeGuardDialogEnd()
 	var_0 = Gvar_39
-	if var_0 == Gvar_26 then 
+	if (var_0 == Gvar_26) then 
 		goto l18
 	end
 	goto l20
@@ -642,10 +642,10 @@ function Maiden4DialogStart()
 	ObjLookAtObj(Gvar_70,GetHostPlayer())
 	var_0 = RandomInteger(1,2)
 	var_1 = var_0
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l73
 	end
-	if var_1 == 2 then 
+	if (var_1 == 2) then 
 		goto l81
 	end
 	goto l89
@@ -714,16 +714,16 @@ function Townsman3DialogEnd()
 end
 function ReleaseCharmedWolf(arg_0)
 	var_1 = arg_0
-	if var_1 == 0 then 
+	if (var_1 == 0) then 
 		goto l41
 	end
-	if var_1 == 1 then 
+	if (var_1 == 1) then 
 		goto l113
 	end
-	if var_1 == 2 then 
+	if (var_1 == 2) then 
 		goto l185
 	end
-	if var_1 == 3 then 
+	if (var_1 == 3) then 
 		goto l257
 	end
 	goto l329
@@ -829,7 +829,7 @@ function GoToMineSEG2()
 	if true then return end
 end
 function GoToMine()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l14
 	end
 	CinematicFade()
@@ -842,7 +842,7 @@ function GoToCaveSEG2()
 	if true then return end
 end
 function GoToCave()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l14
 	end
 	CinematicFade()
@@ -876,25 +876,25 @@ function InversionOwnObject()
 end
 function TeacherStart()
 	var_0 = Gvar_97
-	if var_0 == Gvar_90 then 
+	if (var_0 == Gvar_90) then 
 		goto l72
 	end
-	if var_0 == Gvar_91 then 
+	if (var_0 == Gvar_91) then 
 		goto l98
 	end
-	if var_0 == Gvar_92 then 
+	if (var_0 == Gvar_92) then 
 		goto l106
 	end
-	if var_0 == Gvar_93 then 
+	if (var_0 == Gvar_93) then 
 		goto l114
 	end
-	if var_0 == Gvar_94 then 
+	if (var_0 == Gvar_94) then 
 		goto l122
 	end
-	if var_0 == Gvar_95 then 
+	if (var_0 == Gvar_95) then 
 		goto l130
 	end
-	if var_0 == Gvar_96 then 
+	if (var_0 == Gvar_96) then 
 		goto l138
 	end
 	goto l146
@@ -932,44 +932,44 @@ function TeacherEnd()
 	var_3 = 2
 	var_4 = 0
 	var_6 = Gvar_97
-	if var_6 == Gvar_90 then 
+	if (var_6 == Gvar_90) then 
 		goto l102
 	end
-	if var_6 == Gvar_91 then 
+	if (var_6 == Gvar_91) then 
 		goto l292
 	end
-	if var_6 == Gvar_92 then 
+	if (var_6 == Gvar_92) then 
 		goto l319
 	end
-	if var_6 == Gvar_93 then 
+	if (var_6 == Gvar_93) then 
 		goto l340
 	end
-	if var_6 == Gvar_94 then 
+	if (var_6 == Gvar_94) then 
 		goto l354
 	end
-	if var_6 == Gvar_95 then 
+	if (var_6 == Gvar_95) then 
 		goto l384
 	end
-	if var_6 == Gvar_96 then 
+	if (var_6 == Gvar_96) then 
 		goto l414
 	end
 	goto l434
 	::l102::
 	var_1 = DialogGetResult(Gvar_82)
 	var_5 = var_1
-	if var_5 == var_2 then 
+	if (var_5 == var_2) then 
 		goto l147
 	end
-	if var_5 == var_3 then 
+	if (var_5 == var_3) then 
 		goto l236
 	end
-	if var_5 == var_4 then 
+	if (var_5 == var_4) then 
 		goto l263
 	end
 	goto l290
 	::l147::
 	var_0 = PlayerGetGold(GetHostPlayer())
-	if not var_0 < 100 then 
+	if not (var_0 < 100) then 
 		goto l192
 	end
 	SetupDialog(Gvar_82,"NORMAL",55,56)
@@ -1031,10 +1031,10 @@ function TeacherEnd()
 	if true then return end
 end
 function Phoneme1()
-	if not Gvar_103 == false then 
+	if not (Gvar_103 == false) then 
 		goto l45
 	end
-	if not GetObjHealth(Gvar_83) > 0 then 
+	if not (GetObjHealth(Gvar_83) > 0) then 
 		goto l45
 	end
 	PrintToAll("Phoneme1")
@@ -1045,10 +1045,10 @@ function Phoneme1()
 	if true then return end
 end
 function Phoneme2()
-	if not Gvar_103 == false then 
+	if not (Gvar_103 == false) then 
 		goto l36
 	end
-	if not GetObjHealth(Gvar_83) > 0 then 
+	if not (GetObjHealth(Gvar_83) > 0) then 
 		goto l36
 	end
 	PrintToAll("Phoneme2")
@@ -1058,10 +1058,10 @@ function Phoneme2()
 	if true then return end
 end
 function Phoneme3()
-	if not Gvar_103 == false then 
+	if not (Gvar_103 == false) then 
 		goto l36
 	end
-	if not GetObjHealth(Gvar_83) > 0 then 
+	if not (GetObjHealth(Gvar_83) > 0) then 
 		goto l36
 	end
 	PrintToAll("Phoneme3")
@@ -1071,19 +1071,19 @@ function Phoneme3()
 	if true then return end
 end
 function LessonBegin()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l91
 	end
-	if not Gvar_97 == Gvar_92 then 
+	if not (Gvar_97 == Gvar_92) then 
 		goto l91
 	end
-	if not Gvar_105 == true then 
+	if not (Gvar_105 == true) then 
 		goto l39
 	end
 	MoveTo(Gvar_83,Gvar_89)
 	Gvar_105 = false
 	::l39::
-	if not Gvar_99 == false and Gvar_104 == true then 
+	if not (Gvar_99 == false and Gvar_104 == true) then 
 		goto l91
 	end
 	DisableObject(Trigger)
@@ -1096,17 +1096,17 @@ function LessonBegin()
 	if true then return end
 end
 function CastSpells()
-	if not Gvar_103 == false then 
+	if not (Gvar_103 == false) then 
 		goto l169
 	end
-	if not Gvar_98 < 4 then 
+	if not (Gvar_98 < 4) then 
 		goto l45
 	end
 	PrintToAll("Casting Spell")
 	ApplySpellObjXY("SPELL_SLOW",Gvar_83,GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()))
 	ApplyEnchant(Gvar_83,"ENCHANT_INVULNERABLE",0)
 	::l45::
-	if not Gvar_98 == 4 then 
+	if not (Gvar_98 == 4) then 
 		goto l79
 	end
 	PrintToAll("CastingSpell")
@@ -1114,14 +1114,14 @@ function CastSpells()
 	ApplySpellObjXY("SPELL_MAGIC_MISSILE",Gvar_83,GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()))
 	::l79::
 	Gvar_98 = Gvar_98 + 1
-	if not Gvar_98 < 5 then 
+	if not (Gvar_98 < 5) then 
 		goto l101
 	end
 	WaitSeconds(3,57)
 	goto l169
 	::l101::
 	Gvar_100 = true
-	if not Gvar_102 == true then 
+	if not (Gvar_102 == true) then 
 		goto l144
 	end
 	Gvar_97 = Gvar_94
@@ -1136,14 +1136,14 @@ function CastSpells()
 	if true then return end
 end
 function CheckApprentice()
-	if not IsEnchantActive(Gvar_83,"ENCHANT_SLOWED") then 
+	if not (IsEnchantActive(Gvar_83,"ENCHANT_SLOWED")) then 
 		goto l67
 	end
 	DisableObject(Gvar_87)
 	Gvar_103 = true
 	Gvar_97 = Gvar_93
 	Gvar_102 = true
-	if not Gvar_98 > 2 then 
+	if not (Gvar_98 > 2) then 
 		goto l49
 	end
 	Gvar_98 = 2
@@ -1151,7 +1151,7 @@ function CheckApprentice()
 	SetupDialog(Gvar_82,"NORMAL",55,56)
 	ForceDialog(Gvar_82,GetHostPlayer())
 	::l67::
-	if not GetObjHealth(Gvar_83) <= 0 then 
+	if not (GetObjHealth(Gvar_83) <= 0) then 
 		goto l89
 	end
 	DisableObject(Trigger)
@@ -1198,7 +1198,7 @@ function MapInitialize()
 	Gvar_120[3] = ObjFromName("CharmedWolf04")
 	var_0 = 0
 	::l66::
-	if not var_0 < 4 then 
+	if not (var_0 < 4) then 
 		goto l95
 	end
 	ApplyEnchant(Gvar_120[var_0],"ENCHANT_INVULNERABLE",0)
@@ -1279,7 +1279,7 @@ function MapInitialize()
 end
 function MapEntry()
 	var_0 = JournalSetQuest("Chapter8:HasWeirdling")
-	if not var_0 == 1 then 
+	if not (var_0 == 1) then 
 		goto l72
 	end
 	Gvar_107 = true
@@ -1307,7 +1307,7 @@ function DebugOff()
 	if true then return end
 end
 function OpenCaveDoor()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l16
 	end
 	UnlockDoor(Gvar_119)
@@ -1320,7 +1320,7 @@ function EnableRandomBump()
 	if true then return end
 end
 function RandomBump()
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_130 then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_130) then 
 		goto l31
 	end
 	SayChat(Trigger,"Con02a:RandomBump")

@@ -108,7 +108,7 @@ function FireATRow()
 	EnableObject(Gvar_4[16])
 	Gvar_5 = 12
 	::l46::
-	if not Gvar_5 < 17 then 
+	if not (Gvar_5 < 17) then 
 		goto l71
 	end
 	WaitSpecial(1,Gvar_5,2)
@@ -141,7 +141,7 @@ function ForceOrb()
 	if true then return end
 end
 function StairAccess2()
-	if not Gvar_62 == true and Gvar_63 == true then 
+	if not (Gvar_62 == true and Gvar_63 == true) then 
 		goto l27
 	end
 	UnlockDoor(Gvar_12)
@@ -150,7 +150,7 @@ function StairAccess2()
 	if true then return end
 end
 function CreateCherub()
-	if not Gvar_68 < 6 then 
+	if not (Gvar_68 < 6) then 
 		goto l132
 	end
 	var_0 = RandomInteger(0,1)
@@ -208,7 +208,7 @@ function AccessTreasureRoom3()
 	if true then return end
 end
 function EnableRoom()
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_60 == false then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_60 == false) then 
 		goto l36
 	end
 	Gvar_60 = true
@@ -234,7 +234,7 @@ function AllowAccess2()
 end
 function EnableRoom2()
 	PlayAction2Music()
-	if not ObjIsCaller(GetHostPlayer()) and Gvar_61 == false then 
+	if not (ObjIsCaller(GetHostPlayer()) and Gvar_61 == false) then 
 		goto l39
 	end
 	Gvar_61 = true
@@ -318,7 +318,7 @@ function OpenAccess()
 	if true then return end
 end
 function CheckIdols()
-	if not Gvar_64 == true and Gvar_65 == true then 
+	if not (Gvar_64 == true and Gvar_65 == true) then 
 		goto l22
 	end
 	EnableObjectGroup(Gvar_40)
@@ -326,7 +326,7 @@ function CheckIdols()
 	if true then return end
 end
 function BlueIdol()
-	if not ObjIsCaller(Gvar_32) then 
+	if not (ObjIsCaller(Gvar_32)) then 
 		goto l43
 	end
 	Gvar_64 = true
@@ -340,7 +340,7 @@ function BlueIdol()
 	if true then return end
 end
 function RedIdol()
-	if not ObjIsCaller(Gvar_34) then 
+	if not (ObjIsCaller(Gvar_34)) then 
 		goto l43
 	end
 	Gvar_65 = true
@@ -354,7 +354,7 @@ function RedIdol()
 	if true then return end
 end
 function CheckSwitches()
-	if not Gvar_66 == true and Gvar_67 == true then 
+	if not (Gvar_66 == true and Gvar_67 == true) then 
 		goto l22
 	end
 	OpenSecretWallGroup(Gvar_59)
@@ -487,7 +487,7 @@ function Secret100XP()
 	if true then return end
 end
 function PlayWanderMusic()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l12
 	end
 	PlayMusic(17,100)
@@ -508,7 +508,7 @@ function Necro1TeleportInjured()
 	if true then return end
 end
 function SmackPlayer()
-	if not ObjIsHostileTo(Caller,Trigger) then 
+	if not (ObjIsHostileTo(Caller,Trigger)) then 
 		goto l33
 	end
 	ObjLookAtObj(Trigger,Caller)
@@ -521,7 +521,7 @@ function HuntPlayer()
 	if true then return end
 end
 function BatToVampireKnight()
-	if not Gvar_83 == false then 
+	if not (Gvar_83 == false) then 
 		goto l40
 	end
 	Gvar_81 = GetObjX(Trigger)
@@ -538,7 +538,7 @@ function BatToVampireKnight()
 	if true then return end
 end
 function BatToVampireKnight2()
-	if not Gvar_83 == false then 
+	if not (Gvar_83 == false) then 
 		goto l40
 	end
 	Gvar_81 = GetObjX(Trigger)
@@ -560,7 +560,7 @@ function SetRetreatBat()
 	if true then return end
 end
 function BatDie()
-	if not GetObjHealth(Trigger) <= 0 then 
+	if not (GetObjHealth(Trigger) <= 0) then 
 		goto l136
 	end
 	PlayFX("SMOKE_BLAST",GetObjX(Trigger),GetObjY(Trigger),0,0)
@@ -574,7 +574,7 @@ function BatDie()
 	ObjSetDecayTime(var_0,80)
 	ObjSetDecayTime(var_1,83)
 	ObjSetDecayTime(var_2,85)
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l136
 	end
 	PlayerGiveExp(GetHostPlayer(),250)
@@ -582,7 +582,7 @@ function BatDie()
 	if true then return end
 end
 function ChangeOnSight()
-	if not Gvar_84 == true then 
+	if not (Gvar_84 == true) then 
 		goto l25
 	end
 	MonsterSetAggressiveness(Trigger,0.83)
@@ -591,7 +591,7 @@ function ChangeOnSight()
 	if true then return end
 end
 function InjureVampireKnight()
-	if not Gvar_83 == false then 
+	if not (Gvar_83 == false) then 
 		goto l85
 	end
 	Gvar_81 = GetObjX(Trigger)
@@ -617,7 +617,7 @@ function InjureVampireKnight2()
 	if true then return end
 end
 function BatMove()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l22
 	end
 	MonsterEventScript(Trigger,4,72)

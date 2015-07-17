@@ -82,6 +82,28 @@ function string:split(sep)
 	return fields
 end
 
+-- remove trailing and leading whitespace from string.
+-- http://en.wikipedia.org/wiki/Trim_(8programming)
+function string:trim()
+  -- from PiL2 20.4
+  return (self:gsub("^%s*(.-)%s*$", "%1"))
+end
+
+-- remove leading whitespace from string.
+-- http://en.wikipedia.org/wiki/Trim_(8programming)
+function string:ltrim()
+  return (self:gsub("^%s*", ""))
+end
+
+-- remove trailing whitespace from string.
+-- http://en.wikipedia.org/wiki/Trim_(8programming)
+function string:rtrim()
+  local n = #self
+  while n > 0 and self:find("^%s", n) do n = n - 1 end
+  return self:sub(1, n)
+end
+
+
 -- Private methods
 
 -- write thing (dispatcher)
@@ -237,7 +259,7 @@ local shouldCache = true
 local shouldLoadCache = true
 function loadJSON(path)
 	if(shouldLoadCache == true) then
-		if love.filesystem.exists("cache/" .. path .. ".lua") then
+		if love.filesystem.isFile("cache/" .. path .. ".lua") then
 			local luaStr = love.filesystem.read("cache/" .. path .. ".lua")
 			print("Load from cache: " .. path)
 			local luaObj = marshal.decode(luaStr)
@@ -272,13 +294,13 @@ function tprint (tbl, indent)
 		formatting = string.rep("  ", indent) .. k .. ": "
 		if type(v) == "table" then
 			print(formatting)
-			tprint(v, indent+1)
+			--tprint(v, indent+1)
 		elseif type(v) == 'boolean' then
 			print(formatting .. tostring(v))      
 		elseif type(v) == 'function' then
-
+			print(formatting .. tostring(v))
 		elseif type(v) == 'userdata' then
-
+			print(formatting .. tostring(v))
 		else
 			print(formatting .. v)
 		end
@@ -331,5 +353,3 @@ function table.find(t,element)
 		end
 	end
 end
-
---in-place quicksort

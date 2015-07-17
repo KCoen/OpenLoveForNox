@@ -45,7 +45,7 @@ function UnlockMainGates()
 	if true then return end
 end
 function DefendCage()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l13
 	end
 	MonsterGoFight(Trigger,GetHostPlayer())
@@ -53,7 +53,7 @@ function DefendCage()
 	if true then return end
 end
 function ReturnToPost()
-	if not ObjIsCaller(Gvar_9) or ObjIsCaller(Gvar_10) then 
+	if not (ObjIsCaller(Gvar_9) or ObjIsCaller(Gvar_10)) then 
 		goto l18
 	end
 	MonsterGotoHome(Caller)
@@ -96,10 +96,10 @@ function ProtectTheKing()
 end
 function KingStart()
 	var_0 = Gvar_24
-	if var_0 == Gvar_19 then 
+	if (var_0 == Gvar_19) then 
 		goto l27
 	end
-	if var_0 == Gvar_20 then 
+	if (var_0 == Gvar_20) then 
 		goto l49
 	end
 	goto l57
@@ -116,10 +116,10 @@ function KingStart()
 end
 function KingEnd()
 	var_0 = Gvar_24
-	if var_0 == Gvar_19 then 
+	if (var_0 == Gvar_19) then 
 		goto l27
 	end
-	if var_0 == Gvar_20 then 
+	if (var_0 == Gvar_20) then 
 		goto l43
 	end
 	goto l77
@@ -137,10 +137,10 @@ function KingEnd()
 end
 function CaptainStart()
 	var_0 = Gvar_21
-	if var_0 == Gvar_12 then 
+	if (var_0 == Gvar_12) then 
 		goto l27
 	end
-	if var_0 == Gvar_13 then 
+	if (var_0 == Gvar_13) then 
 		goto l49
 	end
 	goto l71
@@ -159,10 +159,10 @@ function CaptainStart()
 end
 function CaptainEnd()
 	var_0 = Gvar_21
-	if var_0 == Gvar_12 then 
+	if (var_0 == Gvar_12) then 
 		goto l27
 	end
-	if var_0 == Gvar_13 then 
+	if (var_0 == Gvar_13) then 
 		goto l29
 	end
 	goto l69
@@ -192,10 +192,10 @@ function PlayerDeath()
 end
 function MaidenStart()
 	var_0 = Gvar_22
-	if var_0 == Gvar_14 then 
+	if (var_0 == Gvar_14) then 
 		goto l27
 	end
-	if var_0 == Gvar_15 then 
+	if (var_0 == Gvar_15) then 
 		goto l35
 	end
 	goto l43
@@ -210,10 +210,10 @@ function MaidenStart()
 end
 function MaidenEnd()
 	var_0 = Gvar_22
-	if var_0 == Gvar_14 then 
+	if (var_0 == Gvar_14) then 
 		goto l27
 	end
-	if var_0 == Gvar_15 then 
+	if (var_0 == Gvar_15) then 
 		goto l29
 	end
 	goto l31
@@ -246,13 +246,13 @@ function RescueMaidens()
 end
 function SisterStart()
 	var_0 = Gvar_23
-	if var_0 == Gvar_16 then 
+	if (var_0 == Gvar_16) then 
 		goto l36
 	end
-	if var_0 == Gvar_17 then 
+	if (var_0 == Gvar_17) then 
 		goto l58
 	end
-	if var_0 == Gvar_18 then 
+	if (var_0 == Gvar_18) then 
 		goto l80
 	end
 	goto l102
@@ -276,13 +276,13 @@ function SisterStart()
 end
 function SisterEnd()
 	var_0 = Gvar_23
-	if var_0 == Gvar_16 then 
+	if (var_0 == Gvar_16) then 
 		goto l36
 	end
-	if var_0 == Gvar_17 then 
+	if (var_0 == Gvar_17) then 
 		goto l92
 	end
-	if var_0 == Gvar_18 then 
+	if (var_0 == Gvar_18) then 
 		goto l94
 	end
 	goto l114
@@ -417,7 +417,7 @@ function MapInitialize()
 	if true then return end
 end
 function KeepOut()
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer())) then 
 		goto l14
 	end
 	MonsterGotoHome(Caller)
@@ -445,7 +445,7 @@ function MapEntry()
 	ObjFreeze(GetHostPlayer(),false)
 	CinematicBorders(false)
 	PlayMusic(7,100)
-	if not JournalSetQuest("MaidensRescued") == 1 then 
+	if not (JournalSetQuest("MaidensRescued") == 1) then 
 		goto l112
 	end
 	Gvar_30 = ObjFromName("War05B:W5Maiden1")
@@ -474,7 +474,7 @@ function UnlockCellDoor()
 	if true then return end
 end
 function PlayerLeft()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l13
 	end
 	Gvar_28 = false
@@ -482,11 +482,11 @@ function PlayerLeft()
 	if true then return end
 end
 function CheckRescue()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l74
 	end
 	Gvar_28 = true
-	if not JournalSetQuest("MaidensRescued") == 1 then 
+	if not (JournalSetQuest("MaidensRescued") == 1) then 
 		goto l74
 	end
 	CancelDialog(Gvar_29)
@@ -500,7 +500,7 @@ function CheckRescue()
 	if true then return end
 end
 function CheckRescue2()
-	if not ObjIsCaller(Gvar_30) then 
+	if not (ObjIsCaller(Gvar_30)) then 
 		goto l50
 	end
 	MonsterMakeHostile(Caller)
@@ -508,7 +508,7 @@ function CheckRescue2()
 	CancelDialog(Gvar_30)
 	Gvar_25 = Gvar_25 + 1
 	::l50::
-	if not ObjIsCaller(Gvar_31) then 
+	if not (ObjIsCaller(Gvar_31)) then 
 		goto l100
 	end
 	MonsterMakeHostile(Caller)
@@ -516,7 +516,7 @@ function CheckRescue2()
 	CancelDialog(Gvar_31)
 	Gvar_25 = Gvar_25 + 1
 	::l100::
-	if not ObjIsCaller(Gvar_32) then 
+	if not (ObjIsCaller(Gvar_32)) then 
 		goto l150
 	end
 	MonsterMakeHostile(Caller)
@@ -524,7 +524,7 @@ function CheckRescue2()
 	CancelDialog(Gvar_32)
 	Gvar_25 = Gvar_25 + 1
 	::l150::
-	if not ObjIsCaller(Gvar_33) then 
+	if not (ObjIsCaller(Gvar_33)) then 
 		goto l200
 	end
 	MonsterMakeHostile(Caller)
@@ -532,7 +532,7 @@ function CheckRescue2()
 	CancelDialog(Gvar_33)
 	Gvar_25 = Gvar_25 + 1
 	::l200::
-	if not ObjIsCaller(Gvar_29) then 
+	if not (ObjIsCaller(Gvar_29)) then 
 		goto l250
 	end
 	MonsterMakeHostile(Caller)
@@ -540,7 +540,7 @@ function CheckRescue2()
 	CancelDialog(Gvar_29)
 	Gvar_25 = Gvar_25 + 1
 	::l250::
-	if not ObjIsHostileTo(Caller,GetHostPlayer()) then 
+	if not (ObjIsHostileTo(Caller,GetHostPlayer())) then 
 		goto l264
 	end
 	MonsterGotoHome(Caller)

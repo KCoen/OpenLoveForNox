@@ -36,11 +36,11 @@ function GoToPost()
 end
 function SwitchSpikeState()
 	DisableObjectGroup(Gvar_66[Gvar_104])
-	if not Gvar_99 == true then 
+	if not (Gvar_99 == true) then 
 		goto l62
 	end
 	Gvar_104 = Gvar_104 + 1
-	if not Gvar_104 > 5 then 
+	if not (Gvar_104 > 5) then 
 		goto l38
 	end
 	Gvar_104 = 0
@@ -107,7 +107,7 @@ function Secret04Declare()
 	if true then return end
 end
 function SpikeTimerAudioLoop()
-	if not Gvar_98 == false then 
+	if not (Gvar_98 == false) then 
 		goto l31
 	end
 	AudioEvent("Gear1",Gvar_75)
@@ -132,7 +132,7 @@ function ToggleOgreTrapSpikes01()
 	DisableObject(Gvar_4)
 	DisableObject(Gvar_5)
 	DisableObjectGroup(Gvar_55)
-	if not Gvar_98 then 
+	if not (Gvar_98) then 
 		goto l42
 	end
 	UnlockDoor(Gvar_6)
@@ -198,7 +198,7 @@ function GetBuddy()
 	if true then return end
 end
 function FollowOgrePatrol01()
-	if not ObjIsCaller(Gvar_23) then 
+	if not (ObjIsCaller(Gvar_23)) then 
 		goto l42
 	end
 	MonsterFollowObj(Trigger,Gvar_23)
@@ -217,7 +217,7 @@ function Patrol()
 	if true then return end
 end
 function GoMedieval()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l13
 	end
 	MonsterSetAggressiveness(Trigger,0.83)
@@ -230,12 +230,12 @@ function GoNormal()
 end
 function StopAndListen()
 	var_0 = RandomInteger(1,3)
-	if not ObjIsCaller(GetHostPlayer()) and var_0 == 1 then 
+	if not (ObjIsCaller(GetHostPlayer()) and var_0 == 1) then 
 		goto l62
 	end
 	MonsterWait(Trigger,45)
 	ObjLookAtObj(Trigger,Caller)
-	if not ObjCanInteractWith(Trigger,Caller) then 
+	if not (ObjCanInteractWith(Trigger,Caller)) then 
 		goto l57
 	end
 	MonsterSetAggressiveness(Trigger,0.5)
@@ -270,7 +270,7 @@ function OgrePressButton()
 	if true then return end
 end
 function LockCageDoor()
-	if not DoorIsLocked(Gvar_32) == 0 then 
+	if not (DoorIsLocked(Gvar_32) == 0) then 
 		goto l15
 	end
 	LockDoor(Gvar_32)
@@ -309,7 +309,7 @@ function CallSpitter1()
 	if true then return end
 end
 function SetSpitter1PathColor()
-	MonsterSetWayFlag(Gvar_35,1 | 128)
+	MonsterSetWayFlag(Gvar_35,bit.bor(1, 128))
 	if true then return end
 end
 function LockPitDoor()

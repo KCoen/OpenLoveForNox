@@ -19,7 +19,7 @@ function SaveGame()
 	if true then return end
 end
 function WallSetOneButton()
-	if not Gvar_11 == false then 
+	if not (Gvar_11 == false) then 
 		goto l23
 	end
 	OpenSecretWallGroup(Gvar_8)
@@ -32,7 +32,7 @@ function WallSetOneButton()
 	if true then return end
 end
 function WallSetTwoButton()
-	if not Gvar_12 == false then 
+	if not (Gvar_12 == false) then 
 		goto l23
 	end
 	OpenSecretWallGroup(Gvar_9)
@@ -45,7 +45,7 @@ function WallSetTwoButton()
 	if true then return end
 end
 function WallSetThreeButton()
-	if not Gvar_13 == false then 
+	if not (Gvar_13 == false) then 
 		goto l28
 	end
 	OpenSecretWallGroup(Gvar_10)
@@ -60,7 +60,7 @@ function WallSetThreeButton()
 	if true then return end
 end
 function HTHAttack()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l19
 	end
 	MonsterAttackMelee(Trigger,GetObjX(GetHostPlayer()),GetObjY(GetHostPlayer()))

@@ -101,7 +101,7 @@ function Squish()
 	if true then return end
 end
 function SquishBoom()
-	if not ObjIsCaller(Gvar_10) == 0 then 
+	if not (ObjIsCaller(Gvar_10) == 0) then 
 		goto l9
 	end
 	if true then return end
@@ -115,19 +115,19 @@ function GearhartDialogStart()
 	ObjLookAtObj(Gvar_38,GetHostPlayer())
 	DisableObjectGroup(Gvar_48)
 	var_0 = Gvar_41
-	if var_0 == Gvar_33 then 
+	if (var_0 == Gvar_33) then 
 		goto l66
 	end
-	if var_0 == Gvar_34 then 
+	if (var_0 == Gvar_34) then 
 		goto l76
 	end
-	if var_0 == Gvar_35 then 
+	if (var_0 == Gvar_35) then 
 		goto l86
 	end
-	if var_0 == Gvar_36 then 
+	if (var_0 == Gvar_36) then 
 		goto l96
 	end
-	if var_0 == Gvar_37 then 
+	if (var_0 == Gvar_37) then 
 		goto l106
 	end
 	goto l116
@@ -157,19 +157,19 @@ end
 function GearhartDialogEnd()
 	EnableObjectGroup(Gvar_48)
 	var_0 = Gvar_41
-	if var_0 == Gvar_33 then 
+	if (var_0 == Gvar_33) then 
 		goto l59
 	end
-	if var_0 == Gvar_34 then 
+	if (var_0 == Gvar_34) then 
 		goto l119
 	end
-	if var_0 == Gvar_35 then 
+	if (var_0 == Gvar_35) then 
 		goto l162
 	end
-	if var_0 == Gvar_36 then 
+	if (var_0 == Gvar_36) then 
 		goto l164
 	end
-	if var_0 == Gvar_37 then 
+	if (var_0 == Gvar_37) then 
 		goto l166
 	end
 	goto l192
@@ -219,7 +219,7 @@ function InitializeSwitchPuzzle()
 	if true then return end
 end
 function SetGearhartDialog()
-	if not ObjIsCaller(Gvar_38) then 
+	if not (ObjIsCaller(Gvar_38)) then 
 		goto l30
 	end
 	SetDialogPortrait(Gvar_38,"GearhartPic")
@@ -229,7 +229,7 @@ function SetGearhartDialog()
 	if true then return end
 end
 function GearhartCallForHelp()
-	if not Gvar_54 then 
+	if not (Gvar_54) then 
 		goto l6
 	end
 	if true then return end
@@ -242,12 +242,12 @@ function GearhartCallForHelp()
 	if true then return end
 end
 function CheckForBothButtons()
-	if not Gvar_55 == 0 then 
+	if not (Gvar_55 == 0) then 
 		goto l7
 	end
 	if true then return end
 	::l7::
-	if not Gvar_58 and Gvar_57 then 
+	if not (Gvar_58 and Gvar_57) then 
 		goto l51
 	end
 	PlayMusic(16,100)
@@ -269,7 +269,7 @@ function PlayerSwitchDeactivate()
 	if true then return end
 end
 function GearhartSwitchActivate()
-	if not ObjIsCaller(Gvar_38) then 
+	if not (ObjIsCaller(Gvar_38)) then 
 		goto l14
 	end
 	SayChat(Gvar_38,"War02a:GearhartTalk05")
@@ -283,7 +283,7 @@ function GearhartSwitchDeactivate()
 	if true then return end
 end
 function LeaveGearRoom()
-	if not ObjIsCaller(Gvar_38) then 
+	if not (ObjIsCaller(Gvar_38)) then 
 		goto l28
 	end
 	MonsterGuardArea(Gvar_38,GetWaypointX(Gvar_51),GetWaypointY(Gvar_51),0,0,0)
@@ -291,10 +291,10 @@ function LeaveGearRoom()
 	if true then return end
 end
 function EnterGearRoom()
-	if not ObjIsCaller(GetHostPlayer()) then 
+	if not (ObjIsCaller(GetHostPlayer())) then 
 		goto l18
 	end
-	if not Gvar_56 then 
+	if not (Gvar_56) then 
 		goto l18
 	end
 	MonsterFollowObj(Gvar_38,GetHostPlayer())
@@ -302,7 +302,7 @@ function EnterGearRoom()
 	if true then return end
 end
 function gotoExit()
-	if not Gvar_40 == 0 then 
+	if not (Gvar_40 == 0) then 
 		goto l14
 	end
 	TeleportObj(GetHostPlayer(),494,610)
@@ -321,7 +321,7 @@ function Exit()
 	if true then return end
 end
 function sweepsOn123()
-	if not ObjIsEnabled(Gvar_59) == 0 then 
+	if not (ObjIsEnabled(Gvar_59) == 0) then 
 		goto l13
 	end
 	EnableObject(Gvar_59)

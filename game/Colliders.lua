@@ -29,8 +29,8 @@ function Colliders:RegisterObject(obj) -- DrawFunction
 		return
 	end
 
-	if not obj.flags["NO_COLLIDE"] and obj.tt.Collide then
-		local cfa = obj.tt.Collide:split(" ")
+	if not obj.flags["NO_COLLIDE"] and obj.collideType then
+		local cfa = obj.collideType:split(" ")
 		local collidefunction = cfa[1]
 		table.remove(cfa, 1)
 
@@ -38,7 +38,7 @@ function Colliders:RegisterObject(obj) -- DrawFunction
 		if(obj.collider) then
 			obj.collider:initObject(obj, unpack(cfa))
 		else
-			print("Unsuported collider " .. obj.tt.Collide, collidefunction)
+			print("Unsuported collider " .. obj.collideType, collidefunction)
 		end
 	end
 
