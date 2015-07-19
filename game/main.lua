@@ -1,88 +1,34 @@
+-- Initalize JIT
 jit.opt = require("jit.opt")
 jit.opt.start(3)
 jit.opt.start("-dce")
 jit.opt.start("hotloop=10", "hotexit=2")
 
+-- Global requires
+vector = require("libs/vector")
+JSON = require("libs/JSON")
+ProFi = require("libs/ProFi")
 
 require("gameconf")
-vector = require("vector")
 require("renderer")
 require("utils")
-require("scene")
 require("camera")
-require("map")
-require("thingdb")
-require("videobag")
-require("lighting")
-require("noxmap")
-require("videobagcache")
-require("door")
-require("mapscriptfunctions")
-require("Updates")
-require("music")
+require("spatialhash")
+require("physics")
+marshal = require("marshal")
 
-local function runMapScript(untrusted_code_name)
-	print(untrusted_code_name)
-	untrusted_code = love.filesystem.read(untrusted_code_name)
-	if untrusted_code:byte(1) == 27 then 
-		return nil, "binary bytecode prohibited" 
-	end
-	
-	local untrusted_function, message = loadstring(untrusted_code)
-	if not untrusted_function then 
-		print(untrusted_code_name .. message)
-		return nil, untrusted_code_name .. message 
-	end
-	
-	setfenv(untrusted_function, mapscriptenv)
-	local status, err = pcall(untrusted_function)
-	if err then
-		print(err .. untrusted_code_name)
-	end
-	
-	return status, err
-end
-
---[[runMapScript("luamaps/War02A.map.lua")
-runMapScript("luamaps/War02b.map.lua")
-runMapScript("luamaps/War03a.map.lua")
-runMapScript("luamaps/War03b.map.lua")
-runMapScript("luamaps/War03c.map.lua")
-runMapScript("luamaps/War03d.map.lua")
-runMapScript("luamaps/War04a.map.lua")
-runMapScript("luamaps/War04b.map.lua")
-runMapScript("luamaps/War04c.map.lua")
-runMapScript("luamaps/War05A.map.lua")
-runMapScript("luamaps/War05B.map.lua")
-runMapScript("luamaps/War05C.map.lua")
-runMapScript("luamaps/War06a.map.lua")
-runMapScript("luamaps/War06b.map.lua")
-runMapScript("luamaps/War07A.map.lua")
-runMapScript("luamaps/War07B.map.lua")
-runMapScript("luamaps/War07C.map.lua")
-runMapScript("luamaps/War07D.map.lua")
-runMapScript("luamaps/War07E.map.lua")
-runMapScript("luamaps/War07F.map.lua")
-runMapScript("luamaps/War07G.map.lua")
-runMapScript("luamaps/War07H.map.lua")
-runMapScript("luamaps/War08a.map.lua")
-runMapScript("luamaps/War08b.map.lua")
-runMapScript("luamaps/War08c.map.lua")
-runMapScript("luamaps/War08d.map.lua")
-runMapScript("luamaps/War08e.map.lua")
-runMapScript("luamaps/War09a.map.lua")
-runMapScript("luamaps/War09b.map.lua")
-runMapScript("luamaps/War09c.map.lua")
-runMapScript("luamaps/War09d.map.lua")
-runMapScript("luamaps/War10a.map.lua")
-runMapScript("luamaps/War10b.map.lua")
-runMapScript("luamaps/War10c.map.lua")
-runMapScript("luamaps/War10d.map.lua")
-runMapScript("luamaps/War11a.map.lua")]]
-
-
-JSON = require("JSON")
-ProFi = require 'ProFi'
+require("NoxWall")
+require("NoxObject")
+require("NoxThingdb")
+require("NoxVideobag")
+require("NoxPlayer")
+require("NoxDrawTypes")
+require("NoxColliders")
+require("NoxMap")
+require("NoxMapScriptFunctions")
+require("NoxMapScript")
+require("NoxUpdates")
+require("NoxMusic")
 
 love.graphics.setDefaultFilter("nearest","nearest",1)
 
@@ -143,26 +89,25 @@ end
 
 function LoadDatabases()
 	love.timer.starTimer("Loading JSON")
-	ThingDB = loadJSON("Json/ThingDB.min.json")	
-	ModDB = loadJSON("Json/ModDB.min.json")	
+	ThingDB = loadJSON("content/Json/ThingDB.min.json")	
+	ModDB = loadJSON("content/Json/ModDB.min.json")	
 	--Map = loadJSON("Json/War02a.min.json")	
 	VideoBag = {}
-	VideoBag._Tiles = loadJSON("Json/TileSprites.min.json")
-	VideoBag._TileEdges = loadJSON("Json/TileEdgeSprites.min.json")
-	VideoBag._Walls = loadJSON("Json/WallSprites.min.json")
-	VideoBag._Objects = loadJSON("Json/ObjectSprites.min.json")
-	VideoBag._Sequences = loadJSON("Json/SequenceSprites.min.json")
+	VideoBag._Tiles = loadJSON("content/Json/TileSprites.min.json")
+	VideoBag._TileEdges = loadJSON("content/Json/TileEdgeSprites.min.json")
+	VideoBag._Walls = loadJSON("content/Json/WallSprites.min.json")
+	VideoBag._Objects = loadJSON("content/Json/ObjectSprites.min.json")
+	VideoBag._Sequences = loadJSON("content/Json/SequenceSprites.min.json")
 	love.timer.stopTimer("Loading JSON")
 end
 
 
 mapListOffset = 0
 function loadMap(name)
-	scene.objects = {}
 	camera = Camera.new()
-	scene:add(camera)
-	scene:add(physics)
-	scene:add(map)
+	--scene:add(camera)
+	--scene:add(physics)
+	--scene:add(NoxMap)
 	
 	player = nil
 	for k,v in pairs(mapList) do
@@ -171,8 +116,8 @@ function loadMap(name)
 		end
 	end
 	
-	Map = loadJSON("Json/jsonmaps/" .. mapList[mapListOffset])
-	scene:load()
+	JsonMap = loadJSON("content/Json/jsonmaps/" .. mapList[mapListOffset])
+	NoxMap:load(JsonMap)
 end
 
 function getFirstMap()
@@ -190,7 +135,7 @@ function love.load(arg)
 	--collectgarbage('restart')
 	videobagcache:load()
 
-	mapList = love.filesystem.getDirectoryItems( "Json/jsonmaps" )
+	mapList = love.filesystem.getDirectoryItems( "content/Json/jsonmaps" )
 	name, version, vendor, device = love.graphics.getRendererInfo( )
 	
 	print("Render Name: " .. name)
@@ -201,37 +146,39 @@ function love.load(arg)
 	local jstatus =  { jit.status() }
 	tprint(jstatus)
 	
-	
 	shaders = {}
-	shaders.blurH = love.graphics.newShader("Shaders/blurh.c")
-	shaders.blurV = love.graphics.newShader("Shaders/blurv.c")
-	shaders.sampleShadow = love.graphics.newShader("Shaders/sampleShadow.c")
-	shaders.edgeBlend = love.graphics.newShader("Shaders/edge.c")
-	shaders.lightHalo = love.graphics.newShader("Shaders/lighthalo.c")
-	shaders.overBright = love.graphics.newShader("Shaders/overbright.c")
-	shaders.shadowedObject = love.graphics.newShader("Shaders/shadowedObject.c")
-	shaders.shadowedWall = love.graphics.newShader("Shaders/shadowedWall.c")
-	shaders.unshadowedObject = love.graphics.newShader("Shaders/unshadowedObject.c")
+	shaders.blurH = love.graphics.newShader("shaders/blurh.c")
+	shaders.blurV = love.graphics.newShader("shaders/blurv.c")
+	shaders.sampleShadow = love.graphics.newShader("shaders/sampleShadow.c")
+	shaders.edgeBlend = love.graphics.newShader("shaders/edge.c")
+	shaders.lightHalo = love.graphics.newShader("shaders/lighthalo.c")
+	shaders.overBright = love.graphics.newShader("shaders/overbright.c")
+	shaders.shadowedObject = love.graphics.newShader("shaders/shadowedObject.c")
+	shaders.shadowedWall = love.graphics.newShader("shaders/shadowedWall.c")
+	shaders.unshadowedObject = love.graphics.newShader("shaders/unshadowedObject.c")
 	LoadDatabases()
 	PreProcessSprites()
+
 	DrawTypes:load()
 	Updates:load()
 	Colliders:load()
+	physics:load()
 	
 	camera = Camera.new()
 	
 	screenBuffer = love.graphics.newCanvas(camera.wwidth,camera.wheight)
+	lightEngine = {}
 	lightEngine.shadowBuffer = love.graphics.newCanvas(camera.wwidth,camera.wheight,"rgba4")
 	lightEngine.shadowBufferObjects = love.graphics.newCanvas(camera.wwidth,camera.wheight,"rgba4")
 	shaders.sampleShadow:send("shadowbuffer",lightEngine.shadowBuffer)
 	shaders.overBright:send("canvas",lightEngine.shadowBuffer)
 	
 
-	scene:add(camera)
-	scene:add(map)
+	--scene:add(camera)
+	--scene:add(map)
 	renderer.load()
 
-	runMapScript("luamaps/War01A.map.lua")
+	runMapScript("content/luamaps/War01A.map.lua")
 	mapscriptenv.GLOBAL()
 
 	
@@ -260,19 +207,25 @@ function love.update(dt)
 		end
 	end
 	
+	physics:update(dt)
 	Updates:update(dt)
-
-	renderer.update(dt)
+	player:update(dt)
+	camera:update(dt)
+	NoxMap:update(dt)	
 	
+
+	renderer:update(dt)
 	DrawTypes:update(dt)
 
 	
-	scene:update(dt)
 	
+
+
 end
 
 function love.draw()
-	scene:draw()
+	NoxMap:draw()
+
 	love.debug.print("FPS: " .. love.timer.getFPS())
 	
 	local stats = love.graphics.getStats( )
@@ -311,7 +264,7 @@ function love.keypressed(key, u)
 	end
 	if(key == 'f11') then
 		local mwx, mwy = camera:localToWorld(love.mouse.getX(),love.mouse.getY())
-		local objects = map.Objects:getPVS(mwx - 128,mwy - 128,mwy + 128,mwy + 128)
+		local objects = NoxMap.Objects:getPVS(mwx - 128,mwy - 128,mwy + 128,mwy + 128)
 		for k, obj in pairs(objects) do
 			if (obj.phys) then
 				for k,v in ipairs(obj.phys) do
@@ -335,12 +288,16 @@ function love.keypressed(key, u)
 	end
 
 
-
-	scene:keypressed(key, u)
+	if(localplayer) then
+		localplayer:keypressed(key, u)
+	end
+	
 end
 
 function love.keyreleased(key, u)
-	scene:keyreleased(key, u)
+	if(localplayer and localplayer.keyreleased) then
+		localplayer:keyreleased(key, u)
+	end
 end
 
 function love.mousepressed(x,y,button)

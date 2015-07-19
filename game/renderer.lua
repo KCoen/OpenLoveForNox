@@ -315,7 +315,7 @@ function renderer.load()
 	end
 end
 
-function renderer.update()
+function renderer:update()
 	for k,v in pairs(renderer.batches) do
 		v.batch:clear()
 		v.textureDataOffset = 0
@@ -369,4 +369,11 @@ function renderer.drawWallsB(useshadow)
 	love.graphics.setColor(255,255,255,128)
 	renderer.drawBatch("wallB", useshadow, true)
 	love.graphics.setColor(255,255,255,255)
+end
+
+function love.graphics.drawLight(x,y,radius,brightness,falloff)
+	local lx,ly = camera:worldToLocal(x,y)
+	shaders.lightHalo:send("light_pos",{lx,ly,0}) -- shader needs this in screen space :/
+	shaders.lightHalo:send("light_info",{radius,brightness or 1,falloff or 2})
+	love.graphics.rectangle("fill",x-radius,y-radius,radius*2,radius*2)
 end

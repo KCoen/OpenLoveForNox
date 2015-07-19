@@ -1,4 +1,4 @@
-require("Colliders")
+
 
 physics = {}
 physics.objects = {}
@@ -80,7 +80,7 @@ end
 function physics:AddWallPart(wall, pos1, pos2)	
 	-- Try to merge walls
 	if(not wall.destructable) then
-		for pswall in map.Walls:Iter(pos1.X - 512, pos1.Y - 512, 1024, 1024) do
+		for pswall in NoxMap.Walls:Iter(pos1.X - 512, pos1.Y - 512, 1024, 1024) do
 			if(pswall.phys) then
 				if(wall.window ~= pswall.window) or (wall.transparent ~= pswall.transparent) then
 					goto lend

@@ -1,80 +1,3 @@
---local pretty = require("pl/pretty")
---local utils = require("pl/utils")
-local marshal = require "marshal"
-
-local write, writeIndent, writers, refCount;
-persistence =
-{
-	store = function (path, ...)
-		local file, e = love.filesystem.newFile(path, "w");
-		if not file then
-			return error(e);
-		end
-		local n = select("#", ...);
-		-- Count references
-		local objRefCount = {}; -- Stores reference that will be exported
-		for i = 1, n do
-			refCount(objRefCount, (select(i,...)));
-		end;
-		-- Export Objects with more than one ref and assign name
-		-- First, create empty tables for each
-		local objRefNames = {};
-		local objRefIdx = 0;
-		file:write("-- Persistent Data\n");
-		file:write("local multiRefObjects = {\n");
-		for obj, count in pairs(objRefCount) do
-			if count > 1 then
-				objRefIdx = objRefIdx + 1;
-				objRefNames[obj] = objRefIdx;
-				file:write("{};"); -- table objRefIdx
-			end;
-		end;
-		file:write("\n} -- multiRefObjects\n");
-		-- Then fill them (this requires all empty multiRefObjects to exist)
-		for obj, idx in pairs(objRefNames) do
-			for k, v in pairs(obj) do
-				file:write("multiRefObjects["..idx.."][");
-				write(file, k, 0, objRefNames);
-				file:write("] = ");
-				write(file, v, 0, objRefNames);
-				file:write(";\n");
-			end;
-		end;
-		-- Create the remaining objects
-		for i = 1, n do
-			file:write("local ".."obj"..i.." = ");
-			write(file, (select(i,...)), 0, objRefNames);
-			file:write("\n");
-		end
-		-- Return them
-		if n > 0 then
-			file:write("return obj1");
-			for i = 2, n do
-				file:write(" ,obj"..i);
-			end;
-			file:write("\n");
-		else
-			file:write("return\n");
-		end;
-		if type(path) == "string" then
-			file:close();
-		end;
-	end;
-
-	load = function (path)
-		if type(path) == "string" then
-			local f, e = love.filesystem.load(path);
-		else
-			local f, e = path:read('*a')
-		end
-		if f then
-			return f();
-		else
-			return nil, e;
-		end;
-	end;
-}
-
 function string:split(sep)
 	local sep, fields = sep or ":", {}
 	local pattern = string.format("([^%s]+)", sep)
@@ -227,17 +150,19 @@ function love.timer.stopProfile(name)
 end
 
 function love.timer.drawProfiles()
-	for name, t in pairs(love.timer.profilers[love.timer.frameCount]) do
-		if love.timer.profilers[love.timer.frameCount - 10] then
-			local total = 0
-			for k = 0,10 do
-				total = total + love.timer.profilers[love.timer.frameCount - k][name]
+	if(love.timer.profilers[love.timer.frameCount]) then
+		for name, t in pairs(love.timer.profilers[love.timer.frameCount]) do
+			if love.timer.profilers[love.timer.frameCount - 10] then
+				local total = 0
+				for k = 0,10 do
+					total = total + love.timer.profilers[love.timer.frameCount - k][name]
+				end
+				local avg = total / 10
+				love.debug.print(name .. ": " .. round(avg, 4))
 			end
-			local avg = total / 10
-			love.debug.print(name .. ": " .. round(avg, 4))
 		end
+		love.timer.frameCount = love.timer.frameCount + 1
 	end
-	love.timer.frameCount = love.timer.frameCount + 1
 end
 
 love.debug.toPrint = {}
@@ -273,10 +198,9 @@ function loadJSON(path)
 	local json = JSON:decode(contents)
 	
 	if(shouldCache == true) then
-		
 		love.filesystem.createDirectory( "cache" )
 		love.filesystem.createDirectory( "cache/json" )
-		love.filesystem.createDirectory( "cache/json/jsonmaps" )
+		love.filesystem.createDirectory( "cache/content/json/jsonmaps" )
 		local luaStr = marshal.encode(json)
 	
 		if(not love.filesystem.write("cache/" .. path .. ".lua", luaStr)) then
