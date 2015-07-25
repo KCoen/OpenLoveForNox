@@ -28,7 +28,5 @@ function DefaultCollide:initObject(obj)
 	end
 end
 
-function DefaultCollide:onCollide(obj)	
-end
 
 return DefaultCollide

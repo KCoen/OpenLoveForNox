@@ -179,6 +179,11 @@ function NoxMap:GetWaypointByName(name)
 	end	
 end
 
+function NoxMap:insertObject(object)
+	NoxMap.Objects:add(object)
+	NoxMap._Objects[#NoxMap._Objects + 1] = object
+end
+
 
 function NoxMap:load(JsonMap)
 	love.timer.starTimer("Map Load")
@@ -187,16 +192,20 @@ function NoxMap:load(JsonMap)
 	NoxMap.TileEdges = SpatialHash.new(gameconf.maxmapsize, gameconf.maxmapsize, gameconf.mapchunksize)
 	NoxMap.Objects = SpatialHash.new(gameconf.maxmapsize, gameconf.maxmapsize, gameconf.mapchunksize)
 	NoxMap.Walls = SpatialHash.new(gameconf.maxmapsize, gameconf.maxmapsize, gameconf.mapchunksize)
+	NoxMap.Spawns = {}
 	NoxMap._Objects = {}
 	NoxMap.Groups = {}
 	NoxMap.Waypoints = {}
 
-	local counti = 0 
 	for k, obj in pairs(JsonMap.Objects) do		
 		local object = NoxBaseObject.new(obj)--ObjectFromMapObject(obj)
-		counti = counti + 1
 		NoxMap.Objects:add(object)
 		NoxMap._Objects[#NoxMap._Objects + 1] = object
+
+		if(obj.Name == "PlayerStart") then
+			camera:set(obj.Location.X, obj.Location.Y)
+			table.insert(NoxMap.Spawns, object)
+		end
 	end
 	
 	for k, obj in pairs(JsonMap.Walls) do
@@ -209,7 +218,7 @@ function NoxMap:load(JsonMap)
 		local tile = {}
 		tile.mtile = mtile
 		tile.spriteId = mtile.Variations[mtile.Variation +1]
-		tile.quad, tile.img = GetTile(tile.spriteId)
+		tile.quad, tile.img = GetSprite(tile.spriteId)
 		
 		tile.x = mtile.Location.X * 23
 		tile.y = mtile.Location.Y * 23
@@ -226,9 +235,9 @@ function NoxMap:load(JsonMap)
 			etile.drawOffsetX = tile.drawOffsetX
 			etile.drawOffsetY = tile.drawOffsetY
 			etile.spriteId =  ThingDB.EdgeTiles[edgetile.Edge + 1].Variations[edgetile.Dir + 1]
-			etile.quad, etile.img = GetTileEdge(etile.spriteId)
+			etile.quad, etile.img = GetSprite(etile.spriteId)
 			etile.BlendSpriteId =  ThingDB.FloorTiles[edgetile.Graphic + 1].Variations[edgetile.Variation + 1]
-			etile.BlendQuad, etile.BlendImg = GetTile(etile.BlendSpriteId)
+			etile.BlendQuad, etile.BlendImg = GetSprite(etile.BlendSpriteId)
 			NoxMap.TileEdges:add(etile)
 		end
 	end
@@ -344,7 +353,7 @@ function NoxMap:drawShadows(objects, walls)
 	local bodies = physworld:getBodyList()
 	shadowMesh.oversize = (camera.wwidth*camera.wwidth+camera.wheight*camera.wheight) --???
 	shadowMesh.length = 0
-	local cx,cy = player.x, player.y
+	local cx,cy = camera.x, camera.y
 	
 	physDebug.length = 0
 	
@@ -403,7 +412,7 @@ function NoxMap:drawShadows(objects, walls)
 	for i=1, #walls do
 		local obj = walls[i]
 		if(obj.window) then
-			local dist = math.sqrt((player.x - obj.x)*(player.x - obj.x) + (player.y - obj.y)*(player.y - obj.y))
+			local dist = math.sqrt((camera.x - obj.x)*(camera.x - obj.x) + (camera.y - obj.y)*(camera.y - obj.y))
 			if(dist < 50.0) then -- Don't draw a shadow if its a window, and closer then 50 units
 				goto continue
 			end
@@ -474,43 +483,52 @@ function NoxMap:drawShadows(objects, walls)
 end
 
 function NoxMap:drawObjects(objects)	
-	local cx,cy = player.x,player.y
+	local cx,cy = camera.x,camera.y
 
 	local nobjects = 0
 	for i=1, #objects do
 		local obj = objects[i]
+		if obj.flags["EDIT_VISIBLE"] and not gameconf.debug then
+			goto continue	
+		end
+
+
+		
 		if(obj.renderer) then
 			obj.renderer:draw(obj)
 			nobjects = nobjects + 1
 		elseif(obj.draw) then
+
 			obj:draw()
 		end
+
+		::continue::
 	end
 
 	love.debug.print("Number of Objects drawn: " .. nobjects)
 end
 
 function NoxMap:drawWalls(walls)
-	local cx,cy = player.x,player.y
+	local cx,cy = camera.x,camera.y
 
 	for i=1, #walls do
 		local obj = walls[i]
 		if (obj.img) then
 			local drawA = false
 			if (obj.Facing == WallFacing["NORTH"] or obj.Facing == WallFacing["NW_CORNER"] or obj.Facing == WallFacing["SOUTH_T"] or obj.Facing == WallFacing["NORTH_T"]) then
-				if (obj.centerX + obj.centerY < player.x + player.y) then
+				if (obj.centerX + obj.centerY < camera.x + camera.y) then
 					drawA = true
 				else
 					drawA = false
 				end
 			elseif (obj.Facing == WallFacing["WEST"] or obj.Facing == WallFacing["SE_CORNER"] or obj.Facing == WallFacing["WEST_T" ] or obj.Facing == WallFacing["EAST_T"]) then
-				if (obj.centerX - obj.centerY > player.x - player.y) then
+				if (obj.centerX - obj.centerY > camera.x - camera.y) then
 					drawA = true
 				else
 					drawA = false
 				end
 			else
-				if (obj.centerY < player.y) then
+				if (obj.centerY < camera.y) then
 					drawA = true
 				else
 					drawA = false
@@ -610,9 +628,9 @@ function NoxMap:draw()
 end
 
 function NoxMap:update(dt)
-	--[[for k, obj in pairs(self._Objects) do
+	for k, obj in pairs(self._Objects) do
 		if(obj.updater) then
 			obj.updater:updateObject(obj, dt)
 		end
-	end--]]
+	end
 end

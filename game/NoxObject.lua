@@ -1,5 +1,6 @@
 NoxBaseObject = {}
 NoxBaseObject.__index = NoxBaseObject
+-- Try to keep the codebase semi maintainable by giving some kind of predictable structures key:value to objects
 NoxBaseObject.__newindex = function (table, key, value)
 	if(table._isInit) then
 		assert(false, "You're not allowed to add new keys to this object " .. tostring(key) .. " : " .. tostring(value))
@@ -8,7 +9,44 @@ NoxBaseObject.__newindex = function (table, key, value)
 end
 
 
-function NoxBaseObject.new(mobject)
+function NoxBaseObject:UpdateSpriteId(spriteid)
+	self.spriteId = spriteid
+	self.quad, self.img = videobagcache:getSprite(self.spriteId)
+	if(self.quad == nil) then
+		print("Could not update sprite for, " .. self.objName)
+		self.spriteId = nil
+	end
+	
+	self:fixDrawPosition()
+end
+
+function NoxBaseObject:fixDrawPosition()
+	local vbc_ent = VideoBag.Sprites[self.spriteId]
+	
+	local offsetX
+	local offsetY
+	
+	if vbc_ent == nil then
+		offsetX = 0
+		offsetY = 0
+	else
+		offsetX = vbc_ent.offsetX
+		offsetY = vbc_ent.offsetY
+	end
+	
+	local sizeX = self.sizeX / 2
+	local sizeY = self.sizeY / 2
+	
+	local x = 0 - (sizeX - offsetX)
+	local y = 0 - (sizeY - offsetY) - self.z
+	
+	self.drawOffsetX = x
+	self.drawOffsetY = y
+end
+
+
+
+function NoxBaseObject.new(fromObject)
 	local self = setmetatable({}, NoxBaseObject)
 
 	self.x = 0
@@ -87,39 +125,61 @@ function NoxBaseObject.new(mobject)
 
 	self.nopartial = false
 
+	self.health = 0
+	self.height = 0
+	self.floorheight = 0
+	self.isonelevator = false
+
+	self.futureX = false
+	self.futureY = false
+
+
+
 	-- Compontents
 	self.door = false
+	self.player = false
+	self.damagecollide = false
 
 	self._isInit = true
 
-
-
-	if(mobject) then
-		self:initFromMapObject(mobject)
+	if(type(fromObject) == "string") then
+		self:initFromType(fromObject)
+	elseif fromObject and fromObject.Extent then
+		self:initFromMapObject(fromObject)
 	end
+
+	Updates:RegisterObject(self)
+	Colliders:RegisterObject(self)
+	DrawTypes:RegisterObject(self)
 
 
 
 	return self
 end
 
-function NoxBaseObject:initFromMapObject(mobject)
-	
-	if mobject.Name == "PlayerStart" then
-		if(not player) then
-			player = Player.new(mobject.Location.X, mobject.Location.Y)
-			NoxMap.Objects:add(player)
-			DrawTypes:RegisterObject(player)
-			physics:registerDynamicObject(player)
-			--object = player
+function NoxBaseObject:setPosition(x,y)
+	self.x = x
+	self.y = y
+
+	if(self.phys) then
+		for k,v in pairs(self.phys) do
+			v.body:setAwake( true )
+			v.body:setPosition(x,y)
+			v.body:setAwake( true )
 		end
 	end
-	local tt = ThingDB.Things[mobject.Name]
+end
+
+function NoxBaseObject:setPositionDelayed(x,y)
+	self.futureX = x
+	self.futureY = y
+end
+
+function NoxBaseObject:initFromType(objecttype)
+	local tt = ThingDB.Things[objecttype]
 
 	--self.spriteId = GetObjectSpriteId(mobject)
-	self.x = mobject.Location.X
-	self.y = mobject.Location.Y
-	self.mapXfer = mobject.ObjXfer
+	
 	self.z = tt.Z
 	self.sizeX = tt.SizeX
 	self.sizeY = tt.SizeY
@@ -143,12 +203,10 @@ function NoxBaseObject:initFromMapObject(mobject)
 	self.drawOffsetX = 0
 	self.drawOffsetY = 0
 
-	self.scriptName = mobject.ScrNameShort
-
-	self.extentId = mobject.Extent
-
 	self.xferType = tt.Xfer
-	
+
+	self.health = tt.Health
+
 	if tt.Flags then
 		for k,v in ipairs(tt.Flags) do
 			self.flags[v] = true
@@ -160,69 +218,20 @@ function NoxBaseObject:initFromMapObject(mobject)
 			self.class[v] = true
 		end
 	end
-
-	--[[if(self.class["DOOR"]) then
-		DoorCreate(self)
-	end--]]
-	
-	Updates:RegisterObject(self)
-	Colliders:RegisterObject(self)
-	DrawTypes:RegisterObject(self)
-	
 end
 
---[[
-function ObjectFromMapObject(mobject)
-	local object = {}
-	if mobject.Name == "PlayerStart" then
-		if(not player) then
-			player = Player.new(mobject.Location.X, mobject.Location.Y)
-			scene:add(player)
-			NoxMap.Objects:add(player)
-			DrawTypes:RegisterObject(player)
-			physics:registerDynamicObject(player)
-			--object = player
-		end
-	end
-	local tt = ThingDB.Things[mobject.Name]
-	--object.mobject = mobject
-	object.spriteId = GetObjectSpriteId(mobject)
-	object.x = mobject.Location.X
-	object.y = mobject.Location.Y
-	object.z = tt.Z
-	object.mapXfer = mobject.ObjXfer
-	--object.tt = tt
+function NoxBaseObject:initFromMapObject(mobject)
+	self:initFromType(mobject.Name)
 
-	object.drawOffsetX = 0
-	object.drawOffsetY = 0
-	
-	object.flags = {}
-	if tt.Flags then
-		for k,v in ipairs(tt.Flags) do
-			object.flags[v] = true
-		end
-	end
-	
-	object.class = {}
-	if(tt.Class) then
-		for k,v in pairs(tt.Class) do
-			object.class[v] = true
-		end
-	end
-
-	if(object.class["DOOR"]) then
-		DoorCreate(object)
-	end
-	
-	Colliders:RegisterObject(object)
-	DrawTypes:RegisterObject(object)
-	Updates:RegisterObject(object)
-	
-	return object
-end ]]
+	self.scriptName = mobject.ScrNameShort
+	self.extentId = mobject.Extent
+	self.x = mobject.Location.X
+	self.y = mobject.Location.Y
+	self.mapXfer = mobject.ObjXfer
+end
 
 function fixObjectPosition(x, y, object)
-	local vbc_ent = VideoBag.Objects[object.spriteId]
+	local vbc_ent = VideoBag.Sprites[object.spriteId]
 	
 	local offsetX
 	local offsetY
@@ -246,7 +255,7 @@ end
 
 function UpdateObjectSpriteId(object, spriteid)
 	object.spriteId = spriteid
-	object.quad, object.img = videobagcache:getObject(object.spriteId)--GetObject(object.spriteId)
+	object.quad, object.img = videobagcache:getSprite(object.spriteId)--GetObject(object.spriteId)
 	if(object.quad == nil) then
 		print("Could not update sprite for, " .. object.objName)
 		object.spriteId = nil

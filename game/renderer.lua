@@ -96,7 +96,9 @@ function renderer.addToBatch(obj, batchname)
 	local lbatch = renderer.batches[batchname]
 
 	local lquad
-	if(obj.isonelevator) then
+	if(obj.isonelevator) then 
+		-- Clip the object when moving under the floor, looks like ass but its done like that in the original game.
+		-- Maybe make or get somebody to make some clipping masks for the various holes at some point.
 		local x,y,w,h = obj.quad:getViewport()
 		
 		local clip = (h + obj.drawOffsetY + obj.y - obj.height) - (obj.isonelevator.y + 12)
@@ -106,11 +108,16 @@ function renderer.addToBatch(obj, batchname)
 		lquad = obj.quad
 	end
 
+	if(not obj.x) then
+		tprint(obj)
+	end
+	
+
 	lbatch.batch:add(lquad, round(obj.x + obj.drawOffsetX), round(obj.y + obj.drawOffsetY - height))
 
 	local x, y
 	if(obj.type == "WALL") then
-		local cx,cy = player.x,player.y
+		local cx,cy = camera.x,camera.y
 		x,y = camera:worldToLocal(GetClosestWallPoint(obj, cx, cy))
 	else
 		x,y = camera:worldToLocal(obj.x,obj.y)	
@@ -220,71 +227,9 @@ function renderer.addToBatch(obj, batchname)
 			buffer.FadeControlB = 0
 			buffer.FadeControlA = 0
 		end
-
-
-		
 	end
 
-	lbatch.textureDataOffset = lbatch.textureDataOffset + 1
-
-	-- todo, find a way to avoid calling setPixel 7 items per object/wall etc
-	--[[setPixelFaster(lbatch.fastBuffer,
-		lbatch.textureDataOffset % 512, 
-		(lbatch.textureDataOffset - (lbatch.textureDataOffset % 512)) / 512,
-		x % 255,
-		(x - (x % 255)) / 255,
-		y % 255,
-		(y - (y % 255)) / 255
-		)--]]
-
-	
-
-	--[[if(obj.type ~= "WALL") then
-		local colors = {}
-		colors[1] = obj.COLOR1 or { 255, 0, 255, 255 }
-		colors[2] = obj.COLOR2 or { 255, 0, 255, 255 }
-		colors[3] = obj.COLOR3 or { 255, 0, 255, 255 }
-		colors[4] = obj.COLOR4 or { 255, 0, 255, 255 }
-		colors[5] = obj.COLOR5 or { 255, 0, 255, 255 }
-		colors[6] = obj.COLOR6 or { 255, 0, 255, 255 }
-
-		for k,v in ipairs(colors) do
-			setPixelFaster(lbatch.fastBuffer,
-				lbatch.textureDataOffset % 512, 
-				(lbatch.textureDataOffset - (lbatch.textureDataOffset % 512)) / 512,
-				v[1],
-				v[2],
-				v[3],
-				v[4]
-			)
-
-			lbatch.textureDataOffset = lbatch.textureDataOffset + 1
-		end
-
-		if(obj.nopartial) then
-			setPixelFaster(lbatch.fastBuffer,
-				lbatch.textureDataOffset % 512, 
-				(lbatch.textureDataOffset - (lbatch.textureDataOffset % 512)) / 512,
-				255,
-				255,
-				255,
-				255
-			)
-		else
-			setPixelFaster(lbatch.fastBuffer,
-				lbatch.textureDataOffset % 512, 
-				(lbatch.textureDataOffset - (lbatch.textureDataOffset % 512)) / 512,
-				0,
-				0,
-				0,
-				0
-			)
-		end
-		lbatch.textureDataOffset = lbatch.textureDataOffset + 1
-	end]]
-
-	
-	
+	lbatch.textureDataOffset = lbatch.textureDataOffset + 1	
 end
 
 function renderer.drawObject(obj)

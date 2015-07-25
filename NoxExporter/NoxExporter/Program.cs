@@ -279,6 +279,97 @@ namespace NoxExporter
 			}
 		}
 
+		static void ExportOtherSprites()
+		{
+			HashSet<uint> allreadyExported = new HashSet<uint>();
+			for (int i = 0; i < thingdb.Walls.Count; i++)
+			{
+				ThingDb.Wall wall = thingdb.Walls[i];
+				foreach (ThingDb.Wall.WallRenderInfo[] wriarray in wall.RenderBreakable)
+				{
+					foreach (ThingDb.Wall.WallRenderInfo wri in wriarray)
+					{
+						allreadyExported.Add((uint)wri.SpriteIndex);
+					}
+				}
+
+				foreach (ThingDb.Wall.WallRenderInfo[] wriarray in wall.RenderNormal)
+				{
+					foreach (ThingDb.Wall.WallRenderInfo wri in wriarray)
+					{
+						allreadyExported.Add((uint)wri.SpriteIndex);
+					}
+				}
+			}
+			for (int i = 0; i < thingdb.EdgeTiles.Count; i++)
+			{
+				ThingDb.Tile ttile = thingdb.EdgeTiles[i];
+				foreach (uint ind in ttile.Variations)
+				{
+					allreadyExported.Add(ind);
+				}
+			}
+
+			for (int i = 0; i < thingdb.FloorTiles.Count; i++)
+			{
+				ThingDb.Tile ttile = thingdb.FloorTiles[i];
+
+				foreach (uint a in ttile.Variations) 
+				{
+					allreadyExported.Add(a);
+				}
+			}
+			foreach (KeyValuePair<string, ThingDb.Thing> kvpair in thingdb.Things)
+			{
+				ThingDb.Thing thing = kvpair.Value;
+
+				foreach (int j in thing.SpriteAnimFrames)
+				{
+					allreadyExported.Add((uint)j);
+				}
+
+				foreach (ThingDb.Image.State ss in thing.SpriteStates)
+				{
+					foreach (int j in ss.Animation.Frames)
+					{
+						allreadyExported.Add((uint)j);
+					}
+
+				}
+
+				foreach (ThingDb.Image.Animation a in thing.ConditionalAnimations)
+				{
+					foreach (int j in a.Frames)
+					{
+						allreadyExported.Add((uint)j);
+					}
+				}
+
+				if (thing.SpriteStates.Count < 1)
+					continue;
+
+				if (thing.SpriteStates[0].Animation.Sequences.Count < 1)
+					continue;
+
+				Dictionary<string, HashSet<uint>> spritedict = new Dictionary<string, HashSet<uint>>();
+
+				foreach (ThingDb.Image.State ss in thing.SpriteStates)
+				{
+					foreach (ThingDb.Image.Animation.Sequence seq in ss.Animation.Sequences)
+					{
+						foreach (int i in seq.Frames)
+						{
+							allreadyExported.Add((uint)i);
+						}
+					}
+				}
+			}
+
+			bag.ExtractAllExceptMap("sprites/other", allreadyExported, ref ssilist);
+
+			
+		}
+
 		static void ExportWalls()
 		{
 			string last = "";
@@ -741,8 +832,10 @@ namespace NoxExporter
 				Console.WriteLine("Y - Export Walls");
 				Console.WriteLine("L - Export Sequences");
 				Console.WriteLine("U - Export Objects");
+				Console.WriteLine("B - Export OtherImages");
 				Console.WriteLine("I - Export Audio");
                 Console.WriteLine("S - Export Map Scripts");
+				Console.WriteLine("W - Export Soundset");
 				Console.WriteLine("O - ModDB");
 				Console.WriteLine("Q - Quit");
 
@@ -846,6 +939,17 @@ namespace NoxExporter
 							System.IO.File.WriteAllText("WallSprites.json", json);
 						}
 						break;
+					case 'B':
+						{
+							ExportOtherSprites();
+							var jsonserialize = new JavaScriptSerializer();
+							jsonserialize.MaxJsonLength *= 5;
+							var json = jsonserialize.Serialize(ssilist);
+							System.IO.File.WriteAllText("OtherSprites.min.json", json);
+							json = JSON_PrettyPrinter.Process(json);
+							System.IO.File.WriteAllText("OtherSprites.json", json);
+						}
+						break;
 					case 'L':
 						{
 							ExportSequences();
@@ -865,7 +969,7 @@ namespace NoxExporter
 								string cont = System.IO.File.ReadAllText("ObjectSprites.min.json");
 								ssilist = jsonserialize.Deserialize<Lexicon<uint, VideoBag.SpriteSheetInfo>>(cont);
 							}
-							catch(Exception e) {}
+							catch {}
 
 							ExportObjects();
 							
@@ -874,6 +978,12 @@ namespace NoxExporter
 							System.IO.File.WriteAllText("ObjectSprites.min.json", json);
 							json = JSON_PrettyPrinter.Process(json);
 							System.IO.File.WriteAllText("ObjectSprites.json", json);
+						}
+						break;
+					case 'W':
+						{
+							new SoundsetDb();
+							new GamedataDb();
 						}
 						break;
 					case 'Q':

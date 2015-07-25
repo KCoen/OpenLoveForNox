@@ -74,7 +74,7 @@ end
 function ElevatorCollide:onEndCollide(obj, obj2, fix1, fix2)
 	if fix1:isSensor() then
 		if(obj2.isonelevator == obj) then
-			obj2.isonelevator = nil
+			obj2.isonelevator = false
 		end
 		if(obj2.elevatorTransfer) then
 

@@ -654,6 +654,51 @@ namespace NoxShared
 			}
 		}
 
+		public void ExtractAllExceptMap(string path, HashSet<uint> stuff, ref Lexicon<uint, VideoBag.SpriteSheetInfo> ssilist)
+		{
+			uint i = 0;
+			Section.SectionEntry entry = null;
+			Section sct = null;
+			foreach (Section s in sections)
+			{
+				foreach (Section.SectionEntry e in s.Entries)
+				{
+					entry = e;
+					sct = s;
+					if (!stuff.Contains(i))
+					{
+						BinaryReader rdr = new BinaryReader(bag);
+						rdr.BaseStream.Seek(sct.Offset, SeekOrigin.Begin);
+						byte[] nxzData = rdr.ReadBytes((int)sct.SizeCompressed);
+						byte[] mapData = new byte[sct.SizeUncompressed];
+						if (!NoxShared.CryptApi.NxzDecrypt(nxzData, mapData))
+						{
+							Debug.WriteLine("ExtractOne: Couldn't NxzDecrypt");
+						}
+
+						MemoryStream nxzStream = new MemoryStream(mapData);
+						nxzStream.Seek(entry.Offset, SeekOrigin.Begin);
+
+						VideoBag.SpriteSheetInfo ssi = new VideoBag.SpriteSheetInfo();
+						ssi.imageID = i;
+						ssi.file = path + "/" + i.ToString() + ".png";
+
+						var bitmap = entry.GetBitmap(nxzStream, header.bits8, i, ref ssi.offsetX, ref ssi.offsetY);
+
+						ssi.X = 0;
+						ssi.Y = 0;
+						ssi.width = bitmap.Width;
+						ssi.height = bitmap.Height;
+
+						bitmap.Save(ssi.file);
+
+						ssilist.Add(ssi.imageID, ssi);
+					}
+					i++;
+				}
+			}
+		}
+
 		public void ExtractCache()
 		{
 			int i = 0;

@@ -69,7 +69,7 @@ function GetWallPoints(wall)
 end
 
 function fixWallPosition(x, y, wri)
-	local vbc_ent = VideoBag.Walls[wri.SpriteIndex]
+	local vbc_ent = VideoBag.Sprites[wri.SpriteIndex]
 	
 	if(vbc_ent) then
 		local offX = (0 - wri.unknown1) - vbc_ent.offsetX
@@ -134,7 +134,7 @@ function WallFromMapWall(mwall)
 	wall.centerX = wall.x + 23 / 2
 	wall.centerY = wall.y + 23 / 2
 	
-	wall.quad, wall.img = videobagcache:getWall(wall.spriteId)
+	wall.quad, wall.img = videobagcache:getSprite(wall.spriteId)
 	if(wall.quad == nil or wall.img == nil) then
 			--print("Failed to get sprite for wall, " .. thingWall.Name)
 	else

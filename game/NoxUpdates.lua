@@ -4,12 +4,12 @@ Updates.interfaces = {}
 function Updates:load()
 	local dir = "noxUpdates/"
 	for k,file in ipairs(love.filesystem.getDirectoryItems(dir)) do
-		local ok,chunk,result
-		ok,chunk = pcall(love.filesystem.load,dir..file)
+		--[[local ok,chunk,result
+		ok,chunk = love.filesystem.load(dir..file)
 		if not ok then
 			print('The following error happend (#1): ' .. tostring(chunk))
 		else
-			ok,result = pcall(chunk)
+			ok,result = chunk()
 			if not ok then
 				print('The following error happened (#2): ' .. tostring(result))
 			else
@@ -20,7 +20,10 @@ function Updates:load()
 					print("Invalid interface" .. file)
 				end
 			end
-		end
+		end]]
+
+		local result = require(dir..getBasename(file))
+		self.interfaces[result.name] = result
 	end
 end
 

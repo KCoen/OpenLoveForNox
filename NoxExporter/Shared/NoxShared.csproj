@@ -142,6 +142,8 @@
     <Compile Include="MemoryHack.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GamedataDb.cs" />
+    <Compile Include="SoundsetDb.cs" />
     <Compile Include="ModifierDb.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -20,8 +20,8 @@ function PentagramCollide:onCollide(obj, obj2)
 			local dx = obj2.x - obj.x
 			local dy = obj2.y - obj.y
 
-			if(obj2.setPosition) then
-				obj2:setPosition(target.x + dx, target.y + dy)
+			if(obj2.setPositionDelayed) then
+				obj2:setPositionDelayed(target.x + dx, target.y + dy)
 			else
 				obj2.x = target.x + dx
 				obj2.y = target.y + dy

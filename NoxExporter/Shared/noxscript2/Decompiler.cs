@@ -155,6 +155,25 @@ namespace MapEditor.noxscript2
             return result;
         }
 
+		private Operation AddBitwiseArithmetic(TVariableType type, string opt)
+		{
+			Operation b = opstack.Pop();
+			Operation a = opstack.Pop();
+			string strOpt = String.Format(opt, a.Human, b.Human);
+			Operation result = new Operation(strOpt);
+
+			int assign = a.AssignedVariable;
+			if (assign >= 0)
+			{
+				// Тут мы нашли тип..
+				if (a.AssignIsGlobal)
+					scriptContainer.Functions[1].Variables[assign].Type = type;
+				else
+					function.Variables[assign].Type = type;
+			}
+			return result;
+		}
+
 		private Operation AddDeltaArithmetic(TVariableType type, string opt)
 		{
 			Operation b = opstack.Pop();
@@ -259,19 +278,19 @@ namespace MapEditor.noxscript2
                     result = AddArithmetic(TVariableType.INTEGER, "%");
                     break;
                 case 0x10:
-                    result = AddArithmetic(TVariableType.INTEGER, "&");
+					result = AddBitwiseArithmetic(TVariableType.INTEGER, "bit.band({0}, {1}");
                     break;
                 case 0x11:
-                    result = AddArithmetic(TVariableType.INTEGER, "|");
+					result = AddBitwiseArithmetic(TVariableType.INTEGER, "bit.bor({0}, {1})");
                     break;
                 case 0x12:
-                    result = AddArithmetic(TVariableType.INTEGER, "^");
+					result = AddBitwiseArithmetic(TVariableType.INTEGER, "bit.bxor({0}, {1})");
                     break;
                 case 0x26:
-                    result = AddArithmetic(TVariableType.INTEGER, "<<");
+					result = AddBitwiseArithmetic(TVariableType.INTEGER, "bit.lshift({0}, {1}");
                     break;
                 case 0x27:
-                    result = AddArithmetic(TVariableType.INTEGER, ">>");
+					result = AddBitwiseArithmetic(TVariableType.INTEGER, "bit.rshift({0}, {1}");
                     break;
                 // Goto (jump) operations
                 case 0x13:
@@ -282,13 +301,36 @@ namespace MapEditor.noxscript2
                 case 0x14:
                     jaddr = br.ReadInt32();
                     jumps.Push(jaddr);
-                    result = new Operation("if " + opstack.Pop().Human + " then \r\n\tgoto " + MakeJumpLabel(jaddr) + "\r\nend");
+
+					string popped = opstack.Pop().Human;
+					if (popped.Contains(" = ")) // Lua can't have assignments in if statements so unroll this into 2 lines
+					{
+						var substrs = popped.Split(new string[] { " = " }, StringSplitOptions.None);
+
+						result = new Operation(popped + "\r\nif (" + substrs[0] + ") then \r\n\tgoto " + MakeJumpLabel(jaddr) + "\r\nend");
+					}
+					else
+					{
+						result = new Operation("if (" + popped + ") then \r\n\tgoto " + MakeJumpLabel(jaddr) + "\r\nend");
+					}
+
+					
                     break;
                 case 0x15:
                     jaddr = br.ReadInt32();
                     jumps.Push(jaddr);
 					string str = opstack.Pop().Human;
-                    result = new Operation("if not " + str + " then \r\n\tgoto " + MakeJumpLabel(jaddr) + "\r\nend");
+					if (str.Contains(" = ")) // Lua can't have assignments in if statements so unroll this into 2 lines
+					{
+						var substrs = str.Split(new string[] { " = " }, StringSplitOptions.None);
+
+						result = new Operation(str + "\r\nif not (" + substrs[0] + ") then \r\n\tgoto " + MakeJumpLabel(jaddr) + "\r\nend");
+					}
+					else
+					{
+						result = new Operation("if not (" + str + ") then \r\n\tgoto " + MakeJumpLabel(jaddr) + "\r\nend");
+					}
+					//result = new Operation("if not " + str + " then \r\n\tgoto " + MakeJumpLabel(jaddr) + "\r\nend");
                     break;
                 // Assignment
                 case 0x16:
@@ -461,12 +503,13 @@ namespace MapEditor.noxscript2
                     break;
                 case 0x47: // war07a.map
                 case 0x48:
-                    string rarg = "if true then return end";
+                    string rarg = "if true then return";
                     // returns something
                     if (function.Returns && op == 0x47)
                     {
                         rarg += " " + opstack.Pop().Human;
                     }
+					rarg += " end";
                     result = new Operation(rarg);
                     break;
                 default:

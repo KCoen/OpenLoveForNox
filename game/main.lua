@@ -5,6 +5,8 @@ jit.opt.start("-dce")
 jit.opt.start("hotloop=10", "hotexit=2")
 
 -- Global requires
+CLIENT = true
+
 vector = require("libs/vector")
 JSON = require("libs/JSON")
 ProFi = require("libs/ProFi")
@@ -29,63 +31,13 @@ require("NoxMapScriptFunctions")
 require("NoxMapScript")
 require("NoxUpdates")
 require("NoxMusic")
+require("NoxInterface")
+require("NoxSpells")
+require("NoxLocalPlayerController")
 
 love.graphics.setDefaultFilter("nearest","nearest",1)
 
-function PreProcessSprites()
-	love.timer.starTimer("Preprocessing Sprites")
-	VideoBag.Tiles = {}
-	VideoBag.TilesByFile = {}
-	for k, obj in pairs(VideoBag._Tiles) do
-		VideoBag.Tiles[obj.Value.imageID] = obj.Value
-		
-		VideoBag.TilesByFile[obj.Value.file] = VideoBag.TilesByFile[obj.Value.file] or {}
-		VideoBag.TilesByFile[obj.Value.file][obj.Value.imageID] = obj.Value
-		
-	end
-	
-	VideoBag.TileEdges = {}
-	VideoBag.TileEdgesByFile = {}
-	for k, obj in pairs(VideoBag._TileEdges) do
-		VideoBag.TileEdges[obj.Value.imageID] = obj.Value
-		
-		VideoBag.TileEdgesByFile[obj.Value.file] = VideoBag.TileEdgesByFile[obj.Value.file] or {}
-		VideoBag.TileEdgesByFile[obj.Value.file][obj.Value.imageID] = obj.Value
-		
-	end
-	
-	VideoBag.Walls = {}
-	VideoBag.WallsByFile = {}
-	for k, obj in pairs(VideoBag._Walls) do
-		VideoBag.Walls[obj.Value.imageID] = obj.Value
-		
-		VideoBag.WallsByFile[obj.Value.file] = VideoBag.WallsByFile[obj.Value.file] or {}
-		VideoBag.WallsByFile[obj.Value.file][obj.Value.imageID] = obj.Value
-		
-	end
-	
-	VideoBag.Objects = {}
-	VideoBag.ObjectsByFile = {}
-	for k, obj in pairs(VideoBag._Objects) do
-		VideoBag.Objects[obj.Value.imageID] = obj.Value
-		
-		VideoBag.ObjectsByFile[obj.Value.file] = VideoBag.ObjectsByFile[obj.Value.file] or {}
-		VideoBag.ObjectsByFile[obj.Value.file][obj.Value.imageID] = obj.Value
-		
-	end
-	
-	VideoBag.Sequences = {}
-	VideoBag.SequencesByFile = {}
-	for k, obj in pairs(VideoBag._Sequences) do
-		VideoBag.Sequences[obj.Value.imageID] = obj.Value
-		
-		VideoBag.SequencesByFile[obj.Value.file] = VideoBag.SequencesByFile[obj.Value.file] or {}
-		VideoBag.SequencesByFile[obj.Value.file][obj.Value.imageID] = obj.Value
-		
-	end
-	
-	love.timer.stopTimer("Preprocessing Sprites")
-end
+
 
 function LoadDatabases()
 	love.timer.starTimer("Loading JSON")
@@ -97,6 +49,7 @@ function LoadDatabases()
 	VideoBag._TileEdges = loadJSON("content/Json/TileEdgeSprites.min.json")
 	VideoBag._Walls = loadJSON("content/Json/WallSprites.min.json")
 	VideoBag._Objects = loadJSON("content/Json/ObjectSprites.min.json")
+	VideoBag._Others = loadJSON("content/Json/OtherSprites.min.json")
 	VideoBag._Sequences = loadJSON("content/Json/SequenceSprites.min.json")
 	love.timer.stopTimer("Loading JSON")
 end
@@ -163,8 +116,8 @@ function love.load(arg)
 	Updates:load()
 	Colliders:load()
 	physics:load()
-	
 	camera = Camera.new()
+	
 	
 	screenBuffer = love.graphics.newCanvas(camera.wwidth,camera.wheight)
 	lightEngine = {}
@@ -183,8 +136,16 @@ function love.load(arg)
 
 	
 	loadMap(getFirstMap())	
-	
-	--love.system.openURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ") -- by grim
+
+	localplayer = NoxBaseObject.new("NewPlayer")
+	localplayer:setPosition(NoxMap.Spawns[1].x, NoxMap.Spawns[1].y)
+	--localplayer.x = NoxMap.Spawns[1].x
+	--localplayer.y = NoxMap.Spawns[1].y
+
+	NoxMap:insertObject(localplayer)
+	NoxLocalPlayerController:bind(localplayer)
+
+	NoxInterface:load()
 end
 
 local hasStarted = 0
@@ -207,9 +168,10 @@ function love.update(dt)
 		end
 	end
 	
+	NoxLocalPlayerController:update(dt)
 	physics:update(dt)
 	Updates:update(dt)
-	player:update(dt)
+	--player:update(dt)
 	camera:update(dt)
 	NoxMap:update(dt)	
 	
@@ -226,6 +188,8 @@ end
 function love.draw()
 	NoxMap:draw()
 
+	NoxInterface:draw()
+
 	love.debug.print("FPS: " .. love.timer.getFPS())
 	
 	local stats = love.graphics.getStats( )
@@ -236,11 +200,20 @@ function love.draw()
 	love.debug.print("Images: " .. stats.images)
 	love.debug.print("Canvases: " .. stats.canvases)
 	love.debug.print("Fonts: " .. stats.fonts)
+	if(camera) then
+		love.debug.print("Camera: " .. camera.x .. " " .. camera.y)
+	end
+	if(localplayer) then
+		love.debug.print("Player: " .. localplayer.x .. " " .. localplayer.y)
+	end
+	
+	
 	
 	love.debug.printReset()
 end
 
 function love.keypressed(key, u)
+	NoxLocalPlayerController:keypressed(key,u)
 	if camera then
 		if key == "r" then
 			camera.scale = 1
@@ -288,19 +261,23 @@ function love.keypressed(key, u)
 	end
 
 
-	if(localplayer) then
+	--[[if(localplayer) then
 		localplayer:keypressed(key, u)
-	end
+	end--]]
 	
 end
 
 function love.keyreleased(key, u)
-	if(localplayer and localplayer.keyreleased) then
-		localplayer:keyreleased(key, u)
-	end
+	NoxLocalPlayerController:keyreleased(key,u)
+end
+
+function love.mousereleased(x,y,button)
+	NoxLocalPlayerController:mousereleased(x,y,button)
 end
 
 function love.mousepressed(x,y,button)
+	NoxLocalPlayerController:mousepressed(x,y,button)
+
 	local wx,wy = camera:localToWorld(x,y)
 	if camera then
 		if button == "wu" then

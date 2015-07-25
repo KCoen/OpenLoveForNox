@@ -277,3 +277,7 @@ function table.find(t,element)
 		end
 	end
 end
+
+function getBasename(filename)
+  return filename:match("^([^%.]*)%.?") -- "myfile.lua" -> "myfile"
+end
