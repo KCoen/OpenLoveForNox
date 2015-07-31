@@ -27,12 +27,13 @@ function qsort(xs)
 	 	return xs
 	end
 	local pObj = xs[1]
-	local p = (xs[1].y + xs[1].z)
+
+	local p = (xs[1].y + xs[1].z + xs[1].height + xs[1].elevatorheight)
 
 	local lesser, greater = {}, {}
 	local nxs = #xs
 	for i=2, nxs do
-		if (xs[i].y + xs[i].z) <= p then
+		if (xs[i].y + xs[i].z + xs[1].height + xs[i].elevatorheight) <= p then
 			lesser[#lesser + 1] = xs[i]
 		else
 			greater[#greater + 1] = xs[i]

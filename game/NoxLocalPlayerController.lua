@@ -47,17 +47,22 @@ function NoxLocalPlayerController:update(dt)
 		end
 	end
 
-	print(speed)
 	ply.player:sendMove(mouseDirectionX, mouseDirectionY, speed, NoxLocalPlayerController.pressedKeys[binds.jump])
 
 	local dx = camera.x - ply.x
 	local dy = camera.y - ply.y
 	local length = math.sqrt(dx*dx + dy*dy)
 
-	if length > 5 * camera.scale then
+	if length > 100 * camera.scale then
+		camera:set(ply.x, ply.y)
+	elseif length > 5 * camera.scale then
 		camera:set(camera.x + (ply.x - camera.x) * 5 * dt, camera.y + (ply.y - camera.y) * 5 * dt)
 	end
 
+	
+end
+
+function NoxLocalPlayerController:flushInputBuffer()
 	NoxLocalPlayerController.pressedKeys = {}
 end
 

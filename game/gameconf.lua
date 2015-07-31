@@ -7,19 +7,22 @@ gameconf = {
 }
 
 binds = {
-	spell1 = 'A',
-	spell2 = 'S',
-	spell3 = 'D',
-	spell4 = 'F',
-	spell5 = 'G',
+	spell1 = 'a',
+	spell2 = 's',
+	spell3 = 'd',
+	spell4 = 'f',
+	spell5 = 'g',
 
-	potion1 = "Z",
-	potion2 = "X",
-	potion3 = "C",
+	potion1 = 'z',
+	potion2 = 'x',
+	potion3 = 'c',
 
 	move = "mouse:r",
 	attack = "mouse:l",
 	jump = ' ',
-	noclip = 'v'
+	swap = 'v',
+	noclip = 'p',
+
+	toggleinventory = 'i'
 }
 

@@ -23,7 +23,6 @@ require("NoxWall")
 require("NoxObject")
 require("NoxThingdb")
 require("NoxVideobag")
-require("NoxPlayer")
 require("NoxDrawTypes")
 require("NoxColliders")
 require("NoxMap")
@@ -43,6 +42,11 @@ function LoadDatabases()
 	love.timer.starTimer("Loading JSON")
 	ThingDB = loadJSON("content/Json/ThingDB.min.json")	
 	ModDB = loadJSON("content/Json/ModDB.min.json")	
+	_StringDB = loadJSON("content/Json/StringDB.min.json")
+	StringDB = {}
+	for k,v in pairs(_StringDB.Entries) do
+		StringDB[k] = v.Values
+	end
 	--Map = loadJSON("Json/War02a.min.json")	
 	VideoBag = {}
 	VideoBag._Tiles = loadJSON("content/Json/TileSprites.min.json")
@@ -109,6 +113,7 @@ function love.load(arg)
 	shaders.shadowedObject = love.graphics.newShader("shaders/shadowedObject.c")
 	shaders.shadowedWall = love.graphics.newShader("shaders/shadowedWall.c")
 	shaders.unshadowedObject = love.graphics.newShader("shaders/unshadowedObject.c")
+	shaders.type46 = love.graphics.newShader("shaders/type46.c")
 	LoadDatabases()
 	PreProcessSprites()
 
@@ -178,11 +183,12 @@ function love.update(dt)
 
 	renderer:update(dt)
 	DrawTypes:update(dt)
+	NoxInterface:update(dt)
 
 	
 	
 
-
+	NoxLocalPlayerController:flushInputBuffer()
 end
 
 function love.draw()
@@ -190,26 +196,26 @@ function love.draw()
 
 	NoxInterface:draw()
 
-	love.debug.print("FPS: " .. love.timer.getFPS())
+	if(gameconf.debug) then
+		love.debug.print("FPS: " .. love.timer.getFPS())
+
+		local stats = love.graphics.getStats( )
+		
+		love.debug.print("Drawcalls: " .. stats.drawcalls)
+		love.debug.print("Canvasswitches: " .. stats.canvasswitches)
+		love.debug.print("Texturememory: " .. stats.texturememory)
+		love.debug.print("Images: " .. stats.images)
+		love.debug.print("Canvases: " .. stats.canvases)
+		love.debug.print("Fonts: " .. stats.fonts)
+		if(camera) then
+			love.debug.print("Camera: " .. camera.x .. " " .. camera.y)
+		end
+		if(localplayer) then
+			love.debug.print("Player: " .. localplayer.x .. " " .. localplayer.y)
+		end
 	
-	local stats = love.graphics.getStats( )
-	
-	love.debug.print("Drawcalls: " .. stats.drawcalls)
-	love.debug.print("Canvasswitches: " .. stats.canvasswitches)
-	love.debug.print("Texturememory: " .. stats.texturememory)
-	love.debug.print("Images: " .. stats.images)
-	love.debug.print("Canvases: " .. stats.canvases)
-	love.debug.print("Fonts: " .. stats.fonts)
-	if(camera) then
-		love.debug.print("Camera: " .. camera.x .. " " .. camera.y)
-	end
-	if(localplayer) then
-		love.debug.print("Player: " .. localplayer.x .. " " .. localplayer.y)
-	end
-	
-	
-	
-	love.debug.printReset()
+		love.debug.printReset()
+	end	
 end
 
 function love.keypressed(key, u)

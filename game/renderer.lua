@@ -96,7 +96,7 @@ function renderer.addToBatch(obj, batchname)
 	local lbatch = renderer.batches[batchname]
 
 	local lquad
-	if(obj.isonelevator) then 
+	if(obj.isonelevator and obj.height < 0) then 
 		-- Clip the object when moving under the floor, looks like ass but its done like that in the original game.
 		-- Maybe make or get somebody to make some clipping masks for the various holes at some point.
 		local x,y,w,h = obj.quad:getViewport()

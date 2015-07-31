@@ -12,9 +12,31 @@ end
 function PlayerDraw:draw(obj)
 	-- Hack, renderer draws generic objects only, but isn't build to deal with complex objects such as the player 
 	-- So We set various variables on the player object and then draw it multiple times
-	for k,v in pairs(obj.player.equipment) do
-		obj:UpdateSpriteId(obj.player.spriteStates[obj.player.sequence].sequences[v.Name].Frames[obj.player.animationOffset + 
-			(#obj.player.spriteStates[obj.player.sequence].sequences[v.Name].Frames / 8) * obj.player.anidirection + 1])
+
+	local toRender = {}
+
+	table.insert(toRender, {
+		sequencename = "NAKED",
+		COLOR1 = { 0x73, 0x4d, 0x22, 255 },
+		COLOR2 = { 0xda, 0x9a, 0x6e, 255 },
+		COLOR3 = { 0xFF, 0x0,  0xFF, 255 },
+		COLOR4 = { 0xda, 0x9a, 0x6e, 255 },
+		COLOR5 = { 0xda, 0x9a, 0x6e, 255 },
+		COLOR6 = { 0xda, 0x9a, 0x6e, 255 }
+	})
+
+	for _,seqid in pairs(PlayerArmor) do
+		for k,v in pairs(obj.player.inventory) do
+			if (v.sequenceid == seqid) and v.isequiped then
+				table.insert(toRender, v)
+			end
+		end
+	end
+
+
+	for k,v in pairs(toRender) do
+		obj:UpdateSpriteId(obj.player.spriteStates[obj.player.sequence].sequences[v.sequencename].Frames[obj.player.animationOffset + 
+			(#obj.player.spriteStates[obj.player.sequence].sequences[v.sequencename].Frames / 8) * obj.player.anidirection + 1])
 
 		if(v.COLOR1) then
 			obj.COLOR1 = v.COLOR1

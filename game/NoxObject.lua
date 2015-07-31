@@ -110,7 +110,7 @@ function NoxBaseObject.new(fromObject)
 
 	self.xferType = ""
 
-	self.extentId = 0
+	self.extentId = -1
 
 	self.isDisabled = false
 
@@ -129,6 +129,7 @@ function NoxBaseObject.new(fromObject)
 	self.height = 0
 	self.floorheight = 0
 	self.isonelevator = false
+	self.orderOffset = 0
 
 	self.futureX = false
 	self.futureY = false
@@ -139,6 +140,7 @@ function NoxBaseObject.new(fromObject)
 	self.door = false
 	self.player = false
 	self.damagecollide = false
+	self.monster = false
 
 	self._isInit = true
 

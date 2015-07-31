@@ -4,7 +4,7 @@ ElevatorUpdate.name = "ElevatorUpdate"
 
 ElevatorUpdate.AnimatePerSecond = 1 / 16
 ElevatorUpdate.MaxHeight = 64
-ElevatorUpdate.Speed = 2
+ElevatorUpdate.Speed = 128
 
 function ElevatorUpdate:initObject(obj)
 	obj.elevatorheight = 0
@@ -23,22 +23,28 @@ function ElevatorUpdate:updateObject(obj, dt)
 		obj.phys[1].fix:setFilterData(a,b,c)
 
 		obj.animationLastUpdate = self.curTime
-		obj.elevatorheight = obj.elevatorheight + obj.direction
-
-
-
+		obj.elevatorheight = obj.elevatorheight + obj.direction * dt
+		if(obj.elevatorheight < 0) then
+			obj.elevatorheight = 0
+		end
 		if(obj.elevatorheight > ElevatorUpdate.MaxHeight) then
+			obj.elevatorheight = ElevatorUpdate.MaxHeight
+		end
+
+		if(obj.elevatorheight >= ElevatorUpdate.MaxHeight) then
 			obj.direction = -1 * ElevatorUpdate.Speed
 		end
-		if(obj.elevatorheight == 0) then
+		if(obj.elevatorheight <= 0) then
 			obj.direction = ElevatorUpdate.Speed
 		end
 
 		if(obj.elevatorheight > ElevatorUpdate.MaxHeight - 24) then
-			for k,v in pairs(obj.childs) do
-				local target = NoxMap:GetByExtendId(obj.mapXfer.ExtentLink)
-				if target then
-					
+			local target = NoxMap:GetByExtendId(obj.mapXfer.ExtentLink)
+			if target then
+				if #obj.childs > 0 then
+					tprint(target)
+				end
+				for k,v in pairs(obj.childs) do
 					if(v.setPosition) then
 						v:setPosition(target.x, target.y)
 					else
