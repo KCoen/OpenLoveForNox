@@ -836,6 +836,7 @@ namespace NoxExporter
 				Console.WriteLine("I - Export Audio");
                 Console.WriteLine("S - Export Map Scripts");
 				Console.WriteLine("W - Export Soundset");
+				Console.WriteLine("T - Export StringDB");
 				Console.WriteLine("O - ModDB");
 				Console.WriteLine("Q - Quit");
 
@@ -846,6 +847,17 @@ namespace NoxExporter
 
 				switch (Convert.ToChar(Console.Read()))
 				{
+					case 'T':
+						{
+							var stringdb = new StringDb();
+							var jsonserialize = new JavaScriptSerializer();
+							jsonserialize.MaxJsonLength = int.MaxValue;
+							var json = jsonserialize.Serialize(stringdb);
+							System.IO.File.WriteAllText("StringDB.min.json", json);
+							json = JSON_PrettyPrinter.Process(json);
+							System.IO.File.WriteAllText("StringDB.json", json);
+						}
+						break;
 					case 'A':
 						{
 							

@@ -72,6 +72,15 @@ namespace NoxShared
 			}
 		}
 
+		public StringDb()
+		{
+			dbFile = "nox.csf";
+			using (FileStream fs = File.OpenRead(NoxPath + dbFile))
+			{
+				Read(fs);
+			}
+		}
+
 		public string GetEntryFirstVal(string key)
 		{
 			if (!Entries.ContainsKey(key)) return null;

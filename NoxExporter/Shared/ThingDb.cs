@@ -471,6 +471,7 @@ namespace NoxShared
 			{
 				public string Name;
 				public Animation Animation;
+				public byte AnimationId;
 
 				public State(Stream stream)
 				{
@@ -497,7 +498,7 @@ namespace NoxShared
 						rdr.BaseStream.Seek(-4, SeekOrigin.Current);
 
 						//TOTAL HACK to differentiate between STATs in PlayerDraw and MonsterDraw
-						rdr.ReadByte();
+						AnimationId = rdr.ReadByte();
 						if (Char.IsLetter((char)rdr.PeekChar()))//for PlayerDraw
 						{
 							rdr.BaseStream.Seek(-1, SeekOrigin.Current);
