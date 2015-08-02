@@ -4,24 +4,6 @@ Updates.interfaces = {}
 function Updates:load()
 	local dir = "noxUpdates/"
 	for k,file in ipairs(love.filesystem.getDirectoryItems(dir)) do
-		--[[local ok,chunk,result
-		ok,chunk = love.filesystem.load(dir..file)
-		if not ok then
-			print('The following error happend (#1): ' .. tostring(chunk))
-		else
-			ok,result = chunk()
-			if not ok then
-				print('The following error happened (#2): ' .. tostring(result))
-			else
-				--print('The result of loading is: ' .. tostring(result))
-				if(result) then
-					self.interfaces[result.name] = result
-				else
-					print("Invalid interface" .. file)
-				end
-			end
-		end]]
-
 		local result = require(dir..getBasename(file))
 		self.interfaces[result.name] = result
 	end
@@ -45,7 +27,7 @@ function Updates:RegisterObject(object)
 	if(object.updater) then
 		object.updater:initObject(object)
 	else
-		print("Unsuported update type " .. object.updateType, object.objName)
+		print("Unsuported update type " .. object.updateType, object.objname)
 	end
 end
 

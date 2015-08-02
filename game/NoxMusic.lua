@@ -30,17 +30,26 @@ local defaultmusic = {
 	"wander4"
 }
 
-music = {}
+audio = {}
 
-music.currentMusic = nil
+audio.currentMusic = nil
 
-function music:playByNr(nr, volume)
-	if(music.currentMusic) then
+function audio:playMusicByNr(nr, volume)
+	if(audio.currentMusic) then
 		music.currentMusic:stop()
 	end
 	print("music/" .. defaultmusic[nr + 1] .. ".wav")
-	music.currentMusic = love.audio.newSource("content/music/" .. defaultmusic[nr] .. ".MP3", "stream")
-	music.currentMusic:setVolume(volume / 100 * gameconf.musicvolume)
-	music.currentMusic:setLooping(true)
-	music.currentMusic:play()
+	audio.currentMusic = love.audio.newSource("content/music/" .. defaultmusic[nr] .. ".MP3", "stream")
+	audio.currentMusic:setVolume(volume / 100 * gameconf.musicvolume)
+	audio.currentMusic:setLooping(true)
+	audio.currentMusic:play()
 end
+
+function audio:playSound(name)
+	local snd = love.audio.newSource("content/audio/" .. name .. ".MP3", "stream")
+	snd:setVolume(1.0)
+	snd:setLooping(false)
+	snd:play()
+end
+
+--uinveop.MP3

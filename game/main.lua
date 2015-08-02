@@ -214,8 +214,9 @@ function love.draw()
 			love.debug.print("Player: " .. localplayer.x .. " " .. localplayer.y)
 		end
 	
-		love.debug.printReset()
+		love.debug.printProfiles()
 	end	
+	love.debug.printResetNoPrint()
 end
 
 function love.keypressed(key, u)
@@ -270,6 +271,12 @@ function love.keypressed(key, u)
 	--[[if(localplayer) then
 		localplayer:keypressed(key, u)
 	end--]]
+
+	if(key == "f5") then
+		music.currentMusic = love.audio.newSource("content/audio/abird01a.wav", "stream")
+		music.currentMusic:setVolume(1.0)
+		music.currentMusic:play()
+	end
 	
 end
 
@@ -279,10 +286,12 @@ end
 
 function love.mousereleased(x,y,button)
 	NoxLocalPlayerController:mousereleased(x,y,button)
+	NoxInterface:mousereleased(x,y, button)
 end
 
 function love.mousepressed(x,y,button)
 	NoxLocalPlayerController:mousepressed(x,y,button)
+
 
 	local wx,wy = camera:localToWorld(x,y)
 	if camera then
@@ -292,4 +301,10 @@ function love.mousepressed(x,y,button)
 			camera.scale = camera.scale * 0.5
 		end
 	end
+
+	NoxInterface:mousepressed(x,y, button)
+end
+
+function love.mousemoved(x,y,dx,dy)
+	NoxInterface:mousemoved(x,y,dx,dy)
 end

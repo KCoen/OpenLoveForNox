@@ -13,7 +13,7 @@ function NoxBaseObject:UpdateSpriteId(spriteid)
 	self.spriteId = spriteid
 	self.quad, self.img = videobagcache:getSprite(self.spriteId)
 	if(self.quad == nil) then
-		print("Could not update sprite for, " .. self.objName)
+		print("Could not update sprite for, " .. self.objname)
 		self.spriteId = nil
 	end
 	
@@ -116,7 +116,7 @@ function NoxBaseObject.new(fromObject)
 
 	self.floorheight = 0
 
-	self.objName = ""
+	self.objname = ""
 
 	self.elevatorTransfer = false
 	self.scriptName = ""
@@ -134,6 +134,14 @@ function NoxBaseObject.new(fromObject)
 	self.futureX = false
 	self.futureY = false
 
+	self.isinInventory = false
+
+	self.sequenceid = false
+	self.sequencename = false
+	self.modtype = false
+	self.isequiped = false
+	self.isprevweapon = false
+
 
 
 	-- Compontents
@@ -141,6 +149,7 @@ function NoxBaseObject.new(fromObject)
 	self.player = false
 	self.damagecollide = false
 	self.monster = false
+	self.equipment = false
 
 	self._isInit = true
 
@@ -187,7 +196,7 @@ function NoxBaseObject:initFromType(objecttype)
 	self.sizeY = tt.SizeY
 	self.mass = tt.Mass
 	
-	self.objName = tt.Name
+	self.objname = tt.Name
 
 	self.drawType = tt.DrawType
 	self.collideType = tt.Collide
@@ -208,6 +217,15 @@ function NoxBaseObject:initFromType(objecttype)
 	self.xferType = tt.Xfer
 
 	self.health = tt.Health
+
+	local db = ModDB.Mods[self.objname]
+	if(db) then
+		self.equipment = {}
+		self.sequenceid = ItemNameToSequenceID[self.objname]
+		self.sequencename = ItemNameToSequenceName[self.objname]
+		self.modtype = db.type
+		self.equipment.charges = false
+	end
 
 	if tt.Flags then
 		for k,v in ipairs(tt.Flags) do
@@ -259,7 +277,7 @@ function UpdateObjectSpriteId(object, spriteid)
 	object.spriteId = spriteid
 	object.quad, object.img = videobagcache:getSprite(object.spriteId)--GetObject(object.spriteId)
 	if(object.quad == nil) then
-		print("Could not update sprite for, " .. object.objName)
+		print("Could not update sprite for, " .. object.objname)
 		object.spriteId = nil
 	end
 	

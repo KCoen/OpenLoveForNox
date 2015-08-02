@@ -541,7 +541,7 @@ function mapscriptenv.ForceAutosave()
 	return
 end
 function mapscriptenv.PlayMusic(songnr, volume)
-	return music:playByNr(songnr, volume)
+	return audio:playMusicByNr(songnr, volume)
 end
 function mapscriptenv.StartScreen(intArgument)
 	return

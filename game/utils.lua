@@ -170,12 +170,15 @@ function love.debug.print(str)
 	table.insert(love.debug.toPrint, str)
 end
 
-function love.debug.printReset()
+function love.debug.printProfiles()
 	local printoffset = 0
 	for k,v in pairs(love.debug.toPrint) do
 		love.graphics.print(v, 0, printoffset)
 		printoffset = printoffset + 12
 	end
+end
+
+function love.debug.printResetNoPrint()
 	love.debug.toPrint = {}
 end
 
@@ -280,4 +283,68 @@ end
 
 function getBasename(filename)
   return filename:match("^([^%.]*)%.?") -- "myfile.lua" -> "myfile"
+end
+
+function table.prealloc(n)
+	local obj = {}
+	for i=1, n do
+		obj[i] = false
+	end
+
+	return obj
+end
+
+
+
+local currentStateX = 0
+local currentStateY = 0
+local currentStateScaleX = 1
+local currentStateScaleY = 1
+love.graphics._translate = love.graphics.translate
+love.graphics._push = love.graphics.push
+love.graphics._pop = love.graphics.pop
+love.graphics._scale = love.graphics.scale
+love.graphics._rotate = love.graphics.rotate
+love.graphics._orgin = love.graphics.orgin
+
+local states = {}
+local statesPos = 1000
+states[statesPos] = { x=0, y=0, scalex = 1, scaley = 1 }
+
+function love.graphics.translate(dx,dy)
+	states[statesPos].x = states[statesPos].x + dx
+	states[statesPos].y = states[statesPos].y + dy
+
+	love.graphics._translate(dx,dy)
+end
+
+function love.graphics.pop()
+	statesPos = statesPos - 1
+
+	love.graphics._pop()
+end
+
+function love.graphics.push()
+	local cpy = table.copy(states[statesPos])
+	statesPos = statesPos + 1
+	states[statesPos] = cpy
+
+	love.graphics._push()
+end
+
+function love.graphics.scale(sx, sy)
+	states[statesPos].scalex = sx
+	states[statesPos].scaley = sy
+
+	love.graphics._scale(sx,sy)
+end
+
+function love.graphics.translateQuad(x,y,w,h)
+	local s = states[statesPos]
+	return (x + s.x) * s.scalex, (y + s.y) * s.scaley, w * s.scalex, h * s.scaley
+end
+
+function love.graphics.orgin()
+	states[statesPos] = { x=0, y=0, scalex = 1, scaley = 1 }
+	love.graphics._origin()
 end

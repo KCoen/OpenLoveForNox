@@ -10,7 +10,7 @@ function WeaponDraw:initObject(obj)
 	local index = obj.spriteAnimFrames[1];
 	UpdateObjectSpriteId(obj, index)
 	
-	local db = ModDB.Mods[obj.objName]
+	local db = ModDB.Mods[obj.objname]
 	if(db.COLOR1) then
 		obj.COLOR1 = { db.COLOR1.R, db.COLOR1.G, db.COLOR1.B, db.COLOR1.A }
 	end

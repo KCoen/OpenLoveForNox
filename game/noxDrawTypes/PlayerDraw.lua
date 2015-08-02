@@ -27,8 +27,10 @@ function PlayerDraw:draw(obj)
 
 	for _,seqid in pairs(PlayerArmor) do
 		for k,v in pairs(obj.player.inventory) do
-			if (v.sequenceid == seqid) and v.isequiped then
-				table.insert(toRender, v)
+			if v then
+				if (v.sequenceid == seqid) and v.isequiped then
+					table.insert(toRender, v)
+				end
 			end
 		end
 	end

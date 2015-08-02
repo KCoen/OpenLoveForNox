@@ -27,7 +27,7 @@ function DrawTypes:RegisterObject(object) -- DrawFunction
 	if(object.renderer) then
 		object.renderer:initObject(object)
 	else
-		print("Unsuported drawtype " .. object.drawType, object.objName)
+		print("Unsuported drawtype " .. object.drawType, object.objname)
 	end
 end
 

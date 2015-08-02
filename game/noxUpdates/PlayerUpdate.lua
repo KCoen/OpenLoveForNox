@@ -159,7 +159,7 @@ ModelWeapon[PlayerWeapon.STAFF_OBLIVION_HEART] = 14393;
 ModelWeapon[PlayerWeapon.STAFF_OBLIVION_WIERDLING] = 14394;
 ModelWeapon[PlayerWeapon.STAFF_OBLIVION_ORB] = 14395;
 
-local ItemNameToSequenceID = {
+ItemNameToSequenceID = {
 	LesserFireballWand = PlayerWeapon.STAFF_FIREBALL,
 	LeatherBoots = PlayerArmor.LEATHER_BOOTS,
 	WizardRobe = PlayerArmor.WIZARD_ROBE,
@@ -215,7 +215,7 @@ local ItemNameToSequenceID = {
 	WoodenShield = PlayerArmor.ROUND_SHIELD 
 }
 
-local ItemNameToSequenceName = {
+ItemNameToSequenceName = {
 	LesserFireballWand = "STAFF_FIREBALL",
 	LeatherBoots = "LEATHER_BOOTS",
 	WeakArcherArrow = "",
@@ -275,7 +275,10 @@ local ItemNameToSequenceName = {
 
 
 local function equipmentFromName(name)
-	local db = ModDB.Mods[name]
+	local obj = NoxBaseObject.new(name)
+	return obj
+
+	--[[local db = ModDB.Mods[name]
 	local obj = {}
 	obj.sequenceid = ItemNameToSequenceID[name]
 	obj.sequencename = ItemNameToSequenceName[name]
@@ -301,7 +304,7 @@ local function equipmentFromName(name)
 		obj.COLOR6 = { db.COLOR6.R, db.COLOR6.G, db.COLOR6.B, db.COLOR6.A }
 	end
 
-	return obj
+	return obj--]]
 end
 
 
@@ -373,35 +376,39 @@ function PlayerUpdate:initObject(obj)
 	obj.player.spellsets[5] = { NoxSpells:get("SPELL_ANCHOR"), NoxSpells:get("SPELL_ANCHOR"), NoxSpells:get("SPELL_ANCHOR"), NoxSpells:get("SPELL_ANCHOR"), NoxSpells:get("SPELL_ANCHOR") }
 	obj.player.activespellset = 1
 
-	obj.player.inventory = {}
-	obj.player.inventorySlots = 25
+	obj.player.inventory = table.prealloc(80)
+
+	obj.player.inventorySlots = 80
 
 	local eq = equipmentFromName("PlateBoots")
 	eq.isequiped = true
-	table.insert(obj.player.inventory, eq)
+	obj.player.inventory[1] = eq
 
 	eq = equipmentFromName("PlateLeggings")
 	eq.isequiped = true
-	table.insert(obj.player.inventory, eq)
+	obj.player.inventory[2] = eq
 
 	eq = equipmentFromName("PlateArms")
 	eq.isequiped = true
-	table.insert(obj.player.inventory, eq)
+	obj.player.inventory[3] = eq
 
 	eq = equipmentFromName("Breastplate")
 	eq.isequiped = true
-	table.insert(obj.player.inventory, eq)
+	obj.player.inventory[4] = eq
 
 	eq = equipmentFromName("WarHammer")
 	eq.isequiped = true
-	table.insert(obj.player.inventory, eq)
+	obj.player.inventory[5] = eq
 	
 	eq = equipmentFromName("MedievalCloak")
 	eq.isequiped = true
-	table.insert(obj.player.inventory, eq)
+	obj.player.inventory[6] = eq
 
 
-
+	eq = equipmentFromName("MedievalCloak")
+	for i = 10, obj.player.inventorySlots do
+		obj.player.inventory[i] = eq
+	end
 
 	--[[table.insert(obj.player.equipment, {
 		Name = "NAKED",
