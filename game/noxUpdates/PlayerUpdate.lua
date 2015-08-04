@@ -4,7 +4,7 @@ local PlayerUpdate = {}
 PlayerUpdate.name = "PlayerUpdate"
 PlayerUpdate.AnimatePerSecond = 1 / 10
 
-local AnimationDirection = {
+AnimationDirection = {
 	NW = 0,
 	N = 1,
 	NE = 2,
@@ -15,7 +15,7 @@ local AnimationDirection = {
 	SE = 7
 }
 
-local AnimationDirectionConversion = {
+AnimationDirectionConversion = {
 	AnimationDirection.N,
 	AnimationDirection.NE,
 	AnimationDirection.E,
@@ -66,6 +66,45 @@ PlayerArmor =
 	ORNATE_HELM = 0x800000
 }
 
+PlayerArmorIds =
+{
+	0,
+	0x4C0F,
+	0x2090D0,
+	0x3CC02,
+	0x0FC0000,
+	0x3000,
+	0x1C1,
+	0x23C,
+	0x3000000,
+	0x4,
+	0x8,
+	0x1,
+	0x40,
+	0x80,
+	0x100,
+	0x10,
+	0x20,
+	0x200,
+	0x400,
+	0x800,
+	0x4000,
+	0x8000,
+	0x10000,
+	0x20000,
+	0x1000,
+	0x2000,
+	0x2,
+	0x1000000,
+	0x2000000,
+	0x40000,
+	0x80000,
+	0x100000,
+	0x200000,
+	0x400000,
+	0x800000
+}
+
 PlayerWeapon = 
 {
 	NO_WEAPONS = 0x0,
@@ -100,6 +139,42 @@ PlayerWeapon =
 	STAFF_OBLIVION_HEART = 0x1000000,
 	STAFF_OBLIVION_WIERDLING = 0x2000000,
 	STAFF_OBLIVION_ORB = 0x4000000
+}
+
+PlayerWeaponIds = 
+{
+	0x0,
+	0x7FFFFFE,
+	0x47F0000,
+	0x7FF8000,
+	0x47F00FE,
+	0x1,
+	0x2,
+	0x4,
+	0x8,
+	0x10,
+	0x20,
+	0x40,
+	0x80,
+	0x100,
+	0x200,
+	0x400,
+	0x800,
+	0x1000,
+	0x2000,
+	0x4000,
+	0x8000,
+	0x10000,
+	0x20000,
+	0x40000,
+	0x80000,
+	0x100000,
+	0x200000,
+	0x400000,
+	0x800000,
+	0x1000000,
+	0x2000000,
+	0x4000000
 }
 
 ModelArmor = {};
@@ -324,6 +399,14 @@ function PlayerUpdate:initObject(obj)
 		obj.player.input.jump = jump
 	end
 
+	obj.player.useItem = function(_obj, slot)
+		local obj = _obj._object
+
+		local item = obj.player.inventory[slot]
+
+		
+	end
+
 	obj.player.toggleNoclip = function(_obj)
 		local obj = _obj._object
 
@@ -382,33 +465,56 @@ function PlayerUpdate:initObject(obj)
 
 	local eq = equipmentFromName("PlateBoots")
 	eq.isequiped = true
+	eq.isinInventory = obj
 	obj.player.inventory[1] = eq
 
 	eq = equipmentFromName("PlateLeggings")
 	eq.isequiped = true
+	eq.isinInventory = obj
 	obj.player.inventory[2] = eq
 
 	eq = equipmentFromName("PlateArms")
 	eq.isequiped = true
+	eq.isinInventory = obj
 	obj.player.inventory[3] = eq
 
 	eq = equipmentFromName("Breastplate")
 	eq.isequiped = true
+	eq.isinInventory = obj
 	obj.player.inventory[4] = eq
 
 	eq = equipmentFromName("WarHammer")
 	eq.isequiped = true
+	eq.isinInventory = obj
 	obj.player.inventory[5] = eq
 	
 	eq = equipmentFromName("MedievalCloak")
 	eq.isequiped = true
+	eq.isinInventory = obj
 	obj.player.inventory[6] = eq
+
+	eq = equipmentFromName("MedievalPants")
+	eq.isequiped = true
+	eq.isinInventory = obj
+	obj.player.inventory[7] = eq
+
+	eq = equipmentFromName("MedievalShirt")
+	eq.isequiped = true
+	eq.isinInventory = obj
+	obj.player.inventory[8] = eq
+
+	
+
+	
 
 
 	eq = equipmentFromName("MedievalCloak")
+	eq.isinInventory = obj
 	for i = 10, obj.player.inventorySlots do
 		obj.player.inventory[i] = eq
 	end
+
+
 
 	--[[table.insert(obj.player.equipment, {
 		Name = "NAKED",

@@ -176,7 +176,7 @@ function NoxInterface:drawInventory()
 	}, 14342, 0,15);
 
 
-	for _,seqid in pairs(PlayerArmor) do
+	for _,seqid in pairs(PlayerArmorIds) do
 		for k,v in pairs(NoxInterface.player.player.inventory) do
 			if v then
 				if (v.sequenceid == seqid) and v.isequiped and v.modtype == "ARMOR_DEFINITIONS" then
@@ -186,7 +186,7 @@ function NoxInterface:drawInventory()
 		end
 	end
 
-	for _,seqid in pairs(PlayerWeapon) do
+	for _,seqid in pairs(PlayerWeaponIds) do
 		for k,v in pairs(NoxInterface.player.player.inventory) do
 			if v then
 				if (v.sequenceid == seqid) and v.isequiped and v.modtype == "WEAPON_DEFINITIONS" then

@@ -27,7 +27,7 @@ function Updates:RegisterObject(object)
 	if(object.updater) then
 		object.updater:initObject(object)
 	else
-		print("Unsuported update type " .. object.updateType, object.objname)
+		--print("Unsuported update type " .. object.updateType, object.objname)
 	end
 end
 

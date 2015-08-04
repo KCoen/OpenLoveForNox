@@ -136,11 +136,18 @@ function NoxBaseObject.new(fromObject)
 
 	self.isinInventory = false
 
+	self.npcInventoryList = false
+
 	self.sequenceid = false
 	self.sequencename = false
 	self.modtype = false
 	self.isequiped = false
 	self.isprevweapon = false
+	self.animationOffset = false
+	self.anidirection = false
+	self.spriteStatesS = false
+	self.sequence = false
+
 
 
 
@@ -210,6 +217,7 @@ function NoxBaseObject:initFromType(objecttype)
 	self.conditionalAnimations = tt.ConditionalAnimations
 	self.spriteMenuIcon = tt.SpriteMenuIcon
 	self.spriteStates = tt.SpriteStates
+	
 
 	self.drawOffsetX = 0
 	self.drawOffsetY = 0
@@ -217,6 +225,10 @@ function NoxBaseObject:initFromType(objecttype)
 	self.xferType = tt.Xfer
 
 	self.health = tt.Health
+
+
+
+	
 
 	local db = ModDB.Mods[self.objname]
 	if(db) then
@@ -248,6 +260,7 @@ function NoxBaseObject:initFromMapObject(mobject)
 	self.x = mobject.Location.X
 	self.y = mobject.Location.Y
 	self.mapXfer = mobject.ObjXfer
+	self.npcInventoryList = mobject.InventoryList
 end
 
 function fixObjectPosition(x, y, object)

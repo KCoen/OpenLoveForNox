@@ -92,7 +92,7 @@ function NoxMap:preCacheFloorTiles()
 				
 			for obj in NoxMap.Objects:Iter(x1 - 128, y1 - 128, gameconf.maptilechunksize + 128, gameconf.maptilechunksize + 128) do
 				if(obj.renderer) then
-					if(obj.flags["BELOW"] and obj.class["IMMOBILE"] and not obj.class["ELEVATOR_SHAFT"]) then
+					if(obj.flags["BELOW"] and obj.class["IMMOBILE"] and not obj.class["ELEVATOR_SHAFT"] and not obj.flags["EDIT_VISIBLE"]) then
 						obj.renderer:draw(obj)
 						table.insert(markedForRemoval, obj)
 					end
@@ -390,7 +390,7 @@ function NoxMap:drawShadows(objects, walls)
 
 	for i=1, #objects do
 		local obj = objects[i]
-		if (obj.phys and obj.type == "DOOR" and obj.flags["SHADOW"]) then
+		if (obj.phys and obj.flags["SHADOW"]) then
 			for k,v in ipairs(obj.phys) do
 				local body = v.body 
 				local fixtures = body:getFixtureList()
@@ -489,21 +489,13 @@ function NoxMap:drawObjects(objects)
 	local nobjects = 0
 	for i=1, #objects do
 		local obj = objects[i]
-		if obj.flags["EDIT_VISIBLE"] and not gameconf.debug then
-			goto continue	
-		end
-
-
 		
 		if(obj.renderer) then
 			obj.renderer:draw(obj)
 			nobjects = nobjects + 1
 		elseif(obj.draw) then
-
 			obj:draw()
 		end
-
-		::continue::
 	end
 
 	love.debug.print("Number of Objects drawn: " .. nobjects)

@@ -25,10 +25,20 @@ function PlayerDraw:draw(obj)
 		COLOR6 = { 0xda, 0x9a, 0x6e, 255 }
 	})
 
-	for _,seqid in pairs(PlayerArmor) do
+	for _,armor in pairs(PlayerArmorIds) do
 		for k,v in pairs(obj.player.inventory) do
 			if v then
-				if (v.sequenceid == seqid) and v.isequiped then
+				if (v.sequenceid == armor) and v.isequiped and v.modtype == "ARMOR_DEFINITIONS" then
+					table.insert(toRender, v)
+				end
+			end
+		end
+	end
+
+	for _,armor in pairs(PlayerWeaponIds) do
+		for k,v in pairs(obj.player.inventory) do
+			if v then
+				if (v.sequenceid == armor) and v.isequiped and v.modtype == "WEAPON_DEFINITIONS" then
 					table.insert(toRender, v)
 				end
 			end

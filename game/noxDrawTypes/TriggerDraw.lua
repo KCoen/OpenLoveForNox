@@ -12,9 +12,10 @@ function TriggerDraw:initObject(obj)
 end
 
 function TriggerDraw:draw(obj)	
-	if(gameconf.debug) then
-		rdraw(obj)
+	if obj.flags["EDIT_VISIBLE"] and not gameconf.debug then
+		return	
 	end
+	rdraw(obj)
 end
 
 return TriggerDraw

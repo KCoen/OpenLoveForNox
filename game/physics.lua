@@ -249,14 +249,14 @@ end
 function physics:update(dt)
 	for i=1, #physics.objects do
 		local obj = physics.objects[i]
-		
-		obj.last_x, obj.last_y = obj.x, obj.y
-		obj.x, obj.y = obj.phys[1].body:getPosition()
-		
-		for k,v in pairs(obj.spatialhashes) do
-			v:updateObject(obj)
+		if not obj.isinInventory and not obj.disabled then
+			obj.last_x, obj.last_y = obj.x, obj.y
+			obj.x, obj.y = obj.phys[1].body:getPosition()
+			
+			for k,v in pairs(obj.spatialhashes) do
+				v:updateObject(obj)
+			end
 		end
-		
 	end
 	physworld:update(dt)
 end
