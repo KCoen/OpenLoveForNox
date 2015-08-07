@@ -185,6 +185,27 @@ function NoxMap:insertObject(object)
 	NoxMap._Objects[#NoxMap._Objects + 1] = object
 end
 
+function NoxMap:getActiveTile(x,y)
+	local tiles = self.Tiles:getPVS(x - 128,y - 128,x + 128,y + 128)
+
+	for k,v in pairs(tiles) do
+		if x < v.x then goto continue end
+		if y < v.y then goto continue end
+		if x > v.x + 46 then goto continue end
+		if y > v.y + 46 then goto continue end
+
+		local lx = (x - v.x) / 46
+		local ly = (y - v.y) / 46
+
+		if ((lx + ly < 0.5) or (lx - ly > 0.5) or (ly - lx > 0.5) or (ly + lx > 1.5)) then
+
+	    else
+	    	return v
+	    end
+		::continue::
+	end
+end
+
 
 function NoxMap:load(JsonMap)
 	love.timer.starTimer("Map Load")
@@ -200,8 +221,8 @@ function NoxMap:load(JsonMap)
 
 	for k, obj in pairs(JsonMap.Objects) do		
 		local object = NoxBaseObject.new(obj)--ObjectFromMapObject(obj)
-		NoxMap.Objects:add(object)
-		NoxMap._Objects[#NoxMap._Objects + 1] = object
+		--NoxMap.Objects:add(object)
+		--NoxMap._Objects[#NoxMap._Objects + 1] = object
 
 		if(obj.Name == "PlayerStart") then
 			camera:set(obj.Location.X, obj.Location.Y)
@@ -225,7 +246,9 @@ function NoxMap:load(JsonMap)
 		tile.y = mtile.Location.Y * 23
 		tile.width = 46
 		tile.height = 46
-		tile.drawOffsetX, tile.drawOffsetY = NoxMap:fixTilePosition(0, 0)
+		tile.name = mtile.Graphic
+		tile.x, tile.y = NoxMap:fixTilePosition(tile.x, tile.y)
+		tile.drawOffsetX, tile.drawOffsetY = 0,0
 		
 		NoxMap.Tiles:add(tile)
 		
@@ -576,6 +599,12 @@ function NoxMap:drawLights(objects)
 	camera:push()
 end
 
+
+
+function NoxMap:getObjectPVS()
+	return NoxMap.objectPVS
+end
+
 function NoxMap:draw()
 	if screenBuffer then
 		G.setCanvas(screenBuffer)
@@ -589,6 +618,8 @@ function NoxMap:draw()
 	
 	local objects = self.Objects:getPVS(x1,y1,x2,y2)
 	objects = self:SortObjects(objects)
+
+	NoxMap.objectPVS = objects
 
 	local walls = self.Walls:getPVS(x1,y1,x2,y2)
 	love.debug.print("Number of Walls drawn: " .. #walls)

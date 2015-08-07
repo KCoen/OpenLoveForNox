@@ -34,7 +34,7 @@ function NoxInterface:toggleInventory()
 	--[[if NoxInterface.inventoryY ~= 0 and NoxInterface.inventoryY ~= NoxInterface.inventoryYMin then
 		return
 	end--]]
-	audio:playSound("uinveop")
+	audio:playSoundByMapping("InventoryOpen")
 
 	if NoxInterface.inventoryY == 0 then
 		NoxInterface.inventoryYSpeed = -600
@@ -86,6 +86,35 @@ function NoxInterface:drawMouseCollides()
 end
 
 function drawNoxImageID(id, x,y)
+	local quad,img = videobagcache:getSprite(id, true)
+	if(quad and img) then
+		local vbc_ent = VideoBag.Sprites[id]
+
+		G.draw(img, quad, vbc_ent.offsetX + x, vbc_ent.offsetY + y)
+	else
+		print("Can't find imgid", id)
+	end
+end
+
+local noxAnimationUpdateRate = 1 / 10
+function drawNoxAnimation(name, x,y)
+	local thingy = ThingDB.Images[name]
+
+	thingy.noxAnimationOffset = thingy.noxAnimationOffset or 1
+	thingy.noxAnimationLastUpdate = thingy.noxAnimationLastUpdate or 0
+
+	if love.timer.getTime() > thingy.noxAnimationLastUpdate + noxAnimationUpdateRate then
+		thingy.noxAnimationOffset = thingy.noxAnimationOffset + 1
+		thingy.noxAnimationLastUpdate = love.timer.getTime()
+	end
+
+	if thingy.noxAnimationOffset > #thingy.type2.Frames then
+		thingy.noxAnimationOffset = 1
+	end
+
+
+	local id = thingy.type2.Frames[thingy.noxAnimationOffset]
+
 	local quad,img = videobagcache:getSprite(id, true)
 	if(quad and img) then
 		local vbc_ent = VideoBag.Sprites[id]
@@ -279,6 +308,10 @@ function NoxInterface:drawInventory()
 				elseif(v.isprevweapon) then
 					drawNoxImageID(14691, 314 + (col * 50), 13 + (row * 50))
 				end
+
+				if #v.stack > 0 then
+					G.print(#v.stack + 1, 314 + (col * 50) + 38, 13 + (row * 50) + 38);
+				end
 			end
 		end
 
@@ -287,14 +320,12 @@ function NoxInterface:drawInventory()
 						if v then
 							NoxInterface.draggingItem = v
 							NoxInterface.draggingItemSlot = i + 1
+							audio:playSoundByMapping("InventoryPickup")
 						end
 					end,
 					function(x,y) 
-
 						if NoxInterface.draggingItem and NoxInterface.draggingItem == v then
-							if v.use then
-								v.use()
-							end
+							self.player.player:useItemFromInventory(i + 1)
 						elseif NoxInterface.draggingItem then
 							self.player.player.inventory[i + 1] = NoxInterface.draggingItem 
 							if v then
@@ -455,20 +486,7 @@ local CursorMoveImages = {135953, 135954, 135955, 135956, 135957,
 function NoxInterface:drawCursor()
 	local mouseX, mouseY = love.mouse.getPosition();
 
-	local centerX, centerY = camera:worldToLocal(NoxInterface.player.x, NoxInterface.player.y)
-
-	local cursorangle = math.atan2(centerY - mouseY, centerX - mouseX)
-	local cursordist = math.pow(mouseY - centerY, 2) + math.pow(mouseX - centerX, 2);
-	local frame = math.min(math.floor(((cursorangle + math.pi) / (math.pi * 2)) *32), 31);
-
-	if (cursordist >= 10000) then
-		frame = frame + 32;
-	end
-
-	drawNoxImageID(CursorMoveImages[frame + 1], mouseX - 64, mouseY - 64)
-
 	if NoxInterface.draggingItem then
-
 		local length = math.sqrt((NoxInterface.lastPressX - love.mouse.getX()) * (NoxInterface.lastPressX - love.mouse.getX()) + 
 			(NoxInterface.lastPressY - love.mouse.getY()) * (NoxInterface.lastPressY - love.mouse.getY()))
 
@@ -476,7 +494,68 @@ function NoxInterface:drawCursor()
 			drawNoxImageID46(NoxInterface.draggingItem, NoxInterface.draggingItem.spriteMenuIcon, mouseX - 40, mouseY - 40);
 		end
 	end
+
+	local colliderFound = false
+
+	for k,v in pairs(NoxInterface.mouseCollides) do
+		if(isPointInCollider(mouseX,mouseY, v)) then
+			colliderFound = true
+			break
+		end
+	end
+
+
 	
+	if colliderFound then
+		drawNoxImageID(135952, mouseX - 64, mouseY - 64)
+	else
+		local mapObjects = NoxMap:getObjectPVS()
+
+		local wx, wy = camera:localToWorld(mouseX, mouseY)
+
+		local hoverObject = nil
+		for k,v in pairs(mapObjects) do
+			if v.pickupType then
+				local dx = v.x - wx
+				local dy = v.y - wy
+
+				local mousedist = math.sqrt(dx * dx + dy *dy)
+
+				if mousedist < v.physExtentX * 1.5 then
+					hoverObject = v
+				end
+			end
+		end
+
+		if hoverObject then
+			local dx = hoverObject.x - NoxInterface.player.x
+			local dy = hoverObject.y - NoxInterface.player.y
+
+			local dist = math.sqrt(dx * dx + dy * dy)
+
+			if dist > NoxInterface.player.player.pickupRange then
+				drawNoxAnimation("CursorPickupFar", mouseX - 64, mouseY - 64)
+			else
+				drawNoxAnimation("CursorPickup", mouseX - 64, mouseY - 64)
+			end
+		else
+			local centerX, centerY = camera:worldToLocal(NoxInterface.player.x, NoxInterface.player.y)
+
+			local cursorangle = math.atan2(centerY - mouseY, centerX - mouseX)
+			local cursordist = math.pow(mouseY - centerY, 2) + math.pow(mouseX - centerX, 2);
+			local frame = math.min(math.floor(((cursorangle + math.pi) / (math.pi * 2)) *32), 31);
+
+			if (cursordist >= 10000) then
+				frame = frame + 32;
+			end
+
+			drawNoxImageID(CursorMoveImages[frame + 1], mouseX - 64, mouseY - 64)
+		end
+
+
+		
+	end
+
 end
 
 
@@ -541,21 +620,12 @@ function NoxInterface:mousereleased(mx,my,button)
 				v.onReleaseCallback(mx,my, v.userdata)
 			end
 		end
+	end
 
-
-		--[[if v.shape == "circle" then
-
-		else
-			if mx < v.x then goto continue end
-			if my < v.y then goto continue end
-			if mx > v.x + v.w then goto continue end
-			if my > v.y + v.h then goto continue end
-
-			if(v.onReleaseCallback) then
-				v.onReleaseCallback(mx,my, v.userdata)
-			end
-		end
-		::continue::--]]
+	if NoxInterface.draggingItem then
+		local wx, wy = camera:localToWorld(mx, my)
+		NoxInterface.player.player:dropItemFromInventory(NoxInterface.draggingItemSlot, wx,wy)
+		NoxInterface.draggingItem = nil 
 	end
 
 	NoxInterface.downCallbacks = {}
@@ -576,6 +646,28 @@ function NoxInterface:mousepressed(mx,my,button)
 				v.onPressCallback(mx,my, v.userdata)
 				table.insert(NoxInterface.downCallbacks, v)
 			end
+		end
+	end
+
+	if #NoxInterface.downCallbacks < 1 then
+		local hoverObject = nil
+		local mapObjects = NoxMap:getObjectPVS()
+		local wx, wy = camera:localToWorld(mx, my)
+		for k,v in pairs(mapObjects) do
+			if v.pickupType then
+				local dx = v.x - wx
+				local dy = v.y - wy
+
+				local mousedist = math.sqrt(dx * dx + dy *dy)
+
+				if mousedist < v.physExtentX * 1.5 then
+					hoverObject = v
+				end
+			end
+		end
+
+		if hoverObject then
+			NoxInterface.player.player:pickupItem(hoverObject)
 		end
 	end
 end

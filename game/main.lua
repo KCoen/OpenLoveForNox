@@ -29,7 +29,7 @@ require("NoxMap")
 require("NoxMapScriptFunctions")
 require("NoxMapScript")
 require("NoxUpdates")
-require("NoxMusic")
+require("NoxAudio")
 require("NoxInterface")
 require("NoxSpells")
 require("NoxLocalPlayerController")
@@ -151,6 +151,12 @@ function love.load(arg)
 	NoxLocalPlayerController:bind(localplayer)
 
 	NoxInterface:load()
+
+	ThingDB._Images = ThingDB.Images
+	ThingDB.Images = {}
+	for k,v in pairs(ThingDB._Images) do
+		ThingDB.Images[v.Name] = v
+	end
 end
 
 local hasStarted = 0

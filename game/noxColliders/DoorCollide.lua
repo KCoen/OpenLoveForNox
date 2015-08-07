@@ -12,7 +12,7 @@ function DoorCollide:initObject(object)
 	local rangle = object.mapXfer.Direction * (6.28318530718 / 32) + math.pi * 0.25
 	local doorvector = vector.new(math.cos(rangle), math.sin(rangle)):normalized()
 
-	local doorLength = 46 / 2 * 1.4
+	local doorLength = 46 / 2 * 1.380
 
 	local offset = doorvector * doorLength
 
@@ -26,7 +26,7 @@ function DoorCollide:initObject(object)
 	phys.joint:setLimits((1/16) * -14.5 * math.pi, (1/16) * 14.5 * math.pi)	
 	phys.joint:setLimitsEnabled(true)
 	phys.body:setMass(object.mass)
-	phys.body:setAngularDamping( 25 )
+	phys.body:setAngularDamping( 20 )
 
 	object.nopartial = true
 	

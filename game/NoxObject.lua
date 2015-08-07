@@ -87,6 +87,7 @@ function NoxBaseObject.new(fromObject)
 
 	self.class = {}
 	self.flags = {}
+	self.subclass = {}
 
 	self.childs = {}
 	self.phys = false
@@ -103,6 +104,7 @@ function NoxBaseObject.new(fromObject)
 	self.drawType = ""
 	self.updateType = ""
 	self.collideType = ""
+	self.pickupType = false
 
 	self.physExtentX = 0
 	self.physExtentY = 0
@@ -148,7 +150,7 @@ function NoxBaseObject.new(fromObject)
 	self.spriteStatesS = false
 	self.sequence = false
 
-
+	self.stack = {}
 
 
 	-- Compontents
@@ -169,6 +171,8 @@ function NoxBaseObject.new(fromObject)
 	Updates:RegisterObject(self)
 	Colliders:RegisterObject(self)
 	DrawTypes:RegisterObject(self)
+
+	NoxMap:insertObject(self)
 
 
 
@@ -193,6 +197,23 @@ function NoxBaseObject:setPositionDelayed(x,y)
 	self.futureY = y
 end
 
+
+
+local armorSlots = 
+{
+	"BOOTS",
+	"ARM_ARMOR",
+	"BREASTPLATE",
+	"HELMET",
+	"LEG_ARMOR",
+	"PANTS",
+	"SHIRT",
+	"BACK",
+	"SHIELD"
+}
+
+
+
 function NoxBaseObject:initFromType(objecttype)
 	local tt = ThingDB.Things[objecttype]
 
@@ -208,6 +229,7 @@ function NoxBaseObject:initFromType(objecttype)
 	self.drawType = tt.DrawType
 	self.collideType = tt.Collide
 	self.updateType = tt.Update
+	self.pickupType = tt.Pickup
 
 	self.physExtentX = tt.ExtentX
 	self.physExtentY = tt.ExtentY
@@ -226,9 +248,23 @@ function NoxBaseObject:initFromType(objecttype)
 
 	self.health = tt.Health
 
-
-
+	if tt.Flags then
+		for k,v in ipairs(tt.Flags) do
+			self.flags[v] = true
+		end
+	end
 	
+	if tt.Class then
+		for k,v in pairs(tt.Class) do
+			self.class[v] = true
+		end
+	end
+
+	if tt.SubclassNames then
+		for k,v in pairs(tt.SubclassNames) do
+			self.subclass[v] = true
+		end
+	end
 
 	local db = ModDB.Mods[self.objname]
 	if(db) then
@@ -237,18 +273,23 @@ function NoxBaseObject:initFromType(objecttype)
 		self.sequencename = ItemNameToSequenceName[self.objname]
 		self.modtype = db.type
 		self.equipment.charges = false
-	end
 
-	if tt.Flags then
-		for k,v in ipairs(tt.Flags) do
-			self.flags[v] = true
+		if self.class["WEAPON"] then
+			self.equipment.slot = "WEAPON"
 		end
-	end
-	
-	if(tt.Class) then
-		for k,v in pairs(tt.Class) do
-			self.class[v] = true
-		end
+
+		for k,v in pairs(armorSlots) do
+			if self.subclass[v] then
+				self.equipment.slot = v
+			end
+		end	
+
+		self.equipment.isShieldAllowed = false
+		for k,v in pairs(self.subclass) do
+			if shieldAllowedWeapons[v] then
+				self.equipment.isShieldAllowed = true
+			end
+		end	
 	end
 end
 

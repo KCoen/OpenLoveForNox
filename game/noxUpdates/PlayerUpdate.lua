@@ -382,6 +382,14 @@ local function equipmentFromName(name)
 	return obj--]]
 end
 
+shieldAllowedWeapons = 
+{
+	SWORD = true,
+	MACE = true,
+	CHAKRAM = true,
+	DAGGER = true
+}
+
 
 function PlayerUpdate:initObject(obj)
 	local tt = ThingDB.Things["NewPlayer"]
@@ -399,12 +407,124 @@ function PlayerUpdate:initObject(obj)
 		obj.player.input.jump = jump
 	end
 
-	obj.player.useItem = function(_obj, slot)
+	obj.player.dropItemFromInventory = function(_obj, slot, x,y)
+		local obj = _obj._object
+
+		local item = obj.player.inventory[slot]
+		local fromStack = false
+		if #item.stack > 0 then
+			item = table.remove(item.stack)
+			fromStack = true
+		end
+		item.isequiped = false
+		item.isinInventory = false
+
+		local dx = x - obj.x
+		local dy = y - obj.y
+
+		local length = math.sqrt(dx*dx + dy*dy)
+
+		if length > obj.player.pickupRange then
+			dx = dx / length * obj.player.pickupRange
+			dy = dy / length * obj.player.pickupRange
+		end
+
+		item:setPosition(obj.x + dx,obj.y + dy)
+
+
+		if not fromStack then
+			obj.player.inventory[slot] = false
+		end
+	end
+
+	obj.player.pickupItem = function(_obj, item)
+		local obj = _obj._object
+
+		local dx = item.x - obj.x
+		local dy = item.y - obj.y
+
+		local length = math.sqrt(dx*dx + dy*dy)
+
+
+
+		if length > obj.player.pickupRange then
+			return
+		end
+
+		if not item.class["NOT_STACKABLE"] then
+			for k,v in pairs(obj.player.inventory) do
+				if v then
+					if v.objname == item.objname then
+						if #v.stack == 8 then
+							return
+						end
+						table.insert(v.stack, item)
+						item.isinInventory = obj
+						item:setPosition(0,0)
+						return
+					end
+				end
+			end
+		end
+
+		for k,v in pairs(obj.player.inventory) do
+			if not v then
+				item.isinInventory = obj
+				item:setPosition(0,0)
+				obj.player.inventory[k] = item
+				return
+			end
+		end
+	end
+
+	obj.player.useItemFromInventory = function(_obj, slot)
 		local obj = _obj._object
 
 		local item = obj.player.inventory[slot]
 
-		
+		if item.equipment then
+			if item.isequiped then
+				item.isequiped = false
+				return
+			end
+
+			if item.equipment.slot == "SHIELD" then
+				for k,v in pairs(obj.player.inventory) do
+					if v.isequiped and v.equipment.slot == "WEAPON" then
+						if not v.equipment.isShieldAllowed then
+							v.isequiped = false
+						end
+					end
+				end
+			end
+
+			if item.class["WEAPON"] then
+				for k,v in pairs(obj.player.inventory) do
+					if v then
+						if v.isequiped and v.class["WEAPON"] then
+							v.isequiped = false
+						end
+						if not item.equipment.isShieldAllowed and v.equipment.slot == "SHIELD" then
+							v.isequiped = false
+						end
+					end
+				end
+				item.isequiped = true
+			elseif item.class["ARMOR"] then
+				for k,v in pairs(obj.player.inventory) do
+					if v then
+						if v.isequiped and (v.equipment.slot == item.equipment.slot) then
+							v.isequiped = false
+						end
+					end
+				end
+				item.isequiped = true
+			end
+
+			return
+		end
+
+		-- otherUseFunctionsHere
 	end
 
 	obj.player.toggleNoclip = function(_obj)
@@ -430,6 +550,7 @@ function PlayerUpdate:initObject(obj)
 	obj.player.angle = 0
 	obj.player.noclip = false
 	obj.player.input = {}
+	obj.player.pickupRange = 100
 
 
 	
@@ -510,9 +631,7 @@ function PlayerUpdate:initObject(obj)
 
 	eq = equipmentFromName("MedievalCloak")
 	eq.isinInventory = obj
-	for i = 10, obj.player.inventorySlots do
-		obj.player.inventory[i] = eq
-	end
+	obj.player.inventory[9] = eq
 
 
 
@@ -597,7 +716,7 @@ function PlayerUpdate:updateObject(obj, dt)
 	if obj.player.isjumping == false then
 		obj.phys[1].body:setLinearVelocity(curvelx - curvelx * 8 * dt, curvely - curvely * 8 * dt)
 
-		if (obj.player.input.moveDirectionX ~= 0 or obj.player.input.moveDirectionY ~= 0) and (obj.player.input.moveSpeed ~= 0) then
+		if (obj.player.input.moveSpeed and obj.player.input.moveSpeed ~= 0) then
 			local spd
 			if(obj.player.noclip) then
 				spd = obj.player.noclipspeed
@@ -665,6 +784,7 @@ function PlayerUpdate:updateObject(obj, dt)
 		obj.player.animationOffset = ((obj.player.animationOffset) % (#obj.player.spriteStates[obj.player.sequence].sequences["NAKED"].Frames / 8))
 	end
 
+	print(NoxMap:getActiveTile(obj.x, obj.y).name)
 	
 	local dx = camera.x - obj.x
 	local dy = camera.y - obj.y

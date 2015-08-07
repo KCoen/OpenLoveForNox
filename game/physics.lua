@@ -252,9 +252,11 @@ function physics:update(dt)
 		if not obj.isinInventory and not obj.disabled then
 			obj.last_x, obj.last_y = obj.x, obj.y
 			obj.x, obj.y = obj.phys[1].body:getPosition()
-			
-			for k,v in pairs(obj.spatialhashes) do
-				v:updateObject(obj)
+
+			if obj.spatialhashes then
+				for k,v in pairs(obj.spatialhashes) do
+					v:updateObject(obj)
+				end
 			end
 		end
 	end
