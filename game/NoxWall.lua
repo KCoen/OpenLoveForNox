@@ -87,8 +87,8 @@ end
 
 function WallFromMapWall(mwall)
 	local wall = {}
-	--mwall = obj.Value
-	
+
+	wall.iswall = true
 	wall.type = "WALL"
 	wall.mobject = mwall
 	wall.z = 40
@@ -103,7 +103,7 @@ function WallFromMapWall(mwall)
 	
 	wall.transparent = false
 	
-	if(thingWall.unk1 ~= 1) then -- Should only compare first bit 
+	if(thingWall.unk1 ~= 1) then -- @todo Should only compare first bit 
 		wall.transparent = true
 	end
 	

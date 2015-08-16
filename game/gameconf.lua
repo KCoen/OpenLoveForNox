@@ -3,7 +3,8 @@ gameconf = {
 	mapchunksize = 128,
 	maptilechunksize = 1024,
 	debug = true,
-	musicvolume = 0
+	musicvolume = 0.00,
+	volume = 0.01
 }
 
 binds = {

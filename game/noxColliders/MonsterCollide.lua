@@ -11,6 +11,8 @@ function MonsterCollide:initObject(obj, ...)
 	phys.shape = love.physics.newCircleShape(0,0,obj.physExtentX)
 	phys.fix = love.physics.newFixture(phys.body,phys.shape)
 	phys.fix:setUserData(obj)
+
+	
 	
 	phys.body:setMass(obj.mass)
 	phys.body:setFixedRotation( true )

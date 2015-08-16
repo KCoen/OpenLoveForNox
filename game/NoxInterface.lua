@@ -3,16 +3,23 @@
 
 
 NoxInterface = {}
-NoxInterface.scale = 1.0
+NoxInterface.scale = 1
 NoxInterface.drawwidth = 0
 NoxInterface.drawheight = 0
-
+NoxInterface.showAllBars = false
 local G = love.graphics
 
 NoxInterface.player = nil
 NoxInterface.font6pt = G.newFont( "content/VeraMono.ttf", 8 )
 NoxInterface.inventoryX = 10
 NoxInterface.inventoryY = 0
+NoxInterface.BOKX = 300
+NoxInterface.BOKY = 300
+NoxInterface.BOKOpen = false
+NoxInterface.BOKSection = "Guide"
+
+
+NoxInterface.shouldDrawCinematicBorders = false
 
 NoxInterface.inventoryYMin = -325
 
@@ -22,12 +29,29 @@ NoxInterface.inventoryYSpeed = 0
 
 NoxInterface.mouseCollides = {}
 
+
+
 NoxInterface.draggingItem = false
 NoxInterface.draggingItemSlot = 1
 
 NoxInterface.lastPressX = 0
 NoxInterface.lastPressY = 0
 NoxInterface.lastPressTime = 0
+
+function NoxInterface:toggleBOK()
+	if NoxInterface.BOKOpen then
+		audio:playSoundByMapping("BookClose")
+	else
+		audio:playSoundByMapping("BookOpen")
+	end
+
+	NoxInterface.BOKOpen = not NoxInterface.BOKOpen
+end
+
+
+function NoxInterface:isInventoryOpen()
+	return NoxInterface.inventoryYMin ~= NoxInterface.inventoryY
+end
 
 
 function NoxInterface:toggleInventory()
@@ -45,6 +69,13 @@ end
 
 function isPointInCollider(mx,my,v)
 	if v.shape == "circle" then
+		local dx = v.x - mx
+		local dy = v.y - my
+		local length = math.sqrt(dx * dx + dy * dy)
+
+		if length < v.radius then
+			return true
+		end
 		return false
 	else
 		if mx < v.x then return false end
@@ -75,6 +106,24 @@ function NoxInterface:setMouseCollide(x,y,w,h, onPressCallback, onReleaseCallbac
 	return mousecollide
 end
 
+function NoxInterface:setMouseCollideFromImage(imgname, x,y, onPressCallback, onReleaseCallback, whileDown, userdata)
+	local thingy = ThingDB.Images[imgname] 
+	local id = thingy.type1
+	local imginfo = VideoBag.Sprites[id]
+
+	if imginfo then
+		return NoxInterface:setMouseCollide(imginfo.offsetX + x, imginfo.offsetY + y, imginfo.width, imginfo.height, onPressCallback, onReleaseCallback, whileDown, userdata)
+	end
+end
+
+function NoxInterface:setMouseCollideFromImageId(imgname, x,y, onPressCallback, onReleaseCallback, whileDown, userdata)
+	local imginfo = VideoBag.Sprites[imgname]
+
+	if imginfo then
+		return NoxInterface:setMouseCollide(imginfo.offsetX + x, imginfo.offsetY + y, imginfo.width, imginfo.height, onPressCallback, onReleaseCallback, whileDown, userdata)
+	end
+end
+
 function NoxInterface:drawMouseCollides()
 	for k,v in pairs(NoxInterface.mouseCollides) do
 		if(v.shape =="rectangle") then
@@ -96,33 +145,39 @@ function drawNoxImageID(id, x,y)
 	end
 end
 
+
+function drawNoxImage(name, x,y)
+	local thingy = ThingDB.Images[name]
+	if thingy then
+		local id = thingy.type1
+		drawNoxImageID(id, x, y)
+	end
+end
+
 local noxAnimationUpdateRate = 1 / 10
-function drawNoxAnimation(name, x,y)
+function drawNoxAnimation(name, x,y, updaterate)
+	updaterate = updaterate or noxAnimationUpdateRate
 	local thingy = ThingDB.Images[name]
 
 	thingy.noxAnimationOffset = thingy.noxAnimationOffset or 1
-	thingy.noxAnimationLastUpdate = thingy.noxAnimationLastUpdate or 0
+	thingy.noxAnimationLastUpdate = thingy.noxAnimationLastUpdate or love.timer.getTime()
 
-	if love.timer.getTime() > thingy.noxAnimationLastUpdate + noxAnimationUpdateRate then
+	if love.timer.getTime() > thingy.noxAnimationLastUpdate + updaterate then
 		thingy.noxAnimationOffset = thingy.noxAnimationOffset + 1
 		thingy.noxAnimationLastUpdate = love.timer.getTime()
 	end
+
+
+
 
 	if thingy.noxAnimationOffset > #thingy.type2.Frames then
 		thingy.noxAnimationOffset = 1
 	end
 
-
 	local id = thingy.type2.Frames[thingy.noxAnimationOffset]
+	drawNoxImageID(id, x, y)
 
-	local quad,img = videobagcache:getSprite(id, true)
-	if(quad and img) then
-		local vbc_ent = VideoBag.Sprites[id]
-
-		G.draw(img, quad, vbc_ent.offsetX + x, vbc_ent.offsetY + y)
-	else
-		print("Can't find imgid", id)
-	end
+	return #thingy.type2.Frames - thingy.noxAnimationOffset
 end
 
 function drawNoxButton(idA, idB, x,y, collider)
@@ -175,6 +230,15 @@ end
 function NoxInterface:load()
 	NoxInterface.player = localplayer
 
+	NoxInterface.spellsets = {}
+	NoxInterface.spellsets[1] = { NoxSpells:get("SPELL_ANCHOR"), false, NoxSpells:get("SPELL_ANCHOR"), NoxSpells:get("SPELL_ANCHOR"), NoxSpells:get("SPELL_ANCHOR") }
+	NoxInterface.spellsets[2] = { NoxSpells:get("SPELL_ANCHOR"), false, NoxSpells:get("SPELL_ANCHOR"), NoxSpells:get("SPELL_ANCHOR"), NoxSpells:get("SPELL_ANCHOR") }
+	NoxInterface.spellsets[3] = { NoxSpells:get("SPELL_ANCHOR"), false, NoxSpells:get("SPELL_ANCHOR"), NoxSpells:get("SPELL_ANCHOR"), NoxSpells:get("SPELL_ANCHOR") }
+	NoxInterface.spellsets[4] = { NoxSpells:get("SPELL_ANCHOR"), false, NoxSpells:get("SPELL_ANCHOR"), NoxSpells:get("SPELL_ANCHOR"), NoxSpells:get("SPELL_ANCHOR") }
+	NoxInterface.spellsets[5] = { NoxSpells:get("SPELL_ANCHOR"), false, NoxSpells:get("SPELL_ANCHOR"), NoxSpells:get("SPELL_ANCHOR"), NoxSpells:get("SPELL_ANCHOR") }
+	NoxInterface.activespellset = 1
+
+
 	love.mouse.setVisible( false )
 end
 
@@ -184,6 +248,288 @@ end
 
 NoxInterface.barPressY = 0
 NoxInterface.pressInventoryScrollLocation = 0
+
+
+local turningPage = false
+local spellPage 
+local guidePage
+local spellPageOffset = 0
+local guidePageOffset = 0
+local spellOffset = 0
+function NoxInterface:drawBookOfKnowledge()
+	local function turnPage(direction)
+		turningPage = direction
+		audio:playSoundByMapping("PageTurn")
+	end
+
+
+	local function drawSpellList(page,x,y)
+		local offset = 0
+		local perPage = 12
+
+		local startn = page * perPage + 1
+		local endn = (1 + page) * perPage
+
+		if startn <1 then
+			startn = 1 
+		end
+
+		if endn > #ThingDB.SpellsSorted then
+			endn = #ThingDB.SpellsSorted
+		end
+
+		G.setColor(0,0,0,255)
+
+		local offset = 0
+		for i = startn, endn do
+			local spell = ThingDB.SpellsSorted[i]
+			G.print(getNoxString(spell.NameString), 50 + x, 95 + offset * 10 + y)
+
+			self:setMouseCollide(50 + x, 95 + offset * 10 + y, 100, 10, function(x,y)
+				spellPage = spell.Name
+
+				if spellOffset > i then
+					turnPage("BookPageForward")
+					return false
+				else
+					turnPage("BookPageBackward")
+					return false
+				end
+			end)
+
+			offset = offset + 1
+		end
+
+		G.setColor(255,255,255,255)
+	end
+
+	local function drawGuidelist(page,x,y)
+		local offset = 0
+		local perPage = 12
+
+		local startn = page * perPage + 1
+		local endn = (1 + page) * perPage
+
+		if startn <1 then
+			startn = 1 
+		end
+
+		if endn > #MonsterDBSorted then
+			endn = #MonsterDBSorted
+		end
+
+		G.setColor(0,0,0,255)
+
+		local offset = 0
+		for i = startn, endn do
+			local monster = MonsterDBSorted[i]
+			G.print(getNoxString("creature:" .. monster.NAME), 50 + x, 95 + offset * 10 + y)
+
+			self:setMouseCollide(50 + x, 95 + offset * 10 + y, 100, 10, function(x,y)
+				guidePage = monster.NAME
+
+				if spellOffset > i then
+					turnPage("BookPageForward")
+					return false
+				else
+					turnPage("BookPageBackward")
+					return false
+				end
+			end)
+
+			offset = offset + 1
+		end
+
+		G.setColor(255,255,255,255)
+	end
+
+	
+
+	G.push()
+	G.translate(round(NoxInterface.BOKX), round(NoxInterface.BOKY))
+
+	drawNoxImage("BookOfKnowledge", 0,0)
+
+	if turningPage then
+		if drawNoxAnimation(turningPage, 0,0, 1/20) == 0 then
+			turningPage = false
+		end
+
+		goto endf
+	end
+
+	
+	if NoxInterface.BOKSection == "Guide" then
+		drawNoxImage("GuideTabLit",0,0)
+		
+	else
+		drawNoxImage("SpellTabLit",0,0)
+		
+	end
+
+	NoxInterface:setMouseCollideFromImage("SpellTabLit",0,0, 
+			function(x,y) 
+				NoxInterface.BOKSection = "Spell"
+				turnPage("BookPageForward")
+				spellOffset = 0
+				spellPage = false
+				guidePage = false
+				return false 
+			end)
+
+	NoxInterface:setMouseCollideFromImage("GuideTabLit",0,0, 
+			function(x,y) 
+				NoxInterface.BOKSection = "Guide"
+				turnPage("BookPageBackward")
+				guidePage = false
+				spellPage = false
+				return false 
+			end)
+
+
+
+	
+	if NoxInterface.BOKSection == "Spell" then
+		if spellPage then
+			local spell = ThingDB.Spells[spellPage]
+			drawNoxImageID(spell.i1, 85,95)
+			NoxInterface:setMouseCollideFromImageId(spell.i1,85,95, 
+				function(x,y)
+					NoxInterface.draggingSpell = spell
+					audio:playSoundByMapping("SpellPickup")
+					return false
+				end,
+				function() 
+					NoxInterface.draggingSpell = nil
+					NoxInterface.draggingSpellLocationSet = nil
+					NoxInterface.draggingSpellLocationPos = nil
+					return false
+					end,
+				function(x,y)
+					
+				end)
+
+			G.setColor(0,0,0,255)
+
+			G.printf(getNoxString(spell.NameString), 53, 130, 90, "center")
+
+			G.printf("Mana Cost: " .. spell.ManaCost, 53, 150, 90, "center")
+
+			G.printf("Your Power: " .. 3, 53, 170, 90, "center") -- @todo
+
+			G.printf(getNoxString(spell.DescriptionString), 175, 130, 90, "center")
+
+
+			
+			G.setColor(255,255,255,255)
+		else
+			drawSpellList(spellPageOffset,0,0)
+			drawSpellList(spellPageOffset + 1,120,0)
+
+			if (spellPageOffset + 2) * 12 < #ThingDB.SpellsSorted then
+				drawNoxImage("ArrowE",250,210)
+				NoxInterface:setMouseCollideFromImage("ArrowE",250,208, 
+					function(x,y) 
+						spellPageOffset = spellPageOffset + 2
+						turnPage("BookPageForward")
+						return false
+					end)
+			end
+
+			if spellPageOffset > 0 then
+				drawNoxImage("ArrowW",50,210)
+				NoxInterface:setMouseCollideFromImage("ArrowW",50,208, 
+					function(x,y) 
+						spellPageOffset = spellPageOffset - 2
+						turnPage("BookPageBackward")
+						return false
+					end)
+			end
+		end
+	else
+		if guidePage then
+			local monster = MonsterDB[guidePage]
+
+			if monster.SummonSpell then
+				drawNoxImageID(monster.SummonSpell.i1, 85,95)
+
+				NoxInterface:setMouseCollideFromImageId(monster.SummonSpell.i1,85,95, 
+				function(x,y)
+					NoxInterface.draggingSpell = monster.SummonSpell
+					audio:playSoundByMapping("SpellPickup")
+					return false
+				end,
+				function() 
+					NoxInterface.draggingSpell = nil
+					NoxInterface.draggingSpellLocationSet = nil
+					NoxInterface.draggingSpellLocationPos = nil
+					return false
+					end,
+				function(x,y)
+					
+				end)
+				
+			end
+
+
+
+
+
+			drawNoxImage("Spellbook" .. monster.NAME, 85,150)
+			G.setColor(0,0,0,255)
+			G.printf(getNoxString("creature:" .. monster.NAME), 53, 130, 100, "center")
+			G.printf("Size: " .. "?", 53, 140, 100, "center")
+
+			
+			G.printf(getNoxString("creature_desc:" .. monster.NAME), 175, 110, 90, "center")
+			G.setColor(255,255,255,255)
+			
+		else
+			drawGuidelist(guidePageOffset,0,0)
+			drawGuidelist(guidePageOffset + 1,120,0)
+
+			if (guidePageOffset + 2) * 12 < #MonsterDBSorted then
+				drawNoxImage("ArrowE",250,210)
+				NoxInterface:setMouseCollideFromImage("ArrowE",250,208, 
+					function(x,y) 
+						guidePageOffset = guidePageOffset + 2
+						turnPage("BookPageForward")
+						return false
+					end)
+			end
+
+			if guidePageOffset > 0 then
+				drawNoxImage("ArrowW",50,210)
+				NoxInterface:setMouseCollideFromImage("ArrowW",50,208, 
+					function(x,y) 
+						guidePageOffset = guidePageOffset - 2
+						turnPage("BookPageBackward")
+						return false
+					end)
+			end
+		end
+		
+	end
+
+
+	
+	::endf::
+
+NoxInterface:setMouseCollideFromImage("BookOfKnowledge",0,0, 
+			function(x,y) 
+			end, 
+			function(x,y) 
+			end, 
+			function(x,y,dx,dy) 
+				NoxInterface.BOKX = NoxInterface.BOKX + dx
+				NoxInterface.BOKY = NoxInterface.BOKY + dy
+			end
+	)
+
+	
+
+	G.pop()
+end
 
 function NoxInterface:drawInventory()
 	G.push()
@@ -208,7 +554,7 @@ function NoxInterface:drawInventory()
 	for _,seqid in pairs(PlayerArmorIds) do
 		for k,v in pairs(NoxInterface.player.player.inventory) do
 			if v then
-				if (v.sequenceid == seqid) and v.isequiped and v.modtype == "ARMOR_DEFINITIONS" then
+				if (v.sequenceid == seqid) and v.equipment.isequiped and v.modtype == "ARMOR_DEFINITIONS" then
 					drawNoxImageID46(v, ModelArmor[v.sequenceid], 0,15);
 				end
 			end
@@ -218,7 +564,7 @@ function NoxInterface:drawInventory()
 	for _,seqid in pairs(PlayerWeaponIds) do
 		for k,v in pairs(NoxInterface.player.player.inventory) do
 			if v then
-				if (v.sequenceid == seqid) and v.isequiped and v.modtype == "WEAPON_DEFINITIONS" then
+				if (v.sequenceid == seqid) and v.equipment.isequiped and v.modtype == "WEAPON_DEFINITIONS" then
 					drawNoxImageID46(v, ModelWeapon[v.sequenceid], 0,15);
 				end
 			end
@@ -277,6 +623,16 @@ function NoxInterface:drawInventory()
 		end
 	end))
 
+	G.setColor(255, 255, 100, 255)
+	G.print(self.player.player.gold, 261, 48)
+	G.setColor(255, 255, 255, 255)
+
+	G.print(binds.swap, 195, 212)
+
+	if self.player.player.equipment["PREVWEAPON"] then
+		drawNoxImageID46(self.player.player.equipment["PREVWEAPON"], self.player.player.equipment["PREVWEAPON"].spriteMenuIcon, 175 - 40, 175 - 40);
+	end
+
 
 	local offset = 0
 	for i = (self.inventoryScrollLocation * 4), ((self.inventoryScrollLocation + 3) * 4) - 1 do
@@ -284,7 +640,6 @@ function NoxInterface:drawInventory()
 
 		col = offset % 4 
 		row = (offset - offset % 4) / 4
-
 
 		if v then
 			if v == NoxInterface.draggingItem then
@@ -294,18 +649,18 @@ function NoxInterface:drawInventory()
 				if(length < 15) then
 					drawNoxImageID46(v, v.spriteMenuIcon, 314 + (col * 50) - 40, 13 + (row * 50) - 40);
 
-					if(v.isequiped) then
+					if(v.equipment and v.equipment.isequiped) then
 						drawNoxImageID(14672, 314 + (col * 50), 13 + (row * 50))
-					elseif(v.isprevweapon) then
+					elseif v.equipment and (v == self.player.player.equipment["PREVWEAPON"] or v == self.player.player.equipment["PREVSHIELD"]) then
 						drawNoxImageID(14691, 314 + (col * 50), 13 + (row * 50))
 					end
 				end
 			else
 				drawNoxImageID46(v, v.spriteMenuIcon, 314 + (col * 50) - 40, 13 + (row * 50) - 40);
 
-				if(v.isequiped) then
+				if(v.equipment and v.equipment.isequiped) then
 					drawNoxImageID(14672, 314 + (col * 50), 13 + (row * 50))
-				elseif(v.isprevweapon) then
+				elseif v.equipment and (v == self.player.player.equipment["PREVWEAPON"] or v == self.player.player.equipment["PREVSHIELD"]) then
 					drawNoxImageID(14691, 314 + (col * 50), 13 + (row * 50))
 				end
 
@@ -348,48 +703,154 @@ function NoxInterface:drawInventory()
 end
 
 function NoxInterface:drawquickBar()
+	function drawSpellBar(activespellset, offsetx, offsety)
+		G.push()
+		G.translate(offsetx, offsety)
+
+		drawNoxImageID(14415,0,0)
+
+		local offsetx = 0
+		local set = NoxInterface.spellsets[activespellset]
+		for k,v in pairs(set) do
+			if v then
+				drawNoxImageID(v.i1, 71 + offsetx * 37, 34)
+			end
+			self:setMouseCollide(71 + offsetx * 37, 34, 32, 32, 
+				function(x,y)
+
+					NoxInterface.draggingSpell = NoxInterface.spellsets[activespellset][k]
+					NoxInterface.draggingSpellLocationSet = activespellset
+					NoxInterface.draggingSpellLocationPos = k
+					NoxInterface.spellsets[activespellset][k] = false
+
+					audio:playSoundByMapping("SpellPickup")
+					return false
+				end, function(x,y)
+					if NoxInterface.draggingSpell then
+						if NoxInterface.draggingSpellLocationSet and NoxInterface.draggingSpellLocationSet == activespellset and 
+								NoxInterface.draggingSpellLocationPos and NoxInterface.draggingSpellLocationPos == k then
+
+							NoxInterface.spellsets[activespellset][k] = NoxInterface.draggingSpell
+
+
+						else
+							local spell = NoxInterface.spellsets[activespellset][k]
+							NoxInterface.spellsets[activespellset][k] = NoxInterface.draggingSpell
+
+							if NoxInterface.draggingSpellLocationSet and NoxInterface.draggingSpellLocationPos then
+								NoxInterface.spellsets[NoxInterface.draggingSpellLocationSet][NoxInterface.draggingSpellLocationPos] = spell
+							end
+
+							NoxInterface.draggingSpellLocationSet = nil
+							NoxInterface.draggingSpellLocationPos = nil
+							audio:playSoundByMapping("SpellDrop")
+						end
+
+					end
+					return false
+				end)
+			
+			offsetx = offsetx + 1
+		end
+
+		drawNoxImageID(14424,0,0)
+		drawNoxImageID(14425,0,0)
+		drawNoxImageID(14426,0,0)
+		drawNoxImageID(14427,0,0)
+		drawNoxImageID(14428,0,0)
+
+		G.print(string.upper(binds.spell1), 83, 62)
+		G.print(string.upper(binds.spell2), 120, 62)
+		G.print(string.upper(binds.spell3), 158, 62)
+		G.print(string.upper(binds.spell4), 195, 62)
+		G.print(string.upper(binds.spell5), 232, 62)
+
+		NoxInterface:setMouseCollideFromImage("QuickBarBase",0,0) 
+
+		G.pop()
+	end
+
+	local enableSpellSets = true
 	G.push()
 	G.translate(NoxInterface.drawwidth/2 - 152, NoxInterface.drawheight - (768-693))
 
 	-- Draw left, mid, right part of quickbar
-	drawNoxImageID(14415,0,0)
-	drawNoxImageID(14446,0,0)
+
+	
+	if enableSpellSets then
+		drawNoxImageID(14442,0,0)
+
+		NoxInterface:setMouseCollideCircle(15, 49 ,8, function(x,y) end, function(x,y) NoxInterface:toggleBOK() end)
+
+		self:setMouseCollide(30, 27, 12, 18, nil, 
+			function(x,y) 
+				NoxInterface.activespellset = (NoxInterface.activespellset % #NoxInterface.spellsets) + 1
+				audio:playSoundByMapping("ChangeSpellbar")
+			end)
+		self:setMouseCollide(30, 54, 12, 18, nil, 
+			function(x,y) 
+				NoxInterface.activespellset = NoxInterface.activespellset - 2
+				NoxInterface.activespellset = (NoxInterface.activespellset % #NoxInterface.spellsets) + 1
+				audio:playSoundByMapping("ChangeSpellbar")
+			end)
+
+		self:setMouseCollide(46, 41, 13, 19, nil, 
+			function(x,y) 
+				NoxInterface.showAllBars = not NoxInterface.showAllBars 
+				audio:playSoundByMapping("ChangeSpellbar")
+			end)
+
+	else
+		drawNoxImageID(14446,0,0)
+	end
+	
 	drawNoxImageID(14447,0,0)
+
+	if NoxInterface.BOKOpen then
+		drawNoxImageID(14513, 0,33)
+	else  
+		drawNoxImageID(14512, 0,33)
+	end
+
+	
+
+
+	
+
+
+	if NoxInterface.showAllBars then
+		for drawingSpellSet = 0, #NoxInterface.spellsets - 1 do
+			drawSpellBar(drawingSpellSet + 1,0,drawingSpellSet * -60)
+		end
+		
+	else
+		drawNoxImageID(14433, 0,0)
+		G.printf("Spell Set #" .. NoxInterface.activespellset, 105, 6, 120, "center")
+		drawSpellBar(NoxInterface.activespellset,0,0)
+	end
+
 
 	G.setFont(NoxInterface.font6pt)
 
-	-- Draw spell icons
-	local offsetx = 0
-	local set = NoxInterface.player.player.spellsets[self.player.player.activespellset]
-	for k,v in pairs(set) do
-		if v then
-			drawNoxImageID(v.i1, 71 + offsetx * 37, 34)
-			self:setMouseCollide(71 + offsetx * 37, 34, 32, 32)
-			
-			offsetx = offsetx + 1
-		end
-	end
 
-	-- Draw backdrop for binds
-	drawNoxImageID(14424,0,0)
-	drawNoxImageID(14425,0,0)
-	drawNoxImageID(14426,0,0)
-	drawNoxImageID(14427,0,0)
-	drawNoxImageID(14428,0,0)
-
-	-- Draw binds
-	G.print(string.upper(binds.spell1), 83, 62)
-	G.print(string.upper(binds.spell2), 120, 62)
-	G.print(string.upper(binds.spell3), 158, 62)
-	G.print(string.upper(binds.spell4), 195, 62)
-	G.print(string.upper(binds.spell5), 232, 62)
+	
+	NoxInterface:setMouseCollideFromImage("QuickBarSpellSetBase",0,0) 
+	NoxInterface:setMouseCollideFromImage("QuickBarWarriorRight",0,0) 
 
 	G.pop()
 end
 
 function NoxInterface:drawgui()
 	local drawMana = NoxInterface.player.player.maxmana > 0
-	drawNoxImageID(14508,-1,NoxInterface.drawheight - 126)
+	if NoxInterface:isInventoryOpen() then
+		drawNoxImageID(14511,-1,NoxInterface.drawheight - 126)
+	else
+		drawNoxImageID(14508,-1,NoxInterface.drawheight - 126)
+	end
+	NoxInterface:setMouseCollideCircle(17, NoxInterface.drawheight - 100 ,10 , function(x,y) end, function(x,y) NoxInterface:toggleInventory() end)
+
+
+
 	drawNoxImageID(14453,NoxInterface.drawwidth - 91, NoxInterface.drawheight - 201)
 
 	-- Health
@@ -399,7 +860,7 @@ function NoxInterface:drawgui()
 		G.setColor(0xD0,0,0,255 * 0.7)
 	end
 
-	G.rectangle("fill", NoxInterface.drawwidth - 52, NoxInterface.drawheight - 168, 15, 126 * (NoxInterface.player.health / NoxInterface.player.player.maxhealth))
+	G.rectangle("fill", NoxInterface.drawwidth - 52, NoxInterface.drawheight - 168 + 128, 15, -126 * (NoxInterface.player.health / NoxInterface.player.player.maxhealth))
 
 	if(drawMana) then
 		G.setColor(0,0,0xD0,255 * 0.7)
@@ -432,7 +893,7 @@ function NoxInterface:drawgui()
 	
 	for k,v in pairs(NoxInterface.player.player.inventory) do
 		if v then
-			if v.isequiped and v.modtype == "WEAPON_DEFINITIONS" then
+			if v.equipment and v.equipment.isequiped and v.modtype == "WEAPON_DEFINITIONS" then
 				drawNoxImageID46(v, v.spriteMenuIcon, -13, NoxInterface.drawheight - 112);
 
 				if v.equipment.charges then
@@ -493,67 +954,80 @@ function NoxInterface:drawCursor()
 		if(length > 15) then
 			drawNoxImageID46(NoxInterface.draggingItem, NoxInterface.draggingItem.spriteMenuIcon, mouseX - 40, mouseY - 40);
 		end
-	end
+	elseif NoxInterface.draggingSpell then
+		local length = math.sqrt((NoxInterface.lastPressX - love.mouse.getX()) * (NoxInterface.lastPressX - love.mouse.getX()) + 
+			(NoxInterface.lastPressY - love.mouse.getY()) * (NoxInterface.lastPressY - love.mouse.getY()))
 
-	local colliderFound = false
-
-	for k,v in pairs(NoxInterface.mouseCollides) do
-		if(isPointInCollider(mouseX,mouseY, v)) then
-			colliderFound = true
-			break
-		end
-	end
-
-
-	
-	if colliderFound then
-		drawNoxImageID(135952, mouseX - 64, mouseY - 64)
+		--if(length > 15) then
+			drawNoxImageID(NoxInterface.draggingSpell.i1, mouseX, mouseY);
+		--end
 	else
-		local mapObjects = NoxMap:getObjectPVS()
 
-		local wx, wy = camera:localToWorld(mouseX, mouseY)
+		local colliderFound = false
 
-		local hoverObject = nil
-		for k,v in pairs(mapObjects) do
-			if v.pickupType then
-				local dx = v.x - wx
-				local dy = v.y - wy
-
-				local mousedist = math.sqrt(dx * dx + dy *dy)
-
-				if mousedist < v.physExtentX * 1.5 then
-					hoverObject = v
-				end
+		for k,v in pairs(NoxInterface.mouseCollides) do
+			if(isPointInCollider(mouseX,mouseY, v)) then
+				colliderFound = true
+				break
 			end
-		end
-
-		if hoverObject then
-			local dx = hoverObject.x - NoxInterface.player.x
-			local dy = hoverObject.y - NoxInterface.player.y
-
-			local dist = math.sqrt(dx * dx + dy * dy)
-
-			if dist > NoxInterface.player.player.pickupRange then
-				drawNoxAnimation("CursorPickupFar", mouseX - 64, mouseY - 64)
-			else
-				drawNoxAnimation("CursorPickup", mouseX - 64, mouseY - 64)
-			end
-		else
-			local centerX, centerY = camera:worldToLocal(NoxInterface.player.x, NoxInterface.player.y)
-
-			local cursorangle = math.atan2(centerY - mouseY, centerX - mouseX)
-			local cursordist = math.pow(mouseY - centerY, 2) + math.pow(mouseX - centerX, 2);
-			local frame = math.min(math.floor(((cursorangle + math.pi) / (math.pi * 2)) *32), 31);
-
-			if (cursordist >= 10000) then
-				frame = frame + 32;
-			end
-
-			drawNoxImageID(CursorMoveImages[frame + 1], mouseX - 64, mouseY - 64)
 		end
 
 
 		
+		if colliderFound then
+			drawNoxImageID(135952, mouseX - 64, mouseY - 64)
+		else
+			local mapObjects = NoxMap:getObjectPVS()
+
+			local wx, wy = camera:localToWorld(mouseX, mouseY)
+
+			local hoverObject = nil
+			for k,v in pairs(mapObjects) do
+				if v.pickupType then
+					local dx = v.x - wx
+					local dy = v.y - wy
+
+					local mousedist = math.sqrt(dx * dx + dy *dy)
+
+					if mousedist < v.physExtentX * 1.5 then
+						if NoxInterface.player.player:isPointVisible(wx, wy) then
+							hoverObject = v
+						end
+					end
+				end
+			end
+
+			if hoverObject then
+				local dx = hoverObject.x - NoxInterface.player.x
+				local dy = hoverObject.y - NoxInterface.player.y
+
+				local dist = math.sqrt(dx * dx + dy * dy)
+
+				if dist > NoxInterface.player.player.pickupRange then
+					drawNoxAnimation("CursorPickupFar", mouseX - 64, mouseY - 64)
+				else
+					drawNoxAnimation("CursorPickup", mouseX - 64, mouseY - 64)
+				end
+
+				camera:push()
+				G.setColor(128, 128, 255, 255)
+				G.circle("line", hoverObject.x, hoverObject.y, hoverObject.physExtentX * 1.5, 32)
+				G.setColor(255, 255, 255, 255)
+				camera:pop()
+			else
+				local centerX, centerY = camera:worldToLocal(NoxInterface.player.x, NoxInterface.player.y)
+
+				local cursorangle = math.atan2(centerY - mouseY, centerX - mouseX)
+				local cursordist = math.pow(mouseY - centerY, 2) + math.pow(mouseX - centerX, 2);
+				local frame = math.min(math.floor(((cursorangle + math.pi) / (math.pi * 2)) *32), 31);
+
+				if (cursordist >= 10000) then
+					frame = frame + 32;
+				end
+
+				drawNoxImageID(CursorMoveImages[frame + 1], mouseX - 64, mouseY - 64)
+			end
+		end
 	end
 
 end
@@ -561,11 +1035,23 @@ end
 
 
 function NoxInterface:draw()
+	NoxInterface.mouseCollides = {}
 	if(not NoxInterface.player) then
 		return
 	end
 
-	NoxInterface.mouseCollides = {}
+	if NoxInterface.shouldDrawCinematicBorders then --@todo fancy up
+		G.setColor(0,0,0,255)
+		G.rectangle("fill", 0,0, G.getWidth(), 100)
+		G.rectangle("fill", 0,G.getHeight() - 100, G.getWidth(), 100)
+		G.setColor(255,255,255,255)
+		
+		return
+	end
+
+	
+
+	
 
 	-- Scaling trick
 	NoxInterface.drawwidth = G.getWidth() / NoxInterface.scale
@@ -581,9 +1067,15 @@ function NoxInterface:draw()
 	self:drawgui()
 	self:drawquickBar()	
 
-	if NoxInterface.inventoryY ~= NoxInterface.inventoryYMin then
+	if NoxInterface:isInventoryOpen() then
 		self:drawInventory()
 	end
+
+	if NoxInterface.BOKOpen then
+		self:drawBookOfKnowledge()
+	end
+
+	
 
 	-- Undo scaling
 	G.pop()
@@ -627,6 +1119,9 @@ function NoxInterface:mousereleased(mx,my,button)
 		NoxInterface.player.player:dropItemFromInventory(NoxInterface.draggingItemSlot, wx,wy)
 		NoxInterface.draggingItem = nil 
 	end
+	NoxInterface.draggingSpell = nil 
+	NoxInterface.draggingSpellLocationSet = nil
+	NoxInterface.draggingSpellLocationPos = nil
 
 	NoxInterface.downCallbacks = {}
 end
@@ -643,8 +1138,14 @@ function NoxInterface:mousepressed(mx,my,button)
 	for k,v in pairs(NoxInterface.mouseCollides) do
 		if(isPointInCollider(mx,my, v)) then
 			if(v.onPressCallback) then
-				v.onPressCallback(mx,my, v.userdata)
+				local ret = v.onPressCallback(mx,my, v.userdata)
 				table.insert(NoxInterface.downCallbacks, v)
+
+				if ret ~= nil and ret == false then
+					return
+				end
+
+
 			end
 		end
 	end
@@ -653,15 +1154,17 @@ function NoxInterface:mousepressed(mx,my,button)
 		local hoverObject = nil
 		local mapObjects = NoxMap:getObjectPVS()
 		local wx, wy = camera:localToWorld(mx, my)
-		for k,v in pairs(mapObjects) do
-			if v.pickupType then
-				local dx = v.x - wx
-				local dy = v.y - wy
+		if mapObjects then
+			for k,v in pairs(mapObjects) do
+				if v.pickupType then
+					local dx = v.x - wx
+					local dy = v.y - wy
 
-				local mousedist = math.sqrt(dx * dx + dy *dy)
+					local mousedist = math.sqrt(dx * dx + dy *dy)
 
-				if mousedist < v.physExtentX * 1.5 then
-					hoverObject = v
+					if mousedist < v.physExtentX * 1.5 then
+						hoverObject = v
+					end
 				end
 			end
 		end

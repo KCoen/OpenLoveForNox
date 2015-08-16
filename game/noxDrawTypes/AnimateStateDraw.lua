@@ -24,18 +24,21 @@ function AnimateStateDraw:draw(obj)
 	if (obj.animationLastUpdate + AnimateStateDraw.AnimatePerSecond) < self.curTime then
 		obj.animationLastUpdate = self.curTime
 
+		if obj.animationState == #obj.spriteStates[obj.spriteState].Animation.Frames then
+			if obj.updater and obj.updater.onAnimationStateEnd then
+				obj.updater:onAnimationStateEnd(obj, obj.spriteState)
+			end
+		end
+
 		obj.animationState = obj.animationState + 1
+
 		obj.animationState = ((obj.animationState -1) % #obj.spriteStates[obj.spriteState].Animation.Frames) + 1
 
 		local spriteid = obj.spriteStates[obj.spriteState].Animation.Frames[obj.animationState]
 		UpdateObjectSpriteId(obj, spriteid)
 	end
 	
-	--self.shader:send("type46",false)
-	--self.shader:send("pos",{camera:worldToLocal(obj.x,obj.y)})
-
 	rdraw(obj)
-	
 end
 
 return AnimateStateDraw

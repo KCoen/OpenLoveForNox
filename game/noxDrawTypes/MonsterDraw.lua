@@ -26,7 +26,7 @@ function MonsterDraw:draw(obj)
 				local loopSize = #v.Animation.Frames / 8
 				obj.animationState = (obj.animationState + 1) % loopSize
 
-				local a = math.deg(obj.phys[1].body:getAngle())
+				local a = (math.deg(obj.rotation) + 178) % 360
 
 				if ((a >= 315 and a < 337.5) or (a <= 22.5)) then
 					animationDirection = 4;
@@ -39,7 +39,7 @@ function MonsterDraw:draw(obj)
 				elseif (a >= 157.5 and a < 202.5) then
 					animationDirection = 3;
 				elseif (a >= 202.5) then 
-					animationDirection = round((float) (a / 45));
+					animationDirection = round((a / 45));
 				end
 
 				if (animationDirection >= 8) then 

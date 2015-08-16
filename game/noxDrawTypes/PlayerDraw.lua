@@ -6,6 +6,7 @@ PlayerDraw.AnimatePerSecond = 1 / 10
 
 local rdraw = renderer.drawObject
 
+
 function PlayerDraw:initObject(obj)
 end
 
@@ -28,7 +29,7 @@ function PlayerDraw:draw(obj)
 	for _,armor in pairs(PlayerArmorIds) do
 		for k,v in pairs(obj.player.inventory) do
 			if v then
-				if (v.sequenceid == armor) and v.isequiped and v.modtype == "ARMOR_DEFINITIONS" then
+				if (v.sequenceid == armor) and v.equipment.isequiped and v.modtype == "ARMOR_DEFINITIONS" then
 					table.insert(toRender, v)
 				end
 			end
@@ -38,7 +39,7 @@ function PlayerDraw:draw(obj)
 	for _,armor in pairs(PlayerWeaponIds) do
 		for k,v in pairs(obj.player.inventory) do
 			if v then
-				if (v.sequenceid == armor) and v.isequiped and v.modtype == "WEAPON_DEFINITIONS" then
+				if (v.sequenceid == armor) and v.equipment.isequiped and v.modtype == "WEAPON_DEFINITIONS" then
 					table.insert(toRender, v)
 				end
 			end

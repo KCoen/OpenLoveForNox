@@ -92,7 +92,7 @@ function NoxMap:preCacheFloorTiles()
 				
 			for obj in NoxMap.Objects:Iter(x1 - 128, y1 - 128, gameconf.maptilechunksize + 128, gameconf.maptilechunksize + 128) do
 				if(obj.renderer) then
-					if(obj.flags["BELOW"] and obj.class["IMMOBILE"] and not obj.class["ELEVATOR_SHAFT"] and not obj.flags["EDIT_VISIBLE"]) then
+					if(obj.flags["BELOW"] and obj.class["IMMOBILE"] and not obj.class["ELEVATOR_SHAFT"] and not obj.flags["EDIT_VISIBLE"] and (obj.drawType == "StaticDraw" or obj.drawType == "StaticRandomDraw" )) then
 						obj.renderer:draw(obj)
 						table.insert(markedForRemoval, obj)
 					end
@@ -171,6 +171,16 @@ function NoxMap:GetByScriptName(name)
 	return nil
 end
 
+function NoxMap:GetWaypointByShortName(name)
+	for k, v in pairs(self.Waypoints) do
+		if v.ShortName and (v.ShortName == name) then
+			return v
+		end
+	end	
+
+	print("COULDN'T FIND WAYPOINT " .. name)
+end
+
 function NoxMap:GetWaypointByName(name)
 	local names = name:split(":")
 	for k, v in pairs(self.Waypoints) do
@@ -178,12 +188,22 @@ function NoxMap:GetWaypointByName(name)
 			return v
 		end
 	end	
+
+	print("COULDN'T FIND WAYPOINT " .. name)
 end
 
 function NoxMap:insertObject(object)
 	NoxMap.Objects:add(object)
-	NoxMap._Objects[#NoxMap._Objects + 1] = object
+	object.mapid = #NoxMap._Objects + 1
+	NoxMap._Objects[object.mapid] = object
 end
+
+function NoxMap:removeObject(object)
+	NoxMap._Objects[object.mapid] = nil
+	NoxMap.Objects:removeObject(object)
+end
+
+local currentTile
 
 function NoxMap:getActiveTile(x,y)
 	local tiles = self.Tiles:getPVS(x - 128,y - 128,x + 128,y + 128)
@@ -200,7 +220,101 @@ function NoxMap:getActiveTile(x,y)
 		if ((lx + ly < 0.5) or (lx - ly > 0.5) or (ly - lx > 0.5) or (ly + lx > 1.5)) then
 
 	    else
-	    	return v
+	    	
+	    	--[[local nwCornerX = 46/2
+	    	local nwCornerY = 0
+
+	    	local neCornerX = 46
+	    	local neCornerY = 46/2
+
+	    	local swCornerX = 0
+	    	local swCornerY = 46/2
+
+	    	local seCornerX = 46/2
+	    	local seCornerY = 46
+
+
+
+
+	    	G.line(v.x + nwCornerX, v.y + nwCornerY, v.x + neCornerX, v.y + neCornerY)
+			G.line(v.x + neCornerX, v.y + neCornerY, v.x + seCornerX, v.y + seCornerY)
+			G.line(v.x + seCornerX, v.y + seCornerY, v.x + swCornerX, v.y + swCornerY)
+			G.line(v.x + swCornerX, v.y + swCornerY, v.x + nwCornerX, v.y + nwCornerY)
+
+			for x=1, 46 do
+				for y=1, 46 do
+					local lx = x / 46
+					local ly = y / 46
+					if (lx + ly < 0.9) then
+						G.setColor(255,0,0,255)
+						G.point(v.x + lx * 46, ly*46 + v.y)
+					end
+
+					if (ly + lx > 1.1) then
+						G.setColor(0,255,0,255)
+						G.point(v.x + lx * 46, ly*46 + v.y)
+					end
+
+					if (lx - ly > 0.1) then
+						G.setColor(0,0,255,255)
+						G.point(v.x + lx * 46, ly*46 + v.y)
+					end
+
+					if (ly - lx > 0.1) then
+						G.setColor(0,255,255,255)
+						G.point(v.x + lx * 46, ly*46 + v.y)
+					end
+				end
+			end
+
+			G.setColor(255,255,255,255)--]]
+
+	    	if v.edges then
+				for k2,v2 in pairs(v.edges) do
+					if TileEdgeDirection.North_08 == v2.direction or 
+						TileEdgeDirection.North_0A == v2.direction or 
+						TileEdgeDirection.NE_Sides == v2.direction or 
+						TileEdgeDirection.NW_Sides == v2.direction or 
+						TileEdgeDirection.North == v2.direction then
+
+						if (lx + ly < 0.9) then
+							return v, v2
+						end
+					end
+					if TileEdgeDirection.South == v2.direction or 
+						TileEdgeDirection.South_09 == v2.direction or 
+						TileEdgeDirection.SE_Sides == v2.direction or 
+						TileEdgeDirection.SW_Sides == v2.direction or 
+						TileEdgeDirection.South == v2.direction then
+
+						if (ly + lx > 1.1) then
+							return v, v2
+						end
+					end
+					if TileEdgeDirection.East_D == v2.direction or 
+						TileEdgeDirection.East_E == v2.direction or 
+						TileEdgeDirection.NE_Sides == v2.direction or 
+						TileEdgeDirection.SE_Sides == v2.direction or 
+						TileEdgeDirection.East == v2.direction then
+
+						if (lx - ly > 0.1) then
+							return v, v2
+						end
+						
+					end
+					if TileEdgeDirection.West_02 == v2.direction or 
+						TileEdgeDirection.West_03 == v2.direction or 
+						TileEdgeDirection.NW_Sides == v2.direction or 
+						TileEdgeDirection.SW_Sides == v2.direction or 
+						TileEdgeDirection.West == v2.direction then
+
+						if (ly - lx > 0.1) then
+							return v, v2
+						end
+					end
+				end
+			end
+			return v
 	    end
 		::continue::
 	end
@@ -218,6 +332,7 @@ function NoxMap:load(JsonMap)
 	NoxMap._Objects = {}
 	NoxMap.Groups = {}
 	NoxMap.Waypoints = {}
+	NoxMap.Polygons = {}
 
 	for k, obj in pairs(JsonMap.Objects) do		
 		local object = NoxBaseObject.new(obj)--ObjectFromMapObject(obj)
@@ -249,11 +364,14 @@ function NoxMap:load(JsonMap)
 		tile.name = mtile.Graphic
 		tile.x, tile.y = NoxMap:fixTilePosition(tile.x, tile.y)
 		tile.drawOffsetX, tile.drawOffsetY = 0,0
+
 		
 		NoxMap.Tiles:add(tile)
 		
 		for k2, edgetile in pairs(mtile.EdgeTiles) do
+			tile.edges = tile.edges or {}
 			local etile = {}
+			table.insert(tile.edges, etile)
 			etile.x = tile.x
 			etile.y = tile.y
 			etile.drawOffsetX = tile.drawOffsetX
@@ -262,6 +380,8 @@ function NoxMap:load(JsonMap)
 			etile.quad, etile.img = GetSprite(etile.spriteId)
 			etile.BlendSpriteId =  ThingDB.FloorTiles[edgetile.Graphic + 1].Variations[edgetile.Variation + 1]
 			etile.BlendQuad, etile.BlendImg = GetSprite(etile.BlendSpriteId)
+			etile.direction = edgetile.Dir
+			etile.name = ThingDB.EdgeTiles[edgetile.Edge + 1].Name
 			NoxMap.TileEdges:add(etile)
 		end
 	end
@@ -281,12 +401,49 @@ function NoxMap:load(JsonMap)
 		NoxMap.Waypoints[v.num] = v
 	end
 
-	if(mapscriptenv.MapInitialize) then
-		mapscriptenv.MapInitialize()
+	--[[
+	for k, v in pairs(JsonMap.Polygons) do
+		local phys = {}
+		local body = love.physics.newBody(physworld,0,0, "dynamic")
+
+
+		local points = {}
+		for k,v in pairs(v.Points) do
+			table.insert(points, v.X)
+			table.insert(points, v.Y)
+		end
+
+		local fakeobject = {}
+		fakeobject.collider = {}
+		fakeobject.isnotanobject = true
+
+		if (v.EnterFuncPlayer and v.EnterFuncPlayer ~= "") or (v.EnterFuncMonster and v.EnterFuncMonster ~= "") then
+			fakeobject.collider.onCollide = function(self, obja, objb)
+				if objb.player and (v.EnterFuncPlayer and v.EnterFuncPlayer ~= "") then
+					NoxMapScript:call(v.EnterFuncPlayer, nil)
+					print(v.EnterFuncPlayer)
+				end
+				if objb.monster and (v.EnterFuncMonster and v.EnterFuncMonster ~= "") then
+					NoxMapScript:call(v.EnterFuncMonster, nil)
+				end
+			end
+		end
+
+		for i = 0, #points - #points % (8 *2) do
+			local subpoints = {}
+			for i2 = math.min(i * (8*2) - 4, 0), math.min(i * (8*2) - 4, 0) + 8 * 2 - 1 do
+				table.insert(subpoints, points[i2 + 1])
+			end
+			local shape = love.physics.newPolygonShape(unpack(subpoints))
+			local fix = love.physics.newFixture(body, shape)
+			fix:setSensor(true)
+			fix:setUserData(fakeobject)
+		end
+		
 	end
-	if(mapscriptenv.MapEntry) then
-		mapscriptenv.MapEntry()
-	end	
+--]]
+	NoxMapScript:call("MapInitialize", localplayer)
+	NoxMapScript:call("MapEntry", localplayer)
 
 	love.timer.stopTimer("Map Load")
 end
@@ -636,8 +793,12 @@ function NoxMap:draw()
 	G.setColor(255,255,255,255)
 	
 	NoxMap:drawLights(objects)
+
+    		
 	
 	camera:pop()
+
+	
 	
 	if screenBuffer then
 		G.setCanvas()

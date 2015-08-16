@@ -33,20 +33,51 @@ require("NoxAudio")
 require("NoxInterface")
 require("NoxSpells")
 require("NoxLocalPlayerController")
-
+require("NoxEnums")
+require("NoxDie")
 love.graphics.setDefaultFilter("nearest","nearest",1)
 
+function getNoxString(name)
+	if StringDB[name] and StringDB[name][1] then
+		return StringDB[name][1].Value
+	end
+	return name
+end
 
+function noxStringExists(name)
+	if StringDB[name] and StringDB[name][1] and StringDB[name][1].Value then
+		return true
+	end
+	return false
+end
 
 function LoadDatabases()
 	love.timer.starTimer("Loading JSON")
 	ThingDB = loadJSON("content/Json/ThingDB.min.json")	
 	ModDB = loadJSON("content/Json/ModDB.min.json")	
 	_StringDB = loadJSON("content/Json/StringDB.min.json")
+	_MonsterDB = loadJSON("content/Json/MonsterDB.min.json")
 	StringDB = {}
 	for k,v in pairs(_StringDB.Entries) do
 		StringDB[k] = v.Values
 	end
+
+	MonsterDB = {}
+	MonsterDBSorted = {}
+	for k,v in pairs(_MonsterDB.MonsterDict) do
+		MonsterDB[v.NAME] = v
+		if noxStringExists("creature:" .. v.NAME) and noxStringExists("creature_desc:" .. v.NAME) then
+			table.insert(MonsterDBSorted, v)
+		end
+	end
+
+
+
+	table.sort(MonsterDBSorted, function(a,b) 
+			return a.NAME < b.NAME
+		end)
+	
+
 	--Map = loadJSON("Json/War02a.min.json")	
 	VideoBag = {}
 	VideoBag._Tiles = loadJSON("content/Json/TileSprites.min.json")
@@ -55,11 +86,15 @@ function LoadDatabases()
 	VideoBag._Objects = loadJSON("content/Json/ObjectSprites.min.json")
 	VideoBag._Others = loadJSON("content/Json/OtherSprites.min.json")
 	VideoBag._Sequences = loadJSON("content/Json/SequenceSprites.min.json")
+
+	
+
+
 	love.timer.stopTimer("Loading JSON")
 end
 
 
-mapListOffset = 0
+mapListOffset = 1
 function loadMap(name)
 	camera = Camera.new()
 	--scene:add(camera)
@@ -119,8 +154,11 @@ function love.load(arg)
 
 	DrawTypes:load()
 	Updates:load()
+
 	Colliders:load()
 	physics:load()
+	Die:load()
+
 	camera = Camera.new()
 	
 	
@@ -136,8 +174,8 @@ function love.load(arg)
 	--scene:add(map)
 	renderer.load()
 
-	runMapScript("content/luamaps/War01A.map.lua")
-	mapscriptenv.GLOBAL()
+	NoxMapScript:runMapScript("content/luamaps/War01A.map.lua")
+	NoxMapScript:call("GLOBAL")
 
 	
 	loadMap(getFirstMap())	
@@ -151,6 +189,7 @@ function love.load(arg)
 	NoxLocalPlayerController:bind(localplayer)
 
 	NoxInterface:load()
+	NoxSpells:load()
 
 	ThingDB._Images = ThingDB.Images
 	ThingDB.Images = {}
@@ -182,9 +221,11 @@ function love.update(dt)
 	NoxLocalPlayerController:update(dt)
 	physics:update(dt)
 	Updates:update(dt)
+	Die:update(dt)
 	--player:update(dt)
 	camera:update(dt)
 	NoxMap:update(dt)	
+	NoxMapScript:update()
 	
 
 	renderer:update(dt)
@@ -202,8 +243,10 @@ function love.draw()
 
 	NoxInterface:draw()
 
+	love.debug.print("FPS: " .. love.timer.getFPS())
+
 	if(gameconf.debug) then
-		love.debug.print("FPS: " .. love.timer.getFPS())
+		
 
 		local stats = love.graphics.getStats( )
 		
@@ -220,8 +263,9 @@ function love.draw()
 			love.debug.print("Player: " .. localplayer.x .. " " .. localplayer.y)
 		end
 	
-		love.debug.printProfiles()
+		
 	end	
+	love.debug.printProfiles()
 	love.debug.printResetNoPrint()
 end
 
@@ -271,19 +315,7 @@ function love.keypressed(key, u)
 		for k,v in pairs(keysfound) do
 			print(k, v)
 		end
-	end
-
-
-	--[[if(localplayer) then
-		localplayer:keypressed(key, u)
-	end--]]
-
-	if(key == "f5") then
-		music.currentMusic = love.audio.newSource("content/audio/abird01a.wav", "stream")
-		music.currentMusic:setVolume(1.0)
-		music.currentMusic:play()
-	end
-	
+	end	
 end
 
 function love.keyreleased(key, u)

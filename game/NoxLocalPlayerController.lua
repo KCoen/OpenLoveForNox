@@ -59,7 +59,27 @@ function NoxLocalPlayerController:update(dt)
 		camera:set(camera.x + (ply.x - camera.x) * 5 * dt, camera.y + (ply.y - camera.y) * 5 * dt)
 	end
 
-	
+	local prevweapon = ply.player.equipment["PREVWEAPON"]
+	local prevshield = ply.player.equipment["PREVSHIELD"]
+	local wasSwapped = false
+	if NoxLocalPlayerController.pressedKeys[binds.swap] then
+		for k,v in pairs(ply.player.inventory) do
+			if v then
+				if v == prevshield then
+					ply.player:useItemFromInventory(k)
+					wasSwapped = true
+				end
+				if v == prevweapon then
+					ply.player:useItemFromInventory(k)
+					wasSwapped = true
+				end
+			end
+		end
+	end
+
+	if wasSwapped then
+		audio:playSoundByMapping("NextWeapon")
+	end
 end
 
 function NoxLocalPlayerController:flushInputBuffer()

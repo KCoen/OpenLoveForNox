@@ -1,49 +1,76 @@
+local function getFuncNameById(id)
+	for k,v in pairs(mapscriptenv._functions) do
+		if (v-1) == id then
+			return k
+		end
+	end
+end
+
+local function deferCall(name, time)
+	local callinfo = {}
+	callinfo.functionName = name
+	callinfo.callTime = time
+
+	table.insert(NoxMapScript.defferedCalls, callinfo)
+end
+
 mapscriptenv = {}
+mapscriptenv.string = string
+mapscriptenv.getmetatable = getmetatable
+
+local sm = getmetatable("")
+
+sm.__add = function(x,y)
+	return x .. y
+end
 
 function mapscriptenv.GetWallAt(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.OpenSecretWall(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.OpenSecretWallGroup(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.CloseSecretWall(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.CloseSecretWallGroup(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ToggleSecretWall(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ToggleSecretWallGroup(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.BreakWall(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.BreakWallGroup(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.WaitSeconds(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
-function mapscriptenv.WaitFrames(intArgument, intArgument)
-	return
+function mapscriptenv.WaitFrames(functionid, waittime)
+	deferCall(getFuncNameById(functionid), love.timer.getTime() + waittime / 30)
 end
-function mapscriptenv.MoveTo(intArgument, intArgument)
-	return
+function mapscriptenv.MoveTo(moverobj, waypoint)
+	if moverobj and moverobj.mapXfer then
+		moverobj.mapXfer.WaypointID = waypoint.num
+
+	end
 end
 function mapscriptenv.GroupMoveTo(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterFaceObj(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.GroupFaceObj(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.EnableObject(object)
 	object.isDisabled = false
@@ -85,112 +112,116 @@ function mapscriptenv.DisableWaypointGroup(waypoints)
 	return
 end
 function mapscriptenv.ToggleObject(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ToggleObjectGroup(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ToggleWaypoint(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ToggleWaypointGroup(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.DeleteObject(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.DeleteObjectGroup(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGoRoam(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.GroupMonsterGoRoam(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.Unknown1(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.Unknown2(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGotoHome(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
-function mapscriptenv.AudioEvent(stringArgument, intArgument)
-	return
+function mapscriptenv.AudioEvent(name, objlocation)
+	audio:emitSoundByMapping(objlocation, name)	
 end
 function mapscriptenv.Print(stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
-function mapscriptenv.PrintToAll(stringArgument)
-	return
+function mapscriptenv.PrintToAll(str)
+	print(str) -- @todo
 end
 function mapscriptenv.SayChat(intArgument, stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ExitFunction()
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.UnlockDoor(door)
-	return door.door:unlock()
+	if door and door.door then
+		return door.door:unlock()
+	end
 end
 function mapscriptenv.LockDoor(door)
-	return door.door:lock()
+	if door and door.door then
+		return door.door:lock()
+	end
 end
 function mapscriptenv.ObjIsEnabled(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.WaypointIsEnabled(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.DoorIsLocked(door)
 	return door.door.isLocked
 end
 function mapscriptenv.RandomFloat(floatArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.RandomInteger(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.WaitSecondsSpecial(intArgument, intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.WaitSpecial(intArgument, intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.IntToString(intArgument)
-	return
+	return tostring(intArgument)
 end
 function mapscriptenv.FloatToString(floatArgument)
-	return
+	return tostring(floatArgument)
 end
 function mapscriptenv.SpawnObject(stringArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.DamageObject(intArgument, intArgument, intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.DamageObjectGroup(intArgument, intArgument, intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.Unknown3(intArgument, intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.Unknown4(intArgument, intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.AwardSpell(intArgument, stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.AwardSpellGroup(intArgument, stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ApplyEnchant(intArgument, stringArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.GroupApplyEnchant(intArgument, stringArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.GetHostPlayer()
 	return localplayer
@@ -198,453 +229,470 @@ end
 function mapscriptenv.ObjFromName(name)
 	return NoxMap:GetByScriptName(name)
 end
-function mapscriptenv.GetObjX(intArgument)
-	return
+function mapscriptenv.GetObjX(obj)
+	return obj.x
 end
-function mapscriptenv.GetWaypointX(intArgument)
-	return
+function mapscriptenv.GetWaypointX(wp)
+	return wp.Point.X
 end
-function mapscriptenv.GetObjY(intArgument)
-	return
+function mapscriptenv.GetObjY(obj)
+	return obj.y
 end
-function mapscriptenv.GetWaypointY(intArgument)
-	return
+function mapscriptenv.GetWaypointY(wp)
+	return wp.Point.Y
 end
 function mapscriptenv.GetObjHeight(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.GetObjFacing(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
-function mapscriptenv.TeleportObj(intArgument, floatArgument, floatArgument)
-	return
+function mapscriptenv.TeleportObj(obj, x, y)
+	obj:setPositionDelayed(x,y)
 end
-function mapscriptenv.TeleportWaypoint(intArgument, floatArgument, floatArgument)
-	return
+function mapscriptenv.TeleportWaypoint(wp, x, y)
+	wp.Point.X = x
+	wp.Point.Y = y
 end
 function mapscriptenv.SetObjHeight(intArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.SetObjFacing(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.PushObjectVector(intArgument, floatArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.PushObject(intArgument, floatArgument, floatArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.InvGetTopObj(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.InvGetNextObj(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.DoesHaveObject(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.GetInvHolder(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.InvPutObj(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.InvDropObj(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.CheckObjClass(intArgument, stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.Unknown5()
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.IsEnchantActive(intArgument, stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.CancelEnchant(intArgument, stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.GetObjHealth(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.GetObjMaxHealth(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjAddHealth(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.GetDistance(floatArgument, floatArgument, floatArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjCanInteractWith(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.Unknown6(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.Unknown7(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.Unknown8(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.Unknown9(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.Unknown10(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.Unknown11(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.Unknown12(stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.GetServerInfo(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjLookAtObj(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGoto(intArgument, floatArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGroupGoto(intArgument, floatArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.CancelWait(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.PlayFX(stringArgument, floatArgument, floatArgument, floatArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjSetMaster(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjGroupSetMaster(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjSetMasterGroup(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjGroupSetMasterObjGroup(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjIsMasterTo(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjIsMasteredByGroup(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.UnknownMasterCheck(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.GroupIsMasteredByObj(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjResetMaster(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.WaypointFromName(waypointname)
-	return NoxMap:GetWaypointByName(waypointname)
+	return NoxMap:GetWaypointByShortName(waypointname)
 end
 function mapscriptenv.WaypointGroupFromName(stringArgument)
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name); 
 	return {}
 end
 function mapscriptenv.ObjGroupFromName(groupname)
 	return NoxMap:GetGroupByShortName(groupname)
 end
 function mapscriptenv.WallGroupFromName(stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.SayForSeconds(intArgument, stringArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.SayForFrames(intArgument, stringArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.Unknown13(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.CancelChat(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.RemoveAllChat()
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.JournalSetObjective(intArgument, stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.JournalSetObjectiveBool(intArgument, stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.JournalSetQuest(stringArgument)
-	return 1
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.JournalSetQuestBool(stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.JournalRestoreQuestStatus(stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjIsTrigger(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjIsCaller(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
-function mapscriptenv.SetupDialog(intArgument, stringArgument, intArgument, intArgument)
-	return
+function mapscriptenv.SetupDialog(converseobj, conversarg, initiateScriptID, exitScriptID)
+	converseobj.setupDialog = {}
+	converseobj.setupDialog.conversarg = conversarg
+	converseobj.setupDialog.initFunction = getFuncNameById(initiateScriptID)
+	converseobj.setupDialog.exitFucntion = getFuncNameById(exitScriptID)
 end
 function mapscriptenv.CancelDialog(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.SetDialogPortrait(intArgument, stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
-function mapscriptenv.StartDialogWithCaller(stringArgument, stringArgument)
-	return
+function mapscriptenv.StartDialogWithCaller(soundname, whattosay)
+	audio:emitSoundByMapping(NoxMapScript.lastObject, soundname)
+	
+	local obj = NoxMapScript.lastObject or localplayer
+	obj.player:dialogText(whattosay)
 end
-function mapscriptenv.ForceDialog(intArgument, intArgument)
-	return
+function mapscriptenv.ForceDialog(target, player)
+	if target.setupDialog then
+		print(target.setupDialog.initFunction)
+		NoxMapScript.lastObject = player
+		mapscriptenv[target.setupDialog.initFunction]()
+		mapscriptenv[target.setupDialog.exitFucntion]()
+	end
+
+	
 end
 function mapscriptenv.ApplySpellObjObj(stringArgument, intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ApplySpellObjXY(stringArgument, intArgument, floatArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ApplySpellXYObj(stringArgument, floatArgument, floatArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ApplySpellXYXY(stringArgument, floatArgument, floatArgument, floatArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.CinematicFadeout()
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.CinematicFade()
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
-function mapscriptenv.CinematicBorders(intArgument)
-	return
+function mapscriptenv.CinematicBorders(isEnabled)
+	NoxInterface.shouldDrawCinematicBorders = isEnabled
 end
 function mapscriptenv.GetElevatorState(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGuardArea(intArgument, floatArgument, floatArgument, floatArgument, floatArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGroupGuardArea(intArgument, floatArgument, floatArgument, floatArgument, floatArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGoHunt(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGroupGoHunt(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterIdle(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGroupIdle(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterFollowObj(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGroupFollowObj(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterSetAggressiveness(intArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGroupSetAggressiveness(intArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterAttackMelee(intArgument, floatArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGroupAttackMelee(intArgument, floatArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterAttackRanged(intArgument, floatArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGroupAttackRanged(intArgument, floatArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterSetWayFlag(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGroupSetWayFlag(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGoFight(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGroupGoFight(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.JournalAddEntry(intArgument, stringArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.JournalRemoveEntry(intArgument, stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.JournalUpdateEntry(intArgument, stringArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterSetRetreatRatio(intArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGroupSetRetreatRatio(intArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterSetResumeRatio(intArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGroupSetResumeRatio(intArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterFleeFrom(intArgument, intArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGroupFleeFrom(intArgument, intArgument, floatArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterWait(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterGroupWait(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjIsHostileTo(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.PlayerGetGold(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.PlayerAddGold(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.DialogGetResult(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
-function mapscriptenv.PlayerGiveExp(intArgument, floatArgument)
-	return
+function mapscriptenv.PlayerGiveExp(player, amount)
+	if player.player then
+		player.player:givexp(amount)
+	end
 end
 function mapscriptenv.CheckInvObjNamed(intArgument, stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ForceAutosave()
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.PlayMusic(songnr, volume)
 	return audio:playMusicByNr(songnr, volume)
 end
 function mapscriptenv.StartScreen(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.HostPlayerIsTalking()
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ScriptTrigger()
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ScriptCaller()
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjSetMasterByHost(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjClearMaster(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterMakeFriendly(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterMakeHostile(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.UnkSubclassCheck1(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.UnkSubclassCheck2(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.SetOblivionStatus(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.DeathScreen(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
-function mapscriptenv.ObjFreeze(intArgument, intArgument)
-	return
+function mapscriptenv.ObjFreeze(obj, isfrozen)
+	obj.isfrozen = isfrozen
 end
 function mapscriptenv.WallMakeSilent(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterEventScript(intArgument, intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjSetDecayTime(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.MonsterTrapSpells(intArgument, stringArgument, stringArgument, stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.HostPlayerIsTrading()
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.RemovePrintMessages(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.SetShopkeeperGreet(intArgument, stringArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.Unknown14()
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.Unknown15(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ZombieStayDead(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ZombieGroupStayDead(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ZombieStandUp(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ZombieGroupStandUp(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.PushMusicStack()
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.PopMusicStack()
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ResetMusic()
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjIsGameBall(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ObjIsCrown(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.ExitLevel(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.BlackScreen()
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.PlayerAddLessons(intArgument, intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end
 function mapscriptenv.PlayerGetLessons(intArgument)
-	return
+	print("Unimplemented map function was called: " .. debug.getinfo(1, "n").name);
 end

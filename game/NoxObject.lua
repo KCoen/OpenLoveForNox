@@ -44,10 +44,17 @@ function NoxBaseObject:fixDrawPosition()
 	self.drawOffsetY = y
 end
 
-
+function NoxBaseObject:destroy()
+	if self.ondie then
+		self.ondie:objectDie(self)
+	end
+	NoxMap:removeObject(self)
+end
 
 function NoxBaseObject.new(fromObject)
 	local self = setmetatable({}, NoxBaseObject)
+
+	self.mapid = -1
 
 	self.x = 0
 	self.y = 0
@@ -85,6 +92,8 @@ function NoxBaseObject.new(fromObject)
 	self.conditionalAnimations = false
 	self.spriteStates = false
 
+	self.setupDialog = false
+
 	self.class = {}
 	self.flags = {}
 	self.subclass = {}
@@ -94,6 +103,7 @@ function NoxBaseObject.new(fromObject)
 
 	self.renderer = false
 	self.updater = false
+	self.ondie = false
 
 	self.direction = 1
 	self.elevatorheight = 0
@@ -104,7 +114,9 @@ function NoxBaseObject.new(fromObject)
 	self.drawType = ""
 	self.updateType = ""
 	self.collideType = ""
+	self.dieType = ""
 	self.pickupType = false
+	self.spawnObjectDie = false
 
 	self.physExtentX = 0
 	self.physExtentY = 0
@@ -117,6 +129,7 @@ function NoxBaseObject.new(fromObject)
 	self.isDisabled = false
 
 	self.floorheight = 0
+	self.isfrozen = false
 
 	self.objname = ""
 
@@ -129,6 +142,7 @@ function NoxBaseObject.new(fromObject)
 
 	self.health = 0
 	self.height = 0
+	self.rotation = 0
 	self.floorheight = 0
 	self.isonelevator = false
 	self.orderOffset = 0
@@ -138,19 +152,19 @@ function NoxBaseObject.new(fromObject)
 
 	self.isinInventory = false
 
-	self.npcInventoryList = false
+	self.inventoryList = false
 
 	self.sequenceid = false
 	self.sequencename = false
 	self.modtype = false
-	self.isequiped = false
-	self.isprevweapon = false
 	self.animationOffset = false
 	self.anidirection = false
 	self.spriteStatesS = false
 	self.sequence = false
 
 	self.stack = {}
+
+	self.emitsounds = {}
 
 
 	-- Compontents
@@ -171,6 +185,7 @@ function NoxBaseObject.new(fromObject)
 	Updates:RegisterObject(self)
 	Colliders:RegisterObject(self)
 	DrawTypes:RegisterObject(self)
+	Die:RegisterObject(self)
 
 	NoxMap:insertObject(self)
 
@@ -180,6 +195,8 @@ function NoxBaseObject.new(fromObject)
 end
 
 function NoxBaseObject:setPosition(x,y)
+	assert(x) assert(y) assert(not (x ~= x)) assert(not (y ~= y))
+
 	self.x = x
 	self.y = y
 
@@ -193,26 +210,11 @@ function NoxBaseObject:setPosition(x,y)
 end
 
 function NoxBaseObject:setPositionDelayed(x,y)
+	assert(x) assert(y) assert(not (x ~= x)) assert(not (y ~= y))
+
 	self.futureX = x
 	self.futureY = y
 end
-
-
-
-local armorSlots = 
-{
-	"BOOTS",
-	"ARM_ARMOR",
-	"BREASTPLATE",
-	"HELMET",
-	"LEG_ARMOR",
-	"PANTS",
-	"SHIRT",
-	"BACK",
-	"SHIELD"
-}
-
-
 
 function NoxBaseObject:initFromType(objecttype)
 	local tt = ThingDB.Things[objecttype]
@@ -230,6 +232,7 @@ function NoxBaseObject:initFromType(objecttype)
 	self.collideType = tt.Collide
 	self.updateType = tt.Update
 	self.pickupType = tt.Pickup
+	self.dieType = tt.Die
 
 	self.physExtentX = tt.ExtentX
 	self.physExtentY = tt.ExtentY
@@ -272,6 +275,7 @@ function NoxBaseObject:initFromType(objecttype)
 		self.sequenceid = ItemNameToSequenceID[self.objname]
 		self.sequencename = ItemNameToSequenceName[self.objname]
 		self.modtype = db.type
+		self.equipment.isequiped = false
 		self.equipment.charges = false
 
 		if self.class["WEAPON"] then
@@ -301,7 +305,11 @@ function NoxBaseObject:initFromMapObject(mobject)
 	self.x = mobject.Location.X
 	self.y = mobject.Location.Y
 	self.mapXfer = mobject.ObjXfer
-	self.npcInventoryList = mobject.InventoryList
+	if self.mapXfer and self.mapXfer.DirectionS then
+		self.rotation = monsterDirectionConversion[self.mapXfer.DirectionS]
+	end
+	
+	self.inventoryList = mobject.InventoryList
 end
 
 function fixObjectPosition(x, y, object)

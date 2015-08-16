@@ -7,10 +7,7 @@ NPCDraw.AnimatePerSecond = 1 / 10
 local rdraw = renderer.drawObject
 
 function NPCDraw:initObject(obj)
-	local angle = (0 + 45.0*0.5) % 360.0
-	--angle = (angle + 45.0*0.5) % 360.0
-	local offset = math.floor(angle/45.0) + 1
-	obj.anidirection = AnimationDirectionConversion[offset] 
+	
 	obj.animationOffset = 1
 	obj.sequence = "IDLE"
 
@@ -30,6 +27,10 @@ end
 function NPCDraw:draw(obj)
 	-- Hack, renderer draws generic objects only, but isn't build to deal with complex objects such as the player 
 	-- So We set various variables on the player object and then draw it multiple times
+
+	local offset = math.floor(math.deg(obj.rotation)/45.0) + 1
+	obj.anidirection = AnimationDirectionConversion[offset] 
+
 	local curtime = love.timer.getTime()
 
 	if curtime - obj.animationLastUpdate > NPCDraw.AnimatePerSecond then
@@ -50,7 +51,7 @@ function NPCDraw:draw(obj)
 	toRender[#toRender + 1] = playerColorObject
 
 	for _,seqid in pairs(PlayerArmorIds) do
-		for k,v in pairs(obj.npcInventoryList) do
+		for k,v in pairs(obj.inventoryList) do
 			local db = ModDB.Mods[v.Name]
 			if (ItemNameToSequenceID[v.Name] == seqid and db.type == "ARMOR_DEFINITIONS")  then
 				local item = {}
@@ -81,7 +82,7 @@ function NPCDraw:draw(obj)
 	end
 
 	for _,seqid in pairs(PlayerWeaponIds) do
-		for k,v in pairs(obj.npcInventoryList) do
+		for k,v in pairs(obj.inventoryList) do
 			local db = ModDB.Mods[v.Name]
 			if (ItemNameToSequenceID[v.Name] == seqid and db.type == "WEAPON_DEFINITIONS")  then
 				local item = {}

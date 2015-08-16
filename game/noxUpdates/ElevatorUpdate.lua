@@ -42,7 +42,7 @@ function ElevatorUpdate:updateObject(obj, dt)
 			local target = NoxMap:GetByExtendId(obj.mapXfer.ExtentLink)
 			if target then
 				if #obj.childs > 0 then
-					tprint(target)
+					--tprint(target)
 				end
 				for k,v in pairs(obj.childs) do
 					if(v.setPosition) then

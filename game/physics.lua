@@ -12,12 +12,15 @@ function physics:load()
 	function(fix1, fix2) 
 		local objA = fix1:getUserData()
 		local objB = fix2:getUserData()
+
 		
 		if (objA and objB) then
 			if(objA.collider and objA.collider.onCollide) then
+				if objB.isnotanobject then return end
 				objA.collider:onCollide(objA, objB, fix1, fix2)
 			end
 			if(objB.collider and objB.collider.onCollide) then
+				if objA.isnotanobject then return end
 				objB.collider:onCollide(objB, objA, fix2, fix1)
 			end
 		end
@@ -28,9 +31,11 @@ function physics:load()
 		
 		if (objA and objB) then
 			if(objA.collider and objA.collider.onEndCollide) then
+				if objB.isnotanobject then return end
 				objA.collider:onEndCollide(objA, objB, fix1, fix2)
 			end
 			if(objB.collider and objB.collider.onEndCollide) then
+				if objA.isnotanobject then return end
 				objB.collider:onEndCollide(objB, objA, fix2, fix1)
 			end
 		end
@@ -112,6 +117,7 @@ function physics:AddWallPart(wall, pos1, pos2)
 							pswall.phys[k].body = love.physics.newBody(physworld, pos1.X, pos1.Y)
 							pswall.phys[k].shape = love.physics.newEdgeShape(0,0, x1 - pos1.X, y1 - pos1.Y)
 							pswall.phys[k].fix = love.physics.newFixture(pswall.phys[k].body, pswall.phys[k].shape)		
+							pswall.phys[k].fix:setUserData(wall)
 							physics:setFilterData(pswall.phys[k].fix, "WALL",false, { "DOOR" } )
 							return
 						end		
@@ -137,6 +143,7 @@ function physics:AddWallPart(wall, pos1, pos2)
 							pswall.phys[k].body = love.physics.newBody(physworld, x1, y1)
 							pswall.phys[k].shape = love.physics.newEdgeShape(0,0, pos2.X - x1, pos2.Y - y1)
 							pswall.phys[k].fix = love.physics.newFixture(pswall.phys[k].body, pswall.phys[k].shape)		
+							pswall.phys[k].fix:setUserData(wall)
 							--pswall.phys[k].fix:setFilterData(1,0x2,0) 
 							physics:setFilterData(pswall.phys[k].fix, "WALL",false, { "DOOR" } )
 							return
@@ -153,6 +160,7 @@ function physics:AddWallPart(wall, pos1, pos2)
 	phys.body = love.physics.newBody(physworld, pos1.X, pos1.Y)
 	phys.shape = love.physics.newEdgeShape(0, 0, pos2.X - pos1.X, pos2.Y - pos1.Y)
 	phys.fix = love.physics.newFixture(phys.body, phys.shape)	
+	phys.fix:setUserData(wall)
 	physics:setFilterData(phys.fix, "WALL",false, { "DOOR" } )
 	--phys.fix:setFilterData(1,0x2,0) 	
 	

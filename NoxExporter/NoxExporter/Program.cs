@@ -9,6 +9,7 @@ using NoxShared;
 using System.IO;
 using sspack;
 using MapEditor.noxscript2;
+using Microsoft.Win32;
 
 namespace NoxExporter
 {
@@ -88,6 +89,7 @@ namespace NoxExporter
 		static ModifierDb moddb;
 		static VideoBag bag;
 		static Lexicon<uint, VideoBag.SpriteSheetInfo> ssilist;
+
 		static void ExportTiles()
 		{
 			string last = "";
@@ -794,6 +796,22 @@ namespace NoxExporter
                         Map map = new Map(file.FullName, thingdb);
                         var soc = new ScriptObjContainer(map.Scripts);
 
+						code = code + "_functions = {";
+
+						for(int i = 0; i < soc.Functions.Count;i++)
+                        {
+							if (i + 1 == soc.Functions.Count)
+							{
+								code = code + "\t" + soc.Functions[i].Name + " = " + i.ToString() + "\r\n";
+							}
+							else
+							{
+								code = code + "\t" + soc.Functions[i].Name + " = " + i.ToString() + ",\r\n";
+							}
+                            
+						}
+						code = code + "}\r\n";
+
                         for(int i = 0; i < soc.Functions.Count;i++)
                         {
                             
@@ -837,6 +855,7 @@ namespace NoxExporter
                 Console.WriteLine("S - Export Map Scripts");
 				Console.WriteLine("W - Export Soundset");
 				Console.WriteLine("T - Export StringDB");
+				Console.WriteLine("E - Export MonsterDB");
 				Console.WriteLine("O - ModDB");
 				Console.WriteLine("Q - Quit");
 
@@ -871,7 +890,7 @@ namespace NoxExporter
 						break;
 					case 'I':
 						{
-							AudioBag abag = new AudioBag("Audio.bag");
+							AudioBag abag = new AudioBag(NoxDb.NoxPath + "Audio.bag");
 							abag.ExtractAll("audio");
 
 							var jsonserialize = new JavaScriptSerializer();
@@ -990,6 +1009,19 @@ namespace NoxExporter
 							System.IO.File.WriteAllText("ObjectSprites.min.json", json);
 							json = JSON_PrettyPrinter.Process(json);
 							System.IO.File.WriteAllText("ObjectSprites.json", json);
+						}
+						break;
+					case 'E':
+						{
+							var mdb = new MonsterDb();
+							mdb.LoadMonsterInfo();
+							var jsonserialize = new JavaScriptSerializer();
+							jsonserialize.MaxJsonLength *= 5;
+							var json = jsonserialize.Serialize(mdb);
+							System.IO.File.WriteAllText("MonsterDB.min.json", json);
+							json = JSON_PrettyPrinter.Process(json);
+							System.IO.File.WriteAllText("MonsterDB.json", json);
+							
 						}
 						break;
 					case 'W':
